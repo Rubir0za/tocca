@@ -59,14 +59,14 @@ section.is-visible {
     padding: 20px;
 }
 
-.logo {
+. {
     width: 200px;
     height: auto;
 }
 
 @media (min-width: 768px) {
     .logo {
-        width: 220px;
+        width: 270px;
     }
 }
 
