@@ -47,7 +47,7 @@ section {
 /* --- HERO SECTION (LA PANTALLA DE INICIO) --- */
 .hero-section {
     height: 100vh;
-    background-image: url('imagenes/header_coast.jpg'); /* QUITA LA PARTE DEL GRADIENTE */
+    background-image: url('imagenes/header.jpg'); /* QUITA LA PARTE DEL GRADIENTE */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
