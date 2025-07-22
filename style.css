@@ -47,7 +47,7 @@ section {
 /* --- HERO SECTION (LA PANTALLA DE INICIO) --- */
 .hero-section {
     height: 100vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('imagenes/header.png'); /* Asegúrate de que 'header_coast.jpg' sea el nombre correcto de tu imagen */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('imagenes/header.jpg'); /* Asegúrate de que 'header_coast.jpg' sea el nombre correcto de tu imagen */
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* Hace que el fondo se fije y dé un efecto parallax */
