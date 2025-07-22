@@ -16,6 +16,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: var(--text-color);
     line-height: 1.6;
+    overflow-x: hidden; /* Evita el scroll horizontal en dispositivos móviles */
 }
 
 h1, h2 {
@@ -31,22 +32,25 @@ h2 {
 
 section {
     padding: 80px 20px;
-    transform: translateY(20px); /* Ligeramente desplazadas */
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Transición para la animación */
+    /* Las propiedades de animación (opacity y transform) se manejarán en JS si lo reactivas */
+    /* Por ahora, las dejo fuera para asegurar visibilidad por defecto como hablamos */
+    /* transform: translateY(20px); */
+    /* transition: opacity 0.6s ease-out, transform 0.6s ease-out; */
 }
 
-section.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+/* section.is-visible { */
+/* opacity: 1; */
+/* transform: translateY(0); */
+/* } */
 
 
 /* --- HERO SECTION (LA PANTALLA DE INICIO) --- */
 .hero-section {
     height: 100vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('imagenes/header.jpg'); /* Asegúrate de que 'header_coast.jpg' sea el nombre correcto de tu imagen */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('imagenes/header_coast.jpg'); /* Asegúrate de que 'header_coast.jpg' sea el nombre correcto de tu imagen */
     background-size: cover;
     background-position: center;
+    background-attachment: fixed; /* Hace que el fondo se fije y dé un efecto parallax */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -59,14 +63,14 @@ section.is-visible {
     padding: 20px;
 }
 
-. {
-    width: 200px;
+.logo {
+    width: 160px;
     height: auto;
 }
 
 @media (min-width: 768px) {
     .logo {
-        width: 170px;
+        width: 220px;
     }
 }
 
@@ -123,7 +127,7 @@ section.is-visible {
     display: flex;
     justify-content: center;
     gap: 20px;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Permite que los botones se envuelvan en pantallas pequeñas */
     margin-top: 30px;
 }
 
@@ -164,6 +168,7 @@ section.is-visible {
     margin: 0 auto;
     font-size: 1.1rem;
     line-height: 1.8;
+    padding: 0 15px; /* Añade padding horizontal para evitar que el texto toque los bordes */
 }
 
 /* --- SECCIÓN "INCLUIDO EN EL TOUR" --- */
@@ -177,6 +182,7 @@ section.is-visible {
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 15px; /* Añade padding horizontal al grid */
 }
 
 .included-item {
@@ -224,6 +230,7 @@ section.is-visible {
     gap: 30px;
     max-width: 900px;
     margin: 40px auto 0;
+    padding: 0 15px; /* Añade padding horizontal al grid */
 }
 
 .date-item {
@@ -268,6 +275,7 @@ section.is-visible {
     gap: 30px;
     max-width: 1000px;
     margin: 40px auto 0;
+    padding: 0 15px; /* Añade padding horizontal al grid */
 }
 
 .reference-item {
@@ -315,15 +323,27 @@ section.is-visible {
 
 
 /* --- Media Queries para Responsividad --- */
+
+/* Ajustes para pantallas grandes (desktop, tablets grandes) */
+@media (min-width: 1024px) {
+    .hero-content h1 {
+        font-size: 4.5rem; /* Título más grande en pantallas muy grandes */
+    }
+    .slogan {
+        font-size: 1.4rem;
+    }
+}
+
+/* Ajustes para tablets y pantallas medianas */
 @media (max-width: 768px) {
     h1 {
-        font-size: 2.5rem;
+        font-size: 2.5rem; /* Ajusta el tamaño del título principal */
     }
     h2 {
-        font-size: 2rem;
+        font-size: 2rem; /* Ajusta el tamaño de los subtítulos de sección */
     }
     section {
-        padding: 60px 15px;
+        padding: 60px 15px; /* Reduce el padding vertical y horizontal de las secciones */
     }
     .hero-content h1 {
         font-size: 2.8rem;
@@ -336,24 +356,37 @@ section.is-visible {
         font-size: 1rem;
     }
     .contact-buttons {
-        flex-direction: column;
+        flex-direction: column; /* Apila los botones de contacto verticalmente */
         align-items: center;
+        gap: 15px; /* Reduce el espacio entre botones apilados */
     }
     .contact-button {
-        width: 80%; /* Ajuste para que los botones de contacto sean más anchos en móviles */
-        max-width: 300px;
+        width: 90%; /* Hace los botones de contacto más anchos */
+        max-width: 350px; /* Limita su ancho máximo */
     }
     .summary-text {
-        font-size: 1.rem;
+        font-size: 1rem;
+        padding: 0 20px; /* Asegura padding para el texto en estas pantallas */
     }
     .included-grid, .date-grid, .reference-grid {
-        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+        grid-template-columns: 1fr; /* Una columna para los grids en pantallas pequeñas */
+        padding: 0 20px; /* Añade padding a los grids */
+    }
+    .included-item, .date-item, .reference-item {
+        margin-bottom: 20px; /* Espacio entre los items apilados */
+    }
+    .hero-section {
+        background-attachment: scroll; /* Deshabilita parallax en móviles para mejor rendimiento */
     }
 }
 
+/* Ajustes para móviles pequeños */
 @media (max-width: 480px) {
+    .logo {
+        width: 120px; /* Logo más pequeño en pantallas muy pequeñas */
+    }
     .hero-content h1 {
-        font-size: 2rem;
+        font-size: 2.2rem; /* Reduce aún más el tamaño del título */
     }
     .slogan {
         font-size: 1rem;
@@ -364,5 +397,14 @@ section.is-visible {
     }
     h2 {
         font-size: 1.8rem;
+    }
+    section {
+        padding: 40px 10px; /* Reduce el padding general */
+    }
+    .summary-text, .included-grid, .date-grid, .reference-grid {
+        padding: 0 10px; /* Reduce el padding en textos y grids */
+    }
+    .included-item p, .date-item p, .reference-item .quote {
+        font-size: 0.9rem; /* Ligeramente más pequeño para el texto de los items */
     }
 }
