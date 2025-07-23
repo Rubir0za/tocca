@@ -191,7 +191,7 @@ section.is-visible {
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     flex: 0 0 auto; /* No permite que los items se encojan o crezcan */
-    width: calc(100% / 3 - 20px); /* Ejemplo: 3 items visibles en escritorio, ajusta el gap */
+    width: calc(100% / 3 - 20px); /* Esto ahora se aplica siempre para desktop, mostrando 3 */
     margin-right: 30px; /* Gap entre items */
 }
 
@@ -218,7 +218,7 @@ section.is-visible {
     color: #555;
 }
 
-/* Botones de navegación del carrusel */
+/* Botones de navegación del carrusel (siempre visibles y funcionando) */
 .carousel-button {
     position: absolute;
     top: 50%;
@@ -234,7 +234,7 @@ section.is-visible {
     transition: background-color 0.3s ease, transform 0.3s ease;
     width: 50px;
     height: 50px;
-    display: flex;
+    display: flex; /* Siempre visible */
     justify-content: center;
     align-items: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
@@ -251,23 +251,6 @@ section.is-visible {
 
 .carousel-button.next {
     right: 10px;
-}
-
-/* Ocultar botones en pantallas grandes si solo se ve el grid completo */
-@media (min-width: 900px) {
-    .carousel-button {
-        display: none;
-    }
-    .included-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .included-item {
-        margin-right: 0;
-        width: auto;
-    }
 }
 
 
@@ -491,7 +474,7 @@ section.is-visible {
 }
 
 
-/* --- Media Queries para Responsividad --- */
+/* --- Media Queries para Responsividad (Carrusel para móvil) --- */
 @media (max-width: 768px) {
     h1 {
         font-size: 2.5rem;
