@@ -39,25 +39,32 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(section);
     });
 
-    // Lógica del Carrusel (ACTIVADA)
+    // Lógica del Carrusel (ACTIVADA y MEJORADA)
     const carouselTrack = document.querySelector('.included-grid');
     const prevButton = document.querySelector('.carousel-prev');
     const nextButton = document.querySelector('.carousel-next');
     const carouselItems = document.querySelectorAll('.carousel-item');
+    const carouselContainer = document.querySelector('.carousel-container'); // ¡Asegúrate de que este elemento existe en tu HTML!
 
-    if (carouselTrack && prevButton && nextButton && carouselItems.length > 0) {
+    if (carouselTrack && prevButton && nextButton && carouselItems.length > 0 && carouselContainer) {
         let currentIndex = 0;
-        // Ajuste para el ancho del item y el gap
-        // Asegúrate de que este cálculo sea correcto con tu CSS real
-        const getItemWidth = () => {
-            // Calcula el ancho real de un item visible
-            const item = carouselItems[0];
-            const itemStyle = window.getComputedStyle(item);
-            const itemWidth = item.getBoundingClientRect().width;
-            const gap = parseFloat(itemStyle.marginRight) || parseFloat(itemStyle.gap); // Ajustar según cómo se defina el gap en CSS
-            return itemWidth + (gap || 0); // Asume 0 si no hay gap definido como margin-right
-        };
 
+        // Función mejorada para calcular el ancho de un "slide" (lo que se desplaza en cada paso)
+        const getItemWidth = () => {
+            const carouselContainerWidth = carouselContainer.offsetWidth; // Ancho visible del contenedor del carrusel
+
+            // Si la ventana es pequeña (móvil, hasta 768px), cada "slide" es el ancho completo del contenedor
+            if (window.innerWidth <= 768) {
+                return carouselContainerWidth;
+            } else {
+                // En escritorio, cada "slide" es el ancho de un ítem más su margen derecho (el "gap")
+                const item = carouselItems[0];
+                const itemWidth = item.getBoundingClientRect().width;
+                const itemStyle = window.getComputedStyle(item);
+                const marginRight = parseFloat(itemStyle.marginRight); // Obtiene el margen derecho del CSS
+                return itemWidth + (marginRight || 0); // Suma el ancho del item y su margen
+            }
+        };
 
         function moveToSlide(index) {
             if (index < 0) {
@@ -83,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
             moveToSlide(currentIndex);
         });
 
-        // Inicializa la posición del carrusel en caso de que no esté en el índice 0 inicialmente
+        // Inicializa la posición del carrusel al cargar la página
         moveToSlide(currentIndex);
     }
 
