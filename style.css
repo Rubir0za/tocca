@@ -62,11 +62,10 @@ section.is-visible {
 
 /* Esta es la nueva regla que debes añadir, si no la tienes ya */
 .whatsapp-float .whatsapp-svg-icon {
-    width: 100%; /* El SVG ocupará todo el ancho del contenedor del botón */
-    height: 100%; /* El SVG ocupará toda la altura del contenedor del botón */
+    width: 70%; /* O el porcentaje que prefieras, por ejemplo, 80% */
+    height: 70%; /* Mismo porcentaje que el ancho para mantener proporciones */
     object-fit: contain; /* Asegura que el SVG se ajuste sin cortarse */
 }
-
 
 .whatsapp-float i {
     /* Si aún tienes esta regla, puedes eliminarla o simplemente dejarla.
