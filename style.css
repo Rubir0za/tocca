@@ -48,14 +48,11 @@ section.is-visible {
     position: fixed;
     width: 60px;
     height: 60px;
-    bottom: 20px; /* Reducido para acercarlo más a la parte inferior */
-    right: 20px;  /* Reducido para acercarlo más a la derecha */
-    background-color: #25d366;
-    color: #FFF;
-    border-radius: 50px;
-    text-align: center;
-    font-size: 30px;
-    box-shadow: 2px 2px 3px rgba(0,0,0,0.4);
+    bottom: 5px; /* Ajustado para estar más pegado a la esquina */
+    right: 5px;  /* Ajustado para estar más pegado a la esquina */
+    background-color: #25d366; /* El color verde estándar de WhatsApp */
+    border-radius: 50px; /* Para que sea completamente circular */
+    /* Aquí se eliminó la propiedad box-shadow */
     z-index: 1000;
     display: flex;
     justify-content: center;
@@ -63,7 +60,17 @@ section.is-visible {
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
+/* Esta es la nueva regla que debes añadir, si no la tienes ya */
+.whatsapp-float .whatsapp-svg-icon {
+    width: 100%; /* El SVG ocupará todo el ancho del contenedor del botón */
+    height: 100%; /* El SVG ocupará toda la altura del contenedor del botón */
+    object-fit: contain; /* Asegura que el SVG se ajuste sin cortarse */
+}
+
+
 .whatsapp-float i {
+    /* Si aún tienes esta regla, puedes eliminarla o simplemente dejarla.
+       Ya no es necesaria si estás usando un SVG en lugar del icono de Font Awesome. */
     display: block;
     line-height: 1;
 }
@@ -78,12 +85,15 @@ section.is-visible {
     .whatsapp-float {
         width: 50px;
         height: 50px;
-        bottom: 10px; /* Reducido para móviles */
-        right: 10px;  /* Reducido para móviles */
-        font-size: 24px;
+        bottom: 0px; /* Al ras de la parte inferior para móviles */
+        right: 0px;  /* Al ras de la derecha para móviles */
+        /* font-size: ya no aplica directamente al contenedor, solo al icono */
+    }
+    /* Si tienes una regla para .whatsapp-float i en esta media query, también puedes eliminarla. */
+    .whatsapp-float i {
+        font-size: 24px; /* Esta línea ya no es necesaria si usas SVG */
     }
 }
-
 /* --- HEADER / HERO SECTION --- */
 .hero-section {
     height: 100vh;
