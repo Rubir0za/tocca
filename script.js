@@ -39,11 +39,10 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(section);
     });
 
-    // Lógica del Carrusel (COMENTADA COMPLETAMENTE)
-    /*
-    const carouselTrack = document.querySelector('.included-grid');
-    const prevButton = document.querySelector('.carousel-prev');
-    const nextButton = document.querySelector('.carousel-next');
+    // Lógica del Carrusel
+    const carouselTrack = document.querySelector('.carousel-track');
+    const prevButton = document.querySelector('.carousel-button.prev');
+    const nextButton = document.querySelector('.carousel-button.next');
     const carouselItems = document.querySelectorAll('.carousel-item');
 
     if (carouselTrack && prevButton && nextButton && carouselItems.length > 0) {
@@ -73,8 +72,6 @@ document.addEventListener('DOMContentLoaded', function() {
             moveToSlide(currentIndex); // Reajusta la posición del carrusel al cambiar el tamaño de la ventana
         });
     }
-    */
-    // FIN de la Lógica del Carrusel comentada
 
     // Lógica del Menú Hamburguesa
     const hamburgerMenu = document.getElementById('hamburger-menu');
