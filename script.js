@@ -39,39 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(section);
     });
 
-    // Lógica del Carrusel
-    const carouselTrack = document.querySelector('.carousel-track');
-    const prevButton = document.querySelector('.carousel-button.prev');
-    const nextButton = document.querySelector('.carousel-button.next');
-    const carouselItems = document.querySelectorAll('.carousel-item');
-
-    if (carouselTrack && prevButton && nextButton && carouselItems.length > 0) {
-        let currentIndex = 0;
-        const getItemWidth = () => carouselItems[0].offsetWidth + 30; // Ancho del item + gap
-
-        function moveToSlide(index) {
-            if (index < 0) {
-                currentIndex = carouselItems.length - 1;
-            } else if (index >= carouselItems.length) {
-                currentIndex = 0;
-            } else {
-                currentIndex = index;
-            }
-            carouselTrack.style.transform = `translateX(-${currentIndex * getItemWidth()}px)`;
-        }
-
-        nextButton.addEventListener('click', () => {
-            moveToSlide(currentIndex + 1);
-        });
-
-        prevButton.addEventListener('click', () => {
-            moveToSlide(currentIndex - 1);
-        });
-
-        window.addEventListener('resize', () => {
-            moveToSlide(currentIndex); // Reajusta la posición del carrusel al cambiar el tamaño de la ventana
-        });
-    }
 
     // Lógica del Menú Hamburguesa
     const hamburgerMenu = document.getElementById('hamburger-menu');
