@@ -39,31 +39,39 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(section);
     });
 
-    // Lógica del Carrusel (ACTIVADA)
-    const carouselTrack = document.querySelector('.included-grid');
-    const prevButton = document.querySelector('.carousel-prev');
-    const nextButton = document.querySelector('.carousel-next');
-    const carouselItems = document.querySelectorAll('.carousel-item');
+    // Lógica del Carrusel (ACTIVADA y MEJORADA)
+    const carouselTrack = document.querySelector('.carousel-track'); // Asegúrate de que esto sea .carousel-track
+    const prevButton = document.querySelector('.carousel-button.prev');
+    const nextButton = document.querySelector('.carousel-button.next');
+    const carouselItems = document.querySelectorAll('.included-item.carousel-item'); // Asegúrate de seleccionar por ambas clases
+    const carouselContainer = document.querySelector('.carousel-container'); // Obtener el contenedor del carrusel
 
-    if (carouselTrack && prevButton && nextButton && carouselItems.length > 0) {
+    if (carouselTrack && prevButton && nextButton && carouselItems.length > 0 && carouselContainer) {
         let currentIndex = 0;
-        // Ajuste para el ancho del item y el gap
-        // Asegúrate de que este cálculo sea correcto con tu CSS real
+
+        // Función MEJORADA para calcular el ancho de un "slide"
         const getItemWidth = () => {
-            // Calcula el ancho real de un item visible
-            const item = carouselItems[0];
-            const itemStyle = window.getComputedStyle(item);
-            const itemWidth = item.getBoundingClientRect().width;
-            const gap = parseFloat(itemStyle.marginRight) || parseFloat(itemStyle.gap); // Ajustar según cómo se defina el gap en CSS
-            return itemWidth + (gap || 0); // Asume 0 si no hay gap definido como margin-right
+            const carouselContainerWidth = carouselContainer.offsetWidth; // Ancho visible del contenedor
+
+            // En móvil (<= 768px), cada "slide" es el ancho completo del contenedor.
+            if (window.innerWidth <= 768) {
+                return carouselContainerWidth;
+            } else {
+                // En escritorio, cada "slide" es el ancho de un ítem más su margen derecho.
+                const item = carouselItems[0];
+                const itemWidth = item.getBoundingClientRect().width;
+                const itemStyle = window.getComputedStyle(item);
+                const marginRight = parseFloat(itemStyle.marginRight); // Obtiene el margen derecho del CSS
+                return itemWidth + (marginRight || 0); // Suma el ancho del item y su margen
+            }
         };
 
-
         function moveToSlide(index) {
+            // Lógica de bucle para que al ir hacia atrás desde el primero, vaya al último y viceversa
             if (index < 0) {
-                currentIndex = carouselItems.length - 1; // Bucle al final desde el principio
+                currentIndex = carouselItems.length - 1;
             } else if (index >= carouselItems.length) {
-                currentIndex = 0; // Bucle al principio desde el final
+                currentIndex = 0;
             } else {
                 currentIndex = index;
             }
@@ -83,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
             moveToSlide(currentIndex);
         });
 
-        // Inicializa la posición del carrusel en caso de que no esté en el índice 0 inicialmente
+        // Inicializa la posición del carrusel al cargar la página
         moveToSlide(currentIndex);
     }
 
@@ -97,4 +105,13 @@ document.addEventListener('DOMContentLoaded', function() {
             hamburgerMenu.classList.toggle('active'); // Para la animación de la "X"
         });
     }
+
+    // Lógica de navegación del menú móvil
+    const mobileMenuItems = document.querySelectorAll('#mobile-menu a');
+    mobileMenuItems.forEach(item => {
+        item.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            hamburgerMenu.classList.remove('active');
+        });
+    });
 });
