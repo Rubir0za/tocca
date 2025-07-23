@@ -8,107 +8,196 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
+    <a href="https://wa.me/1234567890?text=Hola!%20Me%20gustaría%20saber%20más%20sobre%20los%20tours." target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <header class="hero-section">
         <div class="hero-content">
-            <img src="imagenes\tocca_amalfi.png" alt="Logo Tocca Amalfi" class="logo">
-            <h1>Descubre la magia de la Costa Amalfitana. Sin prisas, a tu ritmo.</h1>
+            <img src="imagenes/tocca_amalfi.png" alt="Logo Tocca Amalfi" class="logo">
+            <h1>Descubre la magia de la Costa Amalfitana.</h1>
+            <h2 class="hero-subtitle">Sin prisas, a tu ritmo.</h2>
             <p class="slogan">Tu aventura en la costa comienza aquí.</p>
             <a href="#available-dates" class="cta-button">Ver Fechas Disponibles</a>
         </div>
+
+        <nav class="header-nav">
+            <ul>
+                <li><a href="#what-awaits">Conoce lo que te espera</a></li>
+                <li><a href="#included-section">Incluido</a></li>
+                <li><a href="#not-included-section">No Incluido</a></li>
+                <li><a href="#available-dates">Fechas</a></li>
+                <li><a href="#itinerary-summary">Itinerario</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
-        <section id="itinerary-summary" class="contact-prompt">
-            <h2>¿Listo para empezar?</h2>
-            <p>Haz clic abajo para ver los detalles del itinerario y enviarnos un mensaje directo.</p>
-            <div class="contact-buttons">
-                <a href="https://wa.me/1234567890?text=Hola!%20Me%20gustaría%20recibir%20el%20itinerario%20del%20tour." target="_blank" class="contact-button whatsapp">Contactar por WhatsApp</a>
-                <a href="mailto:tuemail@dominio.com?subject=Solicitud de Itinerario Tour Amalfi&body=Hola, me gustaría recibir más información sobre el itinerario." class="contact-button email">Enviar un Correo</a>
+        <section id="what-awaits" class="itinerary-section animate-on-scroll">
+            <h2>Conoce lo que te espera.</h2>
+            <p class="summary-text">
+                Prepárate para una experiencia inmersiva en la Costa Amalfitana. Cada día ha sido diseñado para que disfrutes de la belleza, la cultura y la gastronomía local sin prisas, con tiempo para explorar a tu gusto.
+            </p>
+
+            <div class="itinerary-grid">
+                <div class="itinerary-day">
+                    <h3>Día 1: Llegada a Maiori y Bienvenida</h3>
+                    <p>Viaje tranquilo desde el aeropuerto de Nápoles a Maiori. Recibimiento personal, cóctel de bienvenida, frutas y snacks. Cena de bienvenida en Torre Romana.</p>
+                </div>
+                <div class="itinerary-day">
+                    <h3>Día 2: Clase de Cocina Local</h3>
+                    <p>Desayuno en el hotel. Tiempo libre por la mañana. Por la tarde, disfruta de una auténtica clase de cocina local. Cena especial con lo que prepares.</p>
+                </div>
+                <div class="itinerary-day">
+                    <h3>Día 3: Explorando Pompeya</h3>
+                    <p>Desayuno en el hotel. Mañana libre para disfrutar. Por la tarde, visita a las ruinas de Pompeya. Cena de pizza "al metro" en Pompeya.</p>
+                </div>
+                <div class="itinerary-day">
+                    <h3>Día 4: Encanto de Capri y Gruta Azul</h3>
+                    <p>Desayuno en el hotel. Experiencia privada en yate a Capri, almuerzo incluido. Visita la deslumbrante Gruta Azul y Ponte di Fiure. Cena en Maiori o Al Corso.</p>
+                </div>
+                <div class="itinerary-day">
+                    <h3>Día 5: Positano Mágico y Cerámica</h3>
+                    <p>Desayuno en el hotel. Tiempo libre en Positano para explorar. Cocktail de bienvenida en Baglio/Sophia Loren Bar. Demostración de cerámica y tiempo libre. Cena en Positano.</p>
+                </div>
+                <div class="itinerary-day">
+                    <h3>Día 6: Aromas de Amalfi</h3>
+                    <p>Desayuno en el hotel. Excursión de día completo a los huertos de limoneros de Amalfi con almuerzo. Visita a una destilería de Limoncello. Cena en Casa degli Americano.</p>
+                </div>
+                <div class="itinerary-day">
+                    <h3>Día 7: Ravello Panorámico y Cata</h3>
+                    <p>Desayuno en el hotel. Mañana libre para disfrutar de Ravello. Cata de aceite de oliva y vinagre balsámico. Cena de despedida en Ravello.</p>
+                </div>
+                <div class="itinerary-day">
+                    <h3>Día 8: Viñedo en Avellino y Despedida</h3>
+                    <p>Desayuno en el hotel. Visita a un viñedo en Avellino con almuerzo y degustación de vinos. Cena de despedida en el viñedo. </p>
+                </div>
+                 <div class="itinerary-day">
+                    <h3>Día 9-10: Días Libres y Salida</h3>
+                    <p>Disfruta de días libres adicionales para explorar a tu gusto o relajarte antes de tu partida desde Nápoles. Recomendaciones personalizadas para actividades.</p>
+                </div>
             </div>
         </section>
 
-
-        <section id="why-us" class="why-us-section animate-on-scroll">
-            <h2>¿Por qué Tocca Amalfi?</h2>
-            <p class="summary-text">
-                En Tocca Amalfi, creemos que la mejor manera de experimentar la Costa Amalfitana es a su propio ritmo. Olvídese de los tours apresurados y las multitudes. Ofrecemos una experiencia personalizada, donde cada momento es suyo para saborear, desde los pintorescos pueblos hasta las impresionantes vistas al mar.
-            </p>
+        <section id="included-section" class="included-section animate-on-scroll">
+            <h2>Incluido en tu Tour</h2>
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <div class="included-item carousel-item">
+                        <i class="fas fa-check-circle checkmark-icon"></i>
+                        <img src="imagenes/transporte_lujo.jpg" alt="Transporte Privado de Lujo">
+                        <h3>Transporte Privado de Lujo</h3>
+                        <p>Viaje con comodidad y estilo en nuestros vehículos de alta gama, con conductores expertos que conocen la costa como la palma de su mano.</p>
+                    </div>
+                    <div class="included-item carousel-item">
+                        <i class="fas fa-check-circle checkmark-icon"></i>
+                        <img src="imagenes/guia_local.jpg" alt="Guía Local Experto">
+                        <h3>Guía Local Experto</h3>
+                        <p>Descubra los secretos mejor guardados y la rica historia de la Costa Amalfitana con nuestros guías locales apasionados y conocedores.</p>
+                    </div>
+                    <div class="included-item carousel-item">
+                        <i class="fas fa-check-circle checkmark-icon"></i>
+                        <img src="imagenes/tiempo_libre.jpg" alt="Tiempo Libre para Explorar">
+                        <h3>Tiempo Libre para Explorar</h3>
+                        <p>Disfrute de la libertad de explorar los encantadores pueblos de Positano, Amalfi y Ravello a su propio ritmo, sin prisas.</p>
+                    </div>
+                    <div class="included-item carousel-item">
+                        <i class="fas fa-check-circle checkmark-icon"></i>
+                        <img src="imagenes/bebidas_bordo.jpg" alt="Bebidas a Bordo">
+                        <h3>Bebidas a Bordo</h3>
+                        <p>Manténgase refrescado durante su viaje con una selección de bebidas de cortesía, incluyendo agua embotellada y sodas.</p>
+                    </div>
+                    <div class="included-item carousel-item">
+                        <i class="fas fa-check-circle checkmark-icon"></i>
+                        <img src="imagenes/alojamiento_boutique.jpg" alt="Alojamiento en hoteles boutique">
+                        <h3>Alojamiento Boutique</h3>
+                        <p>Estancia en hoteles boutique seleccionados que reflejan el encanto y la elegancia local, con todas las comodidades.</p>
+                    </div>
+                    <div class="included-item carousel-item">
+                        <i class="fas fa-check-circle checkmark-icon"></i>
+                        <img src="imagenes/experiencias_gastronomicas.jpg" alt="Experiencias gastronómicas exclusivas">
+                        <h3>Gastronomía Exclusiva</h3>
+                        <p>Deléitate con cenas en restaurantes locales y experiencias culinarias auténticas que te sumergirán en los sabores de la región.</p>
+                    </div>
+                </div>
+                <button class="carousel-button prev">&lt;</button>
+                <button class="carousel-button next">&gt;</button>
+            </div>
         </section>
 
-        <section id="included" class="included-section animate-on-scroll">
-            <h2>Incluido en tu Tour</h2>
-            <div class="included-grid">
-                
-                <div class="included-item">
-                    <img src="imagenes\image1.jpg" alt="Foto 1">
-                    <h3>Transporte Privado de Lujo</h3>
-                    <p>Viaje con comodidad y estilo en nuestros vehículos de alta gama, con conductores expertos que conocen la costa como la palma de su mano.</p>
+        <section id="not-included-section" class="not-included-section animate-on-scroll">
+            <h2>No Incluido en tu Tour</h2>
+            <div class="not-included-grid">
+                <div class="not-included-item">
+                    <i class="fas fa-times-circle crossmark-icon"></i>
+                    <h3>Vuelos Internacionales</h3>
+                    <p>Los vuelos de ida y vuelta a tu destino no están incluidos en el paquete.</p>
                 </div>
-                
-                <div class="included-item">
-                    <img src="imagenes\image2.jpg" alt="Foto 2">
-                    <h3>Guía Local Experto</h3>
-                    <p>Descubra los secretos mejor guardados y la rica historia de la Costa Amalfitana con nuestros guías locales apasionados y conocedores.</p>
+                <div class="not-included-item">
+                    <i class="fas fa-times-circle crossmark-icon"></i>
+                    <h3>Seguro de Viaje</h3>
+                    <p>Recomendamos encarecidamente contratar un seguro de viaje personal; no está cubierto en el tour.</p>
                 </div>
-
-                <div class="included-item">
-                    <img src="imagenes\image3.jpg" alt="Foto 3">
-                    <h3>Tiempo Libre para Explorar</h3>
-                    <p>Disfrute de la libertad de explorar los encantadores pueblos de Positano, Amalfi y Ravello a su propio ritmo, sin prisas.</p>
+                <div class="not-included-item">
+                    <i class="fas fa-times-circle crossmark-icon"></i>
+                    <h3>Comidas no Especificadas</h3>
+                    <p>Las comidas, bebidas y snacks que no estén expresamente mencionados en el itinerario no están incluidos.</p>
                 </div>
-                
-                <div class="included-item">
-                    <img src="imagenes\image4.jpg" alt="Foto 4">
-                    <h3>Bebidas a Bordo</h3>
-                    <p>Manténgase refrescado durante su viaje con una selección de bebidas de cortesía, incluyendo agua embotellada y sodas.</p>
+                 <div class="not-included-item">
+                    <i class="fas fa-times-circle crossmark-icon"></i>
+                    <h3>Compras Personales</h3>
+                    <p>Cualquier gasto de carácter personal, como souvenirs o artículos de lujo, corre por cuenta del viajero.</p>
                 </div>
-
             </div>
         </section>
 
         <section id="available-dates" class="available-dates-section animate-on-scroll">
-            <h2>Fechas Disponibles - Verano 2026</h2>
-            <p class="summary-text">Asegure su lugar en nuestras exclusivas fechas de tour por la Costa Amalfitana.</p>
+            <h2>Fechas Disponibles 2026</h2>
             <div class="date-grid">
                 <div class="date-item">
-                    <h3>Del 2 al 5 de Julio, 2026</h3>
-                    <p>Disponibilidad: Alta</p>
-                    <a href="https://wa.me/1234567890?text=Hola!%20Me%20interesan%20las%20fechas%20del%202%20al%205%20de%20Julio,%202026." target="_blank" class="cta-button small-button">Reservar</a>
+                    <h3>Mayo</h3>
+                    <p>10 - 17 de Mayo</p>
+                    <a href="https://wa.me/1234567890?text=Hola!%20Me%20interesa%20el%20tour%20del%2010-17%20de%20Mayo%202026." target="_blank" class="cta-button small-button">Consultar</a>
                 </div>
                 <div class="date-item">
-                    <h3>Del 7 al 10 de Julio, 2026</h3>
-                    <p>Disponibilidad: Media</p>
-                    <a href="https://wa.me/1234567890?text=Hola!%20Me%20interesan%20las%20fechas%20del%207%20al%2010%20de%20Julio,%202026." target="_blank" class="cta-button small-button">Reservar</a>
+                    <h3>Junio</h3>
+                    <p>07 - 14 de Junio</p>
+                    <a href="https://wa.me/1234567890?text=Hola!%20Me%20interesa%20el%20tour%20del%2007-14%20de%20Junio%202026." target="_blank" class="cta-button small-button">Consultar</a>
                 </div>
                 <div class="date-item">
-                    <h3>Del 12 al 15 de Julio, 2026</h3>
-                    <p>Disponibilidad: Limitada</p>
-                    <a href="https://wa.me/1234567890?text=Hola!%20Me%20interesan%20las%20fechas%20del%2012%20al%2015%20de%20Julio,%202026." target="_blank" class="cta-button small-button">Reservar</a>
+                    <h3>Septiembre</h3>
+                    <p>05 - 12 de Septiembre</p>
+                    <a href="https://wa.me/1234567890?text=Hola!%20Me%20interesa%20el%20tour%20del%2005-12%20de%20Septiembre%202026." target="_blank" class="cta-button small-button">Consultar</a>
+                </div>
+                 <div class="date-item">
+                    <h3>Octubre</h3>
+                    <p>03 - 10 de Octubre</p>
+                    <a href="https://wa.me/1234567890?text=Hola!%20Me%20interesa%20el%20tour%20del%2003-10%20de%20Octubre%202026." target="_blank" class="cta-button small-button">Consultar</a>
                 </div>
             </div>
         </section>
 
         <section id="references" class="references-section animate-on-scroll">
-            <h2>Lo que Dicen Nuestros Clientes</h2>
+            <h2>Lo que dicen nuestros viajeros</h2>
             <div class="reference-grid">
                 <div class="reference-item">
-                    <p class="quote">"¡Una experiencia inolvidable! El tour superó todas mis expectativas. La atención al detalle y la flexibilidad fueron increíbles."</p>
-                    <p class="author">- Ana G., España</p>
+                    <p class="quote">"Una experiencia inolvidable. Cada detalle cuidado, los guías increíbles y la costa... simplemente mágica."</p>
+                    <p class="author">- María P.</p>
                 </div>
                 <div class="reference-item">
-                    <p class="quote">"Amalfi es aún más hermosa cuando la exploras sin prisas. Tocca Amalfi nos dio la libertad de disfrutar cada momento."</p>
-                    <p class="author">- Marco R., Italia</p>
+                    <p class="quote">"Viajar con Tocca Amalfi fue un sueño hecho realidad. La libertad de explorar a nuestro ritmo fue invaluable. ¡Volveremos!"</p>
+                    <p class="author">- La familia Rossi</p>
                 </div>
                 <div class="reference-item">
-                    <p class="quote">"Desde el transporte hasta el guía, todo fue de primera clase. ¡Recomiendo encarecidamente Tocca Amalfi!"</p>
-                    <p class="author">- Sarah L., Estados Unidos</p>
+                    <p class="quote">"Desde el transporte de lujo hasta las catas de vino, todo superó mis expectativas. ¡El mejor tour por la Costa Amalfitana!"</p>
+                    <p class="author">- John D.</p>
                 </div>
             </div>
         </section>
-
     </main>
 
     <footer class="site-footer">
