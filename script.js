@@ -1,31 +1,27 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Smooth scroll para los enlaces internos
+    // Smooth scroll para los enlaces internos (sin cambios)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            // Cerrar el menú móvil si está abierto al hacer clic en un enlace
             const mobileMenu = document.getElementById('mobile-menu');
             const hamburgerMenu = document.getElementById('hamburger-menu');
             if (mobileMenu && hamburgerMenu && mobileMenu.classList.contains('active')) {
                 mobileMenu.classList.remove('active');
                 hamburgerMenu.classList.remove('active');
             }
-
             document.querySelector(this.getAttribute('href')).scrollIntoView({
                 behavior: 'smooth'
             });
         });
     });
 
-    // Animación de elementos al hacer scroll (Intersection Observer)
+    // Animación de elementos al hacer scroll (sin cambios)
     const sections = document.querySelectorAll('section');
-
     const observerOptions = {
-        root: null, // relativo al viewport
+        root: null,
         rootMargin: '0px',
-        threshold: 0.2 // 20% de la sección debe ser visible
+        threshold: 0.2
     };
-
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -34,49 +30,58 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }, observerOptions);
-
     sections.forEach(section => {
         observer.observe(section);
     });
 
-    // Lógica del Carrusel (ACTIVADA y MEJORADA)
-    const carouselTrack = document.querySelector('.carousel-track'); // Asegúrate de que esto sea .carousel-track
+    // --- LÓGICA DEL CARRUSEL (CORREGIDA Y MEJORADA) ---
+    const carouselTrack = document.querySelector('.carousel-track');
+    // Corregidos los selectores para que coincidan con el HTML (.carousel-button.prev y .next)
     const prevButton = document.querySelector('.carousel-button.prev');
     const nextButton = document.querySelector('.carousel-button.next');
-    const carouselItems = document.querySelectorAll('.included-item.carousel-item'); // Asegúrate de seleccionar por ambas clases
-    const carouselContainer = document.querySelector('.carousel-container'); // Obtener el contenedor del carrusel
+    const carouselItems = document.querySelectorAll('.carousel-item');
 
-    if (carouselTrack && prevButton && nextButton && carouselItems.length > 0 && carouselContainer) {
+    if (carouselTrack && prevButton && nextButton && carouselItems.length > 0) {
         let currentIndex = 0;
 
-        // Función MEJORADA para calcular el ancho de un "slide"
-        const getItemWidth = () => {
-            const carouselContainerWidth = carouselContainer.offsetWidth; // Ancho visible del contenedor
-
-            // En móvil (<= 768px), cada "slide" es el ancho completo del contenedor.
-            if (window.innerWidth <= 768) {
-                return carouselContainerWidth;
-            } else {
-                // En escritorio, cada "slide" es el ancho de un ítem más su margen derecho.
-                const item = carouselItems[0];
-                const itemWidth = item.getBoundingClientRect().width;
-                const itemStyle = window.getComputedStyle(item);
-                const marginRight = parseFloat(itemStyle.marginRight); // Obtiene el margen derecho del CSS
-                return itemWidth + (marginRight || 0); // Suma el ancho del item y su margen
-            }
+        // Función mejorada para obtener el ancho total de un elemento (incluyendo el gap)
+        const getItemTotalWidth = () => {
+            const item = carouselItems[0];
+            if (!item) return 0;
+            const trackStyle = window.getComputedStyle(carouselTrack);
+            const gap = parseFloat(trackStyle.getPropertyValue('gap')) || 0;
+            return item.offsetWidth + gap;
         };
 
-        function moveToSlide(index) {
-            // Lógica de bucle para que al ir hacia atrás desde el primero, vaya al último y viceversa
-            if (index < 0) {
-                currentIndex = carouselItems.length - 1;
-            } else if (index >= carouselItems.length) {
+        const updateCarouselPosition = () => {
+            const itemWidth = getItemTotalWidth();
+            const newTransformValue = -currentIndex * itemWidth;
+            carouselTrack.style.transition = 'transform 0.5s ease-in-out';
+            carouselTrack.style.transform = `translateX(${newTransformValue}px)`;
+        };
+        
+        const moveToSlide = (newIndex) => {
+            const container = document.querySelector('.carousel-container');
+            const itemWidth = getItemTotalWidth();
+            if (itemWidth === 0) return;
+
+            // Calcula cuántos items son visibles a la vez
+            const visibleItems = Math.max(1, Math.floor(container.offsetWidth / itemWidth));
+            
+            // El último índice posible para que la vista no quede vacía
+            const maxIndex = carouselItems.length - visibleItems;
+
+            // Lógica de bucle: si se pasa del final, vuelve al inicio y viceversa
+            if (newIndex > maxIndex) {
                 currentIndex = 0;
+            } else if (newIndex < 0) {
+                currentIndex = maxIndex;
             } else {
-                currentIndex = index;
+                currentIndex = newIndex;
             }
-            carouselTrack.style.transform = `translateX(-${currentIndex * getItemWidth()}px)`;
-        }
+            
+            updateCarouselPosition();
+        };
 
         nextButton.addEventListener('click', () => {
             moveToSlide(currentIndex + 1);
@@ -86,32 +91,26 @@ document.addEventListener('DOMContentLoaded', function() {
             moveToSlide(currentIndex - 1);
         });
 
-        // Reajusta la posición del carrusel al cambiar el tamaño de la ventana
+        // Reajusta el carrusel si cambia el tamaño de la ventana para evitar desajustes
         window.addEventListener('resize', () => {
+            // Elimina la transición para un ajuste instantáneo
+            carouselTrack.style.transition = 'none';
+            // Vuelve a una posición válida en caso de que el layout cambie
             moveToSlide(currentIndex);
         });
 
-        // Inicializa la posición del carrusel al cargar la página
+        // Posiciona el carrusel correctamente al cargar la página
         moveToSlide(currentIndex);
     }
 
-    // Lógica del Menú Hamburguesa
+    // Lógica del Menú Hamburguesa (sin cambios)
     const hamburgerMenu = document.getElementById('hamburger-menu');
     const mobileMenu = document.getElementById('mobile-menu');
 
     if (hamburgerMenu && mobileMenu) {
         hamburgerMenu.addEventListener('click', () => {
             mobileMenu.classList.toggle('active');
-            hamburgerMenu.classList.toggle('active'); // Para la animación de la "X"
+            hamburgerMenu.classList.toggle('active');
         });
     }
-
-    // Lógica de navegación del menú móvil
-    const mobileMenuItems = document.querySelectorAll('#mobile-menu a');
-    mobileMenuItems.forEach(item => {
-        item.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            hamburgerMenu.classList.remove('active');
-        });
-    });
 });
