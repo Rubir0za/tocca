@@ -76,34 +76,32 @@ section.is-visible {
 /* --- HEADER / HERO SECTION --- */
 .hero-section {
     height: 100vh;
-    /* REDUCCIÓN DE LA OPACIDAD EN EL LINEAR-GRADIENT A UN VALOR MUY BAJO */
     background-image: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), url('imagenes/header_coast.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    /* background-attachment: fixed; */ /* Ya lo eliminamos en el paso anterior */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; /* CAMBIA ESTO: de 'center' a 'flex-start' */
     align-items: center;
     text-align: center;
     color: var(--light-text-color);
     position: relative;
-    padding-top: 60px; /* Espacio para la nueva barra superior */
-    box-sizing: border-box; /* Incluye padding en el height */
+    padding-top: 60px; /* Espacio para la barra superior */
+    box-sizing: border-box;
 }
 
+/* No necesitas cambiar nada en .hero-content para esto */
 .hero-content {
     max-width: 900px;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: center; /* Esto centra el contenido DENTRO del hero-content */
     z-index: 10;
-    flex-grow: 1; /* Permite que el contenido se expanda para ocupar el espacio restante */
-    justify-content: center; /* Centra el contenido verticalmente */
+    flex-grow: 1;
 }
-
 .logo {
     width: 60vw;
     max-width: 450px;
