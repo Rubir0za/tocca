@@ -39,21 +39,31 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(section);
     });
 
-    // Lógica del Carrusel
-    const carouselTrack = document.querySelector('.carousel-track');
-    const prevButton = document.querySelector('.carousel-button.prev');
-    const nextButton = document.querySelector('.carousel-button.next');
+    // Lógica del Carrusel (ACTIVADA)
+    const carouselTrack = document.querySelector('.included-grid');
+    const prevButton = document.querySelector('.carousel-prev');
+    const nextButton = document.querySelector('.carousel-next');
     const carouselItems = document.querySelectorAll('.carousel-item');
 
     if (carouselTrack && prevButton && nextButton && carouselItems.length > 0) {
         let currentIndex = 0;
-        const getItemWidth = () => carouselItems[0].offsetWidth + 30; // Ancho del item + gap
+        // Ajuste para el ancho del item y el gap
+        // Asegúrate de que este cálculo sea correcto con tu CSS real
+        const getItemWidth = () => {
+            // Calcula el ancho real de un item visible
+            const item = carouselItems[0];
+            const itemStyle = window.getComputedStyle(item);
+            const itemWidth = item.getBoundingClientRect().width;
+            const gap = parseFloat(itemStyle.marginRight) || parseFloat(itemStyle.gap); // Ajustar según cómo se defina el gap en CSS
+            return itemWidth + (gap || 0); // Asume 0 si no hay gap definido como margin-right
+        };
+
 
         function moveToSlide(index) {
             if (index < 0) {
-                currentIndex = carouselItems.length - 1;
+                currentIndex = carouselItems.length - 1; // Bucle al final desde el principio
             } else if (index >= carouselItems.length) {
-                currentIndex = 0;
+                currentIndex = 0; // Bucle al principio desde el final
             } else {
                 currentIndex = index;
             }
@@ -68,9 +78,13 @@ document.addEventListener('DOMContentLoaded', function() {
             moveToSlide(currentIndex - 1);
         });
 
+        // Reajusta la posición del carrusel al cambiar el tamaño de la ventana
         window.addEventListener('resize', () => {
-            moveToSlide(currentIndex); // Reajusta la posición del carrusel al cambiar el tamaño de la ventana
+            moveToSlide(currentIndex);
         });
+
+        // Inicializa la posición del carrusel en caso de que no esté en el índice 0 inicialmente
+        moveToSlide(currentIndex);
     }
 
     // Lógica del Menú Hamburguesa
