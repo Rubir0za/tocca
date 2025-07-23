@@ -19,7 +19,7 @@ body {
     overflow-x: hidden; /* Evita el scroll horizontal en dispositivos móviles */
 }
 
-h1, h2 {
+h1, h2, h3 { /* Aplicar Playfair Display también a h3 para mayor consistencia en títulos */
     font-family: 'Playfair Display', serif;
 }
 
@@ -27,65 +27,109 @@ h2 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 40px;
-    color: var(--text-color); /* Asegura que el color del título sea el correcto */
+    color: var(--text-color);
 }
 
 section {
     padding: 80px 20px;
     /* Las propiedades de animación (opacity y transform) se manejarán en JS si lo reactivas */
-    /* Por ahora, las dejo fuera para asegurar visibilidad por defecto como hablamos */
-    /* transform: translateY(20px); */
-    /* transition: opacity 0.6s ease-out, transform 0.6s ease-out; */
+    opacity: 0; /* Por defecto invisibles para la animación */
+    transform: translateY(20px); /* Ligeramente desplazadas */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Transición para la animación */
 }
 
-/* section.is-visible { */
-/* opacity: 1; */
-/* transform: translateY(0); */
-/* } */
+section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 
-/* --- HERO SECTION (LA PANTALLA DE INICIO) --- */
+/* --- BOTÓN FLOTANTE DE WHATSAPP --- */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366; /* Color de WhatsApp */
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.4);
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.whatsapp-float i {
+    margin-top: 5px; /* Ajuste fino del icono */
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1); /* Efecto de crecimiento al pasar el ratón */
+    background-color: #1DA851; /* Un verde un poco más oscuro */
+}
+
+/* --- HEADER / HERO SECTION --- */
 .hero-section {
     height: 100vh;
-    background-image: url('imagenes/header.jpg'); 
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('imagenes/header_coast.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     display: flex;
+    flex-direction: column; /* Organiza el contenido verticalmente */
     justify-content: center;
     align-items: center;
     text-align: center;
     color: var(--light-text-color);
+    position: relative; /* Necesario para posicionar el nav si es absoluto */
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 900px; /* Aumenta el ancho máximo para acomodar el logo grande */
     padding: 20px;
+    display: flex; /* Usar flexbox para el contenido del header */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10; /* Para que el contenido esté por encima del fondo y el nav */
 }
 
 .logo {
-    width: 160px;
+    width: 60vw; /* Aproximadamente 60% del ancho del viewport */
+    max-width: 450px; /* Limita el tamaño máximo en pantallas muy grandes */
     height: auto;
-}
-
-@media (min-width: 768px) {
-    .logo {
-        width: 220px;
-    }
+    margin-bottom: 20px; /* Espacio debajo del logo */
+    z-index: 1; /* El logo es predominante, pero está dentro del .hero-content */
 }
 
 .hero-content h1 {
-    font-size: 3.5rem;
+    font-size: 4.2rem; /* Tamaño más grande para el título principal */
     margin: 0;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.5); /* Sombra sutil para el título */
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.7); /* Sombra más pronunciada para el texto */
+    order: 2; /* Segundo en la jerarquía visual */
+}
+
+.hero-subtitle {
+    font-size: 2.5rem; /* Nuevo subtítulo */
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-weight: 700;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+    order: 3; /* Tercero en la jerarquía visual */
 }
 
 .slogan {
-    font-size: 1.2rem;
-    margin-top: 10px;
-    margin-bottom: 30px;
+    font-size: 1.5rem; /* Tamaño más grande para el eslogan */
+    margin-top: 15px;
+    margin-bottom: 40px;
     font-weight: 400;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.4); /* Sombra sutil para el eslogan */
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    order: 4; /* Cuarto en la jerarquía visual */
 }
 
 .cta-button {
@@ -97,22 +141,58 @@ section {
     border-radius: 5px;
     font-size: 1.1rem;
     transition: all 0.3s ease;
-    display: inline-block; /* Asegura que el padding funcione correctamente */
-    box-shadow: 0 3px 8px rgba(0,0,0,0.2); /* Sombra ligera por defecto */
+    display: inline-block;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    order: 5; /* Quinto en la jerarquía visual */
 }
 
 .cta-button:hover {
     background-color: #ffd04b;
     transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.3); /* Sombra más grande al pasar el ratón */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
 }
 
-.cta-button.small-button { /* Estilo para botones más pequeños en las fechas */
+.cta-button.small-button {
     padding: 10px 20px;
     font-size: 0.9rem;
 }
 
-/* --- SECCIÓN DE CONTACTO POST-HERO --- */
+/* Navegación en el Header */
+.header-nav {
+    position: absolute; /* Posicionamiento absoluto dentro del header */
+    bottom: 20px; /* Abajo del todo */
+    width: 100%;
+    text-align: center;
+    z-index: 15; /* Asegura que esté por encima del contenido principal del hero */
+}
+
+.header-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan */
+    gap: 20px; /* Espacio entre los elementos de la navegación */
+}
+
+.header-nav ul li a {
+    color: var(--light-text-color);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.header-nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+
+/* --- SECCIÓN DE CONTACTO POST-HERO (puede ser renombrada o eliminada si "itinerario" la reemplaza) --- */
 .contact-prompt {
     background-color: var(--primary-color);
     color: var(--light-text-color);
@@ -127,7 +207,7 @@ section {
     display: flex;
     justify-content: center;
     gap: 20px;
-    flex-wrap: wrap; /* Permite que los botones se envuelvan en pantallas pequeñas */
+    flex-wrap: wrap;
     margin-top: 30px;
 }
 
@@ -138,7 +218,7 @@ section {
     font-weight: bold;
     transition: all 0.3s ease;
     border: 2px solid var(--secondary-color);
-    box-shadow: 0 3px 8px rgba(0,0,0,0.2); /* Sombra ligera por defecto */
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
 }
 
 .contact-button.whatsapp {
@@ -153,74 +233,218 @@ section {
 
 .contact-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.3); /* Sombra más grande al pasar el ratón */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
 }
 
 
-/* --- SECCIÓN "¿POR QUÉ TOCCA AMALFI?" --- */
-.why-us-section {
+/* --- SECCIÓN "CONOCE LO QUE TE ESPERA" (antes "Por qué Tocca Amalfi") --- */
+.itinerary-section {
     background-color: var(--background-light);
     text-align: center;
 }
 
-.summary-text {
-    max-width: 700px;
-    margin: 0 auto;
-    font-size: 1.1rem;
+.itinerary-section .summary-text {
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+    font-size: 1.15rem;
     line-height: 1.8;
-    padding: 0 15px; /* Añade padding horizontal para evitar que el texto toque los bordes */
+    padding: 0 15px;
 }
 
-/* --- SECCIÓN "INCLUIDO EN EL TOUR" --- */
-.included-section {
-    background-color: #ffffff;
-}
-
-.included-grid {
+.itinerary-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 15px; /* Añade padding horizontal al grid */
+    padding: 0 15px;
 }
 
-.included-item {
+.itinerary-day {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.itinerary-day:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+.itinerary-day h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+}
+
+.itinerary-day p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #555;
+}
+
+
+/* --- SECCIÓN "INCLUIDO EN EL TOUR" (CON CARRUSEL) --- */
+.included-section {
+    background-color: #ffffff;
+    overflow: hidden; /* Oculta los elementos fuera del carrusel */
+}
+
+.carousel-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 50px; /* Espacio para los botones de navegación */
+}
+
+.carousel-track {
+    display: flex;
+    overflow-x: hidden; /* Oculta la barra de scroll */
+    scroll-snap-type: x mandatory; /* Para un scroll más suave y con "enganche" */
+    -webkit-overflow-scrolling: touch; /* Suaviza el scroll en iOS */
+    scroll-behavior: smooth; /* Habilita el desplazamiento suave con JS */
+    gap: 30px; /* Espacio entre los items */
+}
+
+.carousel-item {
+    flex: 0 0 auto; /* No crece, no se encoge, tamaño automático */
+    width: calc((100% / 3) - (2 * 30px / 3)); /* Muestra 3 items por defecto con el gap */
+    scroll-snap-align: start; /* Alinea el inicio del item con el inicio del contenedor */
     text-align: center;
     background-color: #fff;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1); /* Sombra para el item incluido */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición para la sombra y el movimiento */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* Para posicionar el ícono */
 }
 
-.included-item:hover {
+.carousel-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* Sombra más grande al pasar el ratón */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
-.included-item img {
+.carousel-item img {
     width: 100%;
     height: 200px;
     object-fit: cover;
 }
 
-.included-item h3 {
+.carousel-item h3 {
     margin: 20px 0 10px 0;
     color: var(--primary-color);
     font-size: 1.4rem;
 }
 
-.included-item p {
+.carousel-item p {
     padding: 0 20px 20px 20px;
     margin: 0;
     font-size: 0.95rem;
     color: #555;
 }
 
+/* Botones de navegación del carrusel */
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 20;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-button.prev {
+    left: 0;
+}
+
+.carousel-button.next {
+    right: 0;
+}
+
+/* Iconos de checkmark en "Incluido" */
+.checkmark-icon {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    color: #28a745; /* Verde de éxito */
+    font-size: 2.2rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* --- SECCIÓN "NO INCLUIDO" --- */
+.not-included-section {
+    background-color: var(--background-light);
+    text-align: center;
+}
+
+.not-included-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.not-included-item {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    text-align: left;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.not-included-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+.not-included-item h3 {
+    color: #dc3545; /* Rojo de error/negación */
+    margin-top: 0;
+    font-size: 1.4rem;
+    margin-left: 45px; /* Espacio para el ícono */
+}
+
+.not-included-item p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #555;
+    padding-left: 45px; /* Espacio para el ícono */
+}
+
+/* Iconos de X en "No Incluido" */
+.crossmark-icon {
+    position: absolute;
+    top: 30px; /* Alineado con el h3 */
+    left: 20px;
+    color: #dc3545; /* Rojo de error */
+    font-size: 2.2rem;
+}
+
+
 /* --- SECCIÓN "FECHAS DISPONIBLES" --- */
 .available-dates-section {
-    background-color: var(--background-light);
+    background-color: #ffffff; /* Fondo blanco */
     text-align: center;
 }
 
@@ -230,20 +454,20 @@ section {
     gap: 30px;
     max-width: 900px;
     margin: 40px auto 0;
-    padding: 0 15px; /* Añade padding horizontal al grid */
+    padding: 0 15px;
 }
 
 .date-item {
-    background-color: #fff;
+    background-color: var(--background-light); /* Fondo claro para los items de fecha */
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1); /* Sombra para el item de fecha */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición para la sombra y el movimiento */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .date-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* Sombra más grande al pasar el ratón */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
 .date-item h3 {
@@ -275,23 +499,23 @@ section {
     gap: 30px;
     max-width: 1000px;
     margin: 40px auto 0;
-    padding: 0 15px; /* Añade padding horizontal al grid */
+    padding: 0 15px;
 }
 
 .reference-item {
     background-color: rgba(255, 255, 255, 0.1);
     padding: 30px;
     border-radius: 8px;
-    backdrop-filter: blur(5px); /* Efecto de desenfoque ligero */
+    backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15); /* Sombra para el item de referencia */
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Transición para la sombra, el fondo y el movimiento */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .reference-item:hover {
     transform: translateY(-5px);
-    background-color: rgba(255, 255, 255, 0.18); /* Ligeramente más opaco al pasar el ratón */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3); /* Sombra más grande al pasar el ratón */
+    background-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
 .reference-item .quote {
@@ -327,69 +551,122 @@ section {
 /* Ajustes para pantallas grandes (desktop, tablets grandes) */
 @media (min-width: 1024px) {
     .hero-content h1 {
-        font-size: 4.5rem; /* Título más grande en pantallas muy grandes */
+        font-size: 5rem; /* Título más grande en pantallas muy grandes */
+    }
+    .hero-subtitle {
+        font-size: 3rem;
     }
     .slogan {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
+    }
+    .header-nav ul li a {
+        font-size: 1.1rem;
     }
 }
 
 /* Ajustes para tablets y pantallas medianas */
 @media (max-width: 768px) {
     h1 {
-        font-size: 2.5rem; /* Ajusta el tamaño del título principal */
+        font-size: 2.5rem;
     }
     h2 {
-        font-size: 2rem; /* Ajusta el tamaño de los subtítulos de sección */
+        font-size: 2rem;
     }
     section {
-        padding: 60px 15px; /* Reduce el padding vertical y horizontal de las secciones */
+        padding: 60px 15px;
+    }
+
+    /* Header adjustments */
+    .logo {
+        width: 70vw; /* Más grande en tablets */
+        max-width: 350px;
     }
     .hero-content h1 {
-        font-size: 2.8rem;
+        font-size: 3.2rem;
+        margin-top: 15px;
+    }
+    .hero-subtitle {
+        font-size: 2rem;
+        margin-top: 5px;
     }
     .slogan {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
+        margin-top: 10px;
+        margin-bottom: 30px;
     }
+    .header-nav {
+        bottom: 10px;
+    }
+    .header-nav ul {
+        gap: 10px; /* Reduce espacio entre enlaces en tablets */
+    }
+    .header-nav ul li a {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+    }
+
     .cta-button {
         padding: 12px 25px;
         font-size: 1rem;
     }
     .contact-buttons {
-        flex-direction: column; /* Apila los botones de contacto verticalmente */
+        flex-direction: column;
         align-items: center;
-        gap: 15px; /* Reduce el espacio entre botones apilados */
+        gap: 15px;
     }
     .contact-button {
-        width: 90%; /* Hace los botones de contacto más anchos */
-        max-width: 350px; /* Limita su ancho máximo */
+        width: 90%;
+        max-width: 350px;
     }
     .summary-text {
         font-size: 1rem;
-        padding: 0 20px; /* Asegura padding para el texto en estas pantallas */
+        padding: 0 20px;
     }
-    .included-grid, .date-grid, .reference-grid {
+    .itinerary-grid, .included-grid, .not-included-grid, .date-grid, .reference-grid {
         grid-template-columns: 1fr; /* Una columna para los grids en pantallas pequeñas */
-        padding: 0 20px; /* Añade padding a los grids */
+        padding: 0 20px;
     }
-    .included-item, .date-item, .reference-item {
-        margin-bottom: 20px; /* Espacio entre los items apilados */
+    .itinerary-day, .included-item, .not-included-item, .date-item, .reference-item {
+        margin-bottom: 20px;
     }
     .hero-section {
         background-attachment: scroll; /* Deshabilita parallax en móviles para mejor rendimiento */
+    }
+
+    /* Carrusel Responsive */
+    .carousel-container {
+        padding: 0 15px; /* Menos padding para los botones de carrusel */
+    }
+    .carousel-item {
+        width: calc(100% - 30px); /* Un item por pantalla en móvil (menos el gap) */
+    }
+    .carousel-button {
+        padding: 8px 12px;
+        font-size: 1.2rem;
+    }
+    .carousel-button.prev {
+        left: 0px;
+    }
+    .carousel-button.next {
+        right: 0px;
     }
 }
 
 /* Ajustes para móviles pequeños */
 @media (max-width: 480px) {
     .logo {
-        width: 120px; /* Logo más pequeño en pantallas muy pequeñas */
+        width: 80vw; /* El logo ocupa aún más en móviles muy pequeños */
+        max-width: 300px;
     }
     .hero-content h1 {
-        font-size: 2.2rem; /* Reduce aún más el tamaño del título */
+        font-size: 2.5rem;
+    }
+    .hero-subtitle {
+        font-size: 1.8rem;
     }
     .slogan {
-        font-size: 1rem;
+        font-size: 1.1rem;
+        margin-bottom: 25px;
     }
     .cta-button {
         padding: 10px 20px;
@@ -399,12 +676,25 @@ section {
         font-size: 1.8rem;
     }
     section {
-        padding: 40px 10px; /* Reduce el padding general */
+        padding: 40px 10px;
     }
-    .summary-text, .included-grid, .date-grid, .reference-grid {
-        padding: 0 10px; /* Reduce el padding en textos y grids */
+    .summary-text, .itinerary-grid, .included-grid, .not-included-grid, .date-grid, .reference-grid {
+        padding: 0 10px;
     }
-    .included-item p, .date-item p, .reference-item .quote {
-        font-size: 0.9rem; /* Ligeramente más pequeño para el texto de los items */
+    .included-item p, .date-item p, .reference-item .quote, .itinerary-day p, .not-included-item p {
+        font-size: 0.9rem;
+    }
+
+    /* Ocultar navegación del header en móviles muy pequeños si es necesario */
+    .header-nav {
+        display: none; /* Opcional: podrías ocultarla y usar un menú hamburguesa */
+    }
+
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 24px;
     }
 }
