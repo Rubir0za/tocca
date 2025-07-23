@@ -76,8 +76,8 @@ section.is-visible {
 /* --- HEADER / HERO SECTION --- */
 .hero-section {
     height: 100vh;
-    /* REDUCCIÓN DE LA OPACIDAD EN EL LINEAR-GRADIENT PARA MAYOR VIBRANCIA */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('imagenes/header_coast.jpg');
+    /* REDUCCIÓN DE LA OPACIDAD EN EL LINEAR-GRADIENT A UN VALOR MUY BAJO */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), url('imagenes/header_coast.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -613,7 +613,7 @@ section.is-visible {
         margin-top: 15px;
     }
     .hero-subtitle {
-        font-size: 2rem;
+        font-size: 2.0rem;
         margin-top: 5px;
     }
     .slogan {
