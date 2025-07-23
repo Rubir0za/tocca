@@ -166,24 +166,21 @@ section.is-visible {
 /* --- SECCIÓN "INCLUIDO EN EL TOUR" (CARRUSEL) --- */
 .included-section {
     background-color: #ffffff;
-    position: relative; /* Necesario para posicionar las flechas */
-    overflow: hidden; /* Para ocultar items fuera de vista */
+    position: relative;
+    overflow: hidden;
 }
 
-/* Contenedor del carrusel */
 .carousel-container {
-    max-width: 900px; /* Ajusta este ancho según necesites que se vean los items */
+    max-width: 900px;
     margin: 0 auto;
     position: relative;
     overflow: hidden; /* Esto es crucial para que el overflow horizontal se oculte */
 }
 
-/* La pista del carrusel que se mueve */
 .carousel-track {
-    display: flex; /* Los items se alinearán en una fila */
-    transition: transform 0.5s ease-in-out; /* Suaviza el movimiento del carrusel */
-    /* Desactivar wrapping para que los items permanezcan en una sola línea */
-    flex-wrap: nowrap;
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    flex-wrap: nowrap; /* Impide que los items se envuelvan a la siguiente línea */
 }
 
 .included-item {
@@ -193,14 +190,13 @@ section.is-visible {
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* Ajustes para el tamaño de los items en el carrusel */
     flex: 0 0 auto; /* No permite que los items se encojan o crezcan */
     width: calc(100% / 3 - 20px); /* Ejemplo: 3 items visibles en escritorio, ajusta el gap */
     margin-right: 30px; /* Gap entre items */
 }
 
 .included-item:last-child {
-    margin-right: 0; /* Elimina el margen del último item */
+    margin-right: 0;
 }
 
 .included-item img {
@@ -227,7 +223,7 @@ section.is-visible {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(74, 154, 146, 0.8); /* var(--primary-color) con transparencia */
+    background-color: rgba(74, 154, 146, 0.8);
     color: var(--light-text-color);
     border: none;
     padding: 10px 15px;
@@ -236,7 +232,7 @@ section.is-visible {
     border-radius: 50%;
     z-index: 10;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    width: 50px; /* Tamaño fijo para los botones */
+    width: 50px;
     height: 50px;
     display: flex;
     justify-content: center;
@@ -258,20 +254,19 @@ section.is-visible {
 }
 
 /* Ocultar botones en pantallas grandes si solo se ve el grid completo */
-@media (min-width: 900px) { /* o el breakpoint donde tu grid sea completo */
+@media (min-width: 900px) {
     .carousel-button {
         display: none;
     }
     .included-grid {
-        /* Para que el grid se adapte cuando los botones no están */
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        margin-left: auto; /* Centrar de nuevo */
-        margin-right: auto; /* Centrar de nuevo */
+        margin-left: auto;
+        margin-right: auto;
     }
     .included-item {
-        margin-right: 0; /* Eliminar el margen fijo del carrusel */
-        width: auto; /* Permitir que el grid controle el ancho */
+        margin-right: 0;
+        width: auto;
     }
 }
 
@@ -475,7 +470,6 @@ section.is-visible {
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-/* Estilos para el icono SVG de WhatsApp (AJUSTADO A 70%) */
 .whatsapp-float .whatsapp-svg-icon {
     width: 70%;
     height: 70%;
@@ -487,7 +481,6 @@ section.is-visible {
     background-color: #1DA851;
 }
 
-/* Media Query para móviles pequeños */
 @media (max-width: 480px) {
     .whatsapp-float {
         width: 50px;
