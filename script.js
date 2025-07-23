@@ -39,35 +39,17 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(section);
     });
 
-    // Lógica del Carrusel (ACTIVADA y MEJORADA)
-    const carouselTrack = document.querySelector('.included-grid');
-    const prevButton = document.querySelector('.carousel-prev');
-    const nextButton = document.querySelector('.carousel-next');
+    // Lógica del Carrusel
+    const carouselTrack = document.querySelector('.carousel-track');
+    const prevButton = document.querySelector('.carousel-button.prev');
+    const nextButton = document.querySelector('.carousel-button.next');
     const carouselItems = document.querySelectorAll('.carousel-item');
-    const carouselContainer = document.querySelector('.carousel-container'); // Obtener el contenedor del carrusel
 
-    if (carouselTrack && prevButton && nextButton && carouselItems.length > 0 && carouselContainer) {
+    if (carouselTrack && prevButton && nextButton && carouselItems.length > 0) {
         let currentIndex = 0;
-
-        // Función MEJORADA para calcular el ancho de un "slide"
-        const getItemWidth = () => {
-            const carouselContainerWidth = carouselContainer.offsetWidth; // Ancho visible del contenedor
-
-            // En móvil (<= 768px), cada "slide" es el ancho completo del contenedor.
-            if (window.innerWidth <= 768) {
-                return carouselContainerWidth;
-            } else {
-                // En escritorio, cada "slide" es el ancho de un ítem más su margen derecho.
-                const item = carouselItems[0];
-                const itemWidth = item.getBoundingClientRect().width;
-                const itemStyle = window.getComputedStyle(item);
-                const marginRight = parseFloat(itemStyle.marginRight); // Obtiene el margen derecho del CSS
-                return itemWidth + (marginRight || 0); // Suma el ancho del item y su margen
-            }
-        };
+        const getItemWidth = () => carouselItems[0].offsetWidth + 30; // Ancho del item + gap
 
         function moveToSlide(index) {
-            // Lógica de bucle para que al ir hacia atrás desde el primero, vaya al último y viceversa
             if (index < 0) {
                 currentIndex = carouselItems.length - 1;
             } else if (index >= carouselItems.length) {
@@ -86,13 +68,9 @@ document.addEventListener('DOMContentLoaded', function() {
             moveToSlide(currentIndex - 1);
         });
 
-        // Reajusta la posición del carrusel al cambiar el tamaño de la ventana
         window.addEventListener('resize', () => {
-            moveToSlide(currentIndex);
+            moveToSlide(currentIndex); // Reajusta la posición del carrusel al cambiar el tamaño de la ventana
         });
-
-        // Inicializa la posición del carrusel al cargar la página
-        moveToSlide(currentIndex);
     }
 
     // Lógica del Menú Hamburguesa
@@ -105,13 +83,4 @@ document.addEventListener('DOMContentLoaded', function() {
             hamburgerMenu.classList.toggle('active'); // Para la animación de la "X"
         });
     }
-
-    // Lógica de navegación del menú móvil
-    const mobileMenuItems = document.querySelectorAll('#mobile-menu a');
-    mobileMenuItems.forEach(item => {
-        item.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            hamburgerMenu.classList.remove('active');
-        });
-    });
 });
