@@ -19,7 +19,7 @@ body {
     overflow-x: hidden; /* Evita el scroll horizontal en dispositivos móviles */
 }
 
-h1, h2, h3 { /* Aplicar Playfair Display también a h3 para mayor consistencia en títulos */
+h1, h2, h3 {
     font-family: 'Playfair Display', serif;
 }
 
@@ -32,10 +32,9 @@ h2 {
 
 section {
     padding: 80px 20px;
-    /* Las propiedades de animación (opacity y transform) se manejarán en JS si lo reactivas */
-    opacity: 0; /* Por defecto invisibles para la animación */
-    transform: translateY(20px); /* Ligeramente desplazadas */
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Transición para la animación */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 section.is-visible {
@@ -51,26 +50,28 @@ section.is-visible {
     height: 60px;
     bottom: 40px;
     right: 40px;
-    background-color: #25d366; /* Color de WhatsApp */
+    background-color: #25d366;
     color: #FFF;
     border-radius: 50px;
     text-align: center;
     font-size: 30px;
     box-shadow: 2px 2px 3px rgba(0,0,0,0.4);
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    z-index: 1000;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; /* Centra verticalmente el ícono */
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .whatsapp-float i {
-    margin-top: 5px; /* Ajuste fino del icono */
+    /* Eliminado el margin-top: 5px; para corregir la alineación */
+    display: block; /* Asegura que la caja del ícono respete el flexbox */
+    line-height: 1; /* Ayuda a centrar perfectamente */
 }
 
 .whatsapp-float:hover {
-    transform: scale(1.1); /* Efecto de crecimiento al pasar el ratón */
-    background-color: #1DA851; /* Un verde un poco más oscuro */
+    transform: scale(1.1);
+    background-color: #1DA851;
 }
 
 /* --- HEADER / HERO SECTION --- */
@@ -81,55 +82,59 @@ section.is-visible {
     background-position: center;
     background-attachment: fixed;
     display: flex;
-    flex-direction: column; /* Organiza el contenido verticalmente */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: var(--light-text-color);
-    position: relative; /* Necesario para posicionar el nav si es absoluto */
+    position: relative;
+    padding-top: 60px; /* Espacio para la nueva barra superior */
+    box-sizing: border-box; /* Incluye padding en el height */
 }
 
 .hero-content {
-    max-width: 900px; /* Aumenta el ancho máximo para acomodar el logo grande */
+    max-width: 900px;
     padding: 20px;
-    display: flex; /* Usar flexbox para el contenido del header */
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 10; /* Para que el contenido esté por encima del fondo y el nav */
+    z-index: 10;
+    flex-grow: 1; /* Permite que el contenido se expanda para ocupar el espacio restante */
+    justify-content: center; /* Centra el contenido verticalmente */
 }
 
 .logo {
-    width: 60vw; /* Aproximadamente 60% del ancho del viewport */
-    max-width: 450px; /* Limita el tamaño máximo en pantallas muy grandes */
+    width: 60vw;
+    max-width: 450px;
     height: auto;
-    margin-bottom: 20px; /* Espacio debajo del logo */
-    z-index: 1; /* El logo es predominante, pero está dentro del .hero-content */
+    margin-bottom: 20px;
+    z-index: 1;
 }
 
 .hero-content h1 {
-    font-size: 4.2rem; /* Tamaño más grande para el título principal */
+    font-size: 4.2rem;
     margin: 0;
-    text-shadow: 1px 1px 6px rgba(0,0,0,0.7); /* Sombra más pronunciada para el texto */
-    order: 2; /* Segundo en la jerarquía visual */
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+    order: 2;
 }
 
 .hero-subtitle {
-    font-size: 2.5rem; /* Nuevo subtítulo */
+    font-size: 2.5rem;
     margin-top: 10px;
     margin-bottom: 0px;
     font-weight: 700;
     text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
-    order: 3; /* Tercero en la jerarquía visual */
+    order: 3;
 }
 
 .slogan {
-    font-size: 1.5rem; /* Tamaño más grande para el eslogan */
+    font-size: 1.5rem;
     margin-top: 15px;
     margin-bottom: 40px;
     font-weight: 400;
     text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
-    order: 4; /* Cuarto en la jerarquía visual */
+    order: 4;
 }
 
 .cta-button {
@@ -143,7 +148,7 @@ section.is-visible {
     transition: all 0.3s ease;
     display: inline-block;
     box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-    order: 5; /* Quinto en la jerarquía visual */
+    order: 5;
 }
 
 .cta-button:hover {
@@ -157,87 +162,118 @@ section.is-visible {
     font-size: 0.9rem;
 }
 
-/* Navegación en el Header */
-.header-nav {
-    position: absolute; /* Posicionamiento absoluto dentro del header */
-    bottom: 20px; /* Abajo del todo */
+/* --- BARRA SUPERIOR Y MENÚ HAMBURGUESA --- */
+.top-bar {
+    position: fixed; /* Fija la barra en la parte superior */
+    top: 0;
+    left: 0;
     width: 100%;
-    text-align: center;
-    z-index: 15; /* Asegura que esté por encima del contenido principal del hero */
+    height: 60px; /* Altura de la barra superior */
+    background-color: rgba(0, 0, 0, 0.4); /* Fondo semi-transparente */
+    display: flex;
+    justify-content: flex-end; /* Alinea el menú a la derecha */
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    z-index: 100; /* Asegura que esté encima de todo */
 }
 
-.header-nav ul {
+.hamburger-menu {
+    width: 30px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 101; /* Asegura que esté por encima del menú móvil si se solapan */
+}
+
+.hamburger-menu .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--light-text-color);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Animación del ícono de hamburguesa a la "X" */
+.hamburger-menu.active .bar:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+}
+.hamburger-menu.active .bar:nth-child(2) {
+    opacity: 0;
+}
+.hamburger-menu.active .bar:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
+}
+
+/* --- MENÚ MÓVIL (NAV) --- */
+.mobile-menu {
+    position: fixed;
+    top: 0; /* Empieza desde arriba */
+    right: -100%; /* Inicialmente fuera de la pantalla a la derecha */
+    width: 100%;
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro semi-transparente */
+    padding-top: 80px; /* Espacio para que el menú no se solape con la barra superior */
+    box-sizing: border-box;
+    transition: right 0.4s ease-in-out;
+    z-index: 99; /* Debajo de la top-bar y el botón de hamburguesa */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Alinea el contenido del menú arriba */
+}
+
+.mobile-menu.active {
+    right: 0; /* Se desliza hacia adentro */
+}
+
+.mobile-menu ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap; /* Permite que los elementos se envuelvan */
-    gap: 20px; /* Espacio entre los elementos de la navegación */
-}
-
-.header-nav ul li a {
-    color: var(--light-text-color);
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1rem;
-    padding: 8px 15px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.header-nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-}
-
-
-/* --- SECCIÓN DE CONTACTO POST-HERO (puede ser renombrada o eliminada si "itinerario" la reemplaza) --- */
-.contact-prompt {
-    background-color: var(--primary-color);
-    color: var(--light-text-color);
+    width: 100%;
     text-align: center;
 }
 
-.contact-prompt h2 {
+.mobile-menu ul li {
+    margin-bottom: 25px; /* Espacio entre los elementos del menú */
+}
+
+.mobile-menu ul li a {
     color: var(--light-text-color);
-}
-
-.contact-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 30px;
-}
-
-.contact-button {
-    padding: 15px 25px;
     text-decoration: none;
-    border-radius: 5px;
     font-weight: bold;
-    transition: all 0.3s ease;
-    border: 2px solid var(--secondary-color);
-    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    font-size: 1.8rem; /* Tamaño de fuente grande para el menú móvil */
+    padding: 10px 20px;
+    display: block; /* Para que el área clicable sea más grande */
+    transition: color 0.3s ease, background-color 0.3s ease;
 }
 
-.contact-button.whatsapp {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-}
-.contact-button.email {
-    background-color: transparent;
-    color: var(--light-text-color);
-    border-color: var(--light-text-color);
+.mobile-menu ul li a:hover {
+    color: var(--secondary-color);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-.contact-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+/* Ocultar el menú de navegación tradicional en pantallas grandes */
+@media (min-width: 769px) {
+    .top-bar, .hamburger-menu, .mobile-menu {
+        display: none; /* Oculta la barra superior y el menú móvil en desktop */
+    }
+    .hero-section {
+        padding-top: 0; /* No se necesita padding si no hay top-bar */
+    }
+    .hero-content {
+        justify-content: center; /* Centra el contenido en el medio */
+    }
+    /* Restaura la navegación si la quieres visible en desktop, o déjala oculta si solo es móvil */
+    /* Si tenías un nav para desktop, lo pondrías aquí o lo mantendrías en el HTML original */
+    /* Por ahora, asumimos que no hay nav visible en desktop a menos que lo especifiques */
 }
 
 
-/* --- SECCIÓN "CONOCE LO QUE TE ESPERA" (antes "Por qué Tocca Amalfi") --- */
+/* --- SECCIÓN "CONOCE LO QUE TE ESPERA" --- */
 .itinerary-section {
     background-color: var(--background-light);
     text-align: center;
@@ -291,36 +327,36 @@ section.is-visible {
 /* --- SECCIÓN "INCLUIDO EN EL TOUR" (CON CARRUSEL) --- */
 .included-section {
     background-color: #ffffff;
-    overflow: hidden; /* Oculta los elementos fuera del carrusel */
+    overflow: hidden;
 }
 
 .carousel-container {
     position: relative;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 50px; /* Espacio para los botones de navegación */
+    padding: 0 50px;
 }
 
 .carousel-track {
     display: flex;
-    overflow-x: hidden; /* Oculta la barra de scroll */
-    scroll-snap-type: x mandatory; /* Para un scroll más suave y con "enganche" */
-    -webkit-overflow-scrolling: touch; /* Suaviza el scroll en iOS */
-    scroll-behavior: smooth; /* Habilita el desplazamiento suave con JS */
-    gap: 30px; /* Espacio entre los items */
+    overflow-x: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    gap: 30px;
 }
 
 .carousel-item {
-    flex: 0 0 auto; /* No crece, no se encoge, tamaño automático */
-    width: calc((100% / 3) - (2 * 30px / 3)); /* Muestra 3 items por defecto con el gap */
-    scroll-snap-align: start; /* Alinea el inicio del item con el inicio del contenedor */
+    flex: 0 0 auto;
+    width: calc((100% / 3) - (2 * 30px / 3));
+    scroll-snap-align: start;
     text-align: center;
     background-color: #fff;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative; /* Para posicionar el ícono */
+    position: relative;
 }
 
 .carousel-item:hover {
@@ -347,7 +383,6 @@ section.is-visible {
     color: #555;
 }
 
-/* Botones de navegación del carrusel */
 .carousel-button {
     position: absolute;
     top: 50%;
@@ -375,12 +410,11 @@ section.is-visible {
     right: 0;
 }
 
-/* Iconos de checkmark en "Incluido" */
 .checkmark-icon {
     position: absolute;
     top: 15px;
     left: 15px;
-    color: #28a745; /* Verde de éxito */
+    color: #28a745;
     font-size: 2.2rem;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 50%;
@@ -419,32 +453,31 @@ section.is-visible {
 }
 
 .not-included-item h3 {
-    color: #dc3545; /* Rojo de error/negación */
+    color: #dc3545;
     margin-top: 0;
     font-size: 1.4rem;
-    margin-left: 45px; /* Espacio para el ícono */
+    margin-left: 45px;
 }
 
 .not-included-item p {
     font-size: 0.95rem;
     line-height: 1.7;
     color: #555;
-    padding-left: 45px; /* Espacio para el ícono */
+    padding-left: 45px;
 }
 
-/* Iconos de X en "No Incluido" */
 .crossmark-icon {
     position: absolute;
-    top: 30px; /* Alineado con el h3 */
+    top: 30px;
     left: 20px;
-    color: #dc3545; /* Rojo de error */
+    color: #dc3545;
     font-size: 2.2rem;
 }
 
 
 /* --- SECCIÓN "FECHAS DISPONIBLES" --- */
 .available-dates-section {
-    background-color: #ffffff; /* Fondo blanco */
+    background-color: #ffffff;
     text-align: center;
 }
 
@@ -458,7 +491,7 @@ section.is-visible {
 }
 
 .date-item {
-    background-color: var(--background-light); /* Fondo claro para los items de fecha */
+    background-color: var(--background-light);
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.1);
@@ -551,16 +584,13 @@ section.is-visible {
 /* Ajustes para pantallas grandes (desktop, tablets grandes) */
 @media (min-width: 1024px) {
     .hero-content h1 {
-        font-size: 5rem; /* Título más grande en pantallas muy grandes */
+        font-size: 5rem;
     }
     .hero-subtitle {
         font-size: 3rem;
     }
     .slogan {
         font-size: 1.6rem;
-    }
-    .header-nav ul li a {
-        font-size: 1.1rem;
     }
 }
 
@@ -578,7 +608,7 @@ section.is-visible {
 
     /* Header adjustments */
     .logo {
-        width: 70vw; /* Más grande en tablets */
+        width: 70vw;
         max-width: 350px;
     }
     .hero-content h1 {
@@ -594,17 +624,6 @@ section.is-visible {
         margin-top: 10px;
         margin-bottom: 30px;
     }
-    .header-nav {
-        bottom: 10px;
-    }
-    .header-nav ul {
-        gap: 10px; /* Reduce espacio entre enlaces en tablets */
-    }
-    .header-nav ul li a {
-        font-size: 0.9rem;
-        padding: 6px 10px;
-    }
-
     .cta-button {
         padding: 12px 25px;
         font-size: 1rem;
@@ -623,22 +642,22 @@ section.is-visible {
         padding: 0 20px;
     }
     .itinerary-grid, .included-grid, .not-included-grid, .date-grid, .reference-grid {
-        grid-template-columns: 1fr; /* Una columna para los grids en pantallas pequeñas */
+        grid-template-columns: 1fr;
         padding: 0 20px;
     }
     .itinerary-day, .included-item, .not-included-item, .date-item, .reference-item {
         margin-bottom: 20px;
     }
     .hero-section {
-        background-attachment: scroll; /* Deshabilita parallax en móviles para mejor rendimiento */
+        background-attachment: scroll;
     }
 
     /* Carrusel Responsive */
     .carousel-container {
-        padding: 0 15px; /* Menos padding para los botones de carrusel */
+        padding: 0 15px;
     }
     .carousel-item {
-        width: calc(100% - 30px); /* Un item por pantalla en móvil (menos el gap) */
+        width: calc(100% - 30px);
     }
     .carousel-button {
         padding: 8px 12px;
@@ -650,12 +669,21 @@ section.is-visible {
     .carousel-button.next {
         right: 0px;
     }
+
+    /* Asegurar que la barra superior y el menú hamburguesa se muestren solo en móviles */
+    .top-bar {
+        display: flex; /* Visible en móviles */
+    }
+    .hamburger-menu {
+        display: flex; /* Visible en móviles */
+    }
+    /* .mobile-menu por defecto ya está oculto con right: -100%; */
 }
 
 /* Ajustes para móviles pequeños */
 @media (max-width: 480px) {
     .logo {
-        width: 80vw; /* El logo ocupa aún más en móviles muy pequeños */
+        width: 80vw;
         max-width: 300px;
     }
     .hero-content h1 {
@@ -685,16 +713,15 @@ section.is-visible {
         font-size: 0.9rem;
     }
 
-    /* Ocultar navegación del header en móviles muy pequeños si es necesario */
-    .header-nav {
-        display: none; /* Opcional: podrías ocultarla y usar un menú hamburguesa */
-    }
-
     .whatsapp-float {
         width: 50px;
         height: 50px;
         bottom: 20px;
         right: 20px;
         font-size: 24px;
+    }
+
+    .mobile-menu ul li a {
+        font-size: 1.5rem; /* Ajuste para pantallas aún más pequeñas */
     }
 }
