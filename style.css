@@ -48,8 +48,8 @@ section.is-visible {
     position: fixed;
     width: 60px;
     height: 60px;
-    bottom: 30px; /* Ajusta este valor */
-    right: 50px;  /* Ajusta este valor */
+    bottom: 20px; /* Reducido para acercarlo más a la parte inferior */
+    right: 20px;  /* Reducido para acercarlo más a la derecha */
     background-color: #25d366;
     color: #FFF;
     border-radius: 50px;
@@ -78,8 +78,8 @@ section.is-visible {
     .whatsapp-float {
         width: 50px;
         height: 50px;
-        bottom: 15px; /* Ajusta este valor también para móviles */
-        right: 15px;  /* Ajusta este valor también para móviles */
+        bottom: 10px; /* Reducido para móviles */
+        right: 10px;  /* Reducido para móviles */
         font-size: 24px;
     }
 }
