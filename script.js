@@ -44,20 +44,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const prevButton = document.querySelector('.carousel-prev');
     const nextButton = document.querySelector('.carousel-next');
     const carouselItems = document.querySelectorAll('.carousel-item');
-    const carouselContainer = document.querySelector('.carousel-container'); // ¡Asegúrate de que este elemento existe en tu HTML!
+    const carouselContainer = document.querySelector('.carousel-container'); // Obtener el contenedor del carrusel
 
     if (carouselTrack && prevButton && nextButton && carouselItems.length > 0 && carouselContainer) {
         let currentIndex = 0;
 
-        // Función mejorada para calcular el ancho de un "slide" (lo que se desplaza en cada paso)
+        // Función MEJORADA para calcular el ancho de un "slide"
         const getItemWidth = () => {
-            const carouselContainerWidth = carouselContainer.offsetWidth; // Ancho visible del contenedor del carrusel
+            const carouselContainerWidth = carouselContainer.offsetWidth; // Ancho visible del contenedor
 
-            // Si la ventana es pequeña (móvil, hasta 768px), cada "slide" es el ancho completo del contenedor
+            // En móvil (<= 768px), cada "slide" es el ancho completo del contenedor.
             if (window.innerWidth <= 768) {
                 return carouselContainerWidth;
             } else {
-                // En escritorio, cada "slide" es el ancho de un ítem más su margen derecho (el "gap")
+                // En escritorio, cada "slide" es el ancho de un ítem más su margen derecho.
                 const item = carouselItems[0];
                 const itemWidth = item.getBoundingClientRect().width;
                 const itemStyle = window.getComputedStyle(item);
@@ -67,10 +67,11 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         function moveToSlide(index) {
+            // Lógica de bucle para que al ir hacia atrás desde el primero, vaya al último y viceversa
             if (index < 0) {
-                currentIndex = carouselItems.length - 1; // Bucle al final desde el principio
+                currentIndex = carouselItems.length - 1;
             } else if (index >= carouselItems.length) {
-                currentIndex = 0; // Bucle al principio desde el final
+                currentIndex = 0;
             } else {
                 currentIndex = index;
             }
@@ -104,4 +105,13 @@ document.addEventListener('DOMContentLoaded', function() {
             hamburgerMenu.classList.toggle('active'); // Para la animación de la "X"
         });
     }
+
+    // Lógica de navegación del menú móvil
+    const mobileMenuItems = document.querySelectorAll('#mobile-menu a');
+    mobileMenuItems.forEach(item => {
+        item.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            hamburgerMenu.classList.remove('active');
+        });
+    });
 });
