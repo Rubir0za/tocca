@@ -48,8 +48,8 @@ section.is-visible {
     position: fixed;
     width: 60px;
     height: 60px;
-    bottom: 40px;
-    right: 40px;
+    bottom: 30px; /* Ajusta este valor */
+    right: 30px;  /* Ajusta este valor */
     background-color: #25d366;
     color: #FFF;
     border-radius: 50px;
@@ -59,18 +59,29 @@ section.is-visible {
     z-index: 1000;
     display: flex;
     justify-content: center;
-    align-items: center; /* Centra verticalmente el ícono */
+    align-items: center;
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .whatsapp-float i {
-    display: block; /* Asegura que la caja del ícono respete el flexbox */
-    line-height: 1; /* Ayuda a centrar perfectamente */
+    display: block;
+    line-height: 1;
 }
 
 .whatsapp-float:hover {
     transform: scale(1.1);
     background-color: #1DA851;
+}
+
+/* Media Query para móviles pequeños */
+@media (max-width: 480px) {
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 15px; /* Ajusta este valor también para móviles */
+        right: 15px;  /* Ajusta este valor también para móviles */
+        font-size: 24px;
+    }
 }
 
 /* --- HEADER / HERO SECTION --- */
