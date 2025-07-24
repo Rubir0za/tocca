@@ -1,16 +1,10 @@
 /* --- ESTILOS GENERALES Y FUENTES --- */
 :root {
     --primary-color: #4A9A92; /* verde del logo (las olas) */
-    --secondary-color: #D8A736; /* amarillo/dorado, para el marco del logo y acentos */
-    --text-color: #3E2D23; /* similar al texto del logo, oscuro */
+    --secondary-color: #D8A736; /* más cálido y más cercano al logo */
+    --text-color: #3E2D23; /* similar al texto del logo */
     --light-text-color: #ffffff; /* Texto claro para fondos oscuros */
-    --background-light: #f8f9fa; /* Un fondo casi blanco, más brillante */
-    --border-color: #e0e0e0; /* Color suave para bordes de tablas/ítems */
-    --detail-bg: #f2f2f2; /* Fondo para el contenido expandido del itinerario */
-    --nav-bg-color: rgba(62, 45, 35, 0.9); /* Fondo para la barra de navegación fija */
-    --itinerary-header-bg: #E0E0E0; /* Gris claro para el fondo del encabezado del itinerario */
-    --itinerary-cell-bg: #F9F9F9; /* Fondo de celda del itinerario */
-    --highlight-color: #d64d4d; /* Color rojo para actividades destacadas */
+    --background-light: #f8f9fa; /* Un fondo casi blanco */
 }
 
 html {
@@ -37,661 +31,619 @@ h2 {
 }
 
 section {
-    padding: 60px 20px;
+    padding: 80px 20px;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
+/* Animación de la sección al ser visible */
 section.is-visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* --- CABECERA PRINCIPAL (Contiene Nav y Hero) --- */
-.main-header {
-    position: relative; /* Contenedor para el nav fijo y el hero */
+/* --- WHATSAPP FLOAT BUTTON --- */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 1000; /* Asegura que esté por encima de todo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease-in-out;
 }
 
-/* --- BARRA DE NAVEGACIÓN DE ESCRITORIO --- */
-.desktop-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed; /* Fija la barra en la parte superior */
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-svg-icon {
+    width: 30px; /* Tamaño del SVG dentro del botón */
+    height: 30px;
+    filter: invert(1); /* Para que el icono sea blanco */
+}
+
+/* --- TOP BAR Y MENÚ HAMBURGUESA (MÓVIL) --- */
+.top-bar {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: var(--nav-bg-color); /* Fondo semi-transparente oscuro */
-    padding: 10px 40px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-    z-index: 1000; /* Asegura que esté por encima de todo */
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 999;
+    display: none; /* Oculto por defecto, visible solo en móviles */
+    justify-content: space-between;
+    align-items: center;
     box-sizing: border-box;
 }
 
-.desktop-nav-logo a {
-    display: flex; /* Permite alinear el icono y el texto */
-    align-items: center;
-    text-decoration: none;
-    color: var(--light-text-color); /* Color del texto del logo */
-    font-weight: bold;
-    font-size: 1.4rem; /* Tamaño del texto del logo */
-}
-
-/* ESTILOS PARA EL ICONO DE LIMÓN */
-.lemon-icon {
-    font-size: 1.8rem; /* Tamaño del icono */
-    color: var(--secondary-color); /* Color amarillo/dorado */
-    margin-right: 10px; /* Espacio entre el icono y el texto */
-}
-
-/* Si quieres que el logo sea solo la imagen, elimina .lemon-icon y .logo-text y descomenta lo siguiente: */
-/* .desktop-nav-logo img {
-    height: 35px;
+.top-bar .logo-mobile {
+    height: 40px; /* Ajusta el tamaño del logo móvil */
     width: auto;
-    transition: height 0.3s ease;
-} */
-
-
-.desktop-nav-links {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 30px; /* Espacio entre los enlaces */
-}
-
-.desktop-nav-links a {
-    color: var(--light-text-color);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1rem;
-    padding: 5px 0;
-    position: relative;
-    transition: color 0.3s ease;
-}
-
-.desktop-nav-links a::after { /* Subrayado al pasar el ratón */
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -5px;
-    width: 0;
-    height: 2px;
-    background-color: var(--secondary-color);
-    transition: width 0.3s ease-in-out;
-}
-
-.desktop-nav-links a:hover::after {
-    width: 100%;
-}
-
-.desktop-nav-links a:hover {
-    color: var(--secondary-color);
-}
-
-
-/* --- MOBILE NAV TOGGLE (Hamburguesa) y MENÚ MÓVIL --- */
-.mobile-nav-toggle {
-    display: none; /* Oculto por defecto en escritorio */
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1100; /* Por encima de la navegación de escritorio */
 }
 
 .hamburger-menu {
-    display: flex; /* Se mostrará en móvil */
-    flex-direction: column;
-    justify-content: space-around;
     width: 30px;
     height: 25px;
+    display: none; /* Oculto por defecto, visible solo en móviles */
+    flex-direction: column;
+    justify-content: space-between;
     cursor: pointer;
+    z-index: 1000;
 }
 
 .hamburger-menu span {
     display: block;
     width: 100%;
     height: 3px;
-    background-color: var(--light-text-color); /* Color blanco para la hamburguesa */
-    border-radius: 5px;
+    background-color: var(--text-color);
     transition: all 0.3s ease-in-out;
 }
 
 .hamburger-menu.active span:nth-child(1) {
     transform: translateY(11px) rotate(45deg);
 }
+
 .hamburger-menu.active span:nth-child(2) {
     opacity: 0;
 }
+
 .hamburger-menu.active span:nth-child(3) {
     transform: translateY(-11px) rotate(-45deg);
 }
 
 .mobile-menu {
-    display: none; /* Oculto por defecto */
     position: fixed;
     top: 0;
-    right: -100%; /* Fuera de la pantalla */
+    left: -100%; /* Oculto por defecto */
     width: 100%;
     height: 100%;
-    background-color: rgba(62, 45, 35, 0.98); /* Fondo oscuro semi-transparente */
-    color: var(--light-text-color);
-    text-align: center;
-    padding-top: 80px;
-    box-sizing: border-box;
-    transition: right 0.4s ease-in-out;
-    z-index: 1050; /* Por debajo de la hamburguesa pero encima del resto */
+    background-color: rgba(255, 255, 255, 0.98);
+    display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
+    transition: left 0.3s ease-in-out;
+    z-index: 998;
 }
 
 .mobile-menu.active {
-    display: flex;
-    right: 0;
+    left: 0; /* Muestra el menú */
 }
 
-.mobile-menu a {
-    color: var(--light-text-color);
+.mobile-menu nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.mobile-menu nav ul li {
+    margin-bottom: 25px;
+}
+
+.mobile-menu nav ul li a {
+    color: var(--text-color);
     text-decoration: none;
-    font-size: 1.5rem;
-    padding: 15px 0;
-    display: block;
-    width: 100%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    transition: background-color 0.2s ease;
+    font-size: 1.8rem;
+    font-weight: 700;
+    transition: color 0.2s ease-in-out;
 }
 
-.mobile-menu a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+.mobile-menu nav ul li a:hover {
+    color: var(--primary-color);
 }
 
 
-/* --- HERO SECTION (LA PANTALLA DE INICIO) --- */
+/* --- HEADER / HERO SECTION --- */
 .hero-section {
-    min-height: 100vh;
-    /* ESTA ES LA LÍNEA CLAVE: Asegura que el fondo tenga un degradado oscuro */
+    min-height: 100vh; /* Asegura que el hero ocupe al menos la altura de la ventana */
+    /* Fondo con degradado oscuro para mejorar el contraste del texto */
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('imagenes/header_coast.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* Esto hace que el fondo se quede fijo al hacer scroll */
+    background-attachment: fixed; /* Hace que la imagen de fondo se quede fija al hacer scroll */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: var(--light-text-color); /* Color blanco para el texto */
+    color: var(--light-text-color); /* Color del texto dentro del hero */
     position: relative;
-    padding-top: 60px; /* Espacio para la barra superior */
+    padding-top: 60px; /* Espacio para la barra superior, si existe */
     box-sizing: border-box; /* Incluye el padding en la altura total */
 }
 
-/* Carrusel de imágenes de fondo para el hero */
-.hero-background-carousel {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0; /* Detrás del contenido */
-}
-
-.carousel-item {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out; /* Transición suave */
-}
-
-.carousel-item.active {
-    opacity: 1;
-}
-
 .hero-content {
-    max-width: 800px;
-    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* ELIMINADO: background-color: rgba(0, 0, 0, 0.4); */ /* Fondo sutil que generaba el cuadro negro */
-    padding: 30px 40px;
-    border-radius: 8px;
-    position: relative; /* Para que esté sobre las imágenes del carrusel */
+    padding: 20px; /* Padding existente */
+    padding-bottom: 80px; /* Aumenta el espacio inferior para el eslogan */
+    z-index: 1; /* Asegura que el contenido esté sobre el fondo */
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.desktop-nav-logo {
+    display: block; /* Visible por defecto en desktop */
+}
+
+.desktop-nav-logo img {
+    height: 50px; /* Tamaño del logo en la barra de navegación de desktop */
+    width: auto;
+}
+
+.desktop-nav-menu {
+    display: flex; /* Visible por defecto en desktop */
+}
+
+.desktop-nav-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.desktop-nav-menu ul li {
+    margin-left: 30px;
+}
+
+.desktop-nav-menu ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.2s ease-in-out;
+}
+
+.desktop-nav-menu ul li a:hover {
+    color: var(--primary-color);
+}
+
+.logo {
+    width: 54vw; /* 60vw - 10% */
+    max-width: 405px; /* 450px - 10% */
+    height: auto;
+    margin-bottom: 20px;
     z-index: 1;
 }
 
-/* ESTILO PARA EL LOGO PROTAGONISTA EN EL HERO */
-.hero-main-logo {
-    width: 70%; /* Ajusta el tamaño del logo para que sea protagonista */
-    max-width: 400px; /* Tamaño máximo para evitar que sea demasiado grande */
-    height: auto;
-    margin-bottom: 30px; /* Espacio debajo del logo */
-    filter: drop-shadow(0 0 10px rgba(0,0,0,0.5)); /* Sombra para que destaque */
+.hero-content h1 {
+    font-size: 4.2rem;
+    margin-bottom: 10px;
+    line-height: 1.1;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
 }
 
-.hero-slogan-main {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.8rem; /* Ajustado para complementar al logo, no competir */
-    margin: 0 0 10px 0;
-    line-height: 1.2;
-    text-shadow: 2px 2px 6px rgba(0,0,0,0.7); /* Sombra más fuerte para mejor contraste */
-}
-
-.hero-slogan-sub {
-    font-size: 1.1rem; /* Eslogan secundario ligeramente más grande */
+.hero-subtitle {
+    font-size: 2.5rem;
     margin-top: 0;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.95); /* Color ligeramente más opaco */
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.7); /* Sombra más fuerte */
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+}
+
+.slogan {
+    font-size: 1.5rem;
+    margin-top: 15px;
+    margin-bottom: 30px; /* Reducido para optimizar espacio */
+    font-weight: 700; /* Negrita para mayor visibilidad */
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8); /* Sombra fuerte para resaltar */
+    order: 4; /* Orden en flexbox */
+    white-space: normal; /* Permite que el texto se ajuste a varias líneas */
+    line-height: 1.4; /* Espaciado entre líneas */
 }
 
 .cta-button {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    padding: 15px 30px;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
     display: inline-block;
+    background-color: var(--secondary-color);
+    color: var(--light-text-color);
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
 .cta-button:hover {
-    background-color: #ffd04b;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    background-color: #e6b94c; /* Un tono ligeramente más oscuro */
+    transform: translateY(-2px);
 }
 
 .cta-button.small-button {
     padding: 10px 20px;
     font-size: 0.9rem;
+    margin-top: 15px;
 }
 
-/* --- CONTACT PROMPT (solo el pequeño del itinerario) --- */
-.contact-prompt {
+
+/* --- WHY US SECTION --- */
+#why-tocca-amalfi {
+    background-color: var(--background-light);
+    color: var(--text-color);
+}
+
+.why-us-grid {
+    display: flex; /* Cambiado de grid a flex para una disposición más sencilla */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start; /* Alinea los elementos en la parte superior */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.why-us-item {
+    flex: 1 1 calc(33% - 30px); /* Aproximadamente 3 columnas, se ajusta automáticamente */
+    min-width: 280px; /* Asegura un tamaño mínimo para cada item */
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    box-sizing: border-box; /* Asegura que padding no aumente el tamaño total */
+}
+
+.why-us-item i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.why-us-item h3 {
+    font-size: 1.8rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+.why-us-item p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-color);
+}
+
+/* --- INCLUDED SECTION --- */
+#included-section {
     background-color: var(--primary-color);
     color: var(--light-text-color);
-    text-align: center;
 }
 
-.contact-prompt.small-prompt {
-    padding: 40px 20px;
-    margin-top: 60px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.contact-prompt h2 {
+#included-section h2 {
     color: var(--light-text-color);
-}
-
-.contact-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 30px;
-}
-
-.contact-button {
-    padding: 15px 25px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    border: 2px solid var(--secondary-color);
-}
-
-.contact-button.secondary {
-    background-color: transparent;
-    color: var(--light-text-color);
-    border-color: var(--light-text-color);
-}
-
-.contact-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-/* --- SECCIÓN "¿POR QUÉ TOCCA AMALFI?" --- */
-.why-us-section {
-    background-color: var(--background-light);
-    text-align: center;
-}
-
-.summary-text {
-    max-width: 700px;
-    margin: 0 auto;
-    font-size: 1.1rem;
-    line-height: 1.8;
-}
-
-/* --- SECCIÓN "INCLUIDO EN EL TOUR" (GRID) --- */
-.included-section {
-    background-color: #ffffff;
-    position: relative;
-    overflow: hidden;
 }
 
 .included-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 0;
 }
 
 .included-item {
-    text-align: center;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.1); /* Ligero fondo transparente */
+    padding: 25px;
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    padding: 20px;
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
 }
 
-.included-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+.included-item i {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
 }
 
 .included-item h3 {
-    margin: 15px 0 10px 0;
-    color: var(--primary-color);
-    font-size: 1.3rem;
+    font-size: 1.6rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--light-text-color);
 }
 
 .included-item p {
-    padding: 0;
-    margin: 0;
-    font-size: 0.9rem;
-    color: #555;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
 }
 
-.checkmark-icon {
-    font-size: 2.8rem;
-    color: var(--primary-color);
-    margin-top: 10px;
-    margin-bottom: 5px;
-}
-
-/* --- SECCIÓN "QUÉ NO INCLUYE" - AHORA USA EL MISMO GRID PERO CON ICONOS ROJOS --- */
-.not-included-section {
+/* --- ITINERARY SECTION --- */
+#itinerary-section {
     background-color: var(--background-light);
-    text-align: center;
+    color: var(--text-color);
 }
 
-/* El .not-included-item ahora combina con .included-item para mantener la estructura */
-.not-included-item.included-item {
-    border: 1px solid #ffcccc; /* Borde suave para diferenciarlos si es necesario */
+.itinerary-step {
+    display: flex;
+    align-items: flex-start; /* Alinea los elementos en la parte superior */
+    margin-bottom: 40px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.not-included-item h3 {
-    color: var(--text-color); /* Más neutro */
+.itinerary-step:last-child {
+    margin-bottom: 0;
 }
 
-.not-included-item p {
-    color: #555;
+.itinerary-icon {
+    flex-shrink: 0; /* Evita que el icono se encoja */
+    width: 60px;
+    height: 60px;
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    margin-right: 25px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-.crossmark-icon {
-    font-size: 2.8rem;
-    color: #cc0000; /* Color rojo para indicar "no incluido" */
-    margin-top: 10px;
-    margin-bottom: 5px;
+.itinerary-content {
+    flex-grow: 1; /* Permite que el contenido tome el espacio restante */
 }
 
+.itinerary-content h3 {
+    font-size: 1.8rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
 
-/* --- SECCIÓN PRECIOS - NUEVA TABLA ESTILO EXCEL --- */
-.pricing-section {
-    background-color: #ffffff;
-    text-align: center;
+.itinerary-content p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-color);
+}
+
+/* Timeline vertical para el itinerario */
+.itinerary-container {
+    position: relative;
+    padding-left: 30px; /* Espacio para la línea */
+}
+
+.itinerary-container::before {
+    content: '';
+    position: absolute;
+    left: 55px; /* Alinea con el centro de los iconos */
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: rgba(0,0,0,0.1); /* Línea gris tenue */
+}
+.itinerary-step:not(:last-child) {
+    border-left: none; /* Elimina el borde izquierdo que podría ser de un estilo anterior */
+}
+
+/* --- PRICING SECTION --- */
+#pricing-section {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+}
+
+#pricing-section h2 {
+    color: var(--light-text-color);
 }
 
 .pricing-excel-table-container {
-    max-width: 700px;
-    margin: 40px auto 0;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow-x: auto; /* Permite scroll horizontal si la tabla es demasiado ancha */
+    -webkit-overflow-scrolling: touch; /* Suaviza el scroll en iOS */
     border-radius: 8px;
-    overflow: hidden; /* Asegura que los bordes redondeados se apliquen bien */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    max-width: 100%; /* Asegura que el contenedor no se desborde */
 }
 
 .pricing-excel-table {
-    width: 100%;
-    border-collapse: collapse;
+    width: 100%; /* La tabla ocupa todo el ancho de su contenedor */
+    min-width: 600px; /* Ancho mínimo para la tabla si el contenido es mucho */
+    border-collapse: collapse; /* Elimina espacios entre celdas */
+    background-color: #ffffff;
+    color: var(--text-color);
+    font-size: 0.95rem;
+    white-space: nowrap; /* Evita que el texto de las celdas se envuelva */
 }
 
-.pricing-excel-table thead th {
-    background-color: var(--primary-color);
+.pricing-excel-table th, .pricing-excel-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.pricing-excel-table th {
+    background-color: var(--secondary-color);
     color: var(--light-text-color);
-    padding: 18px 20px;
-    font-size: 1.4rem;
-    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
 }
 
 .pricing-excel-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.pricing-excel-table tbody tr:hover {
+    background-color: #e6e6e6;
+}
+
+/* --- TESTIMONIALS SECTION --- */
+#testimonials-section {
     background-color: var(--background-light);
-}
-
-.pricing-excel-table td {
-    padding: 15px 20px;
-    border: 1px solid var(--border-color);
-    text-align: left;
     color: var(--text-color);
-    font-size: 1rem;
-}
-
-.pricing-excel-table .price-row td {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    font-weight: bold;
-    font-size: 1.3rem;
-    text-align: center;
-}
-
-.pricing-excel-table .price-row td:first-child {
-    text-align: left;
-}
-
-.pricing-excel-table .notes-cell {
-    background-color: #f0f0f0;
-    font-size: 0.85rem;
-    padding: 10px 20px;
-    text-align: center;
-    color: #777;
-    border-top: 1px solid var(--border-color);
-}
-
-
-/* --- SECCIÓN ITINERARIO - NUEVA TABLA ESTILO IMAGEN --- */
-.itinerary-section {
-    background-color: var(--background-light);
-    text-align: center;
-}
-
-.itinerary-table-container {
-    max-width: 1200px;
-    margin: 40px auto 0;
-    overflow-x: auto; /* Permite scroll horizontal en pantallas pequeñas */
-    -webkit-overflow-scrolling: touch;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    background-color: #fff;
-}
-
-.itinerary-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 900px; /* Asegura un ancho mínimo para la tabla completa */
-}
-
-.itinerary-table th, .itinerary-table td {
-    border: 1px solid var(--border-color);
-    padding: 12px 10px;
-    vertical-align: top;
-    text-align: center; /* Alineación por defecto para celdas de actividad */
-}
-
-.itinerary-table thead th {
-    background-color: var(--itinerary-header-bg);
-    font-weight: bold;
-    color: var(--text-color);
-    font-size: 1.1rem;
-    white-space: nowrap; /* Evita que los "Día X" se rompan */
-}
-
-.itinerary-table tbody .time-slot {
-    background-color: var(--itinerary-header-bg);
-    font-weight: bold;
-    color: var(--text-color);
-    text-align: left;
-    font-size: 1.1rem;
-    width: 80px; /* Ancho fijo para las celdas de tiempo (Mañana, Tarde, Noche) */
-}
-
-.itinerary-table tbody td {
-    background-color: var(--itinerary-cell-bg);
-    font-size: 0.95rem;
-    line-height: 1.5;
-    color: #555;
-    text-align: left; /* Alinea el contenido de las actividades a la izquierda */
-}
-
-.itinerary-table tbody tr:nth-child(even) td {
-    background-color: #fefefe; /* Un poco más claro */
-}
-
-/* Estilo para las actividades destacadas (en rojo) */
-.highlight-activity {
-    color: var(--highlight-color);
-    font-weight: bold;
-}
-
-
-/* --- SECCIÓN "LO QUE DICEN NUESTROS VIAJEROS" (Testimonios) --- */
-.testimonials-section {
-    background-color: #ffffff;
-    text-align: center;
 }
 
 .testimonial-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
-    max-width: 1000px;
-    margin: 40px auto 0;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .testimonial-item {
-    background-color: var(--background-light);
+    background-color: #ffffff;
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.testimonial-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Espacia el contenido verticalmente */
+    height: 100%; /* Asegura que todos los items tengan la misma altura si están en una fila */
 }
 
 .testimonial-item .quote {
     font-size: 1.1rem;
     font-style: italic;
-    margin-bottom: 15px;
-    line-height: 1.7;
+    margin-bottom: 20px;
     color: var(--text-color);
 }
 
 .testimonial-item .author {
-    font-weight: bold;
-    font-size: 0.95rem;
+    font-weight: 700;
     color: var(--primary-color);
-    opacity: 0.9;
+    margin-top: auto; /* Empuja el autor hacia abajo */
 }
 
+/* --- REFERENCES SECTION --- */
+#references-section {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+}
 
-/* --- SECCIÓN DE FORMULARIO DE CONTACTO --- */
-.contact-form-section {
-    background-color: var(--background-light);
+#references-section h2 {
+    color: var(--light-text-color);
+}
+
+.reference-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.reference-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 8px;
     text-align: center;
 }
 
-.contact-form {
-    max-width: 600px;
-    margin: 40px auto 0;
-    padding: 30px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    text-align: left;
+.reference-item .quote {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 15px;
 }
 
-.form-group {
-    margin-bottom: 20px;
+.reference-item .author {
+    font-weight: 700;
+    color: var(--secondary-color);
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
+/* --- CONTACT SECTION --- */
+#contact-section {
+    background-color: var(--background-light);
     color: var(--text-color);
 }
 
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group textarea {
-    width: calc(100% - 20px);
+.contact-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: calc(100% - 20px); /* Ajusta el ancho para el padding */
     padding: 10px;
-    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
     border-radius: 4px;
+    box-sizing: border-box; /* Incluye el padding en el ancho */
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
 }
 
-.form-group textarea {
-    resize: vertical;
-    min-height: 100px;
+.contact-form textarea {
+    resize: vertical; /* Permite redimensionar verticalmente */
+    min-height: 120px;
 }
 
-.submit-button {
+.contact-form button {
     background-color: var(--primary-color);
     color: var(--light-text-color);
     padding: 12px 25px;
     border: none;
     border-radius: 5px;
-    font-size: 1.1rem;
-    font-weight: bold;
+    font-size: 1rem;
+    font-weight: 700;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 100%;
 }
 
-.submit-button:hover {
-    background-color: #3e817a;
+.contact-form button:hover {
+    background-color: #3b7b75; /* Un tono ligeramente más oscuro */
 }
 
 
 /* --- FOOTER --- */
 .site-footer {
-    background-color: var(--text-color);
-    color: var(--light-text-color);
+    background-color: var(--text-color); /* Color oscuro para el footer */
+    color: rgba(255, 255, 255, 0.8);
     text-align: center;
     padding: 30px 20px;
     font-size: 0.9rem;
@@ -702,152 +654,137 @@ section.is-visible {
 }
 
 
-/* --- BOTÓN FLOTANTE DE WHATSAPP --- */
-.whatsapp-float {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 5px;
-    right: 5px;
-    background-color: #25d366;
-    border-radius: 50px;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
+/* --- RESPONSIVE DESIGN --- */
 
-.whatsapp-float .whatsapp-svg-icon {
-    width: 70%;
-    height: 70%;
-    object-fit: contain;
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.1);
-    background-color: #1DA851;
-}
-
-
-/* --- Media Queries para Responsividad --- */
-@media (max-width: 992px) { /* Tabletas y pantallas pequeñas de escritorio */
-    .desktop-nav {
-        display: none; /* Oculta la navegación de escritorio */
+/* Ocultar elementos de desktop en móviles */
+@media (max-width: 992px) {
+    .desktop-nav-logo {
+        display: none;
     }
-    .mobile-nav-toggle {
-        display: block; /* Muestra el botón de hamburguesa */
+    .desktop-nav-menu {
+        display: none;
     }
-    .hero-section {
-        padding-top: 80px; /* Mantener padding superior para la barra nav si la quieres visible */
-        padding-bottom: 20px; /* Asegura espacio en la parte inferior */
-        align-items: center; /* Centrar verticalmente el contenido en todas las pantallas */
+    .top-bar {
+        display: flex; /* Visible en móviles */
     }
-    .hero-content {
-        padding: 20px; /* Ajusta el padding para el contenido en móvil */
-        margin-bottom: 20px; /* Espacio debajo del contenido del hero */
-    }
-    .hero-slogan-main {
-        font-size: 2.5rem; /* Ajusta el tamaño del eslogan para móvil */
-    }
-    .hero-slogan-sub {
-        font-size: 1rem; /* Ajusta el tamaño del sub-eslogan para móvil */
-    }
-    .itinerary-table {
-        min-width: 700px; /* Ajusta el mínimo para móviles grandes */
+    .hamburger-menu {
+        display: flex; /* Visible en móviles */
     }
 }
 
-@media (max-width: 768px) { /* Dispositivos móviles */
-    h2 {
+/* Ajustes para tablets y pantallas medianas */
+@media (max-width: 768px) {
+    .logo {
+        width: 63vw; /* 70vw - 10% */
+        max-width: 315px; /* 350px - 10% */
+    }
+    .hero-content h1 {
+        font-size: 3.2rem;
+    }
+    .hero-subtitle {
         font-size: 2rem;
     }
-    section {
-        padding: 40px 15px;
+    .slogan {
+        font-size: 1.3rem;
+        margin-bottom: 25px; /* Ajustado para pantallas medianas */
+        font-weight: 700;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+        white-space: normal;
+        line-height: 1.4;
     }
     .cta-button {
         padding: 12px 25px;
         font-size: 1rem;
     }
-    .contact-buttons {
+    h2 {
+        font-size: 2.2rem;
+    }
+    section {
+        padding: 60px 20px;
+    }
+    .why-us-item {
+        flex: 1 1 calc(50% - 30px); /* Dos columnas en tablets */
+    }
+    .itinerary-step {
         flex-direction: column;
         align-items: center;
+        text-align: center;
     }
-    .contact-button {
-        width: 80%;
-        max-width: 300px;
+    .itinerary-icon {
+        margin-right: 0;
+        margin-bottom: 15px;
     }
-    .summary-text {
-        font-size: 1rem;
+    .itinerary-container::before {
+        left: 50%; /* Centra la línea del timeline */
+        transform: translateX(-1px);
     }
-    .included-grid, .not-included-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
+    .pricing-excel-table {
+        min-width: unset; /* Permite que la tabla se encoja más */
     }
-    .itinerary-table-container {
-        padding: 0 10px;
+    .carousel-container {
+        padding: 0 10px; /* Reduce padding para botones de carrusel */
     }
-    .itinerary-table {
-        min-width: 500px; /* Ajusta el mínimo para móviles */
+    .carousel-button {
+        padding: 8px 12px;
+        font-size: 1.2rem;
     }
-    .itinerary-table th, .itinerary-table td {
-        padding: 10px 5px;
-        font-size: 0.9rem;
+    .carousel-button.prev {
+        left: 0px;
     }
-    .itinerary-table tbody .time-slot {
-        font-size: 1rem;
-        width: 60px;
+    .carousel-button.next {
+        right: 0px;
     }
 
-    /* Ajustes para el hero en móvil para que el logo sea el protagonista */
-    .hero-main-logo {
-        width: 85%; /* Más grande en móviles */
-        max-width: 300px; /* Límite para que no se desborde */
+    /* Asegurar que la barra superior y el menú hamburguesa se muestren solo en móviles */
+    .top-bar {
+        display: flex; /* Visible en móviles */
     }
-    .hero-slogan-main {
-        font-size: 2rem; /* Ajuste para móvil */
-    }
-    .hero-slogan-sub {
-        font-size: 0.95rem; /* Ajuste para móvil */
+    .hamburger-menu {
+        display: flex; /* Visible en móviles */
     }
 }
 
 /* Ajustes para móviles pequeños */
 @media (max-width: 480px) {
-    .hero-slogan-main {
+    .logo {
+        width: 72vw; /* 80vw - 10% */
+        max-width: 270px; /* 300px - 10% */
+    }
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    .hero-subtitle {
         font-size: 1.8rem;
     }
-    .hero-slogan-sub {
-        font-size: 0.85rem;
+    .slogan {
+        font-size: 1.2rem;
+        margin-bottom: 20px; /* Ajustado para móviles pequeños */
+        font-weight: 700;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+        white-space: normal;
+        line-height: 1.4;
     }
     .cta-button {
         padding: 10px 20px;
         font-size: 0.9rem;
     }
     h2 {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
     }
-    .whatsapp-float {
-        width: 50px;
-        height: 50px;
-        bottom: 0px;
-        right: 0px;
+    section {
+        padding: 40px 15px;
     }
-    .pricing-excel-table thead th {
-        font-size: 1.2rem;
+    .why-us-item {
+        flex: 1 1 100%; /* Una columna en móviles pequeños */
     }
-    .pricing-excel-table td {
-        font-size: 0.9rem;
-        padding: 10px 15px;
+    .included-grid, .testimonial-grid, .reference-grid {
+        grid-template-columns: 1fr; /* Una columna para grids en móviles */
     }
-    .pricing-excel-table .price-row td {
-        font-size: 1.1rem;
+    .itinerary-content h3 {
+        font-size: 1.5rem;
     }
-    .itinerary-table {
-        min-width: unset; /* Deja que la tabla se ajuste más si es necesario */
-    }
-    .itinerary-table th, .itinerary-table td {
-        white-space: normal; /* Permite que el texto se envuelva */
+    .carousel-button {
+        padding: 5px 8px;
+        font-size: 1rem;
     }
 }
