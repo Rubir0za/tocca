@@ -1,8 +1,27 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Ajustar padding superior del body para el fixed header en escritorio
+    const desktopNav = document.querySelector('.desktop-nav');
+    if (desktopNav) {
+        // Usa requestAnimationFrame para asegurar que el cálculo se haga después del renderizado
+        requestAnimationFrame(() => {
+            const navHeight = desktopNav.offsetHeight;
+            document.body.style.paddingTop = navHeight + 'px';
+        });
+
+        // Reajustar en caso de redimensionamiento de ventana (útil si la altura del nav cambia)
+        window.addEventListener('resize', () => {
+            requestAnimationFrame(() => {
+                const navHeight = desktopNav.offsetHeight;
+                document.body.style.paddingTop = navHeight + 'px';
+            });
+        });
+    }
+
     // Smooth scroll para los enlaces internos
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
+            
             // Cerrar el menú móvil si está abierto al hacer clic en un enlace
             const mobileMenu = document.getElementById('mobile-menu');
             const hamburgerMenu = document.getElementById('hamburger-menu');
@@ -11,9 +30,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 hamburgerMenu.classList.remove('active');
             }
 
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+            // Desplazarse al elemento, considerando la altura de la barra de navegación fija
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const offset = desktopNav ? desktopNav.offsetHeight : 0; // Altura de la barra de navegación
+                const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = elementPosition - offset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
         });
     });
 
