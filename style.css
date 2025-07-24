@@ -848,3 +848,9 @@ section.is-visible {
         white-space: normal; /* Permite que el texto se envuelva */
     }
 }
+
+@media (max-width: 768px) {
+    .hero-section {
+        background-attachment: scroll !important;
+    }
+}
