@@ -257,7 +257,7 @@ section.is-visible {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* ELIMINADO: background-color: rgba(0, 0, 0, 0.4); */ /* Fondo sutil que generaba el "cuadro negro" */
+    /* ELIMINADO: background-color: rgba(0, 0, 0, 0.4); */ /* Fondo sutil que generaba el cuadro negro */
     padding: 30px 40px;
     border-radius: 8px;
     position: relative; /* Para que esté sobre las imágenes del carrusel */
