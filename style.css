@@ -851,6 +851,6 @@ section.is-visible {
 
 @media (max-width: 768px) {
     .hero-section {
-        background-attachment: scroll !important;
+        background-attachment: scroll;
     }
 }
