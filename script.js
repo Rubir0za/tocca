@@ -59,7 +59,10 @@ document.addEventListener('DOMContentLoaded', function() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target);
+                // Si la sección es el hero, no la desobservamos para permitir cambios de fondo
+                if (entry.target.id !== 'hero-section') {
+                    observer.unobserve(entry.target);
+                }
             }
         });
     }, observerOptions);
@@ -87,4 +90,22 @@ document.addEventListener('DOMContentLoaded', function() {
             hamburgerMenu.classList.remove('active');
         });
     });
+
+    // Lógica del Carrusel de imágenes de fondo del Hero
+    const carouselItems = document.querySelectorAll('.hero-background-carousel .carousel-item');
+    if (carouselItems.length > 1) { // Solo si hay más de una imagen para el carrusel
+        let currentCarouselIndex = 0;
+
+        function showNextCarouselItem() {
+            carouselItems[currentCarouselIndex].classList.remove('active');
+            currentCarouselIndex = (currentCarouselIndex + 1) % carouselItems.length;
+            carouselItems[currentCarouselIndex].classList.add('active');
+        }
+
+        // Mostrar la primera imagen activa al cargar
+        carouselItems[0].classList.add('active');
+
+        // Cambiar la imagen cada 5 segundos (ajustable)
+        setInterval(showNextCarouselItem, 5000);
+    }
 });
