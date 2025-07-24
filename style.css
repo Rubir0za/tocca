@@ -63,17 +63,35 @@ section.is-visible {
     left: 0;
     width: 100%;
     background-color: var(--nav-bg-color); /* Fondo semi-transparente oscuro */
-    padding: 10px 40px; /* Reducido el padding para un logo más pequeño */
+    padding: 10px 40px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.15);
     z-index: 1000; /* Asegura que esté por encima de todo */
     box-sizing: border-box;
 }
 
-.desktop-nav-logo img {
-    height: 35px; /* Tamaño del logo en la barra de navegación - AJUSTADO PARA SER MÁS PEQUEÑO */
-    width: auto;
-    transition: height 0.3s ease; /* Transición para el tamaño si se desea efecto al scroll */
+.desktop-nav-logo a {
+    display: flex; /* Permite alinear el icono y el texto */
+    align-items: center;
+    text-decoration: none;
+    color: var(--light-text-color); /* Color del texto del logo */
+    font-weight: bold;
+    font-size: 1.4rem; /* Tamaño del texto del logo */
 }
+
+/* ESTILOS PARA EL ICONO DE LIMÓN */
+.lemon-icon {
+    font-size: 1.8rem; /* Tamaño del icono */
+    color: var(--secondary-color); /* Color amarillo/dorado */
+    margin-right: 10px; /* Espacio entre el icono y el texto */
+}
+
+/* Si quieres que el logo sea solo la imagen, elimina .lemon-icon y .logo-text y descomenta lo siguiente: */
+/* .desktop-nav-logo img {
+    height: 35px;
+    width: auto;
+    transition: height 0.3s ease;
+} */
+
 
 .desktop-nav-links {
     list-style: none;
