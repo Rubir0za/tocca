@@ -927,3 +927,36 @@ section.is-visible {
         font-size: 0.9rem; /* Ajusta el tamaño del párrafo del itinerario */
     }
 }
+
+/* --- FIX: Logo móvil responsive y alineado --- */
+@media (max-width: 992px) {
+    .top-bar .logo-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        height: 40px;
+        width: 120px; /* Limita el ancho máximo del logo */
+        max-width: 40vw; /* Nunca más del 40% del ancho de pantalla */
+        margin-left: 0;
+        margin-right: auto;
+        overflow: hidden;
+    }
+    .top-bar .logo-mobile img {
+        height: 100%;
+        width: auto;
+        max-width: 100%;
+        object-fit: contain;
+        display: block;
+    }
+}
+@media (max-width: 480px) {
+    .top-bar .logo-mobile {
+        width: 90px;
+        max-width: 60vw;
+        height: 32px;
+    }
+    .top-bar .logo-mobile img {
+        height: 100%;
+        max-width: 100%;
+    }
+}
