@@ -210,7 +210,7 @@ section.is-visible {
 
 /* --- HERO SECTION (LA PANTALLA DE INICIO) --- */
 .hero-section {
-    height: 100vh;
+    min-height: 100vh;
     /* ESTA ES LA LÍNEA CLAVE: Asegura que el fondo tenga un degradado oscuro */
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('imagenes/header_coast.jpg');
     background-size: cover;
