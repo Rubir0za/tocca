@@ -1,10 +1,12 @@
 /* --- ESTILOS GENERALES Y FUENTES --- */
 :root {
     --primary-color: #4A9A92; /* verde del logo (las olas) */
-    --secondary-color: #D8A736; /* más cálido y más cercano al logo */
-    --text-color: #3E2D23; /* similar al texto del logo */
+    --secondary-color: #D8A736; /* amarillo/dorado, para el marco del logo y acentos */
+    --text-color: #3E2D23; /* similar al texto del logo, oscuro */
     --light-text-color: #ffffff; /* Texto claro para fondos oscuros */
-    --background-light: #f8f9fa; /* Un fondo casi blanco */
+    --background-light: #f8f9fa; /* Un fondo casi blanco, más brillante */
+    --border-color: #e0e0e0; /* Color suave para bordes de tablas/ítems */
+    --detail-bg: #f2f2f2; /* Fondo para el contenido expandido del itinerario */
 }
 
 html {
@@ -31,7 +33,7 @@ h2 {
 }
 
 section {
-    padding: 80px 20px;
+    padding: 60px 20px; /* Reducido el padding general de las secciones */
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
@@ -43,118 +45,148 @@ section.is-visible {
 }
 
 
-/* --- BOTÓN FLOTANTE DE WHATSAPP --- */
-.whatsapp-float {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 5px; /* Ajustado para estar más pegado a la esquina */
-    right: 5px;  /* Ajustado para estar más pegado a la esquina */
-    background-color: #25d366; /* El color verde estándar de WhatsApp */
-    border-radius: 50px; /* Para que sea completamente circular */
-    /* Aquí se eliminó la propiedad box-shadow */
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-/* Esta es la nueva regla que debes añadir, si no la tienes ya */
-.whatsapp-float .whatsapp-svg-icon {
-    width: 70%; /* O el porcentaje que prefieras, por ejemplo, 80% */
-    height: 70%; /* Mismo porcentaje que el ancho para mantener proporciones */
-    object-fit: contain; /* Asegura que el SVG se ajuste sin cortarse */
-}
-
-.whatsapp-float i {
-    /* Si aún tienes esta regla, puedes eliminarla o simplemente dejarla.
-       Ya no es necesaria si estás usando un SVG en lugar del icono de Font Awesome. */
-    display: block;
-    line-height: 1;
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.1);
-    background-color: #1DA851;
-}
-
-/* Media Query para móviles pequeños */
-@media (max-width: 480px) {
-    .whatsapp-float {
-        width: 50px;
-        height: 50px;
-        bottom: 0px; /* Al ras de la parte inferior para móviles */
-        right: 0px;  /* Al ras de la derecha para móviles */
-        /* font-size: ya no aplica directamente al contenedor, solo al icono */
-    }
-    /* Si tienes una regla para .whatsapp-float i en esta media query, también puedes eliminarla. */
-    .whatsapp-float i {
-        font-size: 24px; /* Esta línea ya no es necesaria si usas SVG */
-    }
-}
-/* --- HEADER / HERO SECTION --- */
+/* --- HERO SECTION (LA PANTALLA DE INICIO) --- */
 .hero-section {
     height: 100vh;
-    /* REDUCCIÓN DE LA OPACIDAD EN EL LINEAR-GRADIENT A UN VALOR MUY BAJO */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), url('imagenes/header_coast.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(imagenes/header.jpg);
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: var(--light-text-color);
     position: relative;
-    padding-top: 60px; /* Espacio para la nueva barra superior */
-    box-sizing: border-box; /* Incluye padding en el height */
+    padding: 20px; /* Asegura espacio en los bordes */
+    box-sizing: border-box;
+}
+
+.top-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    z-index: 100;
+}
+
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    z-index: 110;
+}
+
+.hamburger-menu span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--light-text-color);
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger-menu.active span:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+}
+
+.hamburger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active span:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+}
+
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(62, 45, 35, 0.95);
+    color: var(--light-text-color);
+    text-align: center;
+    padding-top: 80px;
+    box-sizing: border-box;
+    transition: right 0.4s ease-in-out;
+    z-index: 99;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.mobile-menu.active {
+    display: flex;
+    right: 0;
+}
+
+.mobile-menu a {
+    color: var(--light-text-color);
+    text-decoration: none;
+    font-size: 1.5rem;
+    padding: 15px 0;
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.2s ease;
+}
+
+.mobile-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Ocultar menú de navegación principal en móvil si existe */
+nav {
+    display: none;
 }
 
 .hero-content {
-    max-width: 900px;
+    max-width: 900px; /* Un poco más ancho para el logo */
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 10;
-    flex-grow: 1; /* Permite que el contenido se expanda para ocupar el espacio restante */
-    justify-content: center; /* Centra el contenido verticalmente */
+}
+
+/* Estilo para el marco del logo */
+.logo-frame {
+    background-color: var(--secondary-color); /* Fondo amarillo claro */
+    padding: 15px 25px; /* Espacio alrededor del logo */
+    border-radius: 8px; /* Esquinas ligeramente redondeadas */
+    display: inline-block; /* Ajusta el tamaño del fondo al logo */
+    margin-bottom: 30px; /* Espacio debajo del logo */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Sombra sutil */
 }
 
 .logo {
-    width: 60vw;
-    max-width: 450px;
+    width: 200px; /* Logo más grande por defecto */
     height: auto;
-    margin-bottom: 20px;
-    z-index: 1;
+    display: block; /* Para centrar el logo dentro de su marco */
 }
 
-.hero-content h1 {
-    font-size: 4.2rem;
-    margin: 0;
-    text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
-    order: 2;
+.hero-slogan-main { /* Nuevo eslogan principal (anteriormente h1) */
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem; /* Tamaño de fuente más pequeño para el eslogan principal */
+    margin: 0 0 10px 0;
+    line-height: 1.2;
 }
 
-.hero-subtitle {
-    font-size: 2.5rem;
-    margin-top: 10px;
-    margin-bottom: 0px;
-    font-weight: 700;
-    text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
-    order: 3;
-}
-
-.slogan {
-    font-size: 1.5rem;
-    margin-top: 15px;
-    margin-bottom: 40px;
-    font-weight: 400;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
-    order: 4;
+.hero-slogan-sub { /* Nuevo eslogan secundario (anteriormente hero-subtitle) */
+    font-size: 1rem; /* Letras pequeñas */
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .cta-button {
@@ -167,14 +199,12 @@ section.is-visible {
     font-size: 1.1rem;
     transition: all 0.3s ease;
     display: inline-block;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-    order: 5;
 }
 
 .cta-button:hover {
     background-color: #ffd04b;
     transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .cta-button.small-button {
@@ -182,403 +212,351 @@ section.is-visible {
     font-size: 0.9rem;
 }
 
-/* --- BARRA SUPERIOR Y MENÚ HAMBURGUESA --- */
-.top-bar {
-    position: fixed; /* Fija la barra en la parte superior */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60px; /* Altura de la barra superior */
-    background-color: rgba(0, 0, 0, 0.4); /* Fondo semi-transparente */
-    display: flex;
-    justify-content: flex-end; /* Alinea el menú a la derecha */
-    align-items: center;
-    padding: 0 20px;
-    box-sizing: border-box;
-    z-index: 100; /* Asegura que esté encima de todo */
-}
-
-.hamburger-menu {
-    width: 30px;
-    height: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    cursor: pointer;
-    z-index: 101; /* Asegura que esté por encima del menú móvil si se solapan */
-}
-
-.hamburger-menu .bar {
-    width: 100%;
-    height: 3px;
-    background-color: var(--light-text-color);
-    border-radius: 2px;
-    transition: all 0.3s ease;
-}
-
-/* Animación del ícono de hamburguesa a la "X" */
-.hamburger-menu.active .bar:nth-child(1) {
-    transform: translateY(8.5px) rotate(45deg);
-}
-.hamburger-menu.active .bar:nth-child(2) {
-    opacity: 0;
-}
-.hamburger-menu.active .bar:nth-child(3) {
-    transform: translateY(-8.5px) rotate(-45deg);
-}
-
-/* --- MENÚ MÓVIL (NAV) --- */
-.mobile-menu {
-    position: fixed;
-    top: 0; /* Empieza desde arriba */
-    right: -100%; /* Inicialmente fuera de la pantalla a la derecha */
-    width: 100%;
-    height: 100vh; /* Ocupa toda la altura de la pantalla */
-    background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro semi-transparente */
-    padding-top: 80px; /* Espacio para que el menú no se solape con la barra superior */
-    box-sizing: border-box;
-    transition: right 0.4s ease-in-out;
-    z-index: 99; /* Debajo de la top-bar y el botón de hamburguesa */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; /* Alinea el contenido del menú arriba */
-}
-
-.mobile-menu.active {
-    right: 0; /* Se desliza hacia adentro */
-}
-
-.mobile-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    text-align: center;
-}
-
-.mobile-menu ul li {
-    margin-bottom: 25px; /* Espacio entre los elementos del menú */
-}
-
-.mobile-menu ul li a {
-    color: var(--light-text-color);
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.8rem; /* Tamaño de fuente grande para el menú móvil */
-    padding: 10px 20px;
-    display: block; /* Para que el área clicable sea más grande */
-    transition: color 0.3s ease, background-color 0.3s ease;
-}
-
-.mobile-menu ul li a:hover {
-    color: var(--secondary-color);
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* Ocultar el menú de navegación tradicional en pantallas grandes */
-@media (min-width: 769px) {
-    .top-bar, .hamburger-menu, .mobile-menu {
-        display: none; /* Oculta la barra superior y el menú móvil en desktop */
-    }
-    .hero-section {
-        padding-top: 0; /* No se necesita padding si no hay top-bar */
-    }
-    .hero-content {
-        justify-content: center; /* Centra el contenido en el medio */
-    }
-}
-
-
-/* --- SECCIÓN "CONOCE LO QUE TE ESPERA" --- */
-.itinerary-section {
-    background-color: var(--background-light);
-    text-align: center;
-}
-
-.itinerary-section .summary-text {
-    max-width: 800px;
-    margin: 0 auto 50px auto;
-    font-size: 1.15rem;
-    line-height: 1.8;
-    padding: 0 15px;
-}
-
-.itinerary-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
-
-.itinerary-day {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    text-align: left;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.itinerary-day:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-}
-
-.itinerary-day h3 {
-    color: var(--primary-color);
-    margin-top: 0;
-    font-size: 1.6rem;
-    margin-bottom: 15px;
-}
-
-.itinerary-day p {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: #555;
-}
-
-
-/* --- SECCIÓN "INCLUIDO EN EL TOUR" (CON CARRUSEL) --- */
-.included-section {
-    background-color: #ffffff;
-    overflow: hidden;
-}
-
-.carousel-container {
-    position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 50px;
-}
-
-.carousel-track {
-    display: flex;
-    overflow-x: hidden;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
-    gap: 30px;
-}
-
-.carousel-item {
-    flex: 0 0 auto;
-    width: calc((100% / 3) - (2 * 30px / 3));
-    scroll-snap-align: start;
-    text-align: center;
-    background-color: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-}
-
-.carousel-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-}
-
-.carousel-item img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.carousel-item h3 {
-    margin: 20px 0 10px 0;
-    color: var(--primary-color);
-    font-size: 1.4rem;
-}
-
-.carousel-item p {
-    padding: 0 20px 20px 20px;
-    margin: 0;
-    font-size: 0.95rem;
-    color: #555;
-}
-
-.carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    z-index: 20;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.carousel-button:hover {
-    background-color: rgba(0, 0, 0, 0.7);
-}
-
-.carousel-button.prev {
-    left: 0;
-}
-
-.carousel-button.next {
-    right: 0;
-}
-
-.checkmark-icon {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    color: #28a745;
-    font-size: 2.2rem;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
-    padding: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-/* --- SECCIÓN "NO INCLUIDO" --- */
-.not-included-section {
-    background-color: var(--background-light);
-    text-align: center;
-}
-
-.not-included-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
-
-.not-included-item {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    text-align: left;
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.not-included-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-}
-
-.not-included-item h3 {
-    color: #dc3545;
-    margin-top: 0;
-    font-size: 1.4rem;
-    margin-left: 45px;
-}
-
-.not-included-item p {
-    font-size: 0.95rem;
-    line-height: 1.7;
-    color: #555;
-    padding-left: 45px;
-}
-
-.crossmark-icon {
-    position: absolute;
-    top: 30px;
-    left: 20px;
-    color: #dc3545;
-    font-size: 2.2rem;
-}
-
-
-/* --- SECCIÓN "FECHAS DISPONIBLES" --- */
-.available-dates-section {
-    background-color: #ffffff;
-    text-align: center;
-}
-
-.date-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    max-width: 900px;
-    margin: 40px auto 0;
-    padding: 0 15px;
-}
-
-.date-item {
-    background-color: var(--background-light);
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.date-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-}
-
-.date-item h3 {
-    color: var(--primary-color);
-    margin-top: 0;
-    font-size: 1.5rem;
-}
-
-.date-item p {
-    font-size: 1.1rem;
-    margin-bottom: 25px;
-    color: #555;
-}
-
-/* --- SECCIÓN "REFERENCIAS" --- */
-.references-section {
+/* --- CONTACT PROMPT (solo el pequeño del itinerario) --- */
+.contact-prompt {
     background-color: var(--primary-color);
     color: var(--light-text-color);
     text-align: center;
 }
 
-.references-section h2 {
+.contact-prompt.small-prompt {
+    padding: 40px 20px;
+    margin-top: 60px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    max-width: 800px; /* Limita el ancho del prompt */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-prompt h2 {
     color: var(--light-text-color);
 }
 
-.reference-grid {
+.contact-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.contact-button {
+    padding: 15px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: 2px solid var(--secondary-color);
+}
+
+.contact-button.secondary {
+    background-color: transparent;
+    color: var(--light-text-color);
+    border-color: var(--light-text-color);
+}
+
+.contact-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+
+/* --- SECCIÓN "¿POR QUÉ TOCCA AMALFI?" --- */
+.why-us-section {
+    background-color: var(--background-light);
+    text-align: center;
+}
+
+.summary-text {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* --- SECCIÓN "INCLUIDO EN EL TOUR" (AHORA ES UN GRID) --- */
+.included-section {
+    background-color: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+.included-grid { /* Reemplaza carousel-container y carousel-track */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 280px mínimo, auto-ajuste */
+    gap: 30px; /* Espacio entre los ítems */
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.included-item {
+    text-align: center;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 20px; /* Reducido el padding interno */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.included-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.included-item h3 {
+    margin: 15px 0 10px 0; /* Espacio reducido */
+    color: var(--primary-color);
+    font-size: 1.3rem; /* Tamaño de fuente ligeramente menor */
+}
+
+.included-item p {
+    padding: 0;
+    margin: 0;
+    font-size: 0.9rem; /* Letra más pequeña */
+    color: #555;
+}
+
+.checkmark-icon { /* Usado ahora como ícono general */
+    font-size: 2.8rem; /* Iconos un poco más grandes */
+    color: var(--primary-color);
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+/* --- SECCIÓN PRECIOS (NUEVA) --- */
+.pricing-section {
+    background-color: var(--background-light);
+    text-align: center;
+}
+
+.pricing-table-container {
+    max-width: 900px;
+    margin: 40px auto 0;
+    overflow-x: auto; /* Permite scroll horizontal en móviles si la tabla es muy ancha */
+    -webkit-overflow-scrolling: touch; /* Suaviza el scroll en iOS */
+}
+
+.pricing-table {
+    width: 100%;
+    border-collapse: collapse; /* Elimina el espacio entre las celdas */
+    margin-bottom: 20px;
+    min-width: 600px; /* Asegura que la tabla no sea demasiado estrecha en pantallas pequeñas */
+}
+
+.pricing-table th, .pricing-table td {
+    border: 1px solid var(--border-color);
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.pricing-table thead th {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+.pricing-table tbody tr:nth-child(even) {
+    background-color: #f6f6f6; /* Rayado para mejor legibilidad */
+}
+
+.pricing-table tbody tr:hover {
+    background-color: #e9e9e9;
+}
+
+.pricing-table td {
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+
+.table-note {
+    font-size: 0.85rem;
+    color: #777;
+    margin-top: 10px;
+    text-align: center;
+}
+
+
+/* --- SECCIÓN ITINERARIO (CON DETAILS/SUMMARY) --- */
+.itinerary-section {
+    background-color: #ffffff; /* Fondo blanco para contraste */
+    text-align: center;
+}
+
+.itinerary-list { /* Reemplaza itinerary-grid para la nueva estructura */
+    max-width: 800px; /* Limita el ancho para un mejor diseño de columna */
+    margin: 40px auto 0;
+    padding: 0 10px;
+}
+
+.itinerary-item {
+    background-color: var(--background-light); /* Fondo para cada día */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    margin-bottom: 15px; /* Espacio entre los días */
+    overflow: hidden; /* Asegura que la sombra y borde se vean bien */
+}
+
+.itinerary-item summary {
+    display: block; /* Para que el summary ocupe todo el ancho */
+    padding: 18px 25px;
+    cursor: pointer;
+    background-color: #fff; /* Fondo del encabezado del día */
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s ease;
+    font-weight: bold;
+    color: var(--primary-color);
+    position: relative; /* Para el icono de flecha */
+}
+
+.itinerary-item summary:hover {
+    background-color: #f9f9f9;
+}
+
+.itinerary-item summary::-webkit-details-marker {
+    display: none; /* Oculta el marcador de flecha predeterminado */
+}
+
+.itinerary-item summary::after { /* Icono de flecha personalizado */
+    content: '\f0d7'; /* Unicode de la flecha hacia abajo de Font Awesome */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900; /* Necesario para que Font Awesome funcione */
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.2s ease;
+    color: var(--primary-color);
+}
+
+.itinerary-item[open] summary::after {
+    transform: translateY(-50%) rotate(180deg); /* Gira la flecha cuando está abierto */
+}
+
+.itinerary-item h3 {
+    display: inline; /* Para que el h3 no rompa la línea de la flecha */
+    margin: 0;
+    font-size: 1.25rem; /* Tamaño de fuente para el título del día */
+    color: var(--text-color); /* Color de texto para el título del día */
+}
+
+.itinerary-item p {
+    padding: 15px 25px 25px; /* Espacio interno del contenido del día */
+    margin: 0;
+    font-size: 0.9rem;
+    color: #555;
+    background-color: var(--detail-bg); /* Fondo del contenido expandido */
+    border-top: 1px solid var(--border-color);
+}
+
+
+/* --- SECCIÓN "LO QUE DICEN NUESTROS VIAJEROS" (Testimonios) --- */
+.testimonials-section {
+    background-color: var(--background-light); /* Fondo más claro para los testimonios */
+    text-align: center;
+}
+
+.testimonial-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
     max-width: 1000px;
     margin: 40px auto 0;
-    padding: 0 15px;
 }
 
-.reference-item {
-    background-color: rgba(255, 255, 255, 0.1);
+.testimonial-item {
+    background-color: #fff; /* Fondo blanco para los ítems */
     padding: 30px;
     border-radius: 8px;
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.reference-item:hover {
+.testimonial-item:hover {
     transform: translateY(-5px);
-    background-color: rgba(255, 255, 255, 0.18);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-.reference-item .quote {
+.testimonial-item .quote {
     font-size: 1.1rem;
     font-style: italic;
     margin-bottom: 15px;
     line-height: 1.7;
+    color: var(--text-color);
 }
 
-.reference-item .author {
+.testimonial-item .author {
     font-weight: bold;
     font-size: 0.95rem;
-    opacity: 0.8;
+    color: var(--primary-color);
+    opacity: 0.9;
+}
+
+
+/* --- SECCIÓN DE FORMULARIO DE CONTACTO --- */
+.contact-form-section {
+    background-color: #ffffff; /* Fondo blanco */
+    text-align: center;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 40px auto 0;
+    padding: 30px;
+    background-color: var(--background-light); /* Fondo ligeramente gris para el formulario */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.submit-button {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.submit-button:hover {
+    background-color: #3e817a;
 }
 
 
@@ -596,50 +574,57 @@ section.is-visible {
 }
 
 
-/* --- Media Queries para Responsividad --- */
-
-/* Ajustes para pantallas grandes (desktop, tablets grandes) */
-@media (min-width: 1024px) {
-    .hero-content h1 {
-        font-size: 5rem;
-    }
-    .hero-subtitle {
-        font-size: 3rem;
-    }
-    .slogan {
-        font-size: 1.6rem;
-    }
+/* --- BOTÓN FLOTANTE DE WHATSAPP --- */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 5px;
+    right: 5px;
+    background-color: #25d366;
+    border-radius: 50px;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-/* Ajustes para tablets y pantallas medianas */
+.whatsapp-float .whatsapp-svg-icon {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background-color: #1DA851;
+}
+
+
+/* --- Media Queries para Responsividad --- */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 2.5rem;
+    h1, .hero-slogan-main {
+        font-size: 2.2rem; /* Ajuste para el eslogan principal en móvil */
     }
     h2 {
         font-size: 2rem;
     }
     section {
-        padding: 60px 15px;
+        padding: 40px 15px; /* Reducido el padding en móvil */
     }
-
-    /* Header adjustments */
+    .hero-content {
+        padding: 15px;
+    }
+    .logo-frame {
+        padding: 10px 15px;
+    }
     .logo {
-        width: 70vw;
-        max-width: 350px;
+        width: 150px; /* Logo más pequeño en móvil */
     }
-    .hero-content h1 {
-        font-size: 3.2rem;
-        margin-top: 15px;
-    }
-    .hero-subtitle {
-        font-size: 2.0rem;
-        margin-top: 5px;
-    }
-    .slogan {
-        font-size: 1.2rem;
-        margin-top: 10px;
-        margin-bottom: 30px;
+    .hero-slogan-sub {
+        font-size: 0.9rem; /* Eslogan secundario más pequeño en móvil */
     }
     .cta-button {
         padding: 12px 25px;
@@ -648,97 +633,73 @@ section.is-visible {
     .contact-buttons {
         flex-direction: column;
         align-items: center;
-        gap: 15px;
     }
     .contact-button {
-        width: 90%;
-        max-width: 350px;
+        width: 80%;
+        max-width: 300px;
     }
     .summary-text {
         font-size: 1rem;
-        padding: 0 20px;
     }
-    .itinerary-grid, .included-grid, .not-included-grid, .date-grid, .reference-grid {
-        grid-template-columns: 1fr;
-        padding: 0 20px;
+    /* Grid de "Included" se ajusta a 1 columna o 2 en pantallas intermedias */
+    .included-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
     }
-    .itinerary-day, .included-item, .not-included-item, .date-item, .reference-item {
-        margin-bottom: 20px;
+    .itinerary-list {
+        padding: 0; /* Elimina el padding horizontal en móvil */
     }
-    .hero-section {
-        background-attachment: scroll;
+    .itinerary-item summary, .itinerary-item p {
+        padding-left: 15px;
+        padding-right: 15px;
     }
-
-    /* Carrusel Responsive */
-    .carousel-container {
-        padding: 0 15px;
+    .itinerary-item summary::after {
+        right: 15px;
     }
-    .carousel-item {
-        width: calc(100% - 30px);
+    .testimonial-grid, .pricing-table {
+        grid-template-columns: 1fr; /* Una columna en móvil para precios y testimonios */
     }
-    .carousel-button {
-        padding: 8px 12px;
-        font-size: 1.2rem;
+    .pricing-table th, .pricing-table td {
+        padding: 10px;
+        font-size: 0.9rem;
     }
-    .carousel-button.prev {
-        left: 0px;
+    .pricing-table-container {
+        padding: 0 10px;
     }
-    .carousel-button.next {
-        right: 0px;
-    }
-
     /* Asegurar que la barra superior y el menú hamburguesa se muestren solo en móviles */
     .top-bar {
-        display: flex; /* Visible en móviles */
+        display: flex;
     }
     .hamburger-menu {
-        display: flex; /* Visible en móviles */
+        display: flex;
     }
 }
 
 /* Ajustes para móviles pequeños */
 @media (max-width: 480px) {
     .logo {
-        width: 80vw;
-        max-width: 300px;
+        width: 120px; /* Logo aún más pequeño en móviles muy pequeños */
     }
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-    .hero-subtitle {
+    .hero-slogan-main {
         font-size: 1.8rem;
     }
-    .slogan {
-        font-size: 1.1rem;
-        margin-bottom: 25px;
+    .hero-slogan-sub {
+        font-size: 0.85rem;
     }
     .cta-button {
         padding: 10px 20px;
         font-size: 0.9rem;
     }
     h2 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
-    section {
-        padding: 40px 10px;
-    }
-    .summary-text, .itinerary-grid, .included-grid, .not-included-grid, .date-grid, .reference-grid {
-        padding: 0 10px;
-    }
-    .included-item p, .date-item p, .reference-item .quote, .itinerary-day p, .not-included-item p {
-        font-size: 0.9rem;
-    }
-
     .whatsapp-float {
         width: 50px;
         height: 50px;
-        bottom: 20px;
-        right: 20px;
-        font-size: 24px;
+        bottom: 0px;
+        right: 0px;
     }
-
-    .mobile-menu ul li a {
-        font-size: 1.5rem; /* Ajuste para pantallas aún más pequeñas */
+    .pricing-table {
+        min-width: unset; /* Permite que la tabla se encoja más */
     }
 }
-
