@@ -63,15 +63,16 @@ section.is-visible {
     left: 0;
     width: 100%;
     background-color: var(--nav-bg-color); /* Fondo semi-transparente oscuro */
-    padding: 15px 40px;
+    padding: 10px 40px; /* Reducido el padding para un logo más pequeño */
     box-shadow: 0 2px 10px rgba(0,0,0,0.15);
     z-index: 1000; /* Asegura que esté por encima de todo */
     box-sizing: border-box;
 }
 
 .desktop-nav-logo img {
-    height: 40px; /* Tamaño del logo en la barra de navegación */
+    height: 35px; /* Tamaño del logo en la barra de navegación - AJUSTADO PARA SER MÁS PEQUEÑO */
     width: auto;
+    transition: height 0.3s ease; /* Transición para el tamaño si se desea efecto al scroll */
 }
 
 .desktop-nav-links {
@@ -188,6 +189,7 @@ section.is-visible {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
+
 /* --- HERO SECTION (LA PANTALLA DE INICIO) --- */
 .hero-section {
     height: 100vh;
@@ -236,27 +238,32 @@ section.is-visible {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.4); /* Un fondo sutil para el texto */
+    background-color: rgba(0, 0, 0, 0.4); /* Un fondo sutil para el texto y el logo */
     padding: 30px 40px;
     border-radius: 8px;
     position: relative; /* Para que esté sobre las imágenes del carrusel */
     z-index: 1;
 }
 
-/* Eliminado el logo-frame y .logo del hero, ahora están en desktop-nav */
-.logo-frame { display: none; }
-.logo { display: none; } /* Asegura que no se muestre si queda una referencia accidental */
+/* ESTILO PARA EL LOGO PROTAGONISTA EN EL HERO */
+.hero-main-logo {
+    width: 70%; /* Ajusta el tamaño del logo para que sea protagonista */
+    max-width: 400px; /* Tamaño máximo para evitar que sea demasiado grande */
+    height: auto;
+    margin-bottom: 30px; /* Espacio debajo del logo */
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0.5)); /* Sombra para que destaque */
+}
 
 .hero-slogan-main {
     font-family: 'Playfair Display', serif;
-    font-size: 3.5rem; /* Ajustado para ser más prominente en el hero */
-    margin: 0 0 15px 0;
+    font-size: 2.8rem; /* Ajustado para complementar al logo, no competir */
+    margin: 0 0 10px 0;
     line-height: 1.2;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Sombra para que destaque sobre la imagen */
 }
 
 .hero-slogan-sub {
-    font-size: 1.2rem; /* Eslogan secundario ligeramente más grande */
+    font-size: 1.1rem; /* Eslogan secundario ligeramente más grande */
     margin-top: 0;
     margin-bottom: 40px;
     font-weight: 400;
@@ -769,6 +776,18 @@ section.is-visible {
     .itinerary-table tbody .time-slot {
         font-size: 1rem;
         width: 60px;
+    }
+
+    /* Ajustes para el hero en móvil para que el logo sea el protagonista */
+    .hero-main-logo {
+        width: 85%; /* Más grande en móviles */
+        max-width: 300px; /* Límite para que no se desborde */
+    }
+    .hero-slogan-main {
+        font-size: 2rem; /* Ajuste para móvil */
+    }
+    .hero-slogan-sub {
+        font-size: 0.95rem; /* Ajuste para móvil */
     }
 }
 
