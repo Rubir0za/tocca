@@ -402,48 +402,28 @@ section.is-visible {
     margin-bottom: 5px;
 }
 
-/* --- NUEVA SECCIÓN: QUÉ NO INCLUYE --- */
+/* --- SECCIÓN "QUÉ NO INCLUYE" - AHORA USA EL MISMO GRID PERO CON ICONOS ROJOS --- */
 .not-included-section {
     background-color: var(--background-light);
     text-align: center;
 }
 
-.not-included-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px 0;
-}
-
-.not-included-item {
-    text-align: center;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* El .not-included-item ahora combina con .included-item para mantener la estructura */
+.not-included-item.included-item {
+    border: 1px solid #ffcccc; /* Borde suave para diferenciarlos si es necesario */
 }
 
 .not-included-item h3 {
-    margin: 15px 0 10px 0;
-    color: var(--text-color); /* Un color más neutro para "no incluido" */
-    font-size: 1.3rem;
+    color: var(--text-color); /* Más neutro */
 }
 
 .not-included-item p {
-    padding: 0;
-    margin: 0;
-    font-size: 0.9rem;
     color: #555;
 }
 
 .crossmark-icon {
     font-size: 2.8rem;
-    color: #cc0000; /* Un color rojo para indicar "no incluido" */
+    color: #cc0000; /* Color rojo para indicar "no incluido" */
     margin-top: 10px;
     margin-bottom: 5px;
 }
