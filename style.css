@@ -714,10 +714,9 @@ section.is-visible {
     /* Header adjustments */
     /*
        ******************************************************************
-       * AJUSTE CLAVE PARA LOGO EN MÓVILES:                             *
-       * Se reduce el 'max-width' y se usa 'width: 100%' para asegurar *
-       * que el logo no sea demasiado grande y mantenga su proporción.  *
-       * 'display: block' y 'margin: auto' aseguran un centrado correcto.*
+       * AJUSTE CLAVE PARA LOGO EN MÓVILES (TABLETS):                   *
+       * Se establece un 'max-width' y 'width: 100%' para que se ajuste*
+       * al contenedor pero no exceda un tamaño razonable.             *
        ******************************************************************
     */
     .hero-content .logo { /* Más específico para el logo en el hero */
@@ -727,6 +726,7 @@ section.is-visible {
         display: block; /* Asegura que el logo se comporte como un bloque para centrarlo */
         margin: 0 auto 20px auto; /* Centra el logo horizontalmente y mantiene el margen inferior */
         padding: 0; /* Remueve el padding para evitar posibles overflows */
+        object-fit: contain; /* Asegura que la imagen se ajuste dentro de las dimensiones */
     }
     .hero-content h1 {
         font-size: 3.2rem;
@@ -803,19 +803,19 @@ section.is-visible {
 @media (max-width: 480px) {
     /*
        ******************************************************************
-       * AJUSTE CLAVE PARA LOGO EN MÓVILES PEQUEÑOS:                    *
-       * Se reduce aún más el 'max-width' para asegurar que el logo     *
-       * sea adecuado para pantallas muy pequeñas. Las demás propiedades*
-       * ('width: 100%', 'height: auto', 'display: block', 'margin: auto')*
-       * se mantienen para un escalado y centrado óptimos.            *
+       * AJUSTE CLAVE PARA LOGO EN MÓVILES PEQUEÑOS (VERTICAL):         *
+       * Se establece un 'width' fijo en píxeles para asegurar que el logo*
+       * no se desborde, incluso si la interpretación de '100%' falla. *
+       * 'max-width: 100%' es una salvaguarda.                        *
        ******************************************************************
     */
     .hero-content .logo { /* Más específico para el logo en el hero */
-        max-width: 200px; /* Tamaño máximo para el logo en móviles pequeños */
-        width: 100%; /* El ancho se ajusta al 100% del contenedor, respetando max-width */
+        width: 180px; /* UN TAMAÑO FIJO Y PEQUEÑO para asegurar que no se desborde en vertical */
         height: auto; /* Mantiene la proporción */
+        max-width: 100%; /* Asegura que el logo no sea más grande que el 100% de su contenedor */
         display: block; /* Asegura que el logo se comporte como un bloque para centrarlo */
         margin: 0 auto 20px auto; /* Centra el logo horizontalmente y mantiene el margen inferior */
+        object-fit: contain; /* Asegura que la imagen se ajuste dentro de las dimensiones */
     }
     .hero-content h1 {
         font-size: 2.5rem;
