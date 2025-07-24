@@ -1,4 +1,19 @@
 /* --- ESTILOS GENERALES Y FUENTES --- */
+/*
+   ******************************************************************
+   * AJUSTE CLAVE 1: GLOBAL BOX-SIZING PARA MAYOR CONSISTENCIA     *
+   * Esto ayuda a que el padding y el border no aumenten el tamaño  *
+   * total de los elementos, previniendo scrolls inesperados.      *
+   * DEBE IR AL PRINCIPIO DEL ARCHIVO.                             *
+   ******************************************************************
+*/
+html {
+    box-sizing: border-box;
+}
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
 :root {
     --primary-color: #4A9A92; /* verde del logo (las olas) */
     --secondary-color: #D8A736; /* más cálido y más cercano al logo */
@@ -16,7 +31,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: var(--text-color);
     line-height: 1.6;
-    overflow-x: hidden; /* Evita el scroll horizontal en dispositivos móviles */
+    overflow-x: hidden; /* Evita el scroll horizontal en el cuerpo de la página */
 }
 
 h1, h2, h3 {
@@ -74,16 +89,23 @@ section.is-visible {
 }
 
 /* --- TOP BAR Y MENÚ HAMBURGUESA (MÓVIL) --- */
+/*
+   ******************************************************************
+   * AJUSTE CLAVE 2: POSICIONAMIENTO Y ESTILO DE TOP BAR Y HAMBURGUESA*
+   * `position: fixed` y `z-index` altos son fundamentales.         *
+   * `flex-shrink: 0` para asegurar que no se encojan en pantallas pequeñas.*
+   ******************************************************************
+*/
 .top-bar {
-    position: fixed;
+    position: fixed; /* Asegura que se mantenga fijo en la parte superior */
     top: 0;
     left: 0;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.95);
     padding: 10px 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    z-index: 999;
-    display: none; /* Oculto por defecto, visible solo en móviles */
+    z-index: 1000; /* Asegura que esté por encima de todo */
+    display: none; /* Oculto por defecto, visible solo en móviles via media query */
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
@@ -92,16 +114,18 @@ section.is-visible {
 .top-bar .logo-mobile {
     height: 40px; /* Ajusta el tamaño del logo móvil */
     width: auto;
+    flex-shrink: 0; /* Evita que el logo se encoja en pantallas estrechas */
 }
 
 .hamburger-menu {
     width: 30px;
     height: 25px;
-    display: none; /* Oculto por defecto, visible solo en móviles */
+    display: none; /* Oculto por defecto, visible solo en móviles via media query */
     flex-direction: column;
     justify-content: space-between;
     cursor: pointer;
     z-index: 1000;
+    flex-shrink: 0; /* Evita que el hamburguesa se encoja en pantallas estrechas */
 }
 
 .hamburger-menu span {
@@ -136,7 +160,7 @@ section.is-visible {
     justify-content: center;
     align-items: center;
     transition: left 0.3s ease-in-out;
-    z-index: 998;
+    z-index: 998; /* Un poco menos que el top-bar para que el top-bar quede encima del menú abierto */
 }
 
 .mobile-menu.active {
@@ -181,7 +205,7 @@ section.is-visible {
     text-align: center;
     color: var(--light-text-color); /* Color del texto dentro del hero */
     position: relative;
-    padding-top: 60px; /* Espacio para la barra superior, si existe */
+    padding-top: 60px; /* Espacio inicial para la barra superior (se ajustará en media queries) */
     box-sizing: border-box; /* Incluye el padding en la altura total */
 }
 
@@ -476,14 +500,21 @@ section.is-visible {
     max-width: 100%; /* Asegura que el contenedor no se desborde */
 }
 
+/*
+   ******************************************************************
+   * AJUSTE CLAVE 3: TABLA DE PRECIOS RESPONSIVE                    *
+   * Eliminamos el `min-width` fijo y permitimos que el texto se   *
+   * envuelva en móviles para evitar el scroll horizontal de la página.*
+   ******************************************************************
+*/
 .pricing-excel-table {
     width: 100%; /* La tabla ocupa todo el ancho de su contenedor */
-    min-width: 600px; /* Ancho mínimo para la tabla si el contenido es mucho */
+    /* REMOVIDO: min-width: 600px; */ /* Eliminado para permitir mayor adaptabilidad en móviles */
     border-collapse: collapse; /* Elimina espacios entre celdas */
     background-color: #ffffff;
     color: var(--text-color);
     font-size: 0.95rem;
-    white-space: nowrap; /* Evita que el texto de las celdas se envuelva */
+    white-space: nowrap; /* Por defecto, el texto no se envuelve */
 }
 
 .pricing-excel-table th, .pricing-excel-table td {
@@ -656,6 +687,14 @@ section.is-visible {
 
 /* --- RESPONSIVE DESIGN --- */
 
+/*
+   ******************************************************************
+   * AJUSTE CLAVE 4: MEDIA QUERIES PARA MÓVILES                     *
+   * Aquí se ajusta la visibilidad y el padding-top del hero para   *
+   * el top bar, y se refina la tabla para pantallas pequeñas.     *
+   ******************************************************************
+*/
+
 /* Ocultar elementos de desktop en móviles */
 @media (max-width: 992px) {
     .desktop-nav-logo {
@@ -665,10 +704,15 @@ section.is-visible {
         display: none;
     }
     .top-bar {
-        display: flex; /* Visible en móviles */
+        display: flex; /* Muestra el top-bar en móviles */
+        padding: 10px 15px; /* Ajusta el padding horizontal de la top-bar para móviles */
     }
     .hamburger-menu {
-        display: flex; /* Visible en móviles */
+        display: flex; /* Muestra el menú hamburguesa en móviles */
+    }
+    /* Asegurar que el hero-section no se solape con el top-bar fijo */
+    .hero-section {
+        padding-top: 70px; /* Ajusta este valor si tu top-bar es más alto/bajo */
     }
 }
 
@@ -718,73 +762,6 @@ section.is-visible {
         left: 50%; /* Centra la línea del timeline */
         transform: translateX(-1px);
     }
-    .pricing-excel-table {
-        min-width: unset; /* Permite que la tabla se encoja más */
-    }
-    .carousel-container {
-        padding: 0 10px; /* Reduce padding para botones de carrusel */
-    }
-    .carousel-button {
-        padding: 8px 12px;
-        font-size: 1.2rem;
-    }
-    .carousel-button.prev {
-        left: 0px;
-    }
-    .carousel-button.next {
-        right: 0px;
-    }
-
-    /* Asegurar que la barra superior y el menú hamburguesa se muestren solo en móviles */
-    .top-bar {
-        display: flex; /* Visible en móviles */
-    }
-    .hamburger-menu {
-        display: flex; /* Visible en móviles */
-    }
-}
-
-/* Ajustes para móviles pequeños */
-@media (max-width: 480px) {
-    .logo {
-        width: 72vw; /* 80vw - 10% */
-        max-width: 270px; /* 300px - 10% */
-    }
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-    .hero-subtitle {
-        font-size: 1.8rem;
-    }
-    .slogan {
-        font-size: 1.2rem;
-        margin-bottom: 20px; /* Ajustado para móviles pequeños */
-        font-weight: 700;
-        text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
-        white-space: normal;
-        line-height: 1.4;
-    }
-    .cta-button {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-    }
-    h2 {
-        font-size: 1.8rem;
-    }
-    section {
-        padding: 40px 15px;
-    }
-    .why-us-item {
-        flex: 1 1 100%; /* Una columna en móviles pequeños */
-    }
-    .included-grid, .testimonial-grid, .reference-grid {
-        grid-template-columns: 1fr; /* Una columna para grids en móviles */
-    }
-    .itinerary-content h3 {
-        font-size: 1.5rem;
-    }
-    .carousel-button {
-        padding: 5px 8px;
-        font-size: 1rem;
-    }
-}
+    /* Ajustes específicos de la tabla para 768px */
+    .pricing-excel-table th, .pricing-excel-table td {
+        white-space: normal; /* Permite que el texto se envuelva en las celdas */
