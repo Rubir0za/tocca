@@ -1,27 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Ajustar padding superior del body para el fixed header en escritorio
-    const desktopNav = document.querySelector('.desktop-nav');
-    if (desktopNav) {
-        // Usa requestAnimationFrame para asegurar que el cálculo se haga después del renderizado
-        requestAnimationFrame(() => {
-            const navHeight = desktopNav.offsetHeight;
-            document.body.style.paddingTop = navHeight + 'px';
-        });
-
-        // Reajustar en caso de redimensionamiento de ventana (útil si la altura del nav cambia)
-        window.addEventListener('resize', () => {
-            requestAnimationFrame(() => {
-                const navHeight = desktopNav.offsetHeight;
-                document.body.style.paddingTop = navHeight + 'px';
-            });
-        });
-    }
-
     // Smooth scroll para los enlaces internos
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            
             // Cerrar el menú móvil si está abierto al hacer clic en un enlace
             const mobileMenu = document.getElementById('mobile-menu');
             const hamburgerMenu = document.getElementById('hamburger-menu');
@@ -30,19 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 hamburgerMenu.classList.remove('active');
             }
 
-            // Desplazarse al elemento, considerando la altura de la barra de navegación fija
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                const offset = desktopNav ? desktopNav.offsetHeight : 0; // Altura de la barra de navegación
-                const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                const offsetPosition = elementPosition - offset;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
-            }
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
         });
     });
 
@@ -59,10 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
-                // Si la sección es el hero, no la desobservamos para permitir cambios de fondo
-                if (entry.target.id !== 'hero-section') {
-                    observer.unobserve(entry.target);
-                }
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
@@ -70,6 +38,52 @@ document.addEventListener('DOMContentLoaded', function() {
     sections.forEach(section => {
         observer.observe(section);
     });
+
+    // Lógica del Carrusel
+    const carouselTrack = document.querySelector('.carousel-track');
+    const prevButton = document.querySelector('.carousel-button.prev');
+    const nextButton = document.querySelector('.carousel-button.next');
+    const carouselItems = document.querySelectorAll('.carousel-item');
+
+    if (carouselTrack && prevButton && nextButton && carouselItems.length > 0) {
+        let currentIndex = 0;
+        const getItemWidth = () => {
+            // Calcular el ancho de un ítem incluyendo el gap
+            const itemWidth = carouselItems[0].offsetWidth;
+            // Obtener el gap dinámicamente del estilo calculado
+            const gap = parseFloat(getComputedStyle(carouselTrack).gap);
+            return itemWidth + (isNaN(gap) ? 0 : gap); // Sumar el gap si es un número válido
+        };
+
+        function moveToSlide(index) {
+            // Lógica de bucle infinito (circular carousel)
+            if (index < 0) {
+                currentIndex = carouselItems.length - 1; // Si llega al principio, va al final
+            } else if (index >= carouselItems.length) {
+                currentIndex = 0; // Si llega al final, va al principio
+            } else {
+                currentIndex = index;
+            }
+            carouselTrack.style.transform = `translateX(-${currentIndex * getItemWidth()}px)`;
+        }
+
+        nextButton.addEventListener('click', () => {
+            moveToSlide(currentIndex + 1);
+        });
+
+        prevButton.addEventListener('click', () => {
+            moveToSlide(currentIndex - 1);
+        });
+
+        // Reajusta la posición del carrusel al cambiar el tamaño de la ventana
+        window.addEventListener('resize', () => {
+            // Reinicia el carrusel a la posición actual para recalcular el offset
+            moveToSlide(currentIndex);
+        });
+
+        // Inicializa la posición del carrusel en caso de que no esté en el índice 0 inicialmente
+        moveToSlide(currentIndex);
+    }
 
     // Lógica del Menú Hamburguesa
     const hamburgerMenu = document.getElementById('hamburger-menu');
@@ -82,30 +96,47 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Lógica de navegación del menú móvil
-    const mobileMenuItems = document.querySelectorAll('#mobile-menu a');
-    mobileMenuItems.forEach(item => {
-        item.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            hamburgerMenu.classList.remove('active');
+    /*
+       **************************************************************
+       * AJUSTE CLAVE 8: LÓGICA DE COLAPSABLES PARA ITINERARIO      *
+       * Al hacer clic en una tarjeta de itinerario, se expande/colapsa *
+       **************************************************************
+    */
+    const itineraryCards = document.querySelectorAll('.itinerary-card');
+    itineraryCards.forEach(card => {
+        card.addEventListener('click', () => {
+            // Colapsa cualquier otra tarjeta abierta (opcional, para que solo una esté abierta a la vez)
+            itineraryCards.forEach(otherCard => {
+                if (otherCard !== card && otherCard.classList.contains('active')) {
+                    otherCard.classList.remove('active');
+                }
+            });
+            // Expande o colapsa la tarjeta clicada
+            card.classList.toggle('active');
         });
     });
 
-    // Lógica del Carrusel de imágenes de fondo del Hero
-    const carouselItems = document.querySelectorAll('.hero-background-carousel .carousel-item');
-    if (carouselItems.length > 1) { // Solo si hay más de una imagen para el carrusel
-        let currentCarouselIndex = 0;
-
-        function showNextCarouselItem() {
-            carouselItems[currentCarouselIndex].classList.remove('active');
-            currentCarouselIndex = (currentCarouselIndex + 1) % carouselItems.length;
-            carouselItems[currentCarouselIndex].classList.add('active');
+    /*
+       **************************************************************
+       * AJUSTE CLAVE 9: LÓGICA DE COLAPSABLES PARA "QUÉ INCLUYE"   *
+       * Al hacer clic en un ítem de "Qué Incluye", se expande/colapsa *
+       **************************************************************
+    */
+    const includedItems = document.querySelectorAll('.included-item');
+    includedItems.forEach(item => {
+        const toggleElement = item.querySelector('.description-toggle'); // El h3 con la clase description-toggle
+        if (toggleElement) {
+            toggleElement.addEventListener('click', () => {
+                // Colapsa cualquier otro ítem abierto (opcional)
+                includedItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                // Expande o colapsa el ítem clicado
+                item.classList.toggle('active');
+            });
         }
+    });
 
-        // Mostrar la primera imagen activa al cargar
-        carouselItems[0].classList.add('active');
-
-        // Cambiar la imagen cada 5 segundos (ajustable)
-        setInterval(showNextCarouselItem, 5000);
-    }
 });
