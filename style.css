@@ -7,6 +7,7 @@
     --background-light: #f8f9fa; /* Un fondo casi blanco, más brillante */
     --border-color: #e0e0e0; /* Color suave para bordes de tablas/ítems */
     --detail-bg: #f2f2f2; /* Fondo para el contenido expandido del itinerario */
+    --nav-bg-color: rgba(62, 45, 35, 0.9); /* Fondo para la barra de navegación fija */
 }
 
 html {
@@ -33,7 +34,7 @@ h2 {
 }
 
 section {
-    padding: 60px 20px; /* Reducido el padding general de las secciones */
+    padding: 60px 20px;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
@@ -44,51 +45,93 @@ section.is-visible {
     transform: translateY(0);
 }
 
-
-/* --- HERO SECTION (LA PANTALLA DE INICIO) --- */
-.hero-section {
-    height: 100vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(imagenes/header.jpg);
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: var(--light-text-color);
-    position: relative;
-    padding: 20px; /* Asegura espacio en los bordes */
-    box-sizing: border-box;
+/* --- CABECERA PRINCIPAL (Contiene Nav y Hero) --- */
+.main-header {
+    position: relative; /* Contenedor para el nav fijo y el hero */
 }
 
-.top-bar {
-    position: absolute;
+/* --- BARRA DE NAVEGACIÓN DE ESCRITORIO --- */
+.desktop-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; /* Fija la barra en la parte superior */
     top: 0;
     left: 0;
     width: 100%;
-    padding: 20px;
+    background-color: var(--nav-bg-color); /* Fondo semi-transparente oscuro */
+    padding: 15px 40px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    z-index: 1000; /* Asegura que esté por encima de todo */
     box-sizing: border-box;
+}
+
+.desktop-nav-logo img {
+    height: 40px; /* Tamaño del logo en la barra de navegación */
+    width: auto;
+}
+
+.desktop-nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    z-index: 100;
+    gap: 30px; /* Espacio entre los enlaces */
+}
+
+.desktop-nav-links a {
+    color: var(--light-text-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.desktop-nav-links a::after { /* Subrayado al pasar el ratón */
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background-color: var(--secondary-color);
+    transition: width 0.3s ease-in-out;
+}
+
+.desktop-nav-links a:hover::after {
+    width: 100%;
+}
+
+.desktop-nav-links a:hover {
+    color: var(--secondary-color);
+}
+
+
+/* --- MOBILE NAV TOGGLE (Hamburguesa) y MENÚ MÓVIL --- */
+.mobile-nav-toggle {
+    display: none; /* Oculto por defecto en escritorio */
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1100; /* Por encima de la navegación de escritorio */
 }
 
 .hamburger-menu {
-    display: none;
+    display: flex; /* Se mostrará en móvil */
     flex-direction: column;
     justify-content: space-around;
     width: 30px;
     height: 25px;
     cursor: pointer;
-    z-index: 110;
 }
 
 .hamburger-menu span {
     display: block;
     width: 100%;
     height: 3px;
-    background-color: var(--light-text-color);
+    background-color: var(--light-text-color); /* Color blanco para la hamburguesa */
     border-radius: 5px;
     transition: all 0.3s ease-in-out;
 }
@@ -96,29 +139,27 @@ section.is-visible {
 .hamburger-menu.active span:nth-child(1) {
     transform: translateY(11px) rotate(45deg);
 }
-
 .hamburger-menu.active span:nth-child(2) {
     opacity: 0;
 }
-
 .hamburger-menu.active span:nth-child(3) {
     transform: translateY(-11px) rotate(-45deg);
 }
 
 .mobile-menu {
-    display: none;
+    display: none; /* Oculto por defecto */
     position: fixed;
     top: 0;
-    right: -100%;
+    right: -100%; /* Fuera de la pantalla */
     width: 100%;
     height: 100%;
-    background-color: rgba(62, 45, 35, 0.95);
+    background-color: rgba(62, 45, 35, 0.98); /* Fondo oscuro semi-transparente */
     color: var(--light-text-color);
     text-align: center;
     padding-top: 80px;
     box-sizing: border-box;
     transition: right 0.4s ease-in-out;
-    z-index: 99;
+    z-index: 1050; /* Por debajo de la hamburguesa pero encima del resto */
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
@@ -144,49 +185,54 @@ section.is-visible {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Ocultar menú de navegación principal en móvil si existe */
-nav {
-    display: none;
+/* --- HERO SECTION (LA PANTALLA DE INICIO) --- */
+.hero-section {
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(imagenes/header.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--light-text-color);
+    position: relative;
+    padding-top: 80px; /* Espacio para la barra de navegación fija */
+    box-sizing: border-box;
 }
 
 .hero-content {
-    max-width: 900px; /* Un poco más ancho para el logo */
+    max-width: 800px;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    /* Opcional: un fondo semi-transparente para el texto como en Youramalficoast.com */
+    background-color: rgba(0, 0, 0, 0.3); /* Un fondo sutil para el texto */
+    padding: 30px 40px;
+    border-radius: 8px;
 }
 
-/* Estilo para el marco del logo */
-.logo-frame {
-    background-color: var(--secondary-color); /* Fondo amarillo claro */
-    padding: 15px 25px; /* Espacio alrededor del logo */
-    border-radius: 8px; /* Esquinas ligeramente redondeadas */
-    display: inline-block; /* Ajusta el tamaño del fondo al logo */
-    margin-bottom: 30px; /* Espacio debajo del logo */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Sombra sutil */
-}
+/* Eliminado el logo-frame y .logo del hero, ahora están en desktop-nav */
+.logo-frame { display: none; }
+.logo { display: none; } /* Asegura que no se muestre si queda una referencia accidental */
 
-.logo {
-    width: 200px; /* Logo más grande por defecto */
-    height: auto;
-    display: block; /* Para centrar el logo dentro de su marco */
-}
-
-.hero-slogan-main { /* Nuevo eslogan principal (anteriormente h1) */
+.hero-slogan-main {
     font-family: 'Playfair Display', serif;
-    font-size: 2.8rem; /* Tamaño de fuente más pequeño para el eslogan principal */
-    margin: 0 0 10px 0;
+    font-size: 3.5rem; /* Ajustado para ser más prominente en el hero */
+    margin: 0 0 15px 0;
     line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Sombra para que destaque sobre la imagen */
 }
 
-.hero-slogan-sub { /* Nuevo eslogan secundario (anteriormente hero-subtitle) */
-    font-size: 1rem; /* Letras pequeñas */
+.hero-slogan-sub {
+    font-size: 1.2rem; /* Eslogan secundario ligeramente más grande */
     margin-top: 0;
-    margin-bottom: 30px;
-    font-weight: 300;
+    margin-bottom: 40px;
+    font-weight: 400;
     color: rgba(255, 255, 255, 0.9);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
 .cta-button {
@@ -224,7 +270,7 @@ nav {
     margin-top: 60px;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    max-width: 800px; /* Limita el ancho del prompt */
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -261,7 +307,6 @@ nav {
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-
 /* --- SECCIÓN "¿POR QUÉ TOCCA AMALFI?" --- */
 .why-us-section {
     background-color: var(--background-light);
@@ -275,17 +320,17 @@ nav {
     line-height: 1.8;
 }
 
-/* --- SECCIÓN "INCLUIDO EN EL TOUR" (AHORA ES UN GRID) --- */
+/* --- SECCIÓN "INCLUIDO EN EL TOUR" (GRID) --- */
 .included-section {
     background-color: #ffffff;
     position: relative;
     overflow: hidden;
 }
 
-.included-grid { /* Reemplaza carousel-container y carousel-track */
+.included-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 280px mínimo, auto-ajuste */
-    gap: 30px; /* Espacio entre los ítems */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
     max-width: 900px;
     margin: 0 auto;
     padding: 20px 0;
@@ -297,7 +342,7 @@ nav {
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    padding: 20px; /* Reducido el padding interno */
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -309,26 +354,26 @@ nav {
 }
 
 .included-item h3 {
-    margin: 15px 0 10px 0; /* Espacio reducido */
+    margin: 15px 0 10px 0;
     color: var(--primary-color);
-    font-size: 1.3rem; /* Tamaño de fuente ligeramente menor */
+    font-size: 1.3rem;
 }
 
 .included-item p {
     padding: 0;
     margin: 0;
-    font-size: 0.9rem; /* Letra más pequeña */
+    font-size: 0.9rem;
     color: #555;
 }
 
-.checkmark-icon { /* Usado ahora como ícono general */
-    font-size: 2.8rem; /* Iconos un poco más grandes */
+.checkmark-icon {
+    font-size: 2.8rem;
     color: var(--primary-color);
     margin-top: 10px;
     margin-bottom: 5px;
 }
 
-/* --- SECCIÓN PRECIOS (NUEVA) --- */
+/* --- SECCIÓN PRECIOS --- */
 .pricing-section {
     background-color: var(--background-light);
     text-align: center;
@@ -337,15 +382,15 @@ nav {
 .pricing-table-container {
     max-width: 900px;
     margin: 40px auto 0;
-    overflow-x: auto; /* Permite scroll horizontal en móviles si la tabla es muy ancha */
-    -webkit-overflow-scrolling: touch; /* Suaviza el scroll en iOS */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .pricing-table {
     width: 100%;
-    border-collapse: collapse; /* Elimina el espacio entre las celdas */
+    border-collapse: collapse;
     margin-bottom: 20px;
-    min-width: 600px; /* Asegura que la tabla no sea demasiado estrecha en pantallas pequeñas */
+    min-width: 600px;
 }
 
 .pricing-table th, .pricing-table td {
@@ -363,7 +408,7 @@ nav {
 }
 
 .pricing-table tbody tr:nth-child(even) {
-    background-color: #f6f6f6; /* Rayado para mejor legibilidad */
+    background-color: #f6f6f6;
 }
 
 .pricing-table tbody tr:hover {
@@ -385,34 +430,34 @@ nav {
 
 /* --- SECCIÓN ITINERARIO (CON DETAILS/SUMMARY) --- */
 .itinerary-section {
-    background-color: #ffffff; /* Fondo blanco para contraste */
+    background-color: #ffffff;
     text-align: center;
 }
 
-.itinerary-list { /* Reemplaza itinerary-grid para la nueva estructura */
-    max-width: 800px; /* Limita el ancho para un mejor diseño de columna */
+.itinerary-list {
+    max-width: 800px;
     margin: 40px auto 0;
     padding: 0 10px;
 }
 
 .itinerary-item {
-    background-color: var(--background-light); /* Fondo para cada día */
+    background-color: var(--background-light);
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-    margin-bottom: 15px; /* Espacio entre los días */
-    overflow: hidden; /* Asegura que la sombra y borde se vean bien */
+    margin-bottom: 15px;
+    overflow: hidden;
 }
 
 .itinerary-item summary {
-    display: block; /* Para que el summary ocupe todo el ancho */
+    display: block;
     padding: 18px 25px;
     cursor: pointer;
-    background-color: #fff; /* Fondo del encabezado del día */
+    background-color: #fff;
     border-bottom: 1px solid var(--border-color);
     transition: background-color 0.2s ease;
     font-weight: bold;
     color: var(--primary-color);
-    position: relative; /* Para el icono de flecha */
+    position: relative;
 }
 
 .itinerary-item summary:hover {
@@ -420,13 +465,13 @@ nav {
 }
 
 .itinerary-item summary::-webkit-details-marker {
-    display: none; /* Oculta el marcador de flecha predeterminado */
+    display: none;
 }
 
-.itinerary-item summary::after { /* Icono de flecha personalizado */
-    content: '\f0d7'; /* Unicode de la flecha hacia abajo de Font Awesome */
+.itinerary-item summary::after {
+    content: '\f0d7';
     font-family: 'Font Awesome 5 Free';
-    font-weight: 900; /* Necesario para que Font Awesome funcione */
+    font-weight: 900;
     position: absolute;
     right: 20px;
     top: 50%;
@@ -436,29 +481,29 @@ nav {
 }
 
 .itinerary-item[open] summary::after {
-    transform: translateY(-50%) rotate(180deg); /* Gira la flecha cuando está abierto */
+    transform: translateY(-50%) rotate(180deg);
 }
 
 .itinerary-item h3 {
-    display: inline; /* Para que el h3 no rompa la línea de la flecha */
+    display: inline;
     margin: 0;
-    font-size: 1.25rem; /* Tamaño de fuente para el título del día */
-    color: var(--text-color); /* Color de texto para el título del día */
+    font-size: 1.25rem;
+    color: var(--text-color);
 }
 
 .itinerary-item p {
-    padding: 15px 25px 25px; /* Espacio interno del contenido del día */
+    padding: 15px 25px 25px;
     margin: 0;
     font-size: 0.9rem;
     color: #555;
-    background-color: var(--detail-bg); /* Fondo del contenido expandido */
+    background-color: var(--detail-bg);
     border-top: 1px solid var(--border-color);
 }
 
 
 /* --- SECCIÓN "LO QUE DICEN NUESTROS VIAJEROS" (Testimonios) --- */
 .testimonials-section {
-    background-color: var(--background-light); /* Fondo más claro para los testimonios */
+    background-color: var(--background-light);
     text-align: center;
 }
 
@@ -471,7 +516,7 @@ nav {
 }
 
 .testimonial-item {
-    background-color: #fff; /* Fondo blanco para los ítems */
+    background-color: #fff;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -501,7 +546,7 @@ nav {
 
 /* --- SECCIÓN DE FORMULARIO DE CONTACTO --- */
 .contact-form-section {
-    background-color: #ffffff; /* Fondo blanco */
+    background-color: #ffffff;
     text-align: center;
 }
 
@@ -509,7 +554,7 @@ nav {
     max-width: 600px;
     margin: 40px auto 0;
     padding: 30px;
-    background-color: var(--background-light); /* Fondo ligeramente gris para el formulario */
+    background-color: var(--background-light);
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     text-align: left;
@@ -604,27 +649,36 @@ nav {
 
 
 /* --- Media Queries para Responsividad --- */
-@media (max-width: 768px) {
-    h1, .hero-slogan-main {
-        font-size: 2.2rem; /* Ajuste para el eslogan principal en móvil */
+@media (max-width: 992px) { /* Tabletas y pantallas pequeñas de escritorio */
+    .desktop-nav {
+        display: none; /* Oculta la navegación de escritorio */
     }
+    .mobile-nav-toggle {
+        display: block; /* Muestra el botón de hamburguesa */
+    }
+    .hero-section {
+        padding-top: 0; /* No necesita padding superior si el nav no es fijo en móvil */
+        align-items: flex-end; /* Alinea el contenido del hero más abajo en móvil */
+        padding-bottom: 50px; /* Agrega padding inferior para el contenido del hero */
+    }
+    .hero-content {
+        padding: 20px; /* Ajusta el padding para el fondo del texto en móvil */
+        margin-bottom: 20px; /* Espacio debajo del contenido del hero */
+    }
+    .hero-slogan-main {
+        font-size: 2.5rem; /* Ajusta el tamaño del eslogan para móvil */
+    }
+    .hero-slogan-sub {
+        font-size: 1rem; /* Ajusta el tamaño del sub-eslogan para móvil */
+    }
+}
+
+@media (max-width: 768px) { /* Dispositivos móviles */
     h2 {
         font-size: 2rem;
     }
     section {
-        padding: 40px 15px; /* Reducido el padding en móvil */
-    }
-    .hero-content {
-        padding: 15px;
-    }
-    .logo-frame {
-        padding: 10px 15px;
-    }
-    .logo {
-        width: 150px; /* Logo más pequeño en móvil */
-    }
-    .hero-slogan-sub {
-        font-size: 0.9rem; /* Eslogan secundario más pequeño en móvil */
+        padding: 40px 15px;
     }
     .cta-button {
         padding: 12px 25px;
@@ -641,13 +695,12 @@ nav {
     .summary-text {
         font-size: 1rem;
     }
-    /* Grid de "Included" se ajusta a 1 columna o 2 en pantallas intermedias */
     .included-grid {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 20px;
     }
     .itinerary-list {
-        padding: 0; /* Elimina el padding horizontal en móvil */
+        padding: 0;
     }
     .itinerary-item summary, .itinerary-item p {
         padding-left: 15px;
@@ -657,7 +710,7 @@ nav {
         right: 15px;
     }
     .testimonial-grid, .pricing-table {
-        grid-template-columns: 1fr; /* Una columna en móvil para precios y testimonios */
+        grid-template-columns: 1fr;
     }
     .pricing-table th, .pricing-table td {
         padding: 10px;
@@ -666,20 +719,10 @@ nav {
     .pricing-table-container {
         padding: 0 10px;
     }
-    /* Asegurar que la barra superior y el menú hamburguesa se muestren solo en móviles */
-    .top-bar {
-        display: flex;
-    }
-    .hamburger-menu {
-        display: flex;
-    }
 }
 
 /* Ajustes para móviles pequeños */
 @media (max-width: 480px) {
-    .logo {
-        width: 120px; /* Logo aún más pequeño en móviles muy pequeños */
-    }
     .hero-slogan-main {
         font-size: 1.8rem;
     }
@@ -700,6 +743,6 @@ nav {
         right: 0px;
     }
     .pricing-table {
-        min-width: unset; /* Permite que la tabla se encoja más */
+        min-width: unset;
     }
 }
