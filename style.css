@@ -960,3 +960,35 @@ section.is-visible {
         max-width: 100%;
     }
 }
+
+.logo-mobile {
+    display: none;
+}
+@media (max-width: 992px) {
+    .logo-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        height: 40px;
+        width: 40px;
+        margin-left: 0;
+        margin-right: auto;
+    }
+    .logo-mobile-img {
+        height: 100%;
+        width: auto;
+        max-width: 100%;
+        object-fit: contain;
+        display: block;
+    }
+}
+@media (max-width: 480px) {
+    .logo-mobile {
+        width: 32px;
+        height: 32px;
+    }
+    .logo-mobile-img {
+        height: 100%;
+        max-width: 100%;
+    }
+}
