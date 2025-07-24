@@ -848,3 +848,12 @@ section.is-visible {
         white-space: normal; /* Permite que el texto se envuelva */
     }
 }
+.location-info {
+    font-family: 'Montserrat', sans-serif; /* Utiliza la misma fuente principal del cuerpo */
+    font-size: 1.2rem; /* Ajusta el tamaño de la fuente según tu preferencia */
+    color: var(--light-text-color); /* Color de texto blanco para contraste */
+    margin-top: -10px; /* Ajusta el margen superior para acercarlo al logo */
+    margin-bottom: 20px; /* Espacio antes del título principal */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6); /* Sombra para mejorar la legibilidad */
+    order: 1; /* Asegura que aparezca antes del h1 en el orden flex */
+}
