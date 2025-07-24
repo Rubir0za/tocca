@@ -211,17 +211,20 @@ section.is-visible {
 /* --- HERO SECTION (LA PANTALLA DE INICIO) --- */
 .hero-section {
     height: 100vh;
-    background-color: #3E2D23; /* Fondo de respaldo si las imágenes no cargan */
+    /* ESTA ES LA LÍNEA CLAVE: Asegura que el fondo tenga un degradado oscuro */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('imagenes/header_coast.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Esto hace que el fondo se quede fijo al hacer scroll */
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center; /* Centra verticalmente el contenido */
+    align-items: center;
     text-align: center;
-    color: var(--light-text-color);
+    color: var(--light-text-color); /* Color blanco para el texto */
     position: relative;
-    padding-top: 80px; /* Espacio para la barra de navegación fija */
-    padding-bottom: 20px; /* Espacio inferior para evitar que el contenido toque el borde */
-    box-sizing: border-box;
-    overflow: hidden; /* Para que las imágenes del carrusel no se desborden */
+    padding-top: 60px; /* Espacio para la barra superior */
+    box-sizing: border-box; /* Incluye el padding en la altura total */
 }
 
 /* Carrusel de imágenes de fondo para el hero */
