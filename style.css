@@ -51,7 +51,7 @@ section.is-visible {
     transform: translateY(0);
 }
 
-/* --- WHATSAPP FLOAT BUTTON (CORREGIDO) --- */
+/* --- WHATSAPP FLOAT BUTTON --- */
 .whatsapp-float {
     position: fixed;
     width: 60px;
@@ -69,11 +69,7 @@ section.is-visible {
     transition: transform 0.3s ease-in-out;
 }
 .whatsapp-float:hover { transform: scale(1.1); }
-.whatsapp-svg-icon { 
-    width: 35px; /* Ajustado para mejor visibilidad */
-    height: 35px; 
-    /* Se eliminó el filtro que causaba el círculo morado */
-}
+.whatsapp-svg-icon { width: 30px; height: 30px; filter: invert(1); }
 
 /* --- TOP BAR Y MENÚ HAMBURGUESA (MÓVIL) --- */
 .top-bar {
@@ -153,7 +149,7 @@ section.is-visible {
     height: auto;
     margin-bottom: 25px;
 }
-.slogan { /* Eliminado del HTML pero mantengo el estilo por si se reutiliza */
+.slogan {
     font-size: 1.8rem;
     font-weight: 700;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
@@ -179,7 +175,7 @@ section.is-visible {
     transform: translateY(-2px);
 }
 
-/* --- WHY US & AUTOMATIC CAROUSEL SECTION --- */
+/* --- WHY US & CAROUSEL SECTION --- */
 .why-us-carousel-section {
     background-color: var(--background-light);
 }
@@ -210,82 +206,44 @@ section.is-visible {
 }
 .carousel-container {
     position: relative;
-    height: 400px; /* Altura fija para el contenedor */
     overflow: hidden;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
-.carousel-item {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out;
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
 }
-.carousel-item.active {
-    opacity: 1;
+.carousel-item {
+    min-width: 100%;
+    flex-shrink: 0;
 }
 .carousel-item img {
     width: 100%;
-    height: 100%;
+    height: 400px;
     object-fit: cover;
+    display: block;
 }
 .carousel-button {
-    display: none; /* Ocultamos los botones */
-}
-
-/* --- TESTIMONIALS SECTION --- */
-.testimonials-section {
-    background-color: #fff;
-}
-.testimonials-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-.testimonial-card {
-    flex: 1;
-    min-width: 300px;
-    max-width: 350px;
-    background-color: var(--background-light);
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.testimonial-card p {
-    font-style: italic;
-    color: #555;
-    margin: 0 0 20px 0;
-}
-.testimonial-author {
-    display: flex;
-    align-items: center;
-}
-.author-avatar {
-    width: 50px;
-    height: 50px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    z-index: 10;
     border-radius: 50%;
-    object-fit: cover;
-    margin-right: 15px;
-    border: 2px solid var(--primary-color);
+    font-size: 1.5rem;
 }
-.testimonial-author span {
-    font-weight: 700;
-    color: var(--text-color);
-}
-
+.carousel-button:hover { background-color: rgba(0, 0, 0, 0.7); }
+.carousel-button.prev { left: 10px; }
+.carousel-button.next { right: 10px; }
 
 /* --- LUXURY PACKAGE SECTION --- */
 .luxury-package-section {
-    background-color: var(--background-light);
+    background-color: #fff;
 }
 .package-price {
     text-align: center;
@@ -300,7 +258,7 @@ section.is-visible {
     gap: 10px 20px;
     max-width: 900px;
     margin: 0 auto;
-    background: #fff;
+    background: var(--background-light);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
@@ -324,7 +282,7 @@ section.is-visible {
 
 /* --- UPCOMING DATES SECTION --- */
 .upcoming-dates-section {
-    background-color: #fff;
+    background-color: var(--background-light);
 }
 .dates-table-container {
     max-width: 900px;
@@ -365,7 +323,7 @@ section.is-visible {
 
 /* --- INCLUSIONS SECTION --- */
 .inclusions-section {
-    background-color: var(--background-light);
+    background-color: #fff;
 }
 .inclusions-container {
     display: flex;
@@ -381,7 +339,7 @@ section.is-visible {
     max-width: 450px;
     padding: 30px;
     border-radius: 8px;
-    background-color: #fff;
+    background-color: var(--background-light);
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 .inclusion-card h3 {
@@ -408,7 +366,7 @@ section.is-visible {
 
 /* --- CONTACT SECTION --- */
 .contact-section {
-    background-color: #fff;
+    background-color: var(--background-light);
 }
 .contact-container {
     display: flex;
@@ -470,7 +428,8 @@ section.is-visible {
     h2 { font-size: 2.2rem; }
     section { padding: 60px 20px; }
     .hero-content .logo { max-width: 450px; }
-    .carousel-container { height: 300px; }
+    .hero-content .slogan { font-size: 1.5rem; }
+    .carousel-item img { height: 300px; }
     .why-us-container { flex-direction: column; }
     .package-grid { grid-template-columns: 1fr; }
     .grid-header { display: none; }
@@ -490,7 +449,9 @@ section.is-visible {
     h2 { font-size: 1.8rem; }
     section { padding: 40px 15px; }
     .hero-content .logo { max-width: 300px; }
+    .hero-content .slogan { font-size: 1.2rem; }
     .cta-button { padding: 12px 25px; font-size: 1rem; }
+    .carousel-button { padding: 10px; font-size: 1rem; }
     .inclusion-card { padding: 20px; }
 }
 
