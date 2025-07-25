@@ -38,25 +38,31 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(section);
     });
 
-    // Lógica del Carrusel Automático con Fade
+    // Lógica del Carrusel
+    const carouselTrack = document.querySelector('.carousel-track');
+    const prevButton = document.querySelector('.carousel-button.prev');
+    const nextButton = document.querySelector('.carousel-button.next');
     const carouselItems = document.querySelectorAll('.carousel-item');
-    if (carouselItems.length > 0) {
+
+    if (carouselTrack && prevButton && nextButton && carouselItems.length > 0) {
         let currentIndex = 0;
         const totalItems = carouselItems.length;
 
-        function showNextItem() {
-            // Quita la clase 'active' del item actual
-            carouselItems[currentIndex].classList.remove('active');
-            
-            // Calcula el índice del siguiente item
-            currentIndex = (currentIndex + 1) % totalItems;
-            
-            // Añade la clase 'active' al nuevo item
-            carouselItems[currentIndex].classList.add('active');
+        function updateCarousel() {
+            carouselTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
         }
 
-        // Inicia el carrusel automático
-        setInterval(showNextItem, 5000); // Cambia de imagen cada 5 segundos
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalItems;
+            updateCarousel();
+        });
+
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+            updateCarousel();
+        });
+        
+        window.addEventListener('resize', updateCarousel);
     }
 
     // Lógica del Menú Hamburguesa
