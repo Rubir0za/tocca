@@ -150,7 +150,7 @@ section.is-visible {
 .hero-full-logo {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 .slogan { /* Eliminado del HTML pero mantengo el estilo por si se reutiliza */
     font-size: 1.8rem;
