@@ -497,7 +497,7 @@ section.is-visible {
     .hero-content .logo { max-width: 450px; }
     .carousel-container { height: 300px; }
     .why-us-container { flex-direction: column; }
-    .package-grid { grid-template-columns: 1fr; }
+    .package-grid { grid-template-columns: auto 1fr; }
     .grid-header { display: none; }
     .grid-cell { border-bottom: none; padding: 5px 0; }
     .day-cell::after { content: ':'; margin-right: 8px; }
