@@ -517,7 +517,6 @@ section.is-visible {
     align-items: center;
     overflow: hidden; /* Asegura que el logo no se desborde */
     /* Remueve background-image si existía una, ya que el logo será la imagen principal */
-    background-color: #f0f0f0; /* Un color de fondo de respaldo si el logo no carga */
 }
 
 /* Contenedor del logo que reemplaza el hero-content */
