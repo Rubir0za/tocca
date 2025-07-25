@@ -41,26 +41,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Lógica del Carrusel
     const carouselTrack = document.querySelector('.carousel-track');
+    const carouselItems = document.querySelectorAll('.carousel-item');
     const prevButton = document.querySelector('.carousel-button.prev');
     const nextButton = document.querySelector('.carousel-button.next');
-    const carouselItems = document.querySelectorAll('.carousel-item');
 
-    if (carouselTrack && prevButton && nextButton && carouselItems.length > 0) {
+    if (carouselTrack && carouselItems.length > 0 && prevButton && nextButton) {
         let currentIndex = 0;
-        const getItemWidth = () => {
-            // Calcular el ancho de un ítem incluyendo el gap
-            const itemWidth = carouselItems[0].offsetWidth;
-            // Obtener el gap dinámicamente del estilo calculado
-            const gap = parseFloat(getComputedStyle(carouselTrack).gap);
-            return itemWidth + (isNaN(gap) ? 0 : gap); // Sumar el gap si es un número válido
-        };
+
+        function getItemWidth() {
+            // Asegura que el cálculo del ancho del item se haga correctamente considerando el gap
+            const itemStyle = window.getComputedStyle(carouselItems[0]);
+            const itemWidth = parseFloat(itemStyle.width);
+            const gap = parseFloat(window.getComputedStyle(carouselTrack).gap);
+            return itemWidth + gap; // Suma el gap para el desplazamiento total por item
+        }
+
 
         function moveToSlide(index) {
-            // Lógica de bucle infinito (circular carousel)
             if (index < 0) {
-                currentIndex = carouselItems.length - 1; // Si llega al principio, va al final
+                currentIndex = carouselItems.length - 1; // Bucle al final desde el principio
             } else if (index >= carouselItems.length) {
-                currentIndex = 0; // Si llega al final, va al principio
+                currentIndex = 0; // Bucle al principio desde el final
             } else {
                 currentIndex = index;
             }
@@ -77,7 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Reajusta la posición del carrusel al cambiar el tamaño de la ventana
         window.addEventListener('resize', () => {
-            // Reinicia el carrusel a la posición actual para recalcular el offset
             moveToSlide(currentIndex);
         });
 
@@ -96,47 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /*
-       **************************************************************
-       * AJUSTE CLAVE 8: LÓGICA DE COLAPSABLES PARA ITINERARIO      *
-       * Al hacer clic en una tarjeta de itinerario, se expande/colapsa *
-       **************************************************************
-    */
-    const itineraryCards = document.querySelectorAll('.itinerary-card');
-    itineraryCards.forEach(card => {
-        card.addEventListener('click', () => {
-            // Colapsa cualquier otra tarjeta abierta (opcional, para que solo una esté abierta a la vez)
-            itineraryCards.forEach(otherCard => {
-                if (otherCard !== card && otherCard.classList.contains('active')) {
-                    otherCard.classList.remove('active');
-                }
-            });
-            // Expande o colapsa la tarjeta clicada
-            card.classList.toggle('active');
-        });
-    });
-
-    /*
-       **************************************************************
-       * AJUSTE CLAVE 9: LÓGICA DE COLAPSABLES PARA "QUÉ INCLUYE"   *
-       * Al hacer clic en un ítem de "Qué Incluye", se expande/colapsa *
-       **************************************************************
-    */
-    const includedItems = document.querySelectorAll('.included-item');
-    includedItems.forEach(item => {
-        const toggleElement = item.querySelector('.description-toggle'); // El h3 con la clase description-toggle
-        if (toggleElement) {
-            toggleElement.addEventListener('click', () => {
-                // Colapsa cualquier otro ítem abierto (opcional)
-                includedItems.forEach(otherItem => {
-                    if (otherItem !== item && otherItem.classList.contains('active')) {
-                        otherItem.classList.remove('active');
-                    }
-                });
-                // Expande o colapsa el ítem clicado
-                item.classList.toggle('active');
-            });
-        }
-    });
+    // NO LÓGICA DE COLAPSABLES PARA "QUÉ INCLUYE" (ELIMINADO SEGÚN REQUERIMIENTO DE MOSTRAR TODO SIMULTÁNEAMENTE)
+    // El código anterior para '.included-item' ha sido removido.
 
 });
