@@ -506,3 +506,82 @@ section.is-visible {
     }
     .logo-mobile-img { height: 100%; width: auto; }
 }
+
+/* Estilos para la sección Hero */
+.hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh; /* O la altura que desees para tu hero */
+    display: flex;
+    flex-direction: column; /* Para que top-bar y logo-container se apilen */
+    justify-content: flex-start; /* Alinea top-bar arriba */
+    align-items: center;
+    overflow: hidden; /* Asegura que el logo no se desborde */
+    /* Remueve background-image si existía una, ya que el logo será la imagen principal */
+    background-color: #f0f0f0; /* Un color de fondo de respaldo si el logo no carga */
+}
+
+/* Contenedor del logo que reemplaza el hero-content */
+.hero-full-logo-container {
+    width: 100%;
+    height: 100%; /* Ocupa el espacio restante del hero */
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;    /* Centra verticalmente */
+    flex-grow: 1; /* Permite que el contenedor del logo crezca para llenar el espacio disponible */
+}
+
+.hero-full-logo {
+    max-width: 100%; /* Asegura que el logo no se desborde horizontalmente */
+    max-height: 100%; /* Asegura que el logo no se desborde verticalmente */
+    width: auto; /* Permite que la imagen se ajuste a su proporción */
+    height: auto; /* Permite que la imagen se ajuste a su proporción */
+    object-fit: contain; /* O 'cover' si quieres que cubra todo el espacio sin importar el recorte */
+    /* 'contain' asegura que la imagen entera sea visible, 'cover' asegura que llene el espacio */
+    display: block; /* Elimina espacio extra debajo de la imagen */
+}
+
+/* Ajustes para la barra superior para que se vea bien sobre el nuevo hero */
+.top-bar {
+    position: absolute; /* Para que flote sobre el logo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Asegura que esté por encima del logo */
+    background-color: rgba(0, 0, 0, 0.5); /* Un fondo semi-transparente para que el texto sea legible */
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-bar .main-nav a,
+.top-bar .contact-info-header a,
+.top-bar .hamburger-menu span {
+    color: var(--light-text-color); /* Asegura que el texto y los iconos sean visibles */
+}
+
+/* Media Queries (Asegura la responsividad) */
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 80vh; /* Ajusta la altura del hero para dispositivos más pequeños */
+    }
+    .hero-full-logo {
+        max-width: 90%; /* Ajusta el tamaño del logo en móviles */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        min-height: 60vh; /* Más pequeño para móviles muy pequeños */
+    }
+    .hero-full-logo {
+        max-width: 95%; /* Ajusta el tamaño del logo en móviles muy pequeños */
+    }
+}
+
+/* Limpia cualquier estilo viejo que pueda interferir con el nuevo hero */
+/* Asegúrate de eliminar o comentar las reglas antiguas para .hero-content, .hero-title, .hero-subtitle, .slogan, .hero-content .logo si existen */
+.hero-content {
+    display: none; /* O remueve este bloque HTML si ya no lo necesitas */
+}
