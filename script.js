@@ -39,52 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(section);
     });
 
-    // Lógica del Carrusel
-    const carouselTrack = document.querySelector('.carousel-track');
-    const carouselItems = document.querySelectorAll('.carousel-item');
-    const prevButton = document.querySelector('.carousel-button.prev');
-    const nextButton = document.querySelector('.carousel-button.next');
-
-    if (carouselTrack && carouselItems.length > 0 && prevButton && nextButton) {
-        let currentIndex = 0;
-
-        function getItemWidth() {
-            // Asegura que el cálculo del ancho del item se haga correctamente considerando el gap
-            const itemStyle = window.getComputedStyle(carouselItems[0]);
-            const itemWidth = parseFloat(itemStyle.width);
-            const gap = parseFloat(window.getComputedStyle(carouselTrack).gap);
-            return itemWidth + gap; // Suma el gap para el desplazamiento total por item
-        }
-
-
-        function moveToSlide(index) {
-            if (index < 0) {
-                currentIndex = carouselItems.length - 1; // Bucle al final desde el principio
-            } else if (index >= carouselItems.length) {
-                currentIndex = 0; // Bucle al principio desde el final
-            } else {
-                currentIndex = index;
-            }
-            carouselTrack.style.transform = `translateX(-${currentIndex * getItemWidth()}px)`;
-        }
-
-        nextButton.addEventListener('click', () => {
-            moveToSlide(currentIndex + 1);
-        });
-
-        prevButton.addEventListener('click', () => {
-            moveToSlide(currentIndex - 1);
-        });
-
-        // Reajusta la posición del carrusel al cambiar el tamaño de la ventana
-        window.addEventListener('resize', () => {
-            moveToSlide(currentIndex);
-        });
-
-        // Inicializa la posición del carrusel en caso de que no esté en el índice 0 inicialmente
-        moveToSlide(currentIndex);
-    }
-
     // Lógica del Menú Hamburguesa
     const hamburgerMenu = document.getElementById('hamburger-menu');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -96,7 +50,35 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // NO LÓGICA DE COLAPSABLES PARA "QUÉ INCLUYE" (ELIMINADO SEGÚN REQUERIMIENTO DE MOSTRAR TODO SIMULTÁNEAMENTE)
-    // El código anterior para '.included-item' ha sido removido.
+    /*
+       **************************************************************
+       * AJUSTE CLAVE 8: LÓGICA DE COLAPSABLES PARA "QUÉ INCLUYE"   *
+       * Al hacer clic en un ítem de "Qué Incluye", se expande/colapsa *
+       **************************************************************
+    */
+    const includedItems = document.querySelectorAll('.included-item.itinerary-card');
+    includedItems.forEach(item => {
+        const cardHeader = item.querySelector('.card-header');
+        if (cardHeader) {
+            cardHeader.addEventListener('click', () => {
+                // Colapsa cualquier otro ítem abierto (opcional, para que solo uno esté abierto a la vez)
+                includedItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                // Expande o colapsa el ítem clicado
+                item.classList.toggle('active');
+            });
+        }
+    });
 
+    // Automatic Carousel Sliding
+    const carouselTrack = document.querySelector('.carousel-track');
+    if (carouselTrack) {
+        // The animation is now handled purely by CSS using `@keyframes slideImages`
+        // The JavaScript part for manual control (buttons) is removed.
+        // We only need to ensure the track and items are correctly sized and the animation runs.
+        // No additional JS needed for auto-sliding beyond the CSS keyframes.
+    }
 });
