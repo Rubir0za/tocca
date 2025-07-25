@@ -131,7 +131,7 @@ section.is-visible {
 /* --- HEADER / HERO SECTION --- */
 .hero-section {
     min-height: 100vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('imagenes/header_coast.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('imagenes/logo_amalfi.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
