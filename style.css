@@ -579,22 +579,24 @@ section.is-visible {
 @media screen and (max-width: 480px) {
   .package-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* dos columnas iguales */
-    gap: 8px;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    max-width: 100%;
     padding: 10px;
+  }
+
+  .day-cell {
+    font-weight: bold;
+    background-color: #f0f0f0;
+    padding: 8px;
+    text-align: right;
+    border-radius: 4px 0 0 4px;
   }
 
   .grid-cell {
     padding: 8px;
-    font-size: 0.9rem;
-  }
-
-  .day-cell {
-    grid-column: span 2; /* que ocupe las dos columnas */
-    background-color: #f0f0f0;
-    padding: 6px 10px;
-    font-weight: bold;
-    border-radius: 4px;
-    margin-top: 10px;
+    text-align: left;
+    background-color: #ffffff;
+    border-radius: 0 4px 4px 0;
   }
 }
