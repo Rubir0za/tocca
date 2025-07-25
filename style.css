@@ -321,7 +321,7 @@ section.is-visible {
 }
 .package-grid {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto 1fr !important;
     gap: 10px 20px;
     max-width: 900px;
     margin: 0 auto;
