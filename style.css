@@ -575,3 +575,26 @@ section.is-visible {
     transform-origin: top center;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .package-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* dos columnas iguales */
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .grid-cell {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .day-cell {
+    grid-column: span 2; /* que ocupe las dos columnas */
+    background-color: #f0f0f0;
+    padding: 6px 10px;
+    font-weight: bold;
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+}
