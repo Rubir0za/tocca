@@ -3,7 +3,7 @@
    ******************************************************************
    * AJUSTE CLAVE 1: GLOBAL BOX-SIZING PARA MAYOR CONSISTENCIA     *
    * Esto ayuda a que el padding y el border no aumenten el tamaño  *
-   * total de los elementos, previniendo scrolls inesperados.      *
+   * total de los elementos, previendo scrolls inesperados.      *
    * DEBE IR AL PRINCIPIO DEL ARCHIVO.                             *
    ******************************************************************
 */
@@ -109,6 +109,7 @@ section.is-visible {
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
+    height: 60px; /* Added for fixed height */
 }
 
 .top-bar .logo-mobile {
@@ -153,7 +154,7 @@ section.is-visible {
     top: 0;
     left: -100%; /* Oculto por defecto */
     width: 100%;
-    height: 100%;
+    height: 100vh; /* Changed to 100vh to ensure full viewport height */
     background-color: rgba(255, 255, 255, 0.98);
     display: flex;
     flex-direction: column;
@@ -161,6 +162,7 @@ section.is-visible {
     align-items: center;
     transition: left 0.3s ease-in-out;
     z-index: 998; /* Un poco menos que el top-bar para que el top-bar quede encima del menú abierto */
+    padding-top: 80px; /* Added for mobile menu content offset */
 }
 
 .mobile-menu.active {
@@ -194,7 +196,7 @@ section.is-visible {
 .hero-section {
     min-height: 100vh; /* Asegura que el hero ocupe al menos la altura de la ventana */
     /* Fondo con degradado oscuro para mejorar el contraste del texto */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('imagenes/header_coast.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), url('imagenes/header_coast.jpg'); /* Changed opacity for lighter gradient */
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* Hace que la imagen de fondo se quede fija al hacer scroll */
@@ -398,7 +400,6 @@ section.is-visible {
     right: 10px;
 }
 
-
 /* --- WHY US SECTION --- */
 #why-tocca-amalfi {
     background-color: var(--background-light);
@@ -445,284 +446,293 @@ section.is-visible {
     color: var(--text-color);
 }
 
-/* --- INCLUDED SECTION --- */
-/*
-   ******************************************************************
-   * AJUSTE CLAVE 5: "QUÉ INCLUYE" - CUADROS COLAPSIBLES            *
-   * Se oculta la descripción por defecto y se muestra al hacer clic, *
-   * con una flecha que rota.                                       *
-   ******************************************************************
-*/
-#included-section {
+/* --- NEW: WHY US CAROUSEL SECTION (TWO-COLUMN LAYOUT) --- */
+.why-us-carousel-section {
+    background-color: var(--background-light);
+    color: var(--text-color);
+}
+
+.why-us-carousel-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center; /* Alinea los elementos verticalmente en el centro */
+}
+
+.why-us-text-block {
+    flex: 1 1 45%; /* Ocupa aproximadamente la mitad en pantallas grandes */
+    min-width: 300px; /* Tamaño mínimo antes de envolver */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.why-us-text-block h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    text-align: left;
+}
+
+.why-us-text-block p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.why-us-text-block ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.why-us-text-block ul li {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.why-us-text-block ul li i {
+    color: var(--secondary-color);
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.carousel-wrapper {
+    flex: 1 1 45%; /* Ocupa aproximadamente la otra mitad */
+    min-width: 320px; /* Tamaño mínimo antes de envolver */
+    box-sizing: border-box;
+}
+
+/* Adjust carousel-container inside carousel-wrapper */
+.why-us-carousel-section .carousel-container {
+    max-width: 100%; /* Permite que el carrusel ocupe el 100% de su contenedor flex */
+    padding: 0 15px; /* Ajuste de padding si es necesario */
+}
+
+
+/* --- NEW: PACKAGE DETAILS SECTION --- */
+.package-details-section {
     background-color: var(--primary-color);
     color: var(--light-text-color);
 }
 
-#included-section h2 {
+.package-details-section h2 {
     color: var(--light-text-color);
 }
 
-.included-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+.package-details-content {
+    display: flex;
+    flex-wrap: wrap;
     gap: 30px;
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
+    justify-content: center;
+    align-items: flex-start;
 }
 
-.included-item {
-    background-color: rgba(255, 255, 255, 0.1); /* Ligero fondo transparente */
-    padding: 25px;
+.package-grid {
+    display: flex;
+    flex-grow: 1; /* Permite que el grid crezca */
+    flex-basis: 60%; /* Ocupa más espacio que el precio */
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    min-width: 300px; /* Permite una columna en móviles */
+}
+
+.package-column {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.package-column.package-days {
+    background-color: rgba(255, 255, 255, 0.05);
+    text-align: center;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.package-column h3 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--light-text-color);
+}
+
+.package-column p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.package-price-info {
+    flex-basis: 30%; /* Ocupa menos espacio */
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 20px;
     border-radius: 8px;
     text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    cursor: pointer; /* Indica que es clickeable */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    justify-content: center;
+    min-width: 250px; /* Permite que se apile en móviles */
 }
 
-.included-item:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+.package-price-info h3 {
+    font-size: 1.8rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--light-text-color);
 }
 
-.included-item i {
+.package-price-info .price-value {
     font-size: 2.5rem;
+    font-weight: 700;
     color: var(--secondary-color);
-    margin-bottom: 15px;
-}
-
-.included-item .description-toggle {
-    font-size: 1.6rem;
     margin-top: 0;
-    margin-bottom: 10px; /* Espacio entre título y descripción */
-    color: var(--light-text-color);
-    display: flex; /* Para alinear el texto y la flecha */
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    padding-right: 25px; /* Espacio para la flecha */
-}
-
-.included-item .toggle-arrow {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%) rotate(0deg);
-    transition: transform 0.3s ease;
-    font-size: 0.9em; /* Tamaño relativo a la fuente del título */
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.included-item.active .toggle-arrow {
-    transform: translateY(-50%) rotate(180deg); /* Rota la flecha cuando está activo */
-}
-
-.included-item .description-content {
-    max-height: 0; /* Oculto por defecto */
-    overflow: hidden;
-    transition: max-height 0.5s ease-out, padding 0.5s ease-out; /* Transición para un efecto suave */
-    padding: 0 10px; /* Padding horizontal inicial */
-    text-align: left; /* Alinea el texto a la izquierda dentro del cuadro */
-}
-
-.included-item.active .description-content {
-    max-height: 200px; /* Suficientemente grande para la descripción. Ajusta si es necesario */
-    padding-top: 10px; /* Añade padding vertical cuando está abierto */
-    padding-bottom: 10px;
-}
-
-.included-item .description-content p {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.9);
-    margin: 0; /* Elimina márgenes por defecto del párrafo */
 }
 
 
-/* --- ITINERARY SECTION - NUEVO ESTILO CUADRÍCULAS --- */
-/*
-   ******************************************************************
-   * AJUSTE CLAVE 6: ITINERARIO - CUADRÍCULAS Y COLAPSIBLE         *
-   * Se elimina el estilo de línea de tiempo y se introduce un grid *
-   * de tarjetas, cada una con un contenido colapsable.            *
-   ******************************************************************
-*/
-#itinerary-section {
+/* --- NEW: INCLUSIONS COMPARISON SECTION --- */
+.inclusions-comparison-section {
     background-color: var(--background-light);
     color: var(--text-color);
 }
 
-.itinerary-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 2 o 3 columnas en desktop, 1 en móvil */
+.comparison-grid {
+    display: flex;
+    flex-wrap: wrap; /* Permite que las columnas se apilen en móviles */
     gap: 30px;
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
-}
-
-.itinerary-card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    overflow: hidden; /* Asegura que el contenido colapsado se oculte */
-    cursor: pointer; /* Indica que la tarjeta es clickeable */
-    transition: box-shadow 0.3s ease;
-}
-
-.itinerary-card:hover {
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-.itinerary-card .card-header {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    background-color: #f0f0f0; /* Fondo ligeramente diferente para el encabezado */
-    border-bottom: 1px solid #eee;
-}
-
-.itinerary-card .day-icon {
-    flex-shrink: 0; /* Evita que el icono se encoja */
-    width: 40px;
-    height: 40px;
-    background-color: var(--primary-color);
-    color: var(--light-text-color);
-    border-radius: 50%;
-    display: flex;
     justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    margin-right: 15px;
 }
 
-.itinerary-card .day-title h3 {
-    margin: 0;
-    font-size: 1.2rem;
-    color: var(--primary-color);
-    flex-grow: 1; /* Permite que el título ocupe el espacio restante */
-}
-
-.itinerary-card .toggle-icon {
-    margin-left: auto; /* Empuja el icono de flecha a la derecha */
-    font-size: 1rem;
-    color: var(--text-color);
-    transition: transform 0.3s ease;
-}
-
-.itinerary-card.active .toggle-icon {
-    transform: rotate(180deg); /* Rota la flecha cuando la tarjeta está activa */
-}
-
-.itinerary-card .card-description {
-    max-height: 0; /* Oculto por defecto */
-    overflow: hidden;
-    transition: max-height 0.5s ease-out, padding 0.5s ease-out; /* Transición suave */
-    padding: 0 20px; /* Padding horizontal cuando está colapsado */
-}
-
-.itinerary-card.active .card-description {
-    max-height: 500px; /* Suficientemente grande para mostrar el contenido. Ajusta si es necesario */
-    padding: 20px; /* Padding cuando está expandido */
-}
-
-.itinerary-card .card-description p {
-    margin-top: 0;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: var(--text-color);
-}
-
-/* --- REMOVIDO: PRICING SECTION (TABLA EXCEL) --- */
-/* Se eliminaron todos los estilos de la sección de precios, ya que la sección fue removida del HTML. */
-
-
-/* --- TESTIMONIALS SECTION --- */
-#testimonials-section {
-    background-color: var(--background-light);
-    color: var(--text-color);
-}
-
-.testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.testimonial-item {
+.included-column, .not-included-column {
+    flex: 1 1 calc(50% - 15px); /* Dos columnas en desktop */
+    min-width: 280px; /* Se apilan en móviles */
     background-color: #ffffff;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+
+.included-column h3, .not-included-column h3 {
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 25px;
     text-align: center;
+}
+
+.included-column .item, .not-included-column .item {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Espacia el contenido verticalmente */
-    height: 100%; /* Asegura que todos los items tengan la misma altura si están en una fila */
+    align-items: flex-start;
+    margin-bottom: 15px;
 }
 
-.testimonial-item .quote {
+.included-column .item p, .not-included-column .item p {
+    margin: 0;
     font-size: 1.1rem;
-    font-style: italic;
-    margin-bottom: 20px;
-    color: var(--text-color);
+    line-height: 1.4;
 }
 
-.testimonial-item .author {
-    font-weight: 700;
-    color: var(--primary-color);
-    margin-top: auto; /* Empuja el autor hacia abajo */
+.check-icon {
+    color: #28a745; /* Verde para check */
+    margin-left: 10px;
+    font-size: 1.5rem;
 }
 
-/* --- REFERENCES SECTION --- */
-#references-section { /* Se usa #references en HTML, pero aquí el nombre es #references-section */
+.x-icon {
+    color: #dc3545; /* Rojo para X */
+    margin-left: 10px;
+    font-size: 1.5rem;
+}
+
+.included-column .item i, .not-included-column .item i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.included-column h3 .check-icon, .not-included-column h3 .x-icon {
+    font-size: 2rem;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+
+/* --- NEW: TRIP ITINERARY SECTION (TABLE) --- */
+.trip-itinerary-section {
     background-color: var(--primary-color);
     color: var(--light-text-color);
 }
 
-#references-section h2 {
+.trip-itinerary-section h2 {
     color: var(--light-text-color);
 }
 
-.reference-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+.itinerary-table-container {
     max-width: 1200px;
     margin: 0 auto;
-}
-
-.reference-item {
+    overflow-x: auto; /* Permite scroll horizontal en tablas grandes en móviles */
     background-color: rgba(255, 255, 255, 0.1);
-    padding: 25px;
     border-radius: 8px;
-    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-.reference-item .quote {
+.itinerary-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px; /* Ancho mínimo para la tabla para evitar que se comprima demasiado */
+}
+
+.itinerary-table-container th, .itinerary-table-container td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--light-text-color);
+}
+
+.itinerary-table-container th {
+    background-color: rgba(255, 255, 255, 0.15);
     font-size: 1.1rem;
-    font-style: italic;
-    margin-bottom: 15px;
-}
-
-.reference-item .author {
     font-weight: 700;
-    color: var(--secondary-color);
 }
 
-/* --- CONTACT SECTION --- */
-#contact-section {
+.itinerary-table-container tr:last-child td {
+    border-bottom: none;
+}
+
+.itinerary-table-container tbody tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.05); /* Ligeramente más oscuro */
+}
+
+
+/* --- NEW: CONTACT SECTION --- */
+.contact-section {
     background-color: var(--background-light);
     color: var(--text-color);
 }
 
-.contact-form-container {
-    max-width: 600px;
+.contact-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 900px;
     margin: 0 auto;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.contact-form {
+    flex: 1 1 45%; /* Ocupa aproximadamente la mitad */
+    min-width: 280px; /* Tamaño mínimo antes de envolver */
+    display: flex;
+    flex-direction: column;
     padding: 30px;
     background-color: #ffffff;
     border-radius: 8px;
@@ -730,124 +740,245 @@ section.is-visible {
 }
 
 .contact-form label {
-    display: block;
+    font-size: 1.1rem;
     margin-bottom: 8px;
     font-weight: 700;
-    color: var(--text-color);
 }
 
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form textarea {
-    width: calc(100% - 20px); /* Ajusta el ancho para el padding */
-    padding: 10px;
+    padding: 12px;
     margin-bottom: 20px;
     border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box; /* Incluye el padding en el ancho */
-    font-family: 'Montserrat', sans-serif;
+    border-radius: 5px;
     font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .contact-form textarea {
     resize: vertical; /* Permite redimensionar verticalmente */
-    min-height: 120px;
 }
 
-.contact-form button {
-    background-color: var(--primary-color);
-    color: var(--light-text-color);
-    padding: 12px 25px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
+.contact-form .cta-button {
+    align-self: flex-start; /* Alinea el botón a la izquierda */
+    margin-top: 10px;
+}
+
+.contact-info {
+    flex: 1 1 45%; /* Ocupa aproximadamente la otra mitad */
+    min-width: 280px; /* Tamaño mínimo antes de envolver */
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-align: left;
+}
+
+.contact-info h3 {
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: var(--primary-color);
+    text-align: left;
+}
+
+.contact-info p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.contact-info p i {
+    margin-right: 15px;
+    color: var(--secondary-color);
+    font-size: 1.4rem;
+}
+
+.map-placeholder {
+    margin-top: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.map-placeholder iframe {
+    display: block; /* Elimina espacio extra debajo del iframe */
+    border-radius: 8px;
+}
+
+
+/* --- REFERENCES / TESTIMONIALS SECTION --- */
+#references {
+    background-color: var(--background-light);
+    color: var(--text-color);
+}
+
+.reference-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.reference-item {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.reference-item .quote {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+.reference-item .author {
     font-weight: 700;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    color: var(--primary-color);
 }
-
-.contact-form button:hover {
-    background-color: #3b7b75; /* Un tono ligeramente más oscuro */
-}
-
 
 /* --- FOOTER --- */
 .site-footer {
-    background-color: var(--text-color); /* Color oscuro para el footer */
-    color: rgba(255, 255, 255, 0.8);
+    background-color: var(--text-color); /* Fondo oscuro para el footer */
+    color: var(--light-text-color);
     text-align: center;
-    padding: 30px 20px;
+    padding: 40px 20px;
     font-size: 0.9rem;
+    line-height: 1.6;
 }
 
 .site-footer p {
-    margin: 5px 0;
+    margin: 0 0 10px 0;
+}
+
+.site-footer p:last-child {
+    margin-bottom: 0;
 }
 
 
-/* --- RESPONSIVE DESIGN --- */
+/* --- Media Queries para Responsividad --- */
 
-/*
-   ******************************************************************
-   * AJUSTE CLAVE 7: MEDIA QUERIES PARA MÓVILES (LOGOS Y CARRUSEL)   *
-   * Ajustes para logos y disposición del carrusel en pantallas pequeñas. *
-   ******************************************************************
-*/
-
-/* Ocultar elementos de desktop en móviles */
-@media (max-width: 992px) {
-    .desktop-nav-logo {
-        display: none;
+/* Ajustes para desktop (ocultar elementos móviles) */
+@media (min-width: 769px) {
+    .top-bar, .hamburger-menu, .mobile-menu {
+        display: none; /* Oculta la barra superior y el menú móvil en desktop */
     }
-    .desktop-nav-menu {
-        display: none;
-    }
-    .top-bar {
-        display: flex; /* Muestra el top-bar en móviles */
-        padding: 10px 15px; /* Ajusta el padding horizontal de la top-bar para móviles */
-    }
-    .hamburger-menu {
-        display: flex; /* Muestra el menú hamburguesa en móviles */
-    }
-    /* Asegurar que el hero-section no se solape con el top-bar fijo */
     .hero-section {
-        padding-top: 70px; /* Ajusta este valor si tu top-bar es más alto/bajo */
+        padding-top: 0; /* No se necesita padding si no hay top-bar */
     }
+    .hero-content {
+        justify-content: center; /* Centra el contenido en el medio */
+    }
+    /* Asegurar que la navegación de escritorio es visible */
+    .desktop-nav-logo { display: block; }
+    .desktop-nav-menu { display: flex; }
 }
+
 
 /* Ajustes para tablets y pantallas medianas */
 @media (max-width: 768px) {
-    /* Logo en hero: no necesita cambios aquí si ya es 100% de su contenedor */
-    .hero-content h1 {
-        font-size: 3.2rem;
+    /* Mostrar la barra superior y el menú hamburguesa */
+    .top-bar {
+        display: flex; /* Visible en móviles */
     }
-    .hero-subtitle {
+    .hamburger-menu {
+        display: flex; /* Visible en móviles */
+    }
+    /* Ocultar la navegación de escritorio */
+    .desktop-nav-logo { display: none; }
+    .desktop-nav-menu { display: none; }
+
+    /* Ajuste de margen para el contenido principal debido a la barra superior fija */
+    main {
+        margin-top: 60px; /* Ajusta este valor si la altura de la top-bar cambia */
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+    h2 {
         font-size: 2rem;
     }
+    section {
+        padding: 60px 15px;
+    }
+
+    /* Header adjustments */
+    /*
+       ******************************************************************
+       * AJUSTE CLAVE PARA LOGO EN MÓVILES (TABLETS):                   *
+       * Se establece un 'max-width' y 'width: 100%' para que se ajuste*
+       * al contenedor pero no exceda un tamaño razonable.             *
+       ******************************************************************
+    */
+    .hero-content .logo { /* Más específico para el logo en el hero */
+        max-width: 250px; /* Tamaño máximo para el logo en tablets */
+        width: 100%; /* El ancho se ajusta al 100% del contenedor, respetando max-width */
+        height: auto; /* Mantiene la proporción */
+        display: block; /* Asegura que el logo se comporte como un bloque para centrarlo */
+        margin: 0 auto 20px auto; /* Centra el logo horizontalmente y mantiene el margen inferior */
+        padding: 0; /* Remueve el padding para evitar posibles overflows */
+        object-fit: contain; /* Asegura que la imagen se ajuste dentro de las dimensiones */
+    }
+    .hero-content h1 {
+        font-size: 3.2rem;
+        margin-top: 15px;
+    }
+    .hero-subtitle {
+        font-size: 2.0rem;
+        margin-top: 5px;
+    }
     .slogan {
-        font-size: 1.3rem;
-        margin-bottom: 25px; /* Ajustado para pantallas medianas */
-        font-weight: 700;
-        text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
-        white-space: normal;
-        line-height: 1.4;
+        font-size: 1.2rem;
+        margin-top: 10px;
+        margin-bottom: 30px;
     }
     .cta-button {
         padding: 12px 25px;
         font-size: 1rem;
     }
-    h2 {
-        font-size: 2.2rem;
+    .contact-buttons { /* Assuming this is a class for multiple buttons */
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
     }
-    section {
-        padding: 60px 20px;
+    .contact-button { /* Assuming this is a class for individual buttons */
+        width: 90%;
+        max-width: 350px;
     }
-    .why-us-item {
-        flex: 1 1 calc(50% - 30px); /* Dos columnas en tablets */
+    .summary-text {
+        font-size: 1rem;
+        padding: 0 20px;
     }
-    /* Carrusel: 2 ítems por vista en tablets */
+
+    /* Grid Layouts - allowing for 2 columns if space permits */
+    .itinerary-grid,
+    .included-grid,
+    .not-included-grid,
+    .date-grid,
+    .reference-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted for flexibility */
+        padding: 0 20px;
+    }
+    .itinerary-day, .included-item, .not-included-item, .date-item, .reference-item {
+        margin-bottom: 20px;
+    }
+    .hero-section {
+        background-attachment: scroll; /* Changed to scroll on mobile for performance/preference */
+    }
+
+    /* Carousel Responsive - Show 2 items on tablets */
+    .carousel-container {
+        padding: 0 15px;
+    }
     .carousel-item {
-        min-width: calc(100% / 2 - 15px); /* 2 imágenes por vista, ajusta para gap */
+        min-width: calc((100% / 2) - 15px); /* Adjusted for 2 items per view with gap */
     }
     .carousel-button {
         padding: 8px 12px;
@@ -859,23 +990,65 @@ section.is-visible {
     .carousel-button.next {
         right: 0px;
     }
-    /* Itinerario: 1 columna en tablets para un mejor flujo si el contenido es largo */
-    .itinerary-grid {
-        grid-template-columns: 1fr;
+
+    /* Why Us Section - 2 columns on tablets */
+    .why-us-item {
+        flex: 1 1 calc(50% - 30px); /* Dos columnas en tablets */
     }
-    .itinerary-card .card-header {
-        flex-direction: row; /* Asegura que el header mantenga la fila */
-        justify-content: flex-start;
-        text-align: left;
+
+    /* Package Details Section - stack price below grid */
+    .package-details-content {
+        flex-direction: column;
+        align-items: center;
     }
-    .itinerary-card .day-icon {
-        margin-right: 15px;
+    .package-grid, .package-price-info {
+        width: 100%;
+        max-width: 500px; /* Limita el ancho en tablet/mobile */
+    }
+
+    /* Contact Section - stack form and info */
+    .contact-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    .contact-form, .contact-info {
+        width: 100%;
+        max-width: 500px; /* Limita el ancho en tablet/mobile */
+    }
+
+    /* Inclusions Comparison Section - ensure items stack properly */
+    .comparison-grid {
+        flex-direction: column;
+    }
+    .included-column, .not-included-column {
+        width: 100%;
+        max-width: 500px; /* Limita el ancho */
+    }
+
+    /* Trip Itinerary table - ensure scrollable */
+    .itinerary-table-container {
+        overflow-x: auto;
     }
 }
 
 /* Ajustes para móviles pequeños */
 @media (max-width: 480px) {
-    /* Logo en hero: no necesita cambios aquí si ya es 100% de su contenedor */
+    /*
+       ******************************************************************
+       * AJUSTE CLAVE PARA LOGO EN MÓVILES PEQUEÑOS (VERTICAL):         *
+       * Se establece un 'width' fijo en píxeles para asegurar que el logo*
+       * no se desborde, incluso si la interpretación de '100%' falla. *
+       * 'max-width: 100%' es una salvaguarda.                        *
+       ******************************************************************
+    */
+    .hero-content .logo { /* Más específico para el logo en el hero */
+        width: 180px; /* UN TAMAÑO FIJO Y PEQUEÑO para asegurar que no se desborde en vertical */
+        height: auto; /* Mantiene la proporción */
+        max-width: 100%; /* Asegura que el logo no sea más grande que el 100% de su contenedor */
+        display: block; /* Asegura que el logo se comporte como un bloque para centrarlo */
+        margin: 0 auto 20px auto; /* Centra el logo horizontalmente y mantiene el margen inferior */
+        object-fit: contain; /* Asegura que la imagen se ajuste dentro de las dimensiones */
+    }
     .hero-content h1 {
         font-size: 2.5rem;
     }
@@ -899,10 +1072,10 @@ section.is-visible {
     .why-us-item {
         flex: 1 1 100%; /* Una columna en móviles pequeños */
     }
-    .included-grid {
+    .included-grid, .not-included-grid, .date-grid, .reference-grid {
         grid-template-columns: 1fr; /* Una columna en móviles pequeños */
     }
-    /* Carrusel: 1 ítem por vista en móviles */
+    /* Carousel: 1 ítem por vista en móviles */
     .carousel-container {
         padding: 0 40px; /* Reduce el padding para los botones */
     }
@@ -910,85 +1083,34 @@ section.is-visible {
         min-width: 100%; /* 1 imagen por vista en móviles */
     }
     .carousel-button {
-        padding: 10px;
-        font-size: 1rem;
+        left: 0px;
+        right: 0px;
     }
-    .carousel-button.prev {
-        left: 5px;
+    /* Why Us Carousel Section - ensure text block and carousel stack */
+    .why-us-carousel-container {
+        flex-direction: column;
     }
-    .carousel-button.next {
-        right: 5px;
+    .why-us-text-block, .carousel-wrapper {
+        width: 100%;
     }
-    /* Itinerario: 1 columna, los estilos principales ya lo manejan */
-    .itinerary-card .day-title h3 {
-        font-size: 1.1rem; /* Ajusta el tamaño del título del itinerario */
+    .why-us-text-block h3, .why-us-text-block p, .why-us-text-block ul {
+        text-align: center; /* Centra el texto en móviles */
     }
-    .itinerary-card .card-description p {
-        font-size: 0.9rem; /* Ajusta el tamaño del párrafo del itinerario */
+    .why-us-text-block ul li {
+        justify-content: center;
+        display: flex; /* Para centrar los iconos y texto */
     }
-}
-
-/* --- FIX: Logo móvil responsive y alineado --- */
-@media (max-width: 992px) {
-    .top-bar .logo-mobile {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        height: 40px;
-        width: 120px; /* Limita el ancho máximo del logo */
-        max-width: 40vw; /* Nunca más del 40% del ancho de pantalla */
-        margin-left: 0;
-        margin-right: auto;
-        overflow: hidden;
+    /* Contact Section - center text */
+    .contact-form, .contact-info {
+        text-align: center;
     }
-    .top-bar .logo-mobile img {
-        height: 100%;
-        width: auto;
-        max-width: 100%;
-        object-fit: contain;
-        display: block;
+    .contact-form label, .contact-info h3, .contact-info p {
+        text-align: center; /* Centra el texto */
     }
-}
-@media (max-width: 480px) {
-    .top-bar .logo-mobile {
-        width: 90px;
-        max-width: 60vw;
-        height: 32px;
+    .contact-form .cta-button {
+        align-self: center; /* Centra el botón en móviles */
     }
-    .top-bar .logo-mobile img {
-        height: 100%;
-        max-width: 100%;
-    }
-}
-
-.logo-mobile {
-    display: none;
-}
-@media (max-width: 992px) {
-    .logo-mobile {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        height: 40px;
-        width: 40px;
-        margin-left: 0;
-        margin-right: auto;
-    }
-    .logo-mobile-img {
-        height: 100%;
-        width: auto;
-        max-width: 100%;
-        object-fit: contain;
-        display: block;
-    }
-}
-@media (max-width: 480px) {
-    .logo-mobile {
-        width: 32px;
-        height: 32px;
-    }
-    .logo-mobile-img {
-        height: 100%;
-        max-width: 100%;
+    .contact-info p {
+        justify-content: center; /* Centra los iconos y texto */
     }
 }
