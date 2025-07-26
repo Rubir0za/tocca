@@ -71,10 +71,11 @@ section {
     background-size: cover;
     background-position: center;
     opacity: 0;
-    animation: fadeSlideshow 24s infinite; /* 8s por imagen * 3 imágenes = 24s total */
+    animation: fadeSlideshow 24s infinite; /* Adjusted for 3 images, 8s per image cycle */
+    transition: opacity 1.5s ease-in-out; /* Smooth transition for opacity changes */
 }
 
-/* Retrasos para cada imagen */
+/* Retrasos para cada imagen para una transición fluida */
 .hero-slideshow .slide:nth-child(1) { animation-delay: 0s; }
 .hero-slideshow .slide:nth-child(2) { animation-delay: 8s; }
 .hero-slideshow .slide:nth-child(3) { animation-delay: 16s; }
@@ -84,9 +85,12 @@ section {
 
 @keyframes fadeSlideshow {
     0% { opacity: 0; }
-    8% { opacity: 1; } /* Imagen visible */
-    25% { opacity: 1; } /* Se mantiene visible un tiempo */
-    33% { opacity: 0; } /* Empieza a desaparecer */
+    /* Fade in */
+    6% { opacity: 1; } /* Slightly delayed fade-in for smoothness */
+    /* Hold */
+    28% { opacity: 1; } /* Stays visible longer */
+    /* Fade out */
+    34% { opacity: 0; } /* Starts fading out smoothly */
     100% { opacity: 0; }
 }
 
@@ -433,6 +437,72 @@ section {
     }
 }
 
+/* --- SECCIÓN DE TESTIMONIOS --- */
+.testimonials-section {
+    background-color: var(--primary-color); /* Fondo con color primario */
+    color: var(--light-text-color); /* Texto blanco para contraste */
+    text-align: center;
+    padding: 60px 20px;
+    border-radius: 10px;
+    max-width: 1200px;
+    margin: 20px auto;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.testimonials-section h2 {
+    color: var(--light-text-color); /* Título en blanco */
+    margin-bottom: 50px;
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 30px; /* Espacio entre las tarjetas */
+    max-width: 1000px; /* Ancho máximo para el grid */
+    margin: 0 auto; /* Centrar el grid */
+}
+
+.testimonial-card {
+    background-color: #ffffff; /* Fondo blanco para las tarjetas */
+    color: var(--text-color); /* Texto oscuro para las tarjetas */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Sombra suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px); /* Efecto al pasar el mouse */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.testimonial-card .quote {
+    font-size: 1.15rem;
+    font-style: italic;
+    margin-bottom: 20px;
+    line-height: 1.7;
+    position: relative;
+}
+
+.testimonial-card .quote::before {
+    content: "“";
+    font-family: Georgia, serif; /* Fuente elegante para la comilla */
+    font-size: 4rem;
+    color: var(--secondary-color); /* Color de acento para la comilla */
+    position: absolute;
+    top: -15px;
+    left: -10px;
+    opacity: 0.7;
+    z-index: 0;
+}
+
+.testimonial-card .author {
+    font-weight: bold;
+    color: var(--primary-color); /* Color primario para el autor */
+    font-size: 1rem;
+    margin-top: 15px;
+}
+
 
 /* --- FOOTER --- */
 .site-footer {
@@ -464,7 +534,7 @@ section {
         font-size: 0.95rem;
     }
 
-    .itinerary-section, .why-us-section, .details-section, .contact-prompt {
+    .itinerary-section, .why-us-section, .details-section, .contact-prompt, .testimonials-section {
         padding: 40px 15px;
         margin: 15px auto;
     }
@@ -475,6 +545,10 @@ section {
 
     .section-column h3 {
         font-size: 1.7rem;
+    }
+
+    .testimonial-grid {
+        grid-template-columns: 1fr; /* Una columna en móviles */
     }
 }
 
