@@ -26,10 +26,19 @@ h2 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 40px;
+    color: var(--text-color); /* Asegura que el color del título sea el correcto */
 }
 
 section {
     padding: 80px 20px;
+    opacity: 0; /* Por defecto, las secciones están ocultas para la animación */
+    transform: translateY(20px); /* Ligeramente desplazadas */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Transición para la animación */
+}
+
+section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 
@@ -83,12 +92,18 @@ section {
     border-radius: 5px;
     font-size: 1.1rem;
     transition: all 0.3s ease;
+    display: inline-block; /* Asegura que el padding funcione correctamente */
 }
 
 .cta-button:hover {
     background-color: #ffd04b;
     transform: translateY(-3px);
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.cta-button.small-button { /* Estilo para botones más pequeños en las fechas */
+    padding: 10px 20px;
+    font-size: 0.9rem;
 }
 
 /* --- SECCIÓN DE CONTACTO POST-HERO --- */
@@ -131,6 +146,7 @@ section {
 
 .contact-button:hover {
     transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 
@@ -144,6 +160,7 @@ section {
     max-width: 700px;
     margin: 0 auto;
     font-size: 1.1rem;
+    line-height: 1.8;
 }
 
 /* --- SECCIÓN "INCLUIDO EN EL TOUR" --- */
@@ -161,14 +178,16 @@ section {
 
 .included-item {
     text-align: center;
+    background-color: #fff;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .included-item:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 .included-item img {
@@ -180,11 +199,99 @@ section {
 .included-item h3 {
     margin: 20px 0 10px 0;
     color: var(--primary-color);
+    font-size: 1.4rem;
 }
 
 .included-item p {
     padding: 0 20px 20px 20px;
     margin: 0;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* --- SECCIÓN "FECHAS DISPONIBLES" --- */
+.available-dates-section {
+    background-color: var(--background-light);
+    text-align: center;
+}
+
+.date-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 900px;
+    margin: 40px auto 0;
+}
+
+.date-item {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.date-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.date-item h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+    font-size: 1.5rem;
+}
+
+.date-item p {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    color: #555;
+}
+
+/* --- SECCIÓN "REFERENCIAS" --- */
+.references-section {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    text-align: center;
+}
+
+.references-section h2 {
+    color: var(--light-text-color);
+}
+
+.reference-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 40px auto 0;
+}
+
+.reference-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 8px;
+    backdrop-filter: blur(5px); /* Efecto de desenfoque ligero */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.reference-item:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.reference-item .quote {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 15px;
+    line-height: 1.7;
+}
+
+.reference-item .author {
+    font-weight: bold;
+    font-size: 0.95rem;
+    opacity: 0.8;
 }
 
 
@@ -194,7 +301,13 @@ section {
     color: var(--light-text-color);
     text-align: center;
     padding: 30px 20px;
+    font-size: 0.9rem;
 }
+
+.site-footer p {
+    margin: 5px 0;
+}
+
 
 /* --- Media Queries para Responsividad --- */
 @media (max-width: 768px) {
@@ -203,5 +316,48 @@ section {
     }
     h2 {
         font-size: 2rem;
+    }
+    section {
+        padding: 60px 15px;
+    }
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+    .slogan {
+        font-size: 1.1rem;
+    }
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+    .contact-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    .contact-button {
+        width: 80%; /* Ajuste para que los botones de contacto sean más anchos en móviles */
+        max-width: 300px;
+    }
+    .summary-text {
+        font-size: 1rem;
+    }
+    .included-grid, .date-grid, .reference-grid {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    .slogan {
+        font-size: 1rem;
+    }
+    .cta-button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    h2 {
+        font-size: 1.8rem;
     }
 }
