@@ -47,9 +47,9 @@ section {
     position: relative;
     overflow: hidden; /* Asegura que las imágenes no se desborden */
     display: flex;
-    flex-direction: column; /* Cambiado a columna para apilar contenido y barra */
-    justify-content: center; /* Centra el contenido principal */
-    align-items: center;
+    flex-direction: column; /* Apila el contenido verticalmente */
+    justify-content: center; /* Centra el contenido principal de la columna */
+    align-items: center; /* Centra horizontalmente el contenido de la columna */
     text-align: center;
     color: var(--light-text-color);
 }
@@ -105,16 +105,12 @@ section {
 .hero-content {
     position: relative; /* Para que esté por encima del slideshow y overlay */
     z-index: 3;
-    max-width: 900px; /* Aumentado para mejor legibilidad */
+    max-width: 750px; /* Reducido de 900px a 750px para menos "espacio muerto" */
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.3); /* Fondo semitransparente para el texto */
     border-radius: 10px;
-    margin-bottom: auto; /* Empuja el contenido hacia arriba, dejando espacio para la barra inferior */
+    /* margin-top y margin-bottom automáticos ya son manejados por align-items: center en el padre flex-direction: column */
 }
-
-/* El logo dentro de hero-content ya no existe, por lo que estas reglas no se aplicarán */
-/* .logo { ... } */
-/* @media (min-width: 768px) { .logo { ... } } */
 
 .hero-content h1 {
     font-size: 4rem; /* Tamaño del título */
@@ -178,6 +174,8 @@ section {
 
 .logo-in-bar {
     width: 120px; /* Tamaño del logo dentro de la barra */
+    max-height: 100%; /* Asegura que el logo no exceda la altura de su contenedor */
+    object-fit: contain; /* Asegura que el logo completo sea visible sin cortarse */
     height: auto;
     display: block; /* Asegura que la imagen se comporte correctamente */
     filter: drop-shadow(0 0 3px rgba(0,0,0,0.3)); /* Ligera sombra para visibilidad */
@@ -212,6 +210,10 @@ section {
         font-size: 1rem;
         text-align: center;
         width: 100%; /* Ocupa todo el ancho si se envuelve */
+    }
+
+    .hero-content {
+        max-width: 90%; /* Ajusta el ancho para pantallas más pequeñas */
     }
 }
 
