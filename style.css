@@ -1,391 +1,207 @@
-/* Basic Reset & Global Styles */
+/* --- ESTILOS GENERALES Y FUENTES --- */
+:root {
+    --primary-color: #4A9A92; /* verde del logo (las olas) */
+    --secondary-color: #D8A736; /* más cálido y más cercano al logo */
+    --text-color: #3E2D23; /* similar al texto del logo */
+    --light-text-color: #ffffff; /* Texto claro para fondos oscuros */
+    --background-light: #f8f9fa; /* Un fondo casi blanco */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
-    font-family: Arial, sans-serif; /* Puedes cambiar a la fuente que desees */
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-color);
     line-height: 1.6;
-    color: #333;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
-/* Variables para espaciado (simulando los valores de WordPress) */
-:root {
-    --spacing-10: 10px;
-    --spacing-20: 20px;
-    --spacing-30: 30px;
-    --spacing-40: 60px; /* var:preset|spacing|40 */
-    --spacing-50: 80px; /* var:preset|spacing|50 */
-    --spacing-60: 100px; /* var:preset|spacing|60 */
-    --column-gap: 40px;
-    --row-gap: 50px;
-    --main-accent-color: #0073aa; /* Azul de ejemplo */
-    --secondary-accent-color: #f09433; /* Naranja suave para divisores */
+h1, h2 {
+    font-family: 'Playfair Display', serif;
 }
 
-.container {
-    max-width: 1200px; /* Ancho máximo del contenido */
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 20px;
-    padding-right: 20px;
+h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
 }
 
 section {
-    padding-top: var(--spacing-40);
-    padding-bottom: var(--spacing-40);
-    margin-top: 0;
-    margin-bottom: 0;
-    position: relative; /* Para las líneas divisorias */
+    padding: 80px 20px;
 }
 
-/* Estilo para las líneas divisorias entre secciones */
-section:not(:last-of-type)::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px; /* Ancho de la línea */
-    height: 3px; /* Grosor de la línea */
-    background-color: var(--secondary-accent-color);
-    border-radius: 2px;
-}
 
-/* Botones */
-.buttons {
+/* --- HERO SECTION (LA PANTALLA DE INICIO) --- */
+.hero-section {
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://picsum.photos/1920/1080');
+    background-size: cover;
+    background-position: center;
     display: flex;
-    gap: 15px;
-    margin-top: var(--spacing-30);
-    flex-wrap: wrap; /* Permite que los botones se envuelvan */
-    justify-content: flex-start; /* Alineación por defecto */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--light-text-color);
 }
 
-.button {
-    display: inline-block;
-    padding: 12px 25px;
+.hero-content {
+    max-width: 800px;
+    padding: 20px;
+}
+
+.logo {
+    width: 160px;
+    height: auto;
+}
+
+@media (min-width: 768px) {
+    .logo {
+        width: 220px;
+    }
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin: 0;
+}
+
+.slogan {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+.cta-button {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 15px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #ffd04b;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* --- SECCIÓN DE CONTACTO POST-HERO --- */
+.contact-prompt {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    text-align: center;
+}
+
+.contact-prompt h2 {
+    color: var(--light-text-color);
+}
+
+.contact-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.contact-button {
+    padding: 15px 25px;
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
-    text-align: center;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-    white-space: nowrap; /* Evita que el texto del botón se rompa */
+    transition: all 0.3s ease;
+    border: 2px solid var(--secondary-color);
 }
 
-.button.primary {
-    background-color: var(--main-accent-color);
-    color: #fff;
-    border: 1px solid var(--main-accent-color);
+.contact-button.whatsapp {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+.contact-button.email {
+    background-color: transparent;
+    color: var(--light-text-color);
+    border-color: var(--light-text-color);
 }
 
-.button.primary:hover {
-    background-color: #005f8f;
-    border-color: #005f8f;
-}
-
-.button.secondary {
-    background-color: #f0f0f0;
-    color: #333;
-    border: 1px solid #ddd;
-}
-
-.button.secondary:hover {
-    background-color: #e0e0e0;
-    border-color: #ccc;
-}
-
-.button.full-width {
-    width: 100%; /* Para botones que ocupan todo el ancho de su contenedor */
-    box-sizing: border-box; /* Incluye padding y borde en el width */
-}
-.buttons .full-width {
-    flex-grow: 1; /* Permite que el botón crezca si es el único */
+.contact-button:hover {
+    transform: translateY(-3px);
 }
 
 
-/* Imagenes */
-.image-wrapper {
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px; /* Bordes ligeramente redondeados */
-}
-.image-wrapper img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Recorta la imagen para llenar el espacio */
-}
-.square-ratio {
-    padding-bottom: 100%; /* Ratio 1:1 (cuadrado) */
-}
-.rect-ratio {
-    padding-bottom: 75%; /* Ratio 4:3 (rectangular) */
-}
-
-
-/* Columnas de contenido */
-.content-columns {
-    display: flex;
-    gap: var(--column-gap); /* Espacio entre columnas */
-    flex-wrap: wrap; /* Permite que las columnas se envuelvan en pantallas pequeñas */
-    align-items: center; /* Alinea verticalmente al centro por defecto */
-}
-.content-columns .column {
-    flex: 1; /* Las columnas ocupan el mismo espacio */
-    min-width: 300px; /* Ancho mínimo antes de apilarse */
-}
-.content-columns .text-column h2,
-.content-columns .text-column h3 {
-    margin-top: 0;
-}
-.content-columns .image-column {
-    display: flex;
-    justify-content: center; /* Centra la imagen dentro de su columna */
-    align-items: flex-end; /* Alinea la imagen a la parte inferior (bottom) */
-}
-.content-columns .image-column.bottom-aligned {
-     align-items: flex-end; /* Asegura alineación inferior */
-}
-.content-columns .text-column.center-aligned {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.content-columns .text-column.small-gap {
-    gap: 24px; /* Pequeño espacio para títulos */
-}
-
-
-/* Espaciador */
-.spacer {
-    clear: both;
-    height: var(--spacing-10); /* Default small spacer */
-}
-.spacer.small {
-    height: var(--spacing-10);
-}
-
-
-/* --- Header Section --- */
-.site-header {
-    background-color: #fff;
-    padding: 20px 0;
-    border-bottom: 1px solid #eee;
+/* --- SECCIÓN "¿POR QUÉ TOCCA AMALFI?" --- */
+.why-us-section {
+    background-color: var(--background-light);
     text-align: center;
 }
-.site-header .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--spacing-20);
-}
-.site-branding {
-    margin-bottom: 10px;
-}
-.site-logo {
-    max-width: 180px; /* Tamaño del logo */
-    height: auto;
-    display: block;
+
+.summary-text {
+    max-width: 700px;
     margin: 0 auto;
-}
-.main-navigation ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: var(--spacing-20);
-}
-.main-navigation li a {
-    text-decoration: none;
-    color: #333;
-    padding: 5px 10px;
-}
-.main-navigation li a:hover {
-    color: var(--main-accent-color);
+    font-size: 1.1rem;
 }
 
-
-/* --- Hero Section (General content) --- */
-.general-content-section {
-    background-color: #f8f8f8;
+/* --- SECCIÓN "INCLUIDO EN EL TOUR" --- */
+.included-section {
+    background-color: #ffffff;
 }
 
-
-/* --- Why Us Section (About) --- */
-.why-us-alt {
-    background-color: #f9f9f9;
-    padding-top: var(--spacing-60);
-    padding-bottom: var(--spacing-60);
-}
-.why-us-alt .buttons {
-    margin-top: var(--spacing-30);
-}
-
-
-/* --- About The Tour Section (About) --- */
-.about-section.alt-background {
-    background-color: #f0f8ff;
-}
-.about-section.alt-background .content-columns {
-    flex-wrap: wrap-reverse; /* Cambia el orden para texto a la izquierda, imagen a la derecha */
-}
-
-
-/* --- Services Offered Section --- */
-.services-section.alt-background-2 {
-    background-color: #fff;
-}
-.services-header {
-    text-align: center;
-    margin-bottom: var(--spacing-40);
-}
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-30);
-}
-.service-item {
-    text-align: center;
-    padding: 15px;
-    border-radius: 8px;
-    background-color: #f0f0f0;
-}
-.service-item p {
-    margin-top: 15px;
-    margin-bottom: 0;
-}
-
-
-/* --- Pricing Tiers Section --- */
-.pricing-section {
-    background-color: #e6f7ff;
-    text-align: center;
-    padding-top: var(--spacing-50);
-    padding-bottom: var(--spacing-50);
-}
-.pricing-section .section-title {
-    margin-bottom: var(--spacing-50);
-}
-.pricing-tiers {
+.included-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--spacing-30);
-    justify-content: center;
-}
-.pricing-card {
-    background-color: #fff;
-    border-radius: 8px;
-    padding: var(--spacing-30);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-.pricing-card.standard {
-    border: 2px solid var(--main-accent-color); /* Resalta el paquete estándar */
-}
-.pricing-card .card-header h3 {
-    margin-top: 0;
-    margin-bottom: 5px;
-}
-.pricing-card .price {
-    font-size: 1.8em;
-    font-weight: bold;
-    color: var(--main-accent-color);
-    margin-bottom: 15px;
-}
-.pricing-card .price.small-font { /* Para el font-size: small del wp-block-paragraph */
-    font-size: 1.2em; /* Ajustado para que no sea tan grande como 1.8em */
-    font-weight: bold;
-    color: var(--main-accent-color);
-    margin-bottom: 15px;
-}
-.pricing-card .features p {
-    margin: 5px 0;
-    font-size: 0.95em;
-}
-.pricing-card .features b {
-    color: #28a745; /* Verde para los checkmarks */
-    margin-right: 5px;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-
-/* Footer */
-.site-footer {
-    background-color: #333;
-    color: #fff;
-    padding: 30px 0;
+.included-item {
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
 }
-.site-footer .social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
+
+.included-item:hover {
+    transform: translateY(-5px);
 }
-.site-footer .social-icon img {
-    width: 24px;
-    height: 24px;
-    filter: invert(100%); /* Hace que los iconos sean blancos si son negros */
+
+.included-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.included-item h3 {
+    margin: 20px 0 10px 0;
+    color: var(--primary-color);
+}
+
+.included-item p {
+    padding: 0 20px 20px 20px;
+    margin: 0;
 }
 
 
-/* Sticky WhatsApp Button */
-.whatsapp-sticky-button {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background-color: #25D366; /* Color de WhatsApp */
-    border-radius: 50%;
-    width: 55px;
-    height: 55px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    transition: transform 0.2s ease-in-out;
-}
-.whatsapp-sticky-button:hover {
-    transform: scale(1.05);
-}
-.whatsapp-sticky-button img {
-    width: 30px;
-    height: 30px;
-    filter: brightness(0) invert(1); /* Hace que el icono sea blanco */
+/* --- FOOTER --- */
+.site-footer {
+    background-color: var(--text-color);
+    color: var(--light-text-color);
+    text-align: center;
+    padding: 30px 20px;
 }
 
-
-/* --- Responsive Adjustments --- */
+/* --- Media Queries para Responsividad --- */
 @media (max-width: 768px) {
-    .content-columns {
-        flex-direction: column; /* Apila las columnas en móviles */
-        gap: var(--spacing-30); /* Espacio entre secciones apiladas */
+    h1 {
+        font-size: 2.5rem;
     }
-
-    .content-columns .image-column {
-        order: -1; /* Mueve la imagen arriba en Hero y About The Tour */
-    }
-    .about-section.alt-background .content-columns .image-column {
-        order: -1; /* Asegura que la imagen siempre esté arriba en mobile */
-    }
-
-    .pricing-tiers,
-    .services-grid {
-        grid-template-columns: 1fr; /* Una columna para las tarjetas en móviles */
-    }
-
-    .pricing-card, .service-item {
-        max-width: 400px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .site-logo {
-        max-width: 150px;
+    h2 {
+        font-size: 2rem;
     }
 }
