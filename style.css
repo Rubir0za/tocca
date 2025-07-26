@@ -1,573 +1,124 @@
 /* --- ESTILOS GENERALES Y FUENTES --- */
-:root {
-    --primary-color: #4A9A92; /* verde del logo (las olas) */
-    --secondary-color: #D8A736; /* más cálido y más cercano al logo */
-    --text-color: #3E2D23; /* similar al texto del logo */
-    --light-text-color: #ffffff; /* Texto claro para fondos oscuros */
-    --background-light: #f8f9fa; /* Un fondo casi blanco */
-    --accent-color: #E67E22; /* Un naranja vibrante para acentos */
-    --soft-gray: #f2f2f2; /* Gris suave para fondos de secciones */
-    --dark-green: #367c74; /* Un verde más oscuro para hover */
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
 body {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    color: var(--text-color);
-    line-height: 1.6;
-    background-color: var(--soft-gray); /* Añade un color de fondo general */
+  font-family: Montserrat, sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
+  background-color: var(--soft-gray);
+  margin: 0px;
 }
 
 h1, h2 {
-    font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
 }
 
-h2 {
-    text-align: center;
-    font-size: 2.8rem; /* Aumentado ligeramente */
-    margin-bottom: 40px;
-    color: var(--primary-color); /* Color primario para los títulos */
-}
-
-section {
-    padding: 80px 20px;
-    background-color: #ffffff; /* Fondo blanco por defecto para secciones */
-    margin-bottom: 20px; /* Espacio entre secciones */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* Sombra suave para separar secciones */
-}
-
-
-/* --- HERO SECTION (LA PANTALLA DE INICIO) --- */
 .hero-section {
-    height: 100vh;
-    position: relative;
-    overflow: hidden; /* Asegura que las imágenes no se desborden */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: var(--light-text-color);
-}
-
-.hero-slideshow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1; /* Detrás del contenido */
-}
-
-.hero-slideshow .slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    animation: fadeSlideshow 24s infinite; /* Adjusted for 3 images, 8s per image cycle */
-    transition: opacity 1.5s ease-in-out; /* Smooth transition for opacity changes */
-}
-
-/* Retrasos para cada imagen para una transición fluida */
-.hero-slideshow .slide:nth-child(1) { animation-delay: 0s; }
-.hero-slideshow .slide:nth-child(2) { animation-delay: 8s; }
-.hero-slideshow .slide:nth-child(3) { animation-delay: 16s; }
-/* Agrega más si tienes más slides: */
-/* .hero-slideshow .slide:nth-child(4) { animation-delay: 24s; } */
-
-
-@keyframes fadeSlideshow {
-    0% { opacity: 0; }
-    /* Fade in */
-    6% { opacity: 1; } /* Slightly delayed fade-in for smoothness */
-    /* Hold */
-    28% { opacity: 1; } /* Stays visible longer */
-    /* Fade out */
-    34% { opacity: 0; } /* Starts fading out smoothly */
-    100% { opacity: 0; }
-}
-
-.hero-section::before { /* Overlay para oscurecer las imágenes */
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Oscurece la imagen para que el texto resalte */
-    z-index: 2; /* Encima de las imágenes, debajo del contenido */
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--light-text-color, #fff); /* Fallback a blanco */
+  overflow: hidden;
 }
 
 .hero-content {
-    position: relative; /* Para que esté por encima del slideshow y overlay */
-    z-index: 3;
-    max-width: 900px; /* Aumentado para mejor legibilidad */
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.3); /* Fondo semitransparente para el texto */
-    border-radius: 10px;
+  position: relative;
+  z-index: 3;
+  max-width: 900px;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  border-radius: 10px;
 }
 
-.logo {
-    width: 180px; /* Tamaño del logo */
-    height: auto;
-    margin-bottom: 20px; /* Espacio debajo del logo */
-    filter: drop-shadow(0 0 5px rgba(0,0,0,0.5)); /* Sombra para resaltar el logo */
+/* --- LOGO EN ESTRUCTURA HORIZONTAL --- */
+.logo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  padding: 10px 0;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
 }
 
-@media (min-width: 768px) {
-    .logo {
-        width: 250px; /* Logo más grande en desktop */
-    }
+.logo-wrapper img.logo {
+  width: 180px;
+  height: auto;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+  display: block;
 }
 
+/* --- TEXTOS DE HERO --- */
 .hero-content h1 {
-    font-size: 4rem; /* Tamaño del título */
-    margin: 10px 0;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Sombra para el texto */
+  font-size: 4rem;
+  text-shadow: rgba(0, 0, 0, 0.7) 2px 2px 4px;
+  margin: 10px 0px;
 }
-
-.slogan {
-    font-size: 1.5rem; /* Tamaño del slogan */
-    margin-top: 15px;
-    margin-bottom: 40px;
-    font-weight: 500;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
-}
-
-.cta-button {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    padding: 18px 35px; /* Más padding */
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 8px; /* Bordes más redondeados */
-    font-size: 1.2rem; /* Texto más grande */
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Sombra más pronunciada */
-}
-
-.cta-button:hover {
-    background-color: var(--accent-color); /* Cambia a color de acento al hover */
-    color: var(--light-text-color); /* Texto blanco al hover */
-    transform: translateY(-5px); /* Efecto 3D al hover */
-    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
-}
-
-/* --- SECCIÓN DE CONTACTO POST-HERO --- */
-.contact-prompt {
-    background-color: var(--primary-color);
-    color: var(--light-text-color);
-    text-align: center;
-    border-radius: 10px;
-    margin: 20px auto; /* Centrar y añadir margen */
-    max-width: 1000px;
-}
-
-.contact-prompt h2 {
-    color: var(--light-text-color);
-    margin-bottom: 20px;
-}
-
-.contact-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 25px; /* Mayor espacio entre botones */
-    flex-wrap: wrap;
-    margin-top: 30px;
-}
-
-.contact-button {
-    padding: 18px 30px; /* Más padding */
-    text-decoration: none;
-    border-radius: 8px; /* Bordes más redondeados */
-    font-weight: bold;
-    transition: all 0.3s ease;
-    border: 2px solid var(--secondary-color); /* Borde con color secundario */
-    font-size: 1.1rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-.contact-button.whatsapp {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-}
-.contact-button.email {
-    background-color: transparent;
-    color: var(--light-text-color);
-    border-color: var(--light-text-color);
-}
-
-.contact-button.whatsapp:hover {
-    background-color: var(--accent-color);
-    color: var(--light-text-color);
-    transform: translateY(-3px);
-}
-
-.contact-button.email:hover {
-    background-color: var(--light-text-color);
-    color: var(--primary-color);
-    transform: translateY(-3px);
-}
-
-
-/* --- SECCIÓN "ITINERARIO" --- */
-.itinerary-section {
-    background-color: var(--soft-gray); /* Fondo suave */
-    padding: 60px 20px;
-    border-radius: 10px;
-    max-width: 1200px;
-    margin: 20px auto;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-}
-
-.itinerary-content {
-    display: flex;
-    flex-direction: column; /* Columna por defecto en móviles */
-    align-items: center;
-    gap: 40px;
-}
-
-.itinerary-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.itinerary-text {
-    text-align: left;
-    max-width: 700px;
-}
-
-.itinerary-text h3 {
-    color: var(--primary-color);
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-.itinerary-text ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 20px;
-}
-
-.itinerary-text ul li {
-    background-color: #eaf7f6; /* Fondo suave para los ítems de lista */
-    margin-bottom: 10px;
-    padding: 12px 15px;
-    border-left: 4px solid var(--primary-color);
-    border-radius: 5px;
-    font-size: 1.05rem;
-}
-
-@media (min-width: 992px) {
-    .itinerary-content {
-        flex-direction: row; /* Fila en pantallas grandes */
-        justify-content: space-around;
-        align-items: flex-start;
-    }
-
-    .itinerary-image {
-        flex: 1;
-        max-width: 45%;
-    }
-
-    .itinerary-text {
-        flex: 1;
-        max-width: 50%;
-    }
-}
-
-
-/* --- SECCIÓN "¿POR QUÉ TOCCA AMALFI?" --- */
-.why-us-section {
-    background-color: #ffffff;
-    text-align: center;
-    padding: 60px 20px;
-    border-radius: 10px;
-    max-width: 1200px;
-    margin: 20px auto;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-}
-
-.why-us-content {
-    display: flex;
-    flex-direction: column; /* Columna por defecto en móviles */
-    align-items: center;
-    gap: 40px;
-}
-
-.why-us-image {
-    flex: 1;
-    max-width: 100%;
-}
-
-.why-us-image img {
-    width: 100%;
-    height: 300px; /* Altura fija para la imagen */
-    object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.why-us-text {
-    flex: 1;
-    text-align: left;
-    max-width: 700px;
-}
-
-.why-us-text h2 {
-    text-align: left; /* Título alineado a la izquierda */
-    margin-top: 0;
-    font-size: 2.5rem;
-    color: var(--primary-color);
-}
-
-.why-us-text p {
-    font-size: 1.1rem;
-    margin-bottom: 15px;
-    color: var(--text-color);
-}
-
-@media (min-width: 992px) {
-    .why-us-content {
-        flex-direction: row; /* Fila en pantallas grandes */
-        justify-content: space-around;
-        align-items: flex-start;
-    }
-
-    .why-us-image {
-        max-width: 45%;
-        order: 1; /* Imagen a la izquierda */
-    }
-
-    .why-us-text {
-        max-width: 50%;
-        order: 2; /* Texto a la derecha */
-    }
-}
-
-
-/* --- SECCIÓN "DETALLES DEL TOUR (INCLUIDO/NO INCLUIDO)" --- */
-.details-section {
-    background-color: var(--soft-gray); /* Fondo suave */
-    padding: 60px 20px;
-    border-radius: 10px;
-    max-width: 1200px;
-    margin: 20px auto;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-}
-
-.details-grid {
-    display: flex;
-    flex-direction: column; /* Columna por defecto en móviles */
-    gap: 40px;
-}
-
-.section-column {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-}
-
-.section-column h3 {
-    text-align: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    margin-top: 0;
-    margin-bottom: 25px;
-}
-
-.section-column.included h3 {
-    color: var(--primary-color);
-}
-
-.section-column.not-included h3 {
-    color: var(--accent-color);
-}
-
-.check-list, .cross-list {
-    list-style: none;
-    padding: 0;
-    font-size: 1.05rem;
-}
-
-.check-list li, .cross-list li {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 15px;
-    line-height: 1.5;
-}
-
-.check-list .icon {
-    color: var(--primary-color); /* Icono verde */
-    font-size: 1.4rem;
-    margin-right: 15px;
-    font-weight: bold;
-}
-
-.cross-list .icon {
-    color: var(--accent-color); /* Icono naranja */
-    font-size: 1.4rem;
-    margin-right: 15px;
-    font-weight: bold;
-}
-
-
-@media (min-width: 768px) {
-    .details-grid {
-        flex-direction: row; /* Fila en pantallas grandes */
-        justify-content: space-between;
-    }
-
-    .section-column {
-        flex: 1;
-    }
-
-    .section-column.included {
-        margin-right: 20px; /* Espacio entre las columnas */
-    }
-}
-
-/* --- SECCIÓN DE TESTIMONIOS --- */
-.testimonials-section {
-    background-color: var(--primary-color); /* Fondo con color primario */
-    color: var(--light-text-color); /* Texto blanco para contraste */
-    text-align: center;
-    padding: 60px 20px;
-    border-radius: 10px;
-    max-width: 1200px;
-    margin: 20px auto;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-}
-
-.testimonials-section h2 {
-    color: var(--light-text-color); /* Título en blanco */
-    margin-bottom: 50px;
-}
-
-.testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
-    gap: 30px; /* Espacio entre las tarjetas */
-    max-width: 1000px; /* Ancho máximo para el grid */
-    margin: 0 auto; /* Centrar el grid */
-}
-
-.testimonial-card {
-    background-color: #ffffff; /* Fondo blanco para las tarjetas */
-    color: var(--text-color); /* Texto oscuro para las tarjetas */
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Sombra suave */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.testimonial-card:hover {
-    transform: translateY(-5px); /* Efecto al pasar el mouse */
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-.testimonial-card .quote {
-    font-size: 1.15rem;
-    font-style: italic;
-    margin-bottom: 20px;
-    line-height: 1.7;
-    position: relative;
-}
-
-.testimonial-card .quote::before {
-    content: "“";
-    font-family: Georgia, serif; /* Fuente elegante para la comilla */
-    font-size: 4rem;
-    color: var(--secondary-color); /* Color de acento para la comilla */
-    position: absolute;
-    top: -15px;
-    left: -10px;
-    opacity: 0.7;
-    z-index: 0;
-}
-
-.testimonial-card .author {
-    font-weight: bold;
-    color: var(--primary-color); /* Color primario para el autor */
-    font-size: 1rem;
-    margin-top: 15px;
-}
-
 
 /* --- FOOTER --- */
 .site-footer {
-    background-color: var(--text-color);
-    color: var(--light-text-color);
-    text-align: center;
-    padding: 30px 20px;
-    margin-top: 40px; /* Más espacio antes del footer */
+  background-color: var(--text-color);
+  color: var(--light-text-color);
+  text-align: center;
+  padding: 30px 20px;
+  margin-top: 40px;
 }
-
 
 /* --- Media Queries para Responsividad --- */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 2.8rem;
-    }
-    h2 {
-        font-size: 2.2rem;
-    }
-    .slogan {
-        font-size: 1.2rem;
-    }
-    .cta-button {
-        padding: 12px 25px;
-        font-size: 1rem;
-    }
-    .contact-button {
-        padding: 12px 20px;
-        font-size: 0.95rem;
-    }
-
-    .itinerary-section, .why-us-section, .details-section, .contact-prompt, .testimonials-section {
-        padding: 40px 15px;
-        margin: 15px auto;
-    }
-
-    .itinerary-text h3 {
-        font-size: 1.8rem;
-    }
-
-    .section-column h3 {
-        font-size: 1.7rem;
-    }
-
-    .testimonial-grid {
-        grid-template-columns: 1fr; /* Una columna en móviles */
-    }
+  h1 {
+    font-size: 2.8rem;
+  }
+  h2 {
+    font-size: 2.2rem;
+  }
+  .slogan {
+    font-size: 1.2rem;
+  }
+  .cta-button {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+  .contact-button {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+  }
+  .itinerary-section,
+  .why-us-section,
+  .details-section,
+  .contact-prompt,
+  .testimonials-section {
+    padding: 40px 15px;
+    margin: 15px auto;
+  }
+  .itinerary-text h3 {
+    font-size: 1.8rem;
+  }
+  .section-column h3 {
+    font-size: 1.7rem;
+  }
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 480px) {
-    .hero-content h1 {
-        font-size: 2.2rem;
-    }
-    .slogan {
-        font-size: 1rem;
-    }
-    .logo {
-        width: 150px;
-    }
-    .contact-buttons {
-        flex-direction: column;
-        gap: 15px;
-    }
-    .contact-button {
-        width: 80%;
-        margin: 0 auto;
-    }
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+  .slogan {
+    font-size: 1rem;
+  }
+  .logo-wrapper img.logo {
+    width: 150px;
+  }
+  .contact-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .contact-button {
+    width: 80%;
+    margin: 0 auto;
+  }
 }
