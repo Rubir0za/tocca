@@ -47,7 +47,8 @@ section {
     position: relative;
     overflow: hidden; /* Asegura que las imágenes no se desborden */
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Cambiado a columna para apilar contenido y barra */
+    justify-content: center; /* Centra el contenido principal */
     align-items: center;
     text-align: center;
     color: var(--light-text-color);
@@ -71,11 +72,10 @@ section {
     background-size: cover;
     background-position: center;
     opacity: 0;
-    animation: fadeSlideshow 24s infinite; /* Adjusted for 3 images, 8s per image cycle */
-    transition: opacity 1.5s ease-in-out; /* Smooth transition for opacity changes */
+    animation: fadeSlideshow 24s infinite; /* 8s por imagen * 3 imágenes = 24s total */
 }
 
-/* Retrasos para cada imagen para una transición fluida */
+/* Retrasos para cada imagen */
 .hero-slideshow .slide:nth-child(1) { animation-delay: 0s; }
 .hero-slideshow .slide:nth-child(2) { animation-delay: 8s; }
 .hero-slideshow .slide:nth-child(3) { animation-delay: 16s; }
@@ -85,12 +85,9 @@ section {
 
 @keyframes fadeSlideshow {
     0% { opacity: 0; }
-    /* Fade in */
-    6% { opacity: 1; } /* Slightly delayed fade-in for smoothness */
-    /* Hold */
-    28% { opacity: 1; } /* Stays visible longer */
-    /* Fade out */
-    34% { opacity: 0; } /* Starts fading out smoothly */
+    8% { opacity: 1; } /* Imagen visible */
+    25% { opacity: 1; } /* Se mantiene visible un tiempo */
+    33% { opacity: 0; } /* Empieza a desaparecer */
     100% { opacity: 0; }
 }
 
@@ -112,20 +109,12 @@ section {
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.3); /* Fondo semitransparente para el texto */
     border-radius: 10px;
+    margin-bottom: auto; /* Empuja el contenido hacia arriba, dejando espacio para la barra inferior */
 }
 
-.logo {
-    width: 180px; /* Tamaño del logo */
-    height: auto;
-    margin-bottom: 20px; /* Espacio debajo del logo */
-    filter: drop-shadow(0 0 5px rgba(0,0,0,0.5)); /* Sombra para resaltar el logo */
-}
-
-@media (min-width: 768px) {
-    .logo {
-        width: 250px; /* Logo más grande en desktop */
-    }
-}
+/* El logo dentro de hero-content ya no existe, por lo que estas reglas no se aplicarán */
+/* .logo { ... } */
+/* @media (min-width: 768px) { .logo { ... } } */
 
 .hero-content h1 {
     font-size: 4rem; /* Tamaño del título */
@@ -159,6 +148,73 @@ section {
     transform: translateY(-5px); /* Efecto 3D al hover */
     box-shadow: 0 6px 15px rgba(0,0,0,0.4);
 }
+
+/* --- NUEVA BARRA INFERIOR DEL HERO --- */
+.hero-bottom-bar {
+    position: absolute; /* Posicionamiento absoluto para que flote sobre el slideshow */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 90px; /* Altura de la barra */
+    background-color: var(--secondary-color); /* Color naranja de la referencia */
+    display: flex;
+    align-items: center; /* Centrar verticalmente los elementos */
+    padding: 0 20px;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.3); /* Sombra hacia arriba */
+    z-index: 4; /* Asegura que esté encima del contenido principal y el slideshow */
+    justify-content: flex-start; /* Alinea los elementos al inicio de la barra */
+    gap: 20px; /* Espacio entre el logo y el texto */
+}
+
+.logo-wrapper {
+    background-color: white; /* Fondo blanco para el logo */
+    border-radius: 50px; /* Forma de píldora */
+    padding: 5px 15px; /* Espaciado interno */
+    height: 80%; /* Ocupa la mayor parte de la altura de la barra */
+    display: flex;
+    align-items: center; /* Centrar el logo verticalmente dentro del wrapper */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Sombra suave para el logo */
+}
+
+.logo-in-bar {
+    width: 120px; /* Tamaño del logo dentro de la barra */
+    height: auto;
+    display: block; /* Asegura que la imagen se comporte correctamente */
+    filter: drop-shadow(0 0 3px rgba(0,0,0,0.3)); /* Ligera sombra para visibilidad */
+}
+
+.bar-slogan-text {
+    color: var(--text-color); /* Color del texto sobre la barra naranja */
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 0; /* Elimina márgenes por defecto */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* Sombra para el texto */
+}
+
+@media (max-width: 768px) {
+    .hero-bottom-bar {
+        height: 70px; /* Menor altura en móviles */
+        padding: 0 10px;
+        flex-wrap: wrap; /* Permite que los elementos se envuelvan si no caben */
+        justify-content: center; /* Centra los elementos en móviles */
+    }
+
+    .logo-wrapper {
+        height: 60px;
+        padding: 3px 10px;
+    }
+
+    .logo-in-bar {
+        width: 100px;
+    }
+
+    .bar-slogan-text {
+        font-size: 1rem;
+        text-align: center;
+        width: 100%; /* Ocupa todo el ancho si se envuelve */
+    }
+}
+
 
 /* --- SECCIÓN DE CONTACTO POST-HERO --- */
 .contact-prompt {
@@ -437,72 +493,6 @@ section {
     }
 }
 
-/* --- SECCIÓN DE TESTIMONIOS --- */
-.testimonials-section {
-    background-color: var(--primary-color); /* Fondo con color primario */
-    color: var(--light-text-color); /* Texto blanco para contraste */
-    text-align: center;
-    padding: 60px 20px;
-    border-radius: 10px;
-    max-width: 1200px;
-    margin: 20px auto;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-}
-
-.testimonials-section h2 {
-    color: var(--light-text-color); /* Título en blanco */
-    margin-bottom: 50px;
-}
-
-.testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
-    gap: 30px; /* Espacio entre las tarjetas */
-    max-width: 1000px; /* Ancho máximo para el grid */
-    margin: 0 auto; /* Centrar el grid */
-}
-
-.testimonial-card {
-    background-color: #ffffff; /* Fondo blanco para las tarjetas */
-    color: var(--text-color); /* Texto oscuro para las tarjetas */
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Sombra suave */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.testimonial-card:hover {
-    transform: translateY(-5px); /* Efecto al pasar el mouse */
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-.testimonial-card .quote {
-    font-size: 1.15rem;
-    font-style: italic;
-    margin-bottom: 20px;
-    line-height: 1.7;
-    position: relative;
-}
-
-.testimonial-card .quote::before {
-    content: "“";
-    font-family: Georgia, serif; /* Fuente elegante para la comilla */
-    font-size: 4rem;
-    color: var(--secondary-color); /* Color de acento para la comilla */
-    position: absolute;
-    top: -15px;
-    left: -10px;
-    opacity: 0.7;
-    z-index: 0;
-}
-
-.testimonial-card .author {
-    font-weight: bold;
-    color: var(--primary-color); /* Color primario para el autor */
-    font-size: 1rem;
-    margin-top: 15px;
-}
-
 
 /* --- FOOTER --- */
 .site-footer {
@@ -534,7 +524,7 @@ section {
         font-size: 0.95rem;
     }
 
-    .itinerary-section, .why-us-section, .details-section, .contact-prompt, .testimonials-section {
+    .itinerary-section, .why-us-section, .details-section, .contact-prompt {
         padding: 40px 15px;
         margin: 15px auto;
     }
@@ -546,10 +536,6 @@ section {
     .section-column h3 {
         font-size: 1.7rem;
     }
-
-    .testimonial-grid {
-        grid-template-columns: 1fr; /* Una columna en móviles */
-    }
 }
 
 @media (max-width: 480px) {
@@ -559,9 +545,7 @@ section {
     .slogan {
         font-size: 1rem;
     }
-    .logo {
-        width: 150px;
-    }
+    /* Logo sizing for small screens is now handled by .logo-in-bar and .logo-wrapper */
     .contact-buttons {
         flex-direction: column;
         gap: 15px;
