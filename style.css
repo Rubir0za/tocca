@@ -219,7 +219,6 @@ section {
     .slogan-hero-content {
         font-size: 1rem;
     }
-    /* La regla .logo antigua ha sido eliminada. El logo ahora es .logo-in-bar */
     .contact-buttons {
         flex-direction: column;
         gap: 15px;
@@ -527,8 +526,7 @@ section {
     h2 {
         font-size: 2.2rem;
     }
-    /* La clase .slogan ahora es .slogan-hero-content */
-    .slogan-hero-content {
+    .slogan-hero-content { /* Usar esta clase para el eslogan en el hero-content */
         font-size: 1.2rem;
     }
     .cta-button {
@@ -561,7 +559,6 @@ section {
     .slogan-hero-content {
         font-size: 1rem;
     }
-    /* La regla .logo antigua ha sido eliminada. El logo ahora es .logo-in-bar */
     .contact-buttons {
         flex-direction: column;
         gap: 15px;
