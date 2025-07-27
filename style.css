@@ -204,7 +204,7 @@ section {
 
     .hero-content {
         max-width: 90%; /* Ajusta el ancho para pantallas más pequeñas */
-        padding: 20px 20px 100px; /* AUMENTADO EL PADDING INFERIOR PARA MÓVILES */
+        padding: 20px 20px 60px; /* AUMENTADO EL PADDING INFERIOR PARA MÓVILES */
     }
     .slogan-hero-content { /* Ajuste de fuente para el eslogan en hero-content en móviles */
         font-size: 1.2rem;
