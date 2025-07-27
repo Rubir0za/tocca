@@ -8,6 +8,8 @@
     --accent-color: #E67E22; /* Un naranja vibrante para acentos */
     --soft-gray: #f2f2f2; /* Gris suave para fondos de secciones */
     --dark-green: #367c74; /* Un verde más oscuro para hover */
+    --icon-circle-bg: #4A9A92; /* Color de fondo para los círculos de íconos */
+    --icon-color: #ffffff; /* Color de los íconos */
 }
 
 html {
@@ -20,6 +22,7 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     background-color: var(--soft-gray); /* Añade un color de fondo general */
+    padding-top: 70px; /* Espacio para la barra de navegación fija en la parte superior */
 }
 
 h1, h2 {
@@ -40,6 +43,61 @@ section {
     box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* Sombra suave para separar secciones */
 }
 
+/* --- TOP NAVIGATION BAR --- */
+.top-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px; /* Altura de la barra de navegación */
+    background-color: var(--primary-color); /* Fondo verde oscuro */
+    display: flex;
+    justify-content: space-between; /* Espacia logo y íconos */
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Sombra sutil */
+    z-index: 1000; /* Asegura que esté por encima de todo */
+}
+
+.navbar-logo img {
+    height: 50px; /* Altura del logo en la barra */
+    filter: drop-shadow(0 0 3px rgba(0,0,0,0.3)); /* Ligera sombra para visibilidad */
+}
+
+.navbar-icons {
+    display: flex;
+    gap: 15px; /* Espacio entre los íconos */
+}
+
+.icon-button, .menu-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; /* Tamaño del círculo del ícono */
+    height: 40px;
+    border-radius: 50%; /* Forma circular */
+    background-color: rgba(255, 255, 255, 0.15); /* Fondo blanco translúcido */
+    color: var(--light-text-color); /* Color blanco para los íconos */
+    font-size: 1.3rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Borde suave */
+}
+
+.icon-button:hover, .menu-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.25); /* Un poco más opaco al hover */
+    transform: translateY(-2px); /* Efecto sutil al hover */
+}
+
+.menu-toggle {
+    background-color: var(--text-color); /* Fondo oscuro para el ícono de menú (como en la referencia) */
+    border-color: var(--text-color);
+}
+
+.menu-toggle:hover {
+    background-color: var(--text-color); /* Mantener el color al hover */
+    transform: translateY(-2px);
+}
 
 /* --- HERO SECTION (LA PANTALLA DE INICIO) --- */
 .hero-section {
@@ -52,6 +110,7 @@ section {
     align-items: center; /* Centra horizontalmente el contenido de la columna */
     text-align: center;
     color: var(--light-text-color);
+    /* No necesitamos padding-top aquí si el body ya tiene padding-top */
 }
 
 .hero-slideshow {
@@ -105,21 +164,24 @@ section {
     position: relative; /* Para que esté por encima del slideshow y overlay */
     z-index: 3;
     max-width: 750px; /* Ajustado para mejor legibilidad */
-    padding: 20px 20px 120px; /* AUMENTADO EL PADDING INFERIOR PARA MÁS ESPACIO */
+    padding: 20px; /* Ajustado: ya no hay barra inferior */
     background-color: rgba(0, 0, 0, 0.3); /* Fondo semitransparente para el texto */
     border-radius: 10px;
 }
 
-/* El .logo anterior ha sido eliminado. Ahora el logo está en .hero-bottom-bar */
+.logo { /* Logo principal del hero, si se mantiene */
+    width: 300px; /* Ajusta el tamaño de tu logo en el hero */
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
+}
 
-.slogan-hero-content { /* Nueva clase para el eslogan que se queda en hero-content */
+.slogan-hero-content {
     font-size: 1.5rem;
     margin-top: 15px;
-    margin-bottom: 40px; /* REVERTIDO A VALOR ORIGINAL */
+    margin-bottom: 40px;
     font-weight: 500;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
 }
-
 
 .hero-content h1 {
     font-size: 4rem; /* Tamaño del título */
@@ -146,97 +208,13 @@ section {
     box-shadow: 0 6px 15px rgba(0,0,0,0.4);
 }
 
-/* --- NUEVA BARRA INFERIOR DEL HERO --- */
-.hero-bottom-bar {
-    position: absolute; /* Posicionamiento absoluto para que flote sobre el slideshow */
-    bottom: 0; /* JUSTO EN EL BORDE INFERIOR */
-    left: 0;
-    width: 100%;
-    height: 90px; /* Altura de la barra */
-    background-color: var(--secondary-color); /* Color naranja de la referencia */
-    display: flex;
-    align-items: center; /* Centrar verticalmente los elementos */
-    padding: 0 20px;
-    box-shadow: 0 -4px 10px rgba(0,0,0,0.3); /* Sombra hacia arriba */
-    z-index: 4; /* Asegura que esté encima del contenido principal y el slideshow */
-    justify-content: flex-start; /* Alinea los elementos al inicio de la barra */
-    gap: 20px; /* Espacio entre el logo y el texto */
-}
-
-.logo-in-bar {
-    width: 200px; /* Tamaño del logo dentro de la barra, ahora 200px */
-    max-height: 100%; /* Asegura que el logo no exceda la altura de su contenedor */
-    object-fit: contain; /* Asegura que el logo completo sea visible sin cortarse */
-    height: auto;
-    display: block; /* Asegura que la imagen se comporte correctamente */
-    filter: drop-shadow(0 0 3px rgba(0,0,0,0.3)); /* Ligera sombra para visibilidad */
-}
-
-.bar-slogan-text {
-    color: var(--text-color); /* Color del texto sobre la barra naranja */
-    font-size: 1.3rem;
-    font-weight: bold;
-    margin: 0; /* Elimina márgenes por defecto */
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* Sombra para el texto */
-}
-
-@media (max-width: 768px) {
-    .hero-bottom-bar {
-        height: auto; /* Altura automática para permitir que el contenido se ajuste */
-        min-height: 90px; /* Altura mínima para asegurar espacio */
-        padding: 0 10px;
-        flex-wrap: wrap; /* Permite que los elementos se envuelvan si no caben */
-        justify-content: center; /* Centra los elementos en móviles */
-        bottom: 10px; /* AJUSTADO PARA MÓVILES */
-    }
-
-    .logo-in-bar {
-        width: 150px; /* Ajuste del tamaño del logo en móviles a 150px */
-        margin-top: 5px; /* Pequeño margen superior para centrar mejor el logo */
-    }
-
-    .bar-slogan-text {
-        font-size: 1.1rem; /* Tamaño de fuente ajustado para móviles */
-        text-align: center;
-        width: 100%; /* Ocupa todo el ancho si se envuelve */
-        margin-top: 5px; /* Espacio entre el logo y el eslogan cuando se envuelven */
-    }
-
-    .hero-content {
-        max-width: 90%; /* Ajusta el ancho para pantallas más pequeñas */
-        padding: 20px 20px 60px; /* AUMENTADO EL PADDING INFERIOR PARA MÓVILES */
-    }
-    .slogan-hero-content { /* Ajuste de fuente para el eslogan en hero-content en móviles */
-        font-size: 1.2rem;
-        margin-bottom: 40px; /* REVERTIDO A VALOR ORIGINAL */
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-content h1 {
-        font-size: 2.2rem;
-    }
-    .slogan-hero-content {
-        font-size: 1rem;
-    }
-    .contact-buttons {
-        flex-direction: column;
-        gap: 15px;
-    }
-    .contact-button {
-        width: 80%;
-        margin: 0 auto;
-    }
-}
-
-
 /* --- SECCIÓN DE CONTACTO POST-HERO --- */
 .contact-prompt {
     background-color: var(--primary-color);
     color: var(--light-text-color);
     text-align: center;
     border-radius: 10px;
-    margin: 20px auto; /* Centrar y añadir margen */
+    margin: 20px auto;
     max-width: 1000px;
 }
 
@@ -248,18 +226,18 @@ section {
 .contact-buttons {
     display: flex;
     justify-content: center;
-    gap: 25px; /* Mayor espacio entre botones */
+    gap: 25px;
     flex-wrap: wrap;
     margin-top: 30px;
 }
 
 .contact-button {
-    padding: 18px 30px; /* Más padding */
+    padding: 18px 30px;
     text-decoration: none;
-    border-radius: 8px; /* Bordes más redondeados */
+    border-radius: 8px;
     font-weight: bold;
     transition: all 0.3s ease;
-    border: 2px solid var(--secondary-color); /* Borde con color secundario */
+    border: 2px solid var(--secondary-color);
     font-size: 1.1rem;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
@@ -289,7 +267,7 @@ section {
 
 /* --- SECCIÓN "ITINERARIO" --- */
 .itinerary-section {
-    background-color: var(--soft-gray); /* Fondo suave */
+    background-color: var(--soft-gray);
     padding: 60px 20px;
     border-radius: 10px;
     max-width: 1200px;
@@ -299,7 +277,7 @@ section {
 
 .itinerary-content {
     display: flex;
-    flex-direction: column; /* Columna por defecto en móviles */
+    flex-direction: column;
     align-items: center;
     gap: 40px;
 }
@@ -329,7 +307,7 @@ section {
 }
 
 .itinerary-text ul li {
-    background-color: #eaf7f6; /* Fondo suave para los ítems de lista */
+    background-color: #eaf7f6;
     margin-bottom: 10px;
     padding: 12px 15px;
     border-left: 4px solid var(--primary-color);
@@ -339,7 +317,7 @@ section {
 
 @media (min-width: 992px) {
     .itinerary-content {
-        flex-direction: row; /* Fila en pantallas grandes */
+        flex-direction: row;
         justify-content: space-around;
         align-items: flex-start;
     }
@@ -369,7 +347,7 @@ section {
 
 .why-us-content {
     display: flex;
-    flex-direction: column; /* Columna por defecto en móviles */
+    flex-direction: column;
     align-items: center;
     gap: 40px;
 }
@@ -381,8 +359,8 @@ section {
 
 .why-us-image img {
     width: 100%;
-    height: 300px; /* Altura fija para la imagen */
-    object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
+    height: 300px;
+    object-fit: cover;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
@@ -394,7 +372,7 @@ section {
 }
 
 .why-us-text h2 {
-    text-align: left; /* Título alineado a la izquierda */
+    text-align: left;
     margin-top: 0;
     font-size: 2.5rem;
     color: var(--primary-color);
@@ -408,26 +386,26 @@ section {
 
 @media (min-width: 992px) {
     .why-us-content {
-        flex-direction: row; /* Fila en pantallas grandes */
+        flex-direction: row;
         justify-content: space-around;
         align-items: flex-start;
     }
 
     .why-us-image {
         max-width: 45%;
-        order: 1; /* Imagen a la izquierda */
+        order: 1;
     }
 
     .why-us-text {
         max-width: 50%;
-        order: 2; /* Texto a la derecha */
+        order: 2;
     }
 }
 
 
 /* --- SECCIÓN "DETALLES DEL TOUR (INCLUIDO/NO INCLUIDO)" --- */
 .details-section {
-    background-color: var(--soft-gray); /* Fondo suave */
+    background-color: var(--soft-gray);
     padding: 60px 20px;
     border-radius: 10px;
     max-width: 1200px;
@@ -437,7 +415,7 @@ section {
 
 .details-grid {
     display: flex;
-    flex-direction: column; /* Columna por defecto en móviles */
+    flex-direction: column;
     gap: 40px;
 }
 
@@ -478,14 +456,14 @@ section {
 }
 
 .check-list .icon {
-    color: var(--primary-color); /* Icono verde */
+    color: var(--primary-color);
     font-size: 1.4rem;
     margin-right: 15px;
     font-weight: bold;
 }
 
 .cross-list .icon {
-    color: var(--accent-color); /* Icono naranja */
+    color: var(--accent-color);
     font-size: 1.4rem;
     margin-right: 15px;
     font-weight: bold;
@@ -494,7 +472,7 @@ section {
 
 @media (min-width: 768px) {
     .details-grid {
-        flex-direction: row; /* Fila en pantallas grandes */
+        flex-direction: row;
         justify-content: space-between;
     }
 
@@ -503,7 +481,7 @@ section {
     }
 
     .section-column.included {
-        margin-right: 20px; /* Espacio entre las columnas */
+        margin-right: 20px;
     }
 }
 
@@ -514,19 +492,34 @@ section {
     color: var(--light-text-color);
     text-align: center;
     padding: 30px 20px;
-    margin-top: 40px; /* Más espacio antes del footer */
+    margin-top: 40px;
 }
 
 
 /* --- Media Queries para Responsividad --- */
 @media (max-width: 768px) {
+    body {
+        padding-top: 60px; /* Ajuste para la barra de navegación en móviles */
+    }
+    .top-navbar {
+        height: 60px; /* Altura de la barra en móviles */
+    }
+    .navbar-logo img {
+        height: 40px; /* Tamaño del logo en móviles */
+    }
+    .icon-button, .menu-toggle {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1rem;
+    }
+
     h1 {
         font-size: 2.8rem;
     }
     h2 {
         font-size: 2.2rem;
     }
-    .slogan-hero-content { /* Usar esta clase para el eslogan en el hero-content */
+    .slogan-hero-content {
         font-size: 1.2rem;
     }
     .cta-button {
