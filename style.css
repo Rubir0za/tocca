@@ -181,7 +181,8 @@ section {
 
 @media (max-width: 768px) {
     .hero-bottom-bar {
-        height: 70px; /* Menor altura en móviles */
+        height: auto; /* Altura automática para permitir que el contenido se ajuste */
+        min-height: 90px; /* Altura mínima para asegurar espacio */
         padding: 0 10px;
         flex-wrap: wrap; /* Permite que los elementos se envuelvan si no caben */
         justify-content: center; /* Centra los elementos en móviles */
@@ -190,12 +191,14 @@ section {
 
     .logo-in-bar {
         width: 150px; /* Ajuste del tamaño del logo en móviles a 150px */
+        margin-top: 5px; /* Pequeño margen superior para centrar mejor el logo */
     }
 
     .bar-slogan-text {
-        font-size: 1rem;
+        font-size: 1.1rem; /* Tamaño de fuente ajustado para móviles */
         text-align: center;
         width: 100%; /* Ocupa todo el ancho si se envuelve */
+        margin-top: 5px; /* Espacio entre el logo y el eslogan cuando se envuelven */
     }
 
     .hero-content {
@@ -210,7 +213,7 @@ section {
     .hero-content h1 {
         font-size: 2.2rem;
     }
-    .slogan-hero-content { /* Ajuste de fuente para el eslogan en hero-content en pantallas muy pequeñas */
+    .slogan-hero-content { /* Usar el nuevo nombre */
         font-size: 1rem;
     }
     .contact-buttons {
@@ -520,7 +523,8 @@ section {
     h2 {
         font-size: 2.2rem;
     }
-    .slogan-hero-content { /* Usar el nuevo nombre */
+    /* La clase .slogan ahora es .slogan-hero-content */
+    .slogan-hero-content {
         font-size: 1.2rem;
     }
     .cta-button {
@@ -550,9 +554,10 @@ section {
     .hero-content h1 {
         font-size: 2.2rem;
     }
-    .slogan-hero-content { /* Usar el nuevo nombre */
+    .slogan-hero-content {
         font-size: 1rem;
     }
+    /* La regla .logo antigua ha sido eliminada. El logo ahora es .logo-in-bar */
     .contact-buttons {
         flex-direction: column;
         gap: 15px;
