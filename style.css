@@ -54,7 +54,7 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 30px; /* Padding original, para mantener el logo a la izquierda */
+    padding: 0 30px; /* Padding original de la barra */
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     z-index: 1000;
 }
@@ -67,7 +67,7 @@ section {
 .navbar-icons {
     display: flex;
     gap: 15px;
-    padding-right: 15px; /* ¡Nuevo! Añade padding a la derecha del contenedor de iconos */
+    padding-right: 25px; /* ¡Ajustado! Más padding a la derecha */
 }
 
 /* Los otros íconos (búsqueda, corazón, teléfono) ahora están ocultos por defecto */
@@ -559,13 +559,13 @@ section {
     }
     .top-navbar {
         height: 70px;
-        padding: 0 20px; /* Padding original para móviles */
+        padding: 0 20px;
     }
     .navbar-logo img {
         height: 50px;
     }
     .navbar-icons {
-        padding-right: 10px; /* Ajuste para móviles */
+        padding-right: 15px; /* ¡Ajustado! Más padding a la derecha para móviles */
     }
     .menu-toggle {
         width: 40px;
