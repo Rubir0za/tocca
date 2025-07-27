@@ -162,7 +162,7 @@ section {
 }
 
 .logo-in-bar {
-    width: 150px; /* MODIFICADO: Tamaño del logo dentro de la barra, ahora 150px */
+    width: 200px; /* MODIFICADO: Tamaño del logo dentro de la barra, ahora 150px */
     max-height: 100%; /* Asegura que el logo no exceda la altura de su contenedor */
     object-fit: contain; /* Asegura que el logo completo sea visible sin cortarse */
     height: auto;
@@ -188,7 +188,7 @@ section {
     }
 
     .logo-in-bar {
-        width: 120px; /* MODIFICADO: Ajuste del tamaño del logo en móviles a 120px */
+        width: 200px; /* MODIFICADO: Ajuste del tamaño del logo en móviles a 120px */
     }
 
     .bar-slogan-text {
