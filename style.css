@@ -109,7 +109,6 @@ section {
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.3); /* Fondo semitransparente para el texto */
     border-radius: 10px;
-    /* margin-top y margin-bottom automáticos ya son manejados por align-items: center en el padre flex-direction: column */
 }
 
 .hero-content h1 {
@@ -162,15 +161,7 @@ section {
     gap: 20px; /* Espacio entre el logo y el texto */
 }
 
-.logo-wrapper {
-    background-color: white; /* Fondo blanco para el logo */
-    border-radius: 50px; /* Forma de píldora */
-    padding: 5px 15px; /* Espaciado interno */
-    height: 80%; /* Ocupa la mayor parte de la altura de la barra */
-    display: flex;
-    align-items: center; /* Centrar el logo verticalmente dentro del wrapper */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Sombra suave para el logo */
-}
+/* .logo-wrapper ya no es necesario */
 
 .logo-in-bar {
     width: 120px; /* Tamaño del logo dentro de la barra */
@@ -197,10 +188,7 @@ section {
         justify-content: center; /* Centra los elementos en móviles */
     }
 
-    .logo-wrapper {
-        height: 60px;
-        padding: 3px 10px;
-    }
+    /* .logo-wrapper media query ya no es necesario */
 
     .logo-in-bar {
         width: 100px;
@@ -547,7 +535,7 @@ section {
     .slogan {
         font-size: 1rem;
     }
-    /* Logo sizing for small screens is now handled by .logo-in-bar and .logo-wrapper */
+    /* Logo sizing for small screens is now handled by .logo-in-bar */
     .contact-buttons {
         flex-direction: column;
         gap: 15px;
