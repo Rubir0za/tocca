@@ -13,15 +13,22 @@
 
     <nav class="top-navbar">
         <div class="navbar-logo">
-            <a href="#hero"><img src="imagenes/tocca_amalfi.png" alt="Tocca Amalfi Logo"></a>
+            <a href="#hero"><img src="imagenes/tocca_amalfi_logo_white.png" alt="Tocca Amalfi Logo"></a>
         </div>
         <div class="navbar-icons">
-            <a href="#" class="icon-button"><span class="icon">🔍</span></a>
-            <a href="#" class="icon-button"><span class="icon">❤️</span></a>
-            <a href="#" class="icon-button"><span class="icon">📞</span></a>
-            <a href="#" class="menu-toggle"><span class="icon">☰</span></a>
+            <a href="#" class="menu-toggle" id="menuToggle"><span class="icon">☰</span></a>
         </div>
     </nav>
+
+    <div class="overlay-menu" id="overlayMenu">
+        <a href="#" class="close-button" id="closeMenu">&times;</a>
+        <ul>
+            <li><a href="#itinerary-summary">Resumen Itinerario</a></li>
+            <li><a href="#itinerary">Itinerario</a></li>
+            <li><a href="#why-us">Por Qué Nosotros</a></li>
+            <li><a href="#included-not-included">Detalles del Tour</a></li>
+            <li><a href="#contact-prompt">Contacto</a></li> </ul>
+    </div>
 
     <header class="hero-section">
         <div class="hero-slideshow">
@@ -30,6 +37,7 @@
             <div class="slide" style="background-image: url('imagenes/hero3.jpg');"></div>
         </div>
         <div class="hero-content">
+            <img src="imagenes/tocca_amalfi.png" alt="Logo Tocca Amalfi" class="logo">
             <h1>Descubre la magia de la Costa Amalfitana</h1>
             <p class="slogan-hero-content">Tu aventura sin prisas, a tu ritmo, comienza aquí.</p>
             <a href="#itinerary" class="cta-button">Ver Itinerario</a>
@@ -123,5 +131,5 @@
         <p>Tu aventura en la Costa Amalfitana te espera.</p>
     </footer>
 
-</body>
+    <script src="script.js"></script> </body>
 </html>
