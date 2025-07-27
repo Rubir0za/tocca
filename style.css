@@ -61,7 +61,6 @@ section {
     width: 100%;
     height: 100%;
     z-index: 1; /* Detrás del contenido */
-    display: flex; /* Asegura que las slides se comporten como flex items */
 }
 
 .hero-slideshow .slide {
@@ -105,7 +104,7 @@ section {
     position: relative; /* Para que esté por encima del slideshow y overlay */
     z-index: 3;
     max-width: 750px; /* Ajustado para mejor legibilidad */
-    padding: 20px 20px 120px; /* AUMENTADO EL PADDING INFERIOR PARA MÁS ESPACIO */
+    padding: 20px;
     background-color: rgba(0, 0, 0, 0.3); /* Fondo semitransparente para el texto */
     border-radius: 10px;
 }
@@ -115,7 +114,7 @@ section {
 .slogan-hero-content { /* Nueva clase para el eslogan que se queda en hero-content */
     font-size: 1.5rem;
     margin-top: 15px;
-    margin-bottom: 40px; /* REVERTIDO A VALOR ORIGINAL */
+    margin-bottom: 40px;
     font-weight: 500;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
 }
@@ -149,7 +148,7 @@ section {
 /* --- NUEVA BARRA INFERIOR DEL HERO --- */
 .hero-bottom-bar {
     position: absolute; /* Posicionamiento absoluto para que flote sobre el slideshow */
-    bottom: 0; /* JUSTO EN EL BORDE INFERIOR */
+    bottom: 50px; /* Subido 50px desde el borde inferior */
     left: 0;
     width: 100%;
     height: 90px; /* Altura de la barra */
@@ -187,7 +186,7 @@ section {
         padding: 0 10px;
         flex-wrap: wrap; /* Permite que los elementos se envuelvan si no caben */
         justify-content: center; /* Centra los elementos en móviles */
-        bottom: 10px; /* AJUSTADO PARA MÓVILES */
+        bottom: 20px; /* Ajuste para móviles */
     }
 
     .logo-in-bar {
@@ -204,11 +203,9 @@ section {
 
     .hero-content {
         max-width: 90%; /* Ajusta el ancho para pantallas más pequeñas */
-        padding: 20px 20px 100px; /* AUMENTADO EL PADDING INFERIOR PARA MÓVILES */
     }
     .slogan-hero-content { /* Ajuste de fuente para el eslogan en hero-content en móviles */
         font-size: 1.2rem;
-        margin-bottom: 40px; /* REVERTIDO A VALOR ORIGINAL */
     }
 }
 
@@ -216,10 +213,9 @@ section {
     .hero-content h1 {
         font-size: 2.2rem;
     }
-    .slogan-hero-content {
+    .slogan-hero-content { /* Usar el nuevo nombre */
         font-size: 1rem;
     }
-    /* La regla .logo antigua ha sido eliminada. El logo ahora es .logo-in-bar */
     .contact-buttons {
         flex-direction: column;
         gap: 15px;
