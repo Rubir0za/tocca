@@ -147,7 +147,7 @@ section {
 /* --- NUEVA BARRA INFERIOR DEL HERO --- */
 .hero-bottom-bar {
     position: absolute; /* Posicionamiento absoluto para que flote sobre el slideshow */
-    bottom: 0;
+    bottom: 50px; /* MODIFICADO: Subido 50px desde el borde inferior */
     left: 0;
     width: 100%;
     height: 90px; /* Altura de la barra */
@@ -161,10 +161,8 @@ section {
     gap: 20px; /* Espacio entre el logo y el texto */
 }
 
-/* .logo-wrapper ya no es necesario */
-
 .logo-in-bar {
-    width: 120px; /* Tamaño del logo dentro de la barra */
+    width: 150px; /* MODIFICADO: Tamaño del logo dentro de la barra, ahora 150px */
     max-height: 100%; /* Asegura que el logo no exceda la altura de su contenedor */
     object-fit: contain; /* Asegura que el logo completo sea visible sin cortarse */
     height: auto;
@@ -186,12 +184,11 @@ section {
         padding: 0 10px;
         flex-wrap: wrap; /* Permite que los elementos se envuelvan si no caben */
         justify-content: center; /* Centra los elementos en móviles */
+        bottom: 20px; /* MODIFICADO: Ajuste para móviles */
     }
 
-    /* .logo-wrapper media query ya no es necesario */
-
     .logo-in-bar {
-        width: 100px;
+        width: 120px; /* MODIFICADO: Ajuste del tamaño del logo en móviles a 120px */
     }
 
     .bar-slogan-text {
