@@ -54,7 +54,7 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 40px; /* Padding derecho ajustado para mover el menú */
+    padding: 0 30px; /* Padding original, para mantener el logo a la izquierda */
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     z-index: 1000;
 }
@@ -66,7 +66,8 @@ section {
 
 .navbar-icons {
     display: flex;
-    gap: 15px; /* Espacio entre los íconos (aunque solo habrá uno visible ahora) */
+    gap: 15px;
+    padding-right: 15px; /* ¡Nuevo! Añade padding a la derecha del contenedor de iconos */
 }
 
 /* Los otros íconos (búsqueda, corazón, teléfono) ahora están ocultos por defecto */
@@ -75,22 +76,22 @@ section {
 }
 
 .menu-toggle {
-    display: flex; /* Asegura que el botón de menú sea un flex item */
+    display: flex;
     justify-content: center;
     align-items: center;
-    width: 45px; /* Tamaño del círculo del ícono de menú aumentado */
+    width: 45px;
     height: 45px;
     border-radius: 50%;
-    background-color: var(--text-color); /* Fondo oscuro para el ícono de menú */
+    background-color: var(--text-color);
     color: var(--light-text-color);
-    font-size: 1.5rem; /* Tamaño de la hamburguesa aumentado */
+    font-size: 1.5rem;
     text-decoration: none;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    border: 1px solid var(--text-color); /* Borde con el mismo color */
+    border: 1px solid var(--text-color);
 }
 
 .menu-toggle:hover {
-    background-color: var(--text-color); /* Mantener el color al hover */
+    background-color: var(--text-color);
     transform: translateY(-2px);
 }
 
@@ -101,19 +102,19 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro semi-transparente */
-    z-index: 999; /* Debajo de la navbar, pero encima del resto del contenido */
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 999;
     display: flex;
     justify-content: center;
     align-items: center;
     opacity: 0;
-    visibility: hidden; /* Oculto por defecto */
+    visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .overlay-menu.open {
     opacity: 1;
-    visibility: visible; /* Visible cuando se le añade la clase 'open' con JS */
+    visibility: visible;
 }
 
 .overlay-menu ul {
@@ -128,28 +129,28 @@ section {
 
 .overlay-menu ul li a {
     color: var(--light-text-color);
-    font-size: 2.5rem; /* Tamaño grande para los enlaces del menú */
+    font-size: 2.5rem;
     padding: 10px 0;
     display: block;
     text-decoration: none;
     transition: color 0.3s ease, transform 0.3s ease;
-    font-family: 'Playfair Display', serif; /* Misma fuente que los títulos */
+    font-family: 'Playfair Display', serif;
 }
 
 .overlay-menu ul li a:hover {
-    color: var(--secondary-color); /* Cambia de color al pasar el ratón */
+    color: var(--secondary-color);
     transform: scale(1.05);
 }
 
 .close-button {
     position: absolute;
     top: 20px;
-    right: 40px; /* Ajustado para que la X del menú overlay tenga el mismo padding */
-    font-size: 4rem; /* Tamaño grande para la 'X' */
+    right: 30px; /* Mantiene la X del menú overlay alineada con el padding de la navbar */
+    font-size: 4rem;
     color: var(--light-text-color);
     text-decoration: none;
     cursor: pointer;
-    z-index: 1001; /* Asegura que esté por encima del menú */
+    z-index: 1001;
     transition: color 0.3s ease;
 }
 
@@ -219,7 +220,7 @@ section {
     position: relative;
     z-index: 3;
     max-width: 750px;
-    padding: 20px; /* Ajustado */
+    padding: 20px;
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 10px;
 }
@@ -554,14 +555,17 @@ section {
 /* --- Media Queries para Responsividad --- */
 @media (max-width: 768px) {
     body {
-        padding-top: 70px; /* Ajuste para la barra de navegación en móviles */
+        padding-top: 70px;
     }
     .top-navbar {
-        height: 70px; /* Altura de la barra en móviles */
-        padding: 0 30px; /* Padding derecho ajustado para móviles */
+        height: 70px;
+        padding: 0 20px; /* Padding original para móviles */
     }
     .navbar-logo img {
-        height: 50px; /* Tamaño del logo en móviles */
+        height: 50px;
+    }
+    .navbar-icons {
+        padding-right: 10px; /* Ajuste para móviles */
     }
     .menu-toggle {
         width: 40px;
@@ -570,11 +574,11 @@ section {
     }
 
     .overlay-menu ul li a {
-        font-size: 2rem; /* Tamaño de los enlaces en menú overlay para móviles */
+        font-size: 2rem;
     }
     .close-button {
         top: 15px;
-        right: 30px; /* Ajustado para la X del menú overlay */
+        right: 20px;
         font-size: 3rem;
     }
 
