@@ -54,7 +54,7 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 30px; /* Padding ajustado para más espacio en los bordes */
+    padding: 0 40px; /* Padding derecho ajustado para mover el menú */
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     z-index: 1000;
 }
@@ -144,7 +144,7 @@ section {
 .close-button {
     position: absolute;
     top: 20px;
-    right: 30px;
+    right: 40px; /* Ajustado para que la X del menú overlay tenga el mismo padding */
     font-size: 4rem; /* Tamaño grande para la 'X' */
     color: var(--light-text-color);
     text-decoration: none;
@@ -558,7 +558,7 @@ section {
     }
     .top-navbar {
         height: 70px; /* Altura de la barra en móviles */
-        padding: 0 20px; /* Padding ajustado para móviles */
+        padding: 0 30px; /* Padding derecho ajustado para móviles */
     }
     .navbar-logo img {
         height: 50px; /* Tamaño del logo en móviles */
@@ -574,7 +574,7 @@ section {
     }
     .close-button {
         top: 15px;
-        right: 20px;
+        right: 30px; /* Ajustado para la X del menú overlay */
         font-size: 3rem;
     }
 
