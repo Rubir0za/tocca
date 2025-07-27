@@ -67,7 +67,7 @@ section {
 .navbar-icons {
     display: flex;
     gap: 15px;
-    padding-right: 45px; /* padding a la derecha */
+    padding-right: 55px; /* padding a la derecha */
 }
 
 .icon-button {
