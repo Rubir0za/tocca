@@ -79,8 +79,6 @@ section {
 .hero-slideshow .slide:nth-child(1) { animation-delay: 0s; }
 .hero-slideshow .slide:nth-child(2) { animation-delay: 8s; }
 .hero-slideshow .slide:nth-child(3) { animation-delay: 16s; }
-/* Agrega más si tienes más slides: */
-/* .hero-slideshow .slide:nth-child(4) { animation-delay: 24s; } */
 
 
 @keyframes fadeSlideshow {
@@ -105,24 +103,27 @@ section {
 .hero-content {
     position: relative; /* Para que esté por encima del slideshow y overlay */
     z-index: 3;
-    max-width: 750px; /* Reducido de 900px a 750px para menos "espacio muerto" */
+    max-width: 750px; /* Ajustado para mejor legibilidad */
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.3); /* Fondo semitransparente para el texto */
     border-radius: 10px;
 }
 
-.hero-content h1 {
-    font-size: 4rem; /* Tamaño del título */
-    margin: 10px 0;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Sombra para el texto */
-}
+/* El .logo anterior ha sido eliminado. Ahora el logo está en .hero-bottom-bar */
 
-.slogan {
-    font-size: 1.5rem; /* Tamaño del slogan */
+.slogan-hero-content { /* Nueva clase para el eslogan que se queda en hero-content */
+    font-size: 1.5rem;
     margin-top: 15px;
     margin-bottom: 40px;
     font-weight: 500;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+}
+
+
+.hero-content h1 {
+    font-size: 4rem; /* Tamaño del título */
+    margin: 10px 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Sombra para el texto */
 }
 
 .cta-button {
@@ -147,7 +148,7 @@ section {
 /* --- NUEVA BARRA INFERIOR DEL HERO --- */
 .hero-bottom-bar {
     position: absolute; /* Posicionamiento absoluto para que flote sobre el slideshow */
-    bottom: 50px; /* MODIFICADO: Subido 50px desde el borde inferior */
+    bottom: 50px; /* Subido 50px desde el borde inferior */
     left: 0;
     width: 100%;
     height: 90px; /* Altura de la barra */
@@ -162,7 +163,7 @@ section {
 }
 
 .logo-in-bar {
-    width: 300px; /* MODIFICADO: Tamaño del logo dentro de la barra, ahora 150px */
+    width: 200px; /* Tamaño del logo dentro de la barra, ahora 200px */
     max-height: 100%; /* Asegura que el logo no exceda la altura de su contenedor */
     object-fit: contain; /* Asegura que el logo completo sea visible sin cortarse */
     height: auto;
@@ -184,11 +185,11 @@ section {
         padding: 0 10px;
         flex-wrap: wrap; /* Permite que los elementos se envuelvan si no caben */
         justify-content: center; /* Centra los elementos en móviles */
-        bottom: 20px; /* MODIFICADO: Ajuste para móviles */
+        bottom: 20px; /* Ajuste para móviles */
     }
 
     .logo-in-bar {
-        width: 300px; /* MODIFICADO: Ajuste del tamaño del logo en móviles a 120px */
+        width: 150px; /* Ajuste del tamaño del logo en móviles a 150px */
     }
 
     .bar-slogan-text {
@@ -199,6 +200,26 @@ section {
 
     .hero-content {
         max-width: 90%; /* Ajusta el ancho para pantallas más pequeñas */
+    }
+    .slogan-hero-content { /* Ajuste de fuente para el eslogan en hero-content en móviles */
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    .slogan-hero-content { /* Ajuste de fuente para el eslogan en hero-content en pantallas muy pequeñas */
+        font-size: 1rem;
+    }
+    .contact-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .contact-button {
+        width: 80%;
+        margin: 0 auto;
     }
 }
 
@@ -499,7 +520,7 @@ section {
     h2 {
         font-size: 2.2rem;
     }
-    .slogan {
+    .slogan-hero-content { /* Usar el nuevo nombre */
         font-size: 1.2rem;
     }
     .cta-button {
@@ -529,10 +550,9 @@ section {
     .hero-content h1 {
         font-size: 2.2rem;
     }
-    .slogan {
+    .slogan-hero-content { /* Usar el nuevo nombre */
         font-size: 1rem;
     }
-    /* Logo sizing for small screens is now handled by .logo-in-bar */
     .contact-buttons {
         flex-direction: column;
         gap: 15px;
