@@ -61,6 +61,7 @@ section {
     width: 100%;
     height: 100%;
     z-index: 1; /* Detrás del contenido */
+    display: flex; /* Asegura que las slides se comporten como flex items */
 }
 
 .hero-slideshow .slide {
@@ -148,7 +149,7 @@ section {
 /* --- NUEVA BARRA INFERIOR DEL HERO --- */
 .hero-bottom-bar {
     position: absolute; /* Posicionamiento absoluto para que flote sobre el slideshow */
-    bottom: 50px; /* Subido 50px desde el borde inferior */
+    bottom: 0; /* AHORA JUSTO EN EL BORDE INFERIOR */
     left: 0;
     width: 100%;
     height: 90px; /* Altura de la barra */
@@ -186,7 +187,7 @@ section {
         padding: 0 10px;
         flex-wrap: wrap; /* Permite que los elementos se envuelvan si no caben */
         justify-content: center; /* Centra los elementos en móviles */
-        bottom: 20px; /* Ajuste para móviles */
+        bottom: 10px; /* AJUSTADO PARA MÓVILES */
     }
 
     .logo-in-bar {
@@ -213,9 +214,10 @@ section {
     .hero-content h1 {
         font-size: 2.2rem;
     }
-    .slogan-hero-content { /* Usar el nuevo nombre */
+    .slogan-hero-content {
         font-size: 1rem;
     }
+    /* La regla .logo antigua ha sido eliminada. El logo ahora es .logo-in-bar */
     .contact-buttons {
         flex-direction: column;
         gap: 15px;
