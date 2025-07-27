@@ -558,46 +558,69 @@ section {
     }
     .top-navbar {
         height: 70px;
-        padding: 0 20px;
+        padding: 0 20px; /* Este padding está bien para tabletas/móviles medianos */
     }
     .navbar-logo img {
-        height: 50px;
+        height: 50px; /* Este tamaño está bien para tabletas/móviles medianos */
     }
     .navbar-icons {
-        padding-right: 15px; /* ¡Ajustado! Más padding a la derecha para móviles */
+        padding-right: 15px; /* Este padding está bien para tabletas/móviles medianos */
     }
     .menu-toggle {
         width: 40px;
         height: 40px;
         font-size: 1.3rem;
     }
-
-    .overlay-menu ul li a {
-        font-size: 2rem;
-    }
-    .close-button {
+    /* ... otras reglas para 768px ... */
+    .close-button { /* Asegurarse de que la 'X' también se adapte */
         top: 15px;
-        right: 20px;
+        right: 20px; /* Ajustar a la derecha del padding del overlay */
         font-size: 3rem;
     }
+}
 
-    h1 {
-        font-size: 2.8rem;
+@media (max-width: 480px) {
+    body {
+        padding-top: 60px; /* Reduce el espacio superior para la navbar en pantallas muy pequeñas */
     }
-    h2 {
+    .top-navbar {
+        height: 60px; /* La barra de navegación un poco más pequeña en celulares muy pequeños */
+        padding: 0 10px; /* Reduce el padding general de la navbar para ganar espacio */
+    }
+    .navbar-logo img {
+        height: 48px; /* ¡Ajustado! Logo un poco más grande para celulares muy pequeños */
+        /* Puedes probar 50px o 55px si aún lo ves muy pequeño */
+    }
+    .navbar-icons {
+        padding-right: 0px; /* ¡Ajustado! Elimina el padding extra en el contenedor de íconos para pantallas muy pequeñas */
+    }
+    .menu-toggle {
+        width: 36px; /* Botón de hamburguesa ligeramente más pequeño */
+        height: 36px;
+        font-size: 1.1rem; /* Icono de hamburguesa ligeramente más pequeño */
+    }
+    .close-button {
+        top: 10px; /* Posición de la 'X' para pantallas muy pequeñas */
+        right: 10px; /* Ajusta la 'X' para que coincida con el padding de la navbar */
+        font-size: 2.2rem; /* Tamaño de la 'X' un poco más pequeño */
+    }
+
+    /* ... otras reglas que ya tenías para 480px ... */
+    .hero-content h1 {
         font-size: 2.2rem;
     }
     .slogan-hero-content {
-        font-size: 1.2rem;
-    }
-    .cta-button {
-        padding: 12px 25px;
         font-size: 1rem;
     }
-    .contact-button {
-        padding: 12px 20px;
-        font-size: 0.95rem;
+    .contact-buttons {
+        flex-direction: column;
+        gap: 15px;
     }
+    .contact-button {
+        width: 80%;
+        margin: 0 auto;
+    }
+}
 
     .itinerary-section, .why-us-section, .details-section, .contact-prompt {
         padding: 40px 15px;
