@@ -1,0 +1,321 @@
+/* --- ESTILOS GENERALES Y FUENTES --- */
+html {
+    box-sizing: border-box;
+}
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+:root {
+    --primary-color: #4A9A92;
+    --secondary-color: #D8A736;
+    --text-color: #3E2D23;
+    --light-text-color: #ffffff;
+    --background-light: #f8f9fa;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: var(--text-color);
+}
+
+section {
+    padding: 80px 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.cta-button {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 15px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50px;
+    transition: background-color 0.3s, transform 0.3s;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+}
+
+.cta-button:hover {
+    background-color: #c5932a;
+    transform: translateY(-3px);
+}
+
+/* --- WHATSAPP FLOAT --- */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.whatsapp-svg-icon {
+    width: 35px;
+    height: 35px;
+}
+
+/* --- HERO SECTION (STATIC) --- */
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('imagenes/hero-background.jpg') no-repeat center center/cover;
+    height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--light-text-color);
+    padding: 20px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.logo {
+    max-width: 250px;
+    margin-bottom: 30px;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin: 0 0 20px 0;
+}
+
+.slogan {
+    font-size: 1.3rem;
+    margin: 0 0 40px 0;
+    font-weight: 400;
+}
+
+
+/* --- WHY US / CAROUSEL --- */
+.why-us-carousel-section {
+    background-color: var(--background-light);
+}
+
+.carousel-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    padding-bottom: 20px; 
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.carousel-slide img {
+    width: 100%;
+    display: block;
+    height: 400px;
+    object-fit: cover;
+}
+
+.slide-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    color: white;
+    padding: 40px 20px 20px;
+    text-align: left;
+}
+.slide-caption h3 {
+    margin-top: 0;
+}
+
+/* --- TESTIMONIALS --- */
+.testimonials-section {
+    background-color: #ffffff;
+}
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.testimonial-card {
+    background-color: var(--background-light);
+    padding: 30px;
+    border-radius: 10px;
+    border-left: 5px solid var(--primary-color);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.testimonial-card .quote {
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+.testimonial-card .author {
+    font-weight: bold;
+    text-align: right;
+    color: var(--primary-color);
+}
+
+/* --- LUXURY PACKAGE --- */
+.luxury-package-section {
+    background-color: var(--text-color);
+    color: var(--light-text-color);
+}
+.luxury-package-section h2 {
+    color: var(--light-text-color);
+}
+.package-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+}
+.package-image-container img {
+    width: 100%;
+    border-radius: 10px;
+}
+.package-features {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+.package-features li {
+    margin-bottom: 10px;
+}
+.package-features i {
+    color: var(--secondary-color);
+    margin-right: 15px;
+    width: 20px;
+}
+.package-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 30px 0;
+}
+.package-price strong {
+    color: var(--secondary-color);
+}
+
+/* --- CONTACT SECTION --- */
+.contact-section-form {
+    background: #fdfdfd;
+}
+.contact-subtitle {
+    text-align: center;
+    max-width: 600px;
+    margin: -20px auto 40px;
+}
+.contact-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: auto;
+}
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-family: 'Montserrat', sans-serif;
+}
+.contact-info {
+    background: var(--background-light);
+    padding: 20px;
+    border-radius: 10px;
+}
+.contact-info p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.contact-info i {
+    color: var(--primary-color);
+    margin-right: 15px;
+    font-size: 1.2rem;
+}
+
+/* --- FOOTER --- */
+.site-footer {
+    background-color: #333;
+    color: #ccc;
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 0.9rem;
+}
+
+.site-footer p {
+    margin: 5px 0;
+}
+
+
+/* --- Media Queries --- */
+@media (max-width: 992px) {
+    .package-grid, .contact-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    h1, .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    h2 {
+        font-size: 2rem;
+    }
+    section {
+        padding: 60px 15px;
+    }
+    .slogan {
+        font-size: 1.1rem;
+    }
+    .carousel-slide {
+        flex-basis: 90%;
+    }
+}
