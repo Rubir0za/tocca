@@ -60,7 +60,7 @@ section {
 }
 
 .navbar-logo img {
-    height: 60px; /* Altura del logo en la barra aumentada (ajústala a tu gusto si es necesario) */
+    height: 80px; /* Altura del logo en la barra aumentada (ajústala a tu gusto si es necesario) */
     filter: drop-shadow(0 0 3px rgba(0,0,0,0.3));
 }
 
