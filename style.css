@@ -547,7 +547,7 @@ section.is-visible {
 
 @media screen and (max-width: 480px) {
   .luxury-package-section {
-    transform: scale(0.8);
+    /*transform: scale(0.8); */
     transform-origin: top center;
   }
 }
@@ -571,7 +571,7 @@ section.is-visible {
 
 @media screen and (max-width: 480px) {
   .luxury-package-section {
-    transform: scale(0.75);
+    /*transform: scale(0.75);*/
     transform-origin: top center;
   }
 }
