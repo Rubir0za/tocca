@@ -5,6 +5,11 @@
     --text-color: #3E2D23; /* similar al texto del logo */
     --light-text-color: #ffffff; /* Texto claro para fondos oscuros */
     --background-light: #f8f9fa; /* Un fondo casi blanco */
+    --accent-color: #E67E22; /* Un naranja vibrante para acentos */
+    --soft-gray: #f2f2f2; /* Gris suave para fondos de secciones */
+    --dark-green: #367c74; /* Un verde más oscuro para hover */
+    --icon-circle-bg: #4A9A92; /* Color de fondo para los círculos de íconos */
+    --icon-color: #ffffff; /* Color de los íconos */
 }
 
 html {
@@ -16,6 +21,8 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: var(--text-color);
     line-height: 1.6;
+    background-color: var(--soft-gray); /* Añade un color de fondo general */
+    padding-top: 80px; /* Espacio para la barra de navegación fija en la parte superior */
 }
 
 h1, h2 {
@@ -24,88 +31,239 @@ h1, h2 {
 
 h2 {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     margin-bottom: 40px;
-    color: var(--text-color); /* Asegura que el color del título sea el correcto */
+    color: var(--primary-color);
 }
 
 section {
     padding: 80px 20px;
-    transform: translateY(20px); /* Ligeramente desplazadas */
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Transición para la animación */
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-section.is-visible {
+/* --- TOP NAVIGATION BAR --- */
+.top-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px; /* Altura de la barra de navegación aumentada */
+    background-color: var(--secondary-color); /* ¡Cambiado! Ahora usa el color secundario */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px; /* Padding original de la barra */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+.navbar-logo img {
+    height: 105px; /* Altura del logo en la barra aumentada (ajústala a tu gusto si es necesario) */
+    filter: drop-shadow(0 0 3px rgba(0,0,0,0.3));
+}
+
+.navbar-icons {
+    display: flex;
+    gap: 15px;
+    padding-right: 25px; /* Más padding a la derecha */
+}
+
+/* Los otros íconos (búsqueda, corazón, teléfono) ahora están ocultos por defecto */
+.icon-button {
+    display: none;
+}
+
+.menu-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: var(--text-color);
+    color: var(--light-text-color);
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: 1px solid var(--text-color);
+}
+
+.menu-toggle:hover {
+    background-color: var(--text-color);
+    transform: translateY(-2px);
+}
+
+/* --- OVERLAY MENU (MENÚ DE SUPERPOSICIÓN) --- */
+.overlay-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.overlay-menu.open {
     opacity: 1;
-    transform: translateY(0);
+    visibility: visible;
 }
 
+.overlay-menu ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.overlay-menu ul li {
+    margin-bottom: 20px;
+}
+
+.overlay-menu ul li a {
+    color: var(--light-text-color);
+    font-size: 2.5rem;
+    padding: 10px 0;
+    display: block;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+    font-family: 'Playfair Display', serif;
+}
+
+.overlay-menu ul li a:hover {
+    color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+.close-button {
+    position: absolute;
+    top: 20px;
+    right: 30px; /* Mantiene la X del menú overlay alineada con el padding de la navbar */
+    font-size: 4rem;
+    color: var(--light-text-color);
+    text-decoration: none;
+    cursor: pointer;
+    z-index: 1001;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover {
+    color: var(--secondary-color);
+}
 
 /* --- HERO SECTION (LA PANTALLA DE INICIO) --- */
 .hero-section {
     height: 100vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('imagenes/header.jpg'); /* Asegúrate de que 'header_coast.jpg' sea el nombre correcto de tu imagen */
-    background-size: cover;
-    background-position: center;
+    position: relative;
+    overflow: hidden;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: var(--light-text-color);
 }
 
+.hero-slideshow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+}
+
+.hero-slideshow .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    animation: fadeSlideshow 24s infinite;
+}
+
+.hero-slideshow .slide:nth-child(1) { animation-delay: 0s; }
+.hero-slideshow .slide:nth-child(2) { animation-delay: 8s; }
+.hero-slideshow .slide:nth-child(3) { animation-delay: 16s; }
+
+@keyframes fadeSlideshow {
+    0% { opacity: 0; }
+    8% { opacity: 1; }
+    25% { opacity: 1; }
+    33% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+}
+
 .hero-content {
-    max-width: 800px;
+    position: relative;
+    z-index: 3;
+    max-width: 750px;
     padding: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
 }
 
 .logo {
-    width: 160px;
-    height: auto;
+    width: 300px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
 }
 
-@media (min-width: 768px) {
-    .logo {
-        width: 220px;
-    }
+.slogan-hero-content {
+    font-size: 1.5rem;
+    margin-top: 15px;
+    margin-bottom: 40px;
+    font-weight: 500;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
 }
 
 .hero-content h1 {
-    font-size: 3.5rem;
-    margin: 0;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.5); /* Sombra sutil para el título */
-}
-
-.slogan {
-    font-size: 1.2rem;
-    margin-top: 10px;
-    margin-bottom: 30px;
-    font-weight: 400;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.4); /* Sombra sutil para el eslogan */
+    font-size: 4rem;
+    margin: 10px 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
 }
 
 .cta-button {
     background-color: var(--secondary-color);
     color: var(--text-color);
-    padding: 15px 30px;
+    padding: 18px 35px;
     text-decoration: none;
     font-weight: bold;
-    border-radius: 5px;
-    font-size: 1.1rem;
+    border-radius: 8px;
+    font-size: 1.2rem;
     transition: all 0.3s ease;
-    display: inline-block; /* Asegura que el padding funcione correctamente */
-    box-shadow: 0 3px 8px rgba(0,0,0,0.2); /* Sombra ligera por defecto */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    border: none; 
 }
+
 
 .cta-button:hover {
-    background-color: #ffd04b;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.3); /* Sombra más grande al pasar el ratón */
-}
-
-.cta-button.small-button { /* Estilo para botones más pequeños en las fechas */
-    padding: 10px 20px;
-    font-size: 0.9rem;
+    background-color: var(--accent-color);
+    color: var(--light-text-color);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
 }
 
 /* --- SECCIÓN DE CONTACTO POST-HERO --- */
@@ -113,28 +271,33 @@ section.is-visible {
     background-color: var(--primary-color);
     color: var(--light-text-color);
     text-align: center;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 1000px;
 }
 
 .contact-prompt h2 {
     color: var(--light-text-color);
+    margin-bottom: 20px;
 }
 
 .contact-buttons {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 25px;
     flex-wrap: wrap;
     margin-top: 30px;
 }
 
 .contact-button {
-    padding: 15px 25px;
+    padding: 18px 30px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 8px;
     font-weight: bold;
     transition: all 0.3s ease;
     border: 2px solid var(--secondary-color);
-    box-shadow: 0 3px 8px rgba(0,0,0,0.2); /* Sombra ligera por defecto */
+    font-size: 1.1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .contact-button.whatsapp {
@@ -147,156 +310,237 @@ section.is-visible {
     border-color: var(--light-text-color);
 }
 
-.contact-button:hover {
+.contact-button.whatsapp:hover {
+    background-color: var(--accent-color);
+    color: var(--light-text-color);
     transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.3); /* Sombra más grande al pasar el ratón */
+}
+
+.contact-button.email:hover {
+    background-color: var(--light-text-color);
+    color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+
+/* --- SECCIÓN "ITINERARIO" --- */
+.itinerary-section {
+    background-color: var(--soft-gray);
+    padding: 60px 20px;
+    border-radius: 10px;
+    max-width: 1200px;
+    margin: 20px auto;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.itinerary-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.itinerary-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.itinerary-text {
+    text-align: left;
+    max-width: 700px;
+}
+
+.itinerary-text h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.itinerary-text ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.itinerary-text ul li {
+    background-color: #eaf7f6;
+    margin-bottom: 10px;
+    padding: 12px 15px;
+    border-left: 4px solid var(--primary-color);
+    border-radius: 5px;
+    font-size: 1.05rem;
+}
+
+@media (min-width: 992px) {
+    .itinerary-content {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+
+    .itinerary-image {
+        flex: 1;
+        max-width: 45%;
+    }
+
+    .itinerary-text {
+        flex: 1;
+        max-width: 50%;
+    }
 }
 
 
 /* --- SECCIÓN "¿POR QUÉ TOCCA AMALFI?" --- */
 .why-us-section {
-    background-color: var(--background-light);
-    text-align: center;
-}
-
-.summary-text {
-    max-width: 700px;
-    margin: 0 auto;
-    font-size: 1.1rem;
-    line-height: 1.8;
-}
-
-/* --- SECCIÓN "INCLUIDO EN EL TOUR" --- */
-.included-section {
     background-color: #ffffff;
-}
-
-.included-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.included-item {
     text-align: center;
-    background-color: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1); /* Sombra para el item incluido */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición para la sombra y el movimiento */
+    padding: 60px 20px;
+    border-radius: 10px;
+    max-width: 1200px;
+    margin: 20px auto;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
-.included-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* Sombra más grande al pasar el ratón */
+.why-us-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
 }
 
-.included-item img {
+.why-us-image {
+    flex: 1;
+    max-width: 100%;
+}
+
+.why-us-image img {
     width: 100%;
-    height: 200px;
+    height: 300px;
     object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.included-item h3 {
-    margin: 20px 0 10px 0;
+.why-us-text {
+    flex: 1;
+    text-align: left;
+    max-width: 700px;
+}
+
+.why-us-text h2 {
+    text-align: left;
+    margin-top: 0;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.why-us-text p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+@media (min-width: 992px) {
+    .why-us-content {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+
+    .why-us-image {
+        max-width: 45%;
+        order: 1;
+    }
+
+    .why-us-text {
+        max-width: 50%;
+        order: 2;
+    }
+}
+
+
+/* --- SECCIÓN "DETALLES DEL TOUR (INCLUIDO/NO INCLUIDO)" --- */
+.details-section {
+    background-color: var(--soft-gray);
+    padding: 60px 20px;
+    border-radius: 10px;
+    max-width: 1200px;
+    margin: 20px auto;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.details-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.section-column {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.section-column h3 {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.section-column.included h3 {
+    color: var(--primary-color);
+}
+
+.section-column.not-included h3 {
+    color: var(--accent-color);
+}
+
+.check-list, .cross-list {
+    list-style: none;
+    padding: 0;
+    font-size: 1.05rem;
+}
+
+.check-list li, .cross-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.check-list .icon {
     color: var(--primary-color);
     font-size: 1.4rem;
-}
-
-.included-item p {
-    padding: 0 20px 20px 20px;
-    margin: 0;
-    font-size: 0.95rem;
-    color: #555;
-}
-
-/* --- SECCIÓN "FECHAS DISPONIBLES" --- */
-.available-dates-section {
-    background-color: var(--background-light);
-    text-align: center;
-}
-
-.date-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    max-width: 900px;
-    margin: 40px auto 0;
-}
-
-.date-item {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1); /* Sombra para el item de fecha */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición para la sombra y el movimiento */
-}
-
-.date-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* Sombra más grande al pasar el ratón */
-}
-
-.date-item h3 {
-    color: var(--primary-color);
-    margin-top: 0;
-    font-size: 1.5rem;
-}
-
-.date-item p {
-    font-size: 1.1rem;
-    margin-bottom: 25px;
-    color: #555;
-}
-
-/* --- SECCIÓN "REFERENCIAS" --- */
-.references-section {
-    background-color: var(--primary-color);
-    color: var(--light-text-color);
-    text-align: center;
-}
-
-.references-section h2 {
-    color: var(--light-text-color);
-}
-
-.reference-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    max-width: 1000px;
-    margin: 40px auto 0;
-}
-
-.reference-item {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border-radius: 8px;
-    backdrop-filter: blur(5px); /* Efecto de desenfoque ligero */
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15); /* Sombra para el item de referencia */
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Transición para la sombra, el fondo y el movimiento */
-}
-
-.reference-item:hover {
-    transform: translateY(-5px);
-    background-color: rgba(255, 255, 255, 0.18); /* Ligeramente más opaco al pasar el ratón */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3); /* Sombra más grande al pasar el ratón */
-}
-
-.reference-item .quote {
-    font-size: 1.1rem;
-    font-style: italic;
-    margin-bottom: 15px;
-    line-height: 1.7;
-}
-
-.reference-item .author {
+    margin-right: 15px;
     font-weight: bold;
-    font-size: 0.95rem;
-    opacity: 0.8;
+}
+
+.cross-list .icon {
+    color: var(--accent-color);
+    font-size: 1.4rem;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+
+@media (min-width: 768px) {
+    .details-grid {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .section-column {
+        flex: 1;
+    }
+
+    .section-column.included {
+        margin-right: 20px;
+    }
 }
 
 
@@ -306,63 +550,114 @@ section.is-visible {
     color: var(--light-text-color);
     text-align: center;
     padding: 30px 20px;
-    font-size: 0.9rem;
-}
-
-.site-footer p {
-    margin: 5px 0;
+    margin-top: 40px;
 }
 
 
 /* --- Media Queries para Responsividad --- */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 2.5rem;
+    body {
+        padding-top: 60px;
     }
-    h2 {
+    .top-navbar {
+        height: 70px;
+        padding: 0 20px;
+    }
+    .navbar-logo img {
+        height: 100px;
+    }
+    .navbar-icons {
+        padding-right: 15px;
+    }
+    .menu-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 1.3rem;
+    }
+    .overlay-menu ul li a {
         font-size: 2rem;
     }
-    section {
-        padding: 60px 15px;
+    .close-button {
+        top: 15px;
+        right: 20px;
+        font-size: 3rem;
     }
-    .hero-content h1 {
+    h1 {
         font-size: 2.8rem;
     }
-    .slogan {
-        font-size: 1.1rem;
+    h2 {
+        font-size: 2.2rem;
+    }
+    .slogan-hero-content {
+        font-size: 1.2rem;
     }
     .cta-button {
         padding: 12px 25px;
         font-size: 1rem;
     }
-    .contact-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
     .contact-button {
-        width: 80%; /* Ajuste para que los botones de contacto sean más anchos en móviles */
-        max-width: 300px;
+        padding: 12px 20px;
+        font-size: 0.95rem;
     }
-    .summary-text {
-        font-size: 1.rem;
+    .itinerary-section, .why-us-section, .details-section, .contact-prompt {
+        padding: 40px 15px;
+        margin: 15px auto;
     }
-    .included-grid, .date-grid, .reference-grid {
-        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    .itinerary-text h3 {
+        font-size: 1.8rem;
+    }
+    .section-column h3 {
+        font-size: 1.7rem;
     }
 }
 
 @media (max-width: 480px) {
-    .hero-content h1 {
-        font-size: 2rem;
+    body {
+        padding-top: 60px;
     }
-    .slogan {
-        font-size: 1rem;
+    .top-navbar {
+        height: 60px;
+        padding: 0 10px;
     }
-    .cta-button {
-        padding: 10px 20px;
-        font-size: 0.9rem;
+    .navbar-logo img {
+        height: 78px;
     }
-    h2 {
-        font-size: 1.8rem;
+    .navbar-icons {
+        padding-right: 0px;
     }
+    .menu-toggle {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
+    }
+    .close-button {
+        top: 10px;
+        right: 10px;
+        font-size: 2.2rem;
+    }
+
+  position: relative;
+  z-index: 3;
+  margin-top: 20px;
 }
+
+.hero-content.repositioned {
+    position: absolute;
+    top: 40px;
+    right: 50px;
+    max-width: 350px;
+    text-align: right;
+    background-color: rgba(0, 0, 0, 0.35);
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 3;
+}
+
+.hero-button-centered {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
