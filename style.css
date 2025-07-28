@@ -1,12 +1,12 @@
 /* --- ESTILOS GENERALES Y VARIABLES --- */
 :root {
-    --primary-color: #4A9A92; /* verde del logo (las olas) */
-    --secondary-color: #D8A736; /* más cálido y más cercano al logo */
-    --text-color: #3E2D23; /* similar al texto del logo */
-    --light-text-color: #ffffff; /* Texto claro para fondos oscuros */
-    --background-light: #f8f9fa; /* Un fondo casi blanco */
-    --soft-gray: #f2f2f2; /* Gris suave para fondos de secciones */
-    --dark-green: #367c74; /* Un verde más oscuro para hover */
+    --primary-color: #4A9A92;
+    --secondary-color: #D8A736;
+    --text-color: #3E2D23;
+    --light-text-color: #ffffff;
+    --background-light: #f8f9fa;
+    --soft-gray: #f2f2f2;
+    --dark-green: #367c74;
 }
 
 html {
@@ -18,7 +18,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: var(--text-color);
     line-height: 1.6;
-    background-color: var(--background-light); 
+    background-color: var(--soft-gray); /* Fondo general gris suave */
 }
 
 h1, h2, h3 {
@@ -60,17 +60,15 @@ section.is-visible {
     transform: translateY(-3px);
 }
 
-/* --- HERO SECTION (DEL PRIMER DISEÑO) --- */
+/* --- HERO SECTION --- */
 .hero-section {
-    /* Asegúrate de que la ruta a la imagen de fondo sea correcta */
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('imagenes/hero-background.jpg') no-repeat center center/cover;
-    height: 100vh;
+    height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: var(--light-text-color);
-    /* La animación de scroll no se aplica al hero */
     opacity: 1;
     transform: translateY(0);
 }
@@ -96,16 +94,16 @@ section.is-visible {
     font-weight: 400;
 }
 
-
-/* --- SECCIÓN WHY US (NUEVA) --- */
+/* --- WHY US SECTION (CORREGIDO) --- */
 .why-us-section {
-    background-color: #ffffff;
+    background-color: #ffffff; /* Fondo blanco para que destaque */
+    padding: 60px 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.why-us-container {
     max-width: 950px;
-    margin: -60px auto 40px auto; /* Solapa ligeramente con el hero */
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    position: relative;
-    z-index: 10;
+    margin: 0 auto;
 }
 
 .why-us-section h2 {
@@ -116,35 +114,34 @@ section.is-visible {
     text-align: center;
     font-size: 1.2rem;
     color: #555;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
 }
 
-.why-us-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 30px;
-    margin-bottom: 30px;
+.why-us-content {
+    text-align: center;
+    margin-bottom: 50px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.why-us-grid.offerings {
+.offerings-grid {
+    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 50px;
+    margin-bottom: 40px;
 }
 
-.why-us-column h3 {
+.offering-column h3 {
     color: var(--text-color);
     font-size: 1.8rem;
     margin-bottom: 15px;
     border-bottom: 2px solid var(--secondary-color);
     padding-bottom: 10px;
     display: inline-block;
-}
-
-.why-us-column p {
-    margin-bottom: 15px;
 }
 
 .experiences-list {
@@ -163,7 +160,6 @@ section.is-visible {
 .experiences-list li span {
     font-size: 1.5rem;
     margin-right: 15px;
-    line-height: 1;
     color: var(--primary-color);
 }
 
@@ -179,7 +175,7 @@ section.is-visible {
 
 /* --- ITINERARY SECTION --- */
 .itinerary-section {
-    background-color: var(--soft-gray);
+    background-color: var(--background-light); /* Fondo claro para alternar */
 }
 
 .itinerary-content {
@@ -230,7 +226,7 @@ section.is-visible {
 
 /* --- DETAILS SECTION --- */
 .details-section {
-    background-color: #ffffff;
+    background-color: #ffffff; /* Fondo blanco */
 }
 
 .details-grid {
@@ -336,14 +332,11 @@ section.is-visible {
     h2 {
         font-size: 2rem;
     }
-    section, .why-us-section {
+    section {
         padding: 60px 15px;
     }
     .slogan {
         font-size: 1.1rem;
-    }
-    .why-us-section {
-        margin: -40px auto 30px auto;
     }
     .contact-buttons {
         flex-direction: column;
