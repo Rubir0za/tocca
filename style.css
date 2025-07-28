@@ -1,4 +1,4 @@
-/* --- ESTILOS GENERALES Y VARIABLES --- */
+/* --- GENERAL STYLES & VARIABLES --- */
 :root {
     --primary-color: #4A9A92;
     --secondary-color: #D8A736;
@@ -18,7 +18,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: var(--text-color);
     line-height: 1.6;
-    background-color: var(--soft-gray); /* Fondo general gris suave */
+    background-color: var(--soft-gray); /* Overall background color */
 }
 
 h1, h2, h3 {
@@ -60,7 +60,7 @@ section.is-visible {
     transform: translateY(-3px);
 }
 
-/* --- HERO SECTION --- */
+/* --- HERO SECTION (STATIC) --- */
 .hero-section {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('imagenes/hero-background.jpg') no-repeat center center/cover;
     height: 90vh;
@@ -94,16 +94,17 @@ section.is-visible {
     font-weight: 400;
 }
 
-/* --- WHY US SECTION (CORREGIDO) --- */
+/* --- WHY US SECTION --- */
 .why-us-section {
-    background-color: #ffffff; /* Fondo blanco para que destaque */
-    padding: 60px 20px;
-    border-bottom: 1px solid #e0e0e0;
+    background-color: #ffffff;
+    padding-top: 60px;
+    padding-bottom: 60px;
 }
 
 .why-us-container {
     max-width: 950px;
     margin: 0 auto;
+    text-align: center;
 }
 
 .why-us-section h2 {
@@ -111,21 +112,17 @@ section.is-visible {
 }
 
 .intro-text {
-    text-align: center;
     font-size: 1.2rem;
     color: #555;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
 }
 
-.why-us-content {
-    text-align: center;
-    margin-bottom: 50px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+.why-us-main-text {
+    margin-bottom: 40px;
+    text-align: left;
 }
 
 .offerings-grid {
@@ -133,11 +130,12 @@ section.is-visible {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 50px;
     margin-bottom: 40px;
+    text-align: left;
 }
 
 .offering-column h3 {
     color: var(--text-color);
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     margin-bottom: 15px;
     border-bottom: 2px solid var(--secondary-color);
     padding-bottom: 10px;
@@ -151,8 +149,8 @@ section.is-visible {
 }
 
 .experiences-list li {
-    font-size: 1.05rem;
-    margin-bottom: 15px;
+    font-size: 1rem;
+    margin-bottom: 12px;
     display: flex;
     align-items: center;
 }
@@ -164,18 +162,16 @@ section.is-visible {
 }
 
 .final-cta {
-    text-align: center;
     font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: bold;
-    margin-top: 40px;
+    margin-top: 30px;
     color: var(--text-color);
 }
 
-
 /* --- ITINERARY SECTION --- */
 .itinerary-section {
-    background-color: var(--background-light); /* Fondo claro para alternar */
+    background-color: var(--background-light);
 }
 
 .itinerary-content {
@@ -226,7 +222,7 @@ section.is-visible {
 
 /* --- DETAILS SECTION --- */
 .details-section {
-    background-color: #ffffff; /* Fondo blanco */
+    background-color: #ffffff;
 }
 
 .details-grid {
@@ -322,7 +318,6 @@ section.is-visible {
 .site-footer p {
     margin: 5px 0;
 }
-
 
 /* --- Media Queries --- */
 @media (max-width: 768px) {
