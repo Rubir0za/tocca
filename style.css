@@ -18,7 +18,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: var(--text-color);
     line-height: 1.6;
-    background-color: var(--soft-gray); /* Overall background color */
+    background-color: var(--soft-gray);
 }
 
 h1, h2, h3 {
@@ -29,7 +29,8 @@ h1, h2, h3 {
 h2 {
     font-size: 2.5rem;
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
+    margin-top: 0;
 }
 
 section {
@@ -94,84 +95,55 @@ section.is-visible {
     font-weight: 400;
 }
 
-/* --- WHY US SECTION --- */
-.why-us-section {
-    background-color: #ffffff;
-    padding-top: 60px;
-    padding-bottom: 60px;
-}
-
-.why-us-container {
-    max-width: 950px;
+/* --- NEW SECTIONS STYLING --- */
+.section-content {
+    max-width: 800px;
     margin: 0 auto;
     text-align: center;
 }
 
-.why-us-section h2 {
-    color: var(--primary-color);
+.section-content p {
+    font-size: 1.1rem;
+    margin-bottom: 1em;
 }
 
-.intro-text {
-    font-size: 1.2rem;
-    color: #555;
-    margin-bottom: 30px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+.why-us-section, .belief-section {
+    background-color: #ffffff;
 }
 
-.why-us-main-text {
-    margin-bottom: 40px;
-    text-align: left;
+.offer-section {
+    background-color: var(--background-light);
 }
 
-.offerings-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 50px;
-    margin-bottom: 40px;
-    text-align: left;
-}
-
-.offering-column h3 {
-    color: var(--text-color);
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    border-bottom: 2px solid var(--secondary-color);
-    padding-bottom: 10px;
-    display: inline-block;
-}
-
-.experiences-list {
+.offer-section .experiences-list {
     list-style: none;
     padding-left: 0;
-    margin-top: 20px;
+    margin-top: 30px;
+    display: inline-block;
+    text-align: left;
 }
 
-.experiences-list li {
-    font-size: 1rem;
-    margin-bottom: 12px;
+.offer-section .experiences-list li {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
     display: flex;
     align-items: center;
 }
 
-.experiences-list li span {
-    font-size: 1.5rem;
-    margin-right: 15px;
+.offer-section .experiences-list li:last-child {
+    margin-bottom: 0;
+}
+
+.belief-section em {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
     color: var(--primary-color);
 }
 
-.final-cta {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    font-weight: bold;
-    margin-top: 30px;
-    color: var(--text-color);
-}
 
 /* --- ITINERARY SECTION --- */
 .itinerary-section {
-    background-color: var(--background-light);
+    background-color: var(--background-light); /* Alternating color */
 }
 
 .itinerary-content {
@@ -222,7 +194,7 @@ section.is-visible {
 
 /* --- DETAILS SECTION --- */
 .details-section {
-    background-color: #ffffff;
+    background-color: #ffffff; /* Alternating color */
 }
 
 .details-grid {
