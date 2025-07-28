@@ -50,7 +50,7 @@ section {
     left: 0;
     width: 100%;
     height: 80px; /* Altura de la barra de navegación aumentada */
-    background-color: var(--secondary-color); /* ¡Cambiado! Ahora usa el color secundario */
+    background-color: var(--secondary-color); /* Cambiado a color secundario */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -60,7 +60,7 @@ section {
 }
 
 .navbar-logo img {
-    height: 105px; /* Altura del logo en la barra aumentada (ajústala a tu gusto si es necesario) */
+    height: 60px; /* Altura del logo en la barra aumentada */
     filter: drop-shadow(0 0 3px rgba(0,0,0,0.3));
 }
 
@@ -255,9 +255,7 @@ section {
     font-size: 1.2rem;
     transition: all 0.3s ease;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    border: none; 
 }
-
 
 .cta-button:hover {
     background-color: var(--accent-color);
@@ -557,14 +555,14 @@ section {
 /* --- Media Queries para Responsividad --- */
 @media (max-width: 768px) {
     body {
-        padding-top: 60px;
+        padding-top: 70px;
     }
     .top-navbar {
         height: 70px;
         padding: 0 20px;
     }
     .navbar-logo img {
-        height: 100px;
+        height: 50px;
     }
     .navbar-icons {
         padding-right: 15px;
@@ -617,47 +615,36 @@ section {
     }
     .top-navbar {
         height: 60px;
-        padding: 0 10px;
+        padding: 0 10px; /* Ajustado para dar más espacio lateral */
     }
     .navbar-logo img {
-        height: 78px;
+        height: 55px; /* Ajustado a un tamaño que quepa bien en la navbar de 60px */
     }
     .navbar-icons {
         padding-right: 0px;
     }
     .menu-toggle {
-        width: 36px;
+        width: 36px; /* Ajustado el tamaño del botón */
         height: 36px;
-        font-size: 1.1rem;
+        font-size: 1.1rem; /* Ajustado el tamaño del icono de hamburguesa */
     }
     .close-button {
         top: 10px;
-        right: 10px;
+        right: 10px; /* Ajustado para la posición de la X */
         font-size: 2.2rem;
     }
-
-  position: relative;
-  z-index: 3;
-  margin-top: 20px;
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    .slogan-hero-content {
+        font-size: 1rem;
+    }
+    .contact-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .contact-button {
+        width: 80%;
+        margin: 0 auto;
+    }
 }
-
-.hero-content.repositioned {
-    position: absolute;
-    top: 40px;
-    right: 50px;
-    max-width: 350px;
-    text-align: right;
-    background-color: rgba(0, 0, 0, 0.35);
-    padding: 20px;
-    border-radius: 10px;
-    z-index: 3;
-}
-
-.hero-button-centered {
-    position: absolute;
-    bottom: 80px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 5;
-}
-
