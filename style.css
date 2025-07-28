@@ -176,9 +176,9 @@ section.is-visible {
 }
 
 
-/* --- SECCIÓN WHY US CAROUSEL --- */
-.why-us-carousel-section {
-    background-color: var(--light-text-color); /* O el color que desees */
+/* --- SECCIÓN WHY US (IMAGENES ESTÁTICAS) --- */
+.why-us-carousel-section { /* Se mantiene el nombre para no romper el HTML existente, pero ahora contiene imágenes estáticas */
+    background-color: var(--light-text-color);
     text-align: center;
 }
 
@@ -214,46 +214,40 @@ section.is-visible {
     margin-bottom: 20px;
 }
 
-.why-us-carousel-block {
-    flex: 1;
-    min-width: 300px;
-    max-width: 500px;
-    position: relative;
-    overflow: hidden;
+/* ESTILOS PARA LA CUADRÍCULA DE IMÁGENES (UNA ABAJO DE LA OTRA) */
+.why-us-image-grid {
+    flex: 1; /* Permite que ocupe espacio disponible, similar al bloque de texto */
+    min-width: 300px; /* Ancho mínimo para que no se vea muy pequeño */
+    max-width: 500px; /* Ancho máximo, para que se vea bien al lado del texto */
+    display: grid;
+    grid-template-columns: 1fr; /* Una sola columna para que las imágenes se apilen */
+    grid-template-rows: repeat(2, 1fr); /* Dos filas, una para cada imagen */
+    gap: 15px; /* Espacio entre las imágenes */
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    background-color: #f0f0f0; /* Fondo si la imagen tarda en cargar */
-    display: flex; /* Para centrar la imagen dentro */
-    justify-content: center;
-    align-items: center;
+    overflow: hidden; /* Asegura que las imágenes respeten el border-radius */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* Sombra consistente */
+    height: 400px; /* Altura fija para el contenedor de la cuadrícula, ajusta si es necesario */
 }
 
-.carousel-container {
+.why-us-image-grid img {
     width: 100%;
-    height: 100%; /* Ajusta la altura del contenedor del carrusel */
-    position: relative;
-    overflow: hidden; /* Asegura que solo se vea un item a la vez */
+    height: 100%; /* Las imágenes llenarán su celda en la cuadrícula */
+    object-fit: cover; /* Cubre el área, manteniendo la relación de aspecto (recortará si es necesario) */
+    display: block; /* Elimina cualquier espacio extra debajo de la imagen */
+    border-radius: 8px; /* Aplica el mismo border-radius a las imágenes individuales */
 }
 
-.carousel-item {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
+/* MEDIA QUERIES para la cuadrícula en pantallas más pequeñas */
+@media (max-width: 768px) {
+    .why-us-image-grid {
+        height: 350px; /* Altura ajustada para tabletas */
+    }
 }
 
-.carousel-item.active {
-    opacity: 1;
-}
-
-.carousel-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Cubre el área manteniendo la relación de aspecto */
-    display: block; /* Elimina espacio extra debajo de la imagen */
+@media (max-width: 480px) {
+    .why-us-image-grid {
+        height: 300px; /* Altura ajustada para móviles */
+    }
 }
 
 /* --- SECCIÓN TESTIMONIOS --- */
@@ -622,7 +616,7 @@ section.is-visible {
     }
 
     .why-us-text-block,
-    .why-us-carousel-block,
+    .why-us-image-grid, /* Afecta al nuevo bloque de imágenes */
     .testimonial-card,
     .inclusion-card,
     .contact-form-container,
@@ -688,26 +682,16 @@ section.is-visible {
         font-size: 1.2rem;
         margin-bottom: 20px;
     }
-
-    /* Comentado: Estas reglas causaban problemas de zoom, manejar con ajustes de fuente/padding */
+    
+    /* Las siguientes reglas de transform: scale() para luxury-package-section fueron comentadas/removidas previamente */
     /*
     .luxury-package-section {
       transform: scale(0.8);
       transform-origin: top center;
     }
-    */
-    /*
     .luxury-package-section {
       transform: scale(0.75);
       transform-origin: top center;
-    }
-    */
-
-    /* Ajuste para el body en móviles si hay desbordamiento horizontal */
-    /* Considera si esto es realmente necesario o si es síntoma de otros desbordamientos de contenido */
-    /*
-    body {
-        overflow-x: visible;
     }
     */
 
@@ -722,16 +706,16 @@ section.is-visible {
     }
 }
 
-/* Ajustes finales de responsividad para el carrusel de WHY US */
+/* Ajustes finales de responsividad para la sección WHY US (ahora con imágenes estáticas) */
 @media (max-width: 768px) {
-    .why-us-carousel-block {
-        height: 300px; /* Altura fija para el carrusel en móviles */
+    .why-us-image-grid {
+        height: 350px; /* Altura ajustada para tabletas */
     }
 }
 
 @media (max-width: 480px) {
-    .why-us-carousel-block {
-        height: 250px; /* Un poco más pequeña en móviles muy pequeños */
+    .why-us-image-grid {
+        height: 300px; /* Un poco más pequeña en móviles muy pequeños */
     }
 }
 
@@ -743,10 +727,10 @@ section.is-visible {
     bottom: 40px;
     right: 40px;
     background-color: #25D366;
-    color: #FFF;
+    color: #FFF; /* Color para el icono o texto si fuera de fuente, aquí no afecta al SVG directamente */
     border-radius: 50px;
     text-align: center;
-    font-size: 30px;
+    font-size: 30px; /* Esto es para iconos de fuente, no afecta al SVG */
     box-shadow: 2px 2px 3px #999;
     z-index: 1000; /* Asegura que esté por encima de otros elementos */
     display: flex;
@@ -759,7 +743,8 @@ section.is-visible {
 .whatsapp-float .whatsapp-svg-icon {
     width: 35px; /* Ajusta el tamaño del SVG */
     height: 35px;
-    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(285deg) brightness(100%) contrast(100%); /* Hace el SVG blanco */
+    /* La línea 'filter' fue eliminada aquí para evitar la mancha gris */
+    display: block; /* Asegura que el SVG se comporte como un bloque */
 }
 
 .whatsapp-float:hover {
