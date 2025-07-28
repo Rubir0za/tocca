@@ -1,15 +1,12 @@
-/* --- ESTILOS GENERALES Y FUENTES --- */
+/* --- ESTILOS GENERALES Y VARIABLES --- */
 :root {
     --primary-color: #4A9A92; /* verde del logo (las olas) */
     --secondary-color: #D8A736; /* más cálido y más cercano al logo */
     --text-color: #3E2D23; /* similar al texto del logo */
     --light-text-color: #ffffff; /* Texto claro para fondos oscuros */
     --background-light: #f8f9fa; /* Un fondo casi blanco */
-    --accent-color: #E67E22; /* Un naranja vibrante para acentos */
     --soft-gray: #f2f2f2; /* Gris suave para fondos de secciones */
     --dark-green: #367c74; /* Un verde más oscuro para hover */
-    --icon-circle-bg: #4A9A92; /* Color de fondo para los círculos de íconos */
-    --icon-color: #ffffff; /* Color de los íconos */
 }
 
 html {
@@ -21,643 +18,339 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: var(--text-color);
     line-height: 1.6;
-    background-color: var(--soft-gray); /* Añade un color de fondo general */
-    padding-top: 80px; /* Espacio para la barra de navegación fija en la parte superior */
+    background-color: var(--background-light); 
 }
 
-h1, h2 {
+h1, h2, h3 {
     font-family: 'Playfair Display', serif;
+    font-weight: 700;
 }
 
 h2 {
+    font-size: 2.5rem;
     text-align: center;
-    font-size: 2.8rem;
-    margin-bottom: 40px;
-    color: var(--primary-color);
+    margin-bottom: 50px;
 }
 
 section {
     padding: 80px 20px;
-    background-color: #ffffff;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-}
-
-/* --- TOP NAVIGATION BAR --- */
-.top-navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 80px; /* Altura de la barra de navegación aumentada */
-    background-color: var(--secondary-color); /* ¡Cambiado! Ahora usa el color secundario */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 30px; /* Padding original de la barra */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    z-index: 1000;
-}
-
-.navbar-logo img {
-    height: 105px; /* Altura del logo en la barra aumentada (ajústala a tu gusto si es necesario) */
-    filter: drop-shadow(0 0 3px rgba(0,0,0,0.3));
-}
-
-.navbar-icons {
-    display: flex;
-    gap: 15px;
-    padding-right: 25px; /* Más padding a la derecha */
-}
-
-/* Los otros íconos (búsqueda, corazón, teléfono) ahora están ocultos por defecto */
-.icon-button {
-    display: none;
-}
-
-.menu-toggle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background-color: var(--text-color);
-    color: var(--light-text-color);
-    font-size: 1.5rem;
-    text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    border: 1px solid var(--text-color);
-}
-
-.menu-toggle:hover {
-    background-color: var(--text-color);
-    transform: translateY(-2px);
-}
-
-/* --- OVERLAY MENU (MENÚ DE SUPERPOSICIÓN) --- */
-.overlay-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    z-index: 999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-.overlay-menu.open {
+section.is-visible {
     opacity: 1;
-    visibility: visible;
-}
-
-.overlay-menu ul {
-    list-style: none;
-    padding: 0;
-    text-align: center;
-}
-
-.overlay-menu ul li {
-    margin-bottom: 20px;
-}
-
-.overlay-menu ul li a {
-    color: var(--light-text-color);
-    font-size: 2.5rem;
-    padding: 10px 0;
-    display: block;
-    text-decoration: none;
-    transition: color 0.3s ease, transform 0.3s ease;
-    font-family: 'Playfair Display', serif;
-}
-
-.overlay-menu ul li a:hover {
-    color: var(--secondary-color);
-    transform: scale(1.05);
-}
-
-.close-button {
-    position: absolute;
-    top: 20px;
-    right: 30px; /* Mantiene la X del menú overlay alineada con el padding de la navbar */
-    font-size: 4rem;
-    color: var(--light-text-color);
-    text-decoration: none;
-    cursor: pointer;
-    z-index: 1001;
-    transition: color 0.3s ease;
-}
-
-.close-button:hover {
-    color: var(--secondary-color);
-}
-
-/* --- HERO SECTION (LA PANTALLA DE INICIO) --- */
-.hero-section {
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: var(--light-text-color);
-}
-
-.hero-slideshow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    display: flex;
-}
-
-.hero-slideshow .slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    animation: fadeSlideshow 24s infinite;
-}
-
-.hero-slideshow .slide:nth-child(1) { animation-delay: 0s; }
-.hero-slideshow .slide:nth-child(2) { animation-delay: 8s; }
-.hero-slideshow .slide:nth-child(3) { animation-delay: 16s; }
-
-@keyframes fadeSlideshow {
-    0% { opacity: 0; }
-    8% { opacity: 1; }
-    25% { opacity: 1; }
-    33% { opacity: 0; }
-    100% { opacity: 0; }
-}
-
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 2;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 3;
-    max-width: 750px;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-}
-
-.logo {
-    width: 300px;
-    margin-bottom: 20px;
-    filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
-}
-
-.slogan-hero-content {
-    font-size: 1.5rem;
-    margin-top: 15px;
-    margin-bottom: 40px;
-    font-weight: 500;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
-}
-
-.hero-content h1 {
-    font-size: 4rem;
-    margin: 10px 0;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    transform: translateY(0);
 }
 
 .cta-button {
     background-color: var(--secondary-color);
     color: var(--text-color);
-    padding: 18px 35px;
+    padding: 15px 30px;
     text-decoration: none;
     font-weight: bold;
-    border-radius: 8px;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    border: none; 
+    border-radius: 50px;
+    transition: background-color 0.3s, transform 0.3s;
+    display: inline-block;
 }
-
 
 .cta-button:hover {
-    background-color: var(--accent-color);
-    color: var(--light-text-color);
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    background-color: #c5932a;
+    transform: translateY(-3px);
 }
 
-/* --- SECCIÓN DE CONTACTO POST-HERO --- */
-.contact-prompt {
-    background-color: var(--primary-color);
-    color: var(--light-text-color);
-    text-align: center;
-    border-radius: 10px;
-    margin: 20px auto;
-    max-width: 1000px;
-}
-
-.contact-prompt h2 {
-    color: var(--light-text-color);
-    margin-bottom: 20px;
-}
-
-.contact-buttons {
+/* --- HERO SECTION (DEL PRIMER DISEÑO) --- */
+.hero-section {
+    /* Asegúrate de que la ruta a la imagen de fondo sea correcta */
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('imagenes/hero-background.jpg') no-repeat center center/cover;
+    height: 100vh;
     display: flex;
     justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
-    margin-top: 30px;
+    align-items: center;
+    text-align: center;
+    color: var(--light-text-color);
+    /* La animación de scroll no se aplica al hero */
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.contact-button {
-    padding: 18px 30px;
-    text-decoration: none;
-    border-radius: 8px;
+.hero-content {
+    max-width: 800px;
+    padding: 20px;
+}
+
+.logo {
+    max-width: 250px;
+    margin-bottom: 30px;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin: 0;
+}
+
+.slogan {
+    font-size: 1.3rem;
+    margin: 20px 0 40px;
+    font-weight: 400;
+}
+
+
+/* --- SECCIÓN WHY US (NUEVA) --- */
+.why-us-section {
+    background-color: #ffffff;
+    max-width: 950px;
+    margin: -60px auto 40px auto; /* Solapa ligeramente con el hero */
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 10;
+}
+
+.why-us-section h2 {
+    color: var(--primary-color);
+}
+
+.intro-text {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 50px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.why-us-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.why-us-grid.offerings {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 50px;
+}
+
+.why-us-column h3 {
+    color: var(--text-color);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.why-us-column p {
+    margin-bottom: 15px;
+}
+
+.experiences-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 20px;
+}
+
+.experiences-list li {
+    font-size: 1.05rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.experiences-list li span {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    line-height: 1;
+    color: var(--primary-color);
+}
+
+.final-cta {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
     font-weight: bold;
-    transition: all 0.3s ease;
-    border: 2px solid var(--secondary-color);
-    font-size: 1.1rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-.contact-button.whatsapp {
-    background-color: var(--secondary-color);
+    margin-top: 40px;
     color: var(--text-color);
 }
-.contact-button.email {
-    background-color: transparent;
-    color: var(--light-text-color);
-    border-color: var(--light-text-color);
-}
-
-.contact-button.whatsapp:hover {
-    background-color: var(--accent-color);
-    color: var(--light-text-color);
-    transform: translateY(-3px);
-}
-
-.contact-button.email:hover {
-    background-color: var(--light-text-color);
-    color: var(--primary-color);
-    transform: translateY(-3px);
-}
 
 
-/* --- SECCIÓN "ITINERARIO" --- */
+/* --- ITINERARY SECTION --- */
 .itinerary-section {
     background-color: var(--soft-gray);
-    padding: 60px 20px;
-    border-radius: 10px;
-    max-width: 1200px;
-    margin: 20px auto;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
 .itinerary-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .itinerary-image {
-    max-width: 100%;
+    width: 100%;
     height: auto;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.itinerary-text {
-    text-align: left;
-    max-width: 700px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
 
 .itinerary-text h3 {
-    color: var(--primary-color);
     font-size: 2rem;
     margin-bottom: 20px;
 }
 
 .itinerary-text ul {
     list-style: none;
-    padding: 0;
-    margin-top: 20px;
+    padding-left: 0;
 }
 
 .itinerary-text ul li {
-    background-color: #eaf7f6;
-    margin-bottom: 10px;
-    padding: 12px 15px;
-    border-left: 4px solid var(--primary-color);
-    border-radius: 5px;
-    font-size: 1.05rem;
-}
-
-@media (min-width: 992px) {
-    .itinerary-content {
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: flex-start;
-    }
-
-    .itinerary-image {
-        flex: 1;
-        max-width: 45%;
-    }
-
-    .itinerary-text {
-        flex: 1;
-        max-width: 50%;
-    }
-}
-
-
-/* --- SECCIÓN "¿POR QUÉ TOCCA AMALFI?" --- */
-.why-us-section {
-    background-color: #ffffff;
-    text-align: center;
-    padding: 60px 20px;
-    border-radius: 10px;
-    max-width: 1200px;
-    margin: 20px auto;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-}
-
-.why-us-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-}
-
-.why-us-image {
-    flex: 1;
-    max-width: 100%;
-}
-
-.why-us-image img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.why-us-text {
-    flex: 1;
-    text-align: left;
-    max-width: 700px;
-}
-
-.why-us-text h2 {
-    text-align: left;
-    margin-top: 0;
-    font-size: 2.5rem;
-    color: var(--primary-color);
-}
-
-.why-us-text p {
-    font-size: 1.1rem;
     margin-bottom: 15px;
-    color: var(--text-color);
+    padding-left: 25px;
+    position: relative;
 }
 
-@media (min-width: 992px) {
-    .why-us-content {
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: flex-start;
-    }
-
-    .why-us-image {
-        max-width: 45%;
-        order: 1;
-    }
-
-    .why-us-text {
-        max-width: 50%;
-        order: 2;
-    }
+.itinerary-text ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
 }
 
+.cta-button.small-button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    font-size: 0.95rem;
+}
 
-/* --- SECCIÓN "DETALLES DEL TOUR (INCLUIDO/NO INCLUIDO)" --- */
+/* --- DETAILS SECTION --- */
 .details-section {
-    background-color: var(--soft-gray);
-    padding: 60px 20px;
-    border-radius: 10px;
-    max-width: 1200px;
-    margin: 20px auto;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    background-color: #ffffff;
 }
 
 .details-grid {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px;
-}
-
-.section-column {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .section-column h3 {
-    text-align: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    margin-top: 0;
-    margin-bottom: 25px;
-}
-
-.section-column.included h3 {
-    color: var(--primary-color);
-}
-
-.section-column.not-included h3 {
-    color: var(--accent-color);
+    font-size: 1.8rem;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--secondary-color);
+    margin-bottom: 20px;
 }
 
 .check-list, .cross-list {
     list-style: none;
     padding: 0;
-    font-size: 1.05rem;
 }
 
 .check-list li, .cross-list li {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 15px;
-    line-height: 1.5;
+    margin-bottom: 10px;
 }
 
 .check-list .icon {
     color: var(--primary-color);
-    font-size: 1.4rem;
-    margin-right: 15px;
     font-weight: bold;
+    margin-right: 10px;
 }
 
 .cross-list .icon {
-    color: var(--accent-color);
-    font-size: 1.4rem;
-    margin-right: 15px;
+    color: #c0392b;
     font-weight: bold;
+    margin-right: 10px;
 }
 
-
-@media (min-width: 768px) {
-    .details-grid {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .section-column {
-        flex: 1;
-    }
-
-    .section-column.included {
-        margin-right: 20px;
-    }
+/* --- CONTACT PROMPT --- */
+.contact-prompt {
+    text-align: center;
+    background-color: var(--text-color);
+    color: var(--light-text-color);
 }
 
+.contact-prompt h2 {
+    color: #ffffff;
+}
+
+.contact-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.contact-button {
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.contact-button.whatsapp {
+    background-color: #25D366;
+    color: #ffffff;
+}
+.contact-button.whatsapp:hover {
+    background-color: #1EBE57;
+    transform: translateY(-3px);
+}
+
+.contact-button.email {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+.contact-button.email:hover {
+    background-color: #c5932a;
+    transform: translateY(-3px);
+}
 
 /* --- FOOTER --- */
 .site-footer {
-    background-color: var(--text-color);
-    color: var(--light-text-color);
+    background-color: #333;
+    color: #ccc;
     text-align: center;
     padding: 30px 20px;
-    margin-top: 40px;
+    font-size: 0.9rem;
+}
+
+.site-footer p {
+    margin: 5px 0;
 }
 
 
-/* --- Media Queries para Responsividad --- */
+/* --- Media Queries --- */
 @media (max-width: 768px) {
-    body {
-        padding-top: 60px;
-    }
-    .top-navbar {
-        height: 70px;
-        padding: 0 20px;
-    }
-    .navbar-logo img {
-        height: 100px;
-    }
-    .navbar-icons {
-        padding-right: 15px;
-    }
-    .menu-toggle {
-        width: 40px;
-        height: 40px;
-        font-size: 1.3rem;
-    }
-    .overlay-menu ul li a {
-        font-size: 2rem;
-    }
-    .close-button {
-        top: 15px;
-        right: 20px;
-        font-size: 3rem;
-    }
-    h1 {
-        font-size: 2.8rem;
+    h1, .hero-content h1 {
+        font-size: 2.5rem;
     }
     h2 {
-        font-size: 2.2rem;
+        font-size: 2rem;
     }
-    .slogan-hero-content {
-        font-size: 1.2rem;
+    section, .why-us-section {
+        padding: 60px 15px;
     }
-    .cta-button {
-        padding: 12px 25px;
-        font-size: 1rem;
-    }
-    .contact-button {
-        padding: 12px 20px;
-        font-size: 0.95rem;
-    }
-    .itinerary-section, .why-us-section, .details-section, .contact-prompt {
-        padding: 40px 15px;
-        margin: 15px auto;
-    }
-    .itinerary-text h3 {
-        font-size: 1.8rem;
-    }
-    .section-column h3 {
-        font-size: 1.7rem;
-    }
-}
-
-@media (max-width: 480px) {
-    body {
-        padding-top: 60px;
-    }
-    .top-navbar {
-        height: 60px;
-        padding: 0 10px;
-    }
-    .navbar-logo img {
-        height: 78px;
-    }
-    .navbar-icons {
-        padding-right: 0px;
-    }
-    .menu-toggle {
-        width: 36px;
-        height: 36px;
+    .slogan {
         font-size: 1.1rem;
     }
-    .close-button {
-        top: 10px;
-        right: 10px;
-        font-size: 2.2rem;
+    .why-us-section {
+        margin: -40px auto 30px auto;
     }
-
-  position: relative;
-  z-index: 3;
-  margin-top: 20px;
+    .contact-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    .contact-button {
+        width: 80%;
+        max-width: 300px;
+    }
 }
-
-.hero-content.repositioned {
-    position: absolute;
-    top: 40px;
-    right: 50px;
-    max-width: 350px;
-    text-align: right;
-    background-color: rgba(0, 0, 0, 0.35);
-    padding: 20px;
-    border-radius: 10px;
-    z-index: 3;
-}
-
-.hero-button-centered {
-    position: absolute;
-    bottom: 80px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 5;
-}
-
