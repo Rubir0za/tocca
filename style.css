@@ -692,11 +692,3 @@ section {
         font-size: 0.9rem; /* Eslogan más pequeño */
     }
 }
-.hero-button-centered {
-  position: absolute;
-  bottom: 80px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 5; /* Aumentamos de 3 a 5 */
-}
-
