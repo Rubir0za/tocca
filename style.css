@@ -70,13 +70,8 @@ section {
     padding-right: 25px; /* Más padding a la derecha */
 }
 
-/* Los otros íconos (búsqueda, corazón, teléfono) ahora están ocultos por defecto */
-.icon-button {
-    display: none;
-}
-
 .menu-toggle {
-    display: flex;
+    display: flex; /* Asegura que el botón de menú sea visible */
     justify-content: center;
     align-items: center;
     width: 45px;
@@ -163,11 +158,8 @@ section {
     height: 100vh;
     position: relative;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    /* Eliminamos flexbox para posicionar hero-content de forma absoluta */
+    display: block; /* O simplemente puedes quitar 'display: flex;' */
     color: var(--light-text-color);
 }
 
@@ -217,32 +209,40 @@ section {
 }
 
 .hero-content {
-    position: relative;
+    position: absolute; /* Cambiado a posicionamiento absoluto */
+    top: 100px; /* Ajusta este valor para que esté debajo de la navbar (80px + 20px de margen) */
+    right: 50px; /* Distancia desde el borde derecho */
     z-index: 3;
-    max-width: 750px;
+    max-width: 450px; /* Reducido para que quepa en la esquina */
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.5); /* Ligeramente más oscuro para mejor legibilidad */
     border-radius: 10px;
+    text-align: right; /* Alinea el texto a la derecha dentro del contenido */
 }
 
-.logo {
-    width: 300px;
+/* Ajustes específicos para el contenido dentro de .hero-content para alinear a la derecha */
+.hero-content .logo {
+    width: 300px; /* Mantener el tamaño del logo */
     margin-bottom: 20px;
     filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
-}
-
-.slogan-hero-content {
-    font-size: 1.5rem;
-    margin-top: 15px;
-    margin-bottom: 40px;
-    font-weight: 500;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    margin-left: auto; /* Empuja el logo a la derecha */
+    margin-right: 0;
 }
 
 .hero-content h1 {
     font-size: 4rem;
     margin: 10px 0;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    text-align: right; /* Alinea el título a la derecha */
+}
+
+.slogan-hero-content { /* Usé esta clase para tu eslogan en vez de .slogan */
+    font-size: 1.5rem;
+    margin-top: 15px;
+    margin-bottom: 40px;
+    font-weight: 500;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    text-align: right; /* Alinea el eslogan a la derecha */
 }
 
 .cta-button {
@@ -255,6 +255,9 @@ section {
     font-size: 1.2rem;
     transition: all 0.3s ease;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    display: inline-block; /* Asegura que los márgenes auto funcionen si es necesario, aunque text-align: right lo alinea */
+    margin-left: auto; /* Empuja el botón a la derecha */
+    margin-right: 0;
 }
 
 .cta-button:hover {
@@ -607,6 +610,34 @@ section {
     .section-column h3 {
         font-size: 1.7rem;
     }
+
+    /* Vuelvo a centrar el hero-content para tablets/móviles grandes */
+    .hero-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center; /* Alinea el texto en el centro */
+    }
+    .hero-content {
+        position: relative; /* Vuelve a ser relativo */
+        top: auto;
+        right: auto;
+        max-width: 90%; /* Ocupa más ancho en móvil */
+        padding: 15px;
+        text-align: center; /* Centra el contenido */
+    }
+    .hero-content .logo {
+        margin-left: auto;
+        margin-right: auto; /* Centra el logo */
+    }
+    .hero-content h1,
+    .slogan-hero-content,
+    .hero-content .cta-button {
+        text-align: center; /* Centra el texto y el botón */
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 @media (max-width: 480px) {
@@ -615,22 +646,22 @@ section {
     }
     .top-navbar {
         height: 60px;
-        padding: 0 10px; /* Ajustado para dar más espacio lateral */
+        padding: 0 10px;
     }
     .navbar-logo img {
-        height: 55px; /* Ajustado a un tamaño que quepa bien en la navbar de 60px */
+        height: 55px;
     }
     .navbar-icons {
         padding-right: 0px;
     }
     .menu-toggle {
-        width: 36px; /* Ajustado el tamaño del botón */
+        width: 36px;
         height: 36px;
-        font-size: 1.1rem; /* Ajustado el tamaño del icono de hamburguesa */
+        font-size: 1.1rem;
     }
     .close-button {
         top: 10px;
-        right: 10px; /* Ajustado para la posición de la X */
+        right: 10px;
         font-size: 2.2rem;
     }
     .hero-content h1 {
@@ -647,4 +678,5 @@ section {
         width: 80%;
         margin: 0 auto;
     }
+    /* El hero-content ya se ajusta en la media query de 768px, que también aplica aquí */
 }
