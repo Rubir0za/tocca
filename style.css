@@ -176,7 +176,7 @@ section.is-visible {
 }
 
 
-/* --- SECCIÓN WHY US (IMAGENES ESTÁTICAS) --- */
+/* --- SECCIÓN WHY US (IMAGENES ESTÁTICAS - AHORA MÁS COMPACTAS) --- */
 .why-us-carousel-section { /* Se mantiene el nombre para no romper el HTML existente, pero ahora contiene imágenes estáticas */
     background-color: var(--light-text-color);
     text-align: center;
@@ -214,39 +214,62 @@ section.is-visible {
     margin-bottom: 20px;
 }
 
-/* ESTILOS PARA LA CUADRÍCULA DE IMÁGENES (UNA ABAJO DE LA OTRA) */
+/* ESTILOS PARA LA CUADRÍCULA DE IMÁGENES (MÁS COMPACTA) */
 .why-us-image-grid {
-    flex: 1; /* Permite que ocupe espacio disponible, similar al bloque de texto */
-    min-width: 300px; /* Ancho mínimo para que no se vea muy pequeño */
-    max-width: 500px; /* Ancho máximo, para que se vea bien al lado del texto */
+    flex: 0 1 450px; /* Flex-basis para que no crezca tanto y tenga un ancho preferido */
+    min-width: 280px; /* Ancho mínimo para que no se vea muy pequeño */
+    max-width: 450px; /* Hago el ancho máximo más pequeño para que sea más "cuadrito" */
     display: grid;
-    grid-template-columns: 1fr; /* Una sola columna para que las imágenes se apilen */
-    grid-template-rows: repeat(2, 1fr); /* Dos filas, una para cada imagen */
+    /* Por defecto, en móviles, las imágenes se apilan (una columna) */
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, auto); /* Cada fila toma el alto de su contenido (la imagen) */
     gap: 15px; /* Espacio entre las imágenes */
     border-radius: 8px;
-    overflow: hidden; /* Asegura que las imágenes respeten el border-radius */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* Sombra consistente */
-    height: 400px; /* Altura fija para el contenedor de la cuadrícula, ajusta si es necesario */
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    height: auto; /* Dejo que la altura se ajuste automáticamente */
+    align-content: start; /* Alinea el contenido al inicio del grid, útil si hay espacio extra */
 }
 
 .why-us-image-grid img {
     width: 100%;
-    height: 100%; /* Las imágenes llenarán su celda en la cuadrícula */
-    object-fit: cover; /* Cubre el área, manteniendo la relación de aspecto (recortará si es necesario) */
-    display: block; /* Elimina cualquier espacio extra debajo de la imagen */
-    border-radius: 8px; /* Aplica el mismo border-radius a las imágenes individuales */
+    height: 200px; /* Fijo una altura para cada "cuadrito" en desktop */
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
 }
 
-/* MEDIA QUERIES para la cuadrícula en pantallas más pequeñas */
+/* MEDIA QUERIES para la cuadrícula en pantallas más grandes: 2 imágenes AL LADO */
+@media (min-width: 769px) {
+    .why-us-image-grid {
+        grid-template-columns: repeat(2, 1fr); /* Dos columnas para que las imágenes estén lado a lado */
+        grid-template-rows: 1fr; /* Una sola fila */
+        gap: 10px; /* Un poco menos de espacio entre ellas */
+        height: 200px; /* La altura del contenedor será la altura de una imagen */
+        max-width: 450px; /* Mantener el ancho máximo para que no se extienda demasiado */
+        flex-basis: 450px; /* Establecer un ancho preferido fijo para este bloque */
+    }
+    .why-us-image-grid img {
+        height: 100%; /* Ajuste para que llenen la altura del contenedor en desktop */
+    }
+}
+
+/* MEDIA QUERIES para pantallas más pequeñas: apiladas pero más compactas */
 @media (max-width: 768px) {
     .why-us-image-grid {
-        height: 350px; /* Altura ajustada para tabletas */
+        height: auto; /* Vuelve a auto en pantallas pequeñas para que se apilen naturalmente */
+        grid-template-columns: 1fr; /* Asegura que se apilen */
+        grid-template-rows: repeat(2, auto);
+        max-width: 90%; /* Se expande un poco más para ocupar más espacio horizontal disponible */
+    }
+    .why-us-image-grid img {
+        height: 180px; /* Altura ligeramente menor para cada imagen en tablets/móviles */
     }
 }
 
 @media (max-width: 480px) {
-    .why-us-image-grid {
-        height: 300px; /* Altura ajustada para móviles */
+    .why-us-image-grid img {
+        height: 150px; /* Altura aún menor para móviles muy pequeños */
     }
 }
 
@@ -644,7 +667,7 @@ section.is-visible {
     }
 }
 
-@media screen and (max-width: 480px) {
+@media (max-width: 480px) {
     h1 {
         font-size: 2.2rem;
     }
@@ -683,18 +706,6 @@ section.is-visible {
         margin-bottom: 20px;
     }
     
-    /* Las siguientes reglas de transform: scale() para luxury-package-section fueron comentadas/removidas previamente */
-    /*
-    .luxury-package-section {
-      transform: scale(0.8);
-      transform-origin: top center;
-    }
-    .luxury-package-section {
-      transform: scale(0.75);
-      transform-origin: top center;
-    }
-    */
-
     .package-grid {
         padding: 10px;
         gap: 5px 10px;
@@ -703,19 +714,6 @@ section.is-visible {
     .package-price {
         margin-bottom: 15px;
         font-size: 1.1rem;
-    }
-}
-
-/* Ajustes finales de responsividad para la sección WHY US (ahora con imágenes estáticas) */
-@media (max-width: 768px) {
-    .why-us-image-grid {
-        height: 350px; /* Altura ajustada para tabletas */
-    }
-}
-
-@media (max-width: 480px) {
-    .why-us-image-grid {
-        height: 300px; /* Un poco más pequeña en móviles muy pequeños */
     }
 }
 
