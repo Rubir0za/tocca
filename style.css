@@ -652,3 +652,12 @@ section {
     border-radius: 10px;
     z-index: 3;
 }
+
+.hero-button-centered {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+}
+
