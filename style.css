@@ -7,13 +7,13 @@ html {
 }
 
 :root {
-    --primary-color: #4A9A92;
-    --secondary-color: #D8A736;
-    --text-color: #3E2D23;
-    --light-text-color: #ffffff;
-    --background-light: #f8f9fa;
-    --success-color: #28a745;
-    --danger-color: #dc3545;
+    --primary-color: #4A9A92; /* verde del logo (las olas) */
+    --secondary-color: #D8A736; /* más cálido y más cercano al logo */
+    --text-color: #3E2D23; /* similar al texto del logo */
+    --light-text-color: #ffffff; /* Texto claro para fondos oscuros */
+    --background-light: #f8f9fa; /* Un fondo casi blanco */
+    --success-color: #28a745; /* Color para mensajes de éxito */
+    --danger-color: #dc3545; /* Color para mensajes de error */
 }
 
 html {
@@ -25,7 +25,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: var(--text-color);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Evita el scroll horizontal general */
 }
 
 h1, h2, h3 {
@@ -36,14 +36,14 @@ h2 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 40px;
-    color: var(--text-color);
+    color: var(--text-color); /* Asegura que el color del título sea el correcto */
 }
 
 section {
     padding: 80px 20px;
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transform: translateY(20px); /* Ligeramente desplazadas */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Transición para la animación */
 }
 
 section.is-visible {
@@ -51,89 +51,9 @@ section.is-visible {
     transform: translateY(0);
 }
 
-/* --- WHATSAPP FLOAT BUTTON (CORREGIDO) --- */
-.whatsapp-float {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 20px;
-    right: 20px;
-    background-color: #25d366;
-    border-radius: 50px;
-    text-align: center;
-    box-shadow: 2px 2px 3px #999;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.3s ease-in-out;
-}
-.whatsapp-float:hover { transform: scale(1.1); }
-.whatsapp-svg-icon { 
-    width: 35px; /* Ajustado para mejor visibilidad */
-    height: 35px; 
-    /* Se eliminó el filtro que causaba el círculo morado */
-}
-
-/* --- TOP BAR Y MENÚ HAMBURGUESA (MÓVIL) --- */
-.top-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.95);
-    padding: 10px 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    z-index: 1000;
-    display: none;
-    justify-content: space-between;
-    align-items: center;
-}
-.hamburger-menu {
-    width: 30px;
-    height: 25px;
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    cursor: pointer;
-    z-index: 1001;
-}
-.hamburger-menu span {
-    display: block;
-    width: 100%;
-    height: 3px;
-    background-color: var(--text-color);
-    transition: all 0.3s ease-in-out;
-}
-.hamburger-menu.active span:nth-child(1) { transform: translateY(11px) rotate(45deg); }
-.hamburger-menu.active span:nth-child(2) { opacity: 0; }
-.hamburger-menu.active span:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
-
-.mobile-menu {
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.98);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: left 0.3s ease-in-out;
-    z-index: 998;
-}
-.mobile-menu.active { left: 0; }
-.mobile-menu nav ul { list-style: none; padding: 0; text-align: center; }
-.mobile-menu nav ul li { margin-bottom: 25px; }
-.mobile-menu nav ul li a { color: var(--text-color); text-decoration: none; font-size: 1.8rem; font-weight: 700; }
-
-/* --- HEADER / HERO SECTION --- */
-
-/* Hero completo */
 /* --- HERO SECTION (LA PANTALLA DE INICIO) --- */
 .hero-section {
-    height: 100vh;
+    height: 100vh; /* Ocupa el 100% de la altura del viewport */
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('imagenes/header.jpg');
     background-size: cover;
     background-position: center;
@@ -142,477 +62,765 @@ section.is-visible {
     align-items: center;
     text-align: center;
     color: var(--light-text-color);
+    overflow: hidden; /* Asegura que el contenido no se desborde visualmente */
 }
 
-/* Logo centrado y expansivo */
-.hero-full-logo-container {
-  width: 100%;
-  height: 80%; /* puedes ajustar a 100% si quieres que tape todo */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.hero-content {
+    max-width: 800px;
+    padding: 20px;
 }
 
-.hero-full-logo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.logo {
+    width: 160px;
+    height: auto;
 }
 
-/* Botón de llamada a la acción */
-.cta-button-container {
-  height: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Reglas para el logo en pantallas más grandes */
+@media (min-width: 768px) {
+    .logo {
+        width: 220px;
+    }
+}
+
+/* Estilos específicos para H1 dentro del Hero */
+.hero-content h1 {
+    font-size: 3rem; /* Tamaño para escritorio (ajustado para que quepa bien) */
+    margin: 0;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5); /* Sombra sutil para el título */
+}
+
+/* Estilos específicos para el eslogan dentro del Hero */
+.slogan {
+    font-size: 1.2rem; /* Tamaño para escritorio */
+    margin-top: 10px;
+    margin-bottom: 30px;
+    font-weight: 400;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.4); /* Sombra sutil para el eslogan */
 }
 
 .cta-button {
-  background-color: #f4c430; /* Color amarillo estilo Amalfi */
-  color: #000;
-  padding: 14px 28px;
-  font-size: 1rem;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: background 0.3s ease;
-
-  /* Eliminamos posibles reflejos o sombras */
-  box-shadow: none;
-  background-image: none;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 15px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
 }
 
-}
 .cta-button:hover {
-  background-color: #e0b000;
+    background-color: #e0b000; /* Un tono más oscuro de amarillo al pasar el ratón */
+    transform: translateY(-2px); /* Un ligero efecto de levantamiento */
+    box-shadow: 0 5px 12px rgba(0,0,0,0.3); /* Sombra más pronunciada */
 }
 
-/* Responsive — en móvil ajustamos proporción */
-@media (max-width: 768px) {
-  .hero-full-logo-container {
-    height: 70%;
-  }
-  .cta-button-container {
-    height: 30%;
-  }
-  .cta-button {
+.small-button {
+    padding: 10px 20px;
     font-size: 0.9rem;
-    padding: 12px 24px;
-  }
 }
 
 
-/* --- WHY US & AUTOMATIC CAROUSEL SECTION --- */
-.why-us-carousel-section {
+/* --- SECCIÓN CONTACT PROMPT (¿Listo para empezar?) --- */
+.contact-prompt {
+    text-align: center;
     background-color: var(--background-light);
 }
+
+.contact-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Permite que los botones se envuelvan en pantallas pequeñas */
+    margin-top: 30px;
+}
+
+.contact-button {
+    padding: 15px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.contact-button i {
+    font-size: 1.3rem;
+}
+
+.contact-button.whatsapp {
+    background-color: #25D366; /* Verde de WhatsApp */
+    color: var(--light-text-color);
+}
+
+.contact-button.whatsapp:hover {
+    background-color: #1DA851;
+    transform: translateY(-2px);
+}
+
+.contact-button.email {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+}
+
+.contact-button.email:hover {
+    background-color: #3d8079;
+    transform: translateY(-2px);
+}
+
+
+/* --- SECCIÓN WHY US CAROUSEL --- */
+.why-us-carousel-section {
+    background-color: var(--light-text-color); /* O el color que desees */
+    text-align: center;
+}
+
 .why-us-container {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    flex-wrap: wrap; /* Permite que los bloques se apilen en pantallas pequeñas */
     gap: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
+    margin-top: 40px;
+    justify-content: center;
+    align-items: flex-start; /* Alinea los ítems al inicio del contenedor flex */
 }
+
 .why-us-text-block {
-    flex: 1;
-    min-width: 300px;
+    flex: 1; /* Ocupa espacio disponible */
+    min-width: 300px; /* Asegura un ancho mínimo */
+    max-width: 500px;
+    text-align: left;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
+
 .why-us-text-block h3 {
-    font-size: 1.5rem;
     color: var(--primary-color);
-    margin-bottom: 5px;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
 }
+
 .why-us-text-block p {
-    margin-top: 0;
+    font-size: 1rem;
+    line-height: 1.7;
     margin-bottom: 20px;
 }
+
 .why-us-carousel-block {
-    flex: 1.5;
-    min-width: 320px;
-}
-.carousel-container {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
     position: relative;
-    height: 400px; /* Altura fija para el contenedor */
     overflow: hidden;
     border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    background-color: #f0f0f0; /* Fondo si la imagen tarda en cargar */
+    display: flex; /* Para centrar la imagen dentro */
+    justify-content: center;
+    align-items: center;
 }
+
+.carousel-container {
+    width: 100%;
+    height: 100%; /* Ajusta la altura del contenedor del carrusel */
+    position: relative;
+    overflow: hidden; /* Asegura que solo se vea un item a la vez */
+}
+
 .carousel-item {
+    width: 100%;
+    height: 100%;
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
     opacity: 0;
-    transition: opacity 1.5s ease-in-out;
+    transition: opacity 1s ease-in-out;
 }
+
 .carousel-item.active {
     opacity: 1;
 }
+
 .carousel-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-}
-.carousel-button {
-    display: none; /* Ocultamos los botones */
+    object-fit: cover; /* Cubre el área manteniendo la relación de aspecto */
+    display: block; /* Elimina espacio extra debajo de la imagen */
 }
 
-/* --- TESTIMONIALS SECTION --- */
+/* --- SECCIÓN TESTIMONIOS --- */
 .testimonials-section {
-    background-color: #fff;
+    background-color: var(--background-light);
+    text-align: center;
 }
+
 .testimonials-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
+    margin-top: 40px;
 }
+
 .testimonial-card {
-    flex: 1;
-    min-width: 300px;
-    max-width: 350px;
-    background-color: var(--background-light);
+    background-color: #fff;
     padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    flex: 1;
+    min-width: 280px;
+    max-width: 350px;
+    text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
 .testimonial-card p {
     font-style: italic;
+    margin-bottom: 20px;
     color: #555;
-    margin: 0 0 20px 0;
+    line-height: 1.6;
 }
+
 .testimonial-author {
-    display: flex;
-    align-items: center;
-}
-.author-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 15px;
-    border: 2px solid var(--primary-color);
-}
-.testimonial-author span {
-    font-weight: 700;
+    font-weight: bold;
     color: var(--text-color);
+    font-size: 1rem;
 }
 
 
-/* --- LUXURY PACKAGE SECTION --- */
+/* --- SECCIÓN LUXURY PACKAGE / LO QUE TE ESPERA --- */
 .luxury-package-section {
-    background-color: var(--background-light);
-}
-.package-price {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
     text-align: center;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary-color);
-    margin-bottom: 30px;
 }
+
+.luxury-package-section h2 {
+    color: var(--light-text-color);
+}
+
+.package-price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 50px;
+    color: var(--secondary-color);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
 .package-grid {
     display: grid;
-    grid-template-columns: auto 1fr !important;
-    gap: 10px 20px;
+    grid-template-columns: 80px 1fr; /* Una columna para el día, otra para la descripción */
+    gap: 15px 20px;
     max-width: 900px;
     margin: 0 auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-.grid-header {
-    font-weight: 700;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    color: var(--text-color);
-    padding-bottom: 10px;
-    border-bottom: 2px solid var(--primary-color);
-}
-.grid-cell {
-    padding: 15px 10px;
-    border-bottom: 1px solid #ddd;
-}
-.day-cell {
-    font-weight: 700;
-    color: var(--primary-color);
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    text-align: left;
 }
 
-/* --- UPCOMING DATES SECTION --- */
+.grid-header {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+}
+
+.grid-cell {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.grid-cell.day-cell {
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+/* Eliminar borde inferior de la última fila */
+.package-grid .grid-cell:nth-last-child(-n+2) {
+    border-bottom: none;
+}
+
+
+/* --- SECCIÓN FECHAS DISPONIBLES --- */
 .upcoming-dates-section {
-    background-color: #fff;
+    background-color: var(--background-light);
+    text-align: center;
 }
+
 .dates-table-container {
-    max-width: 900px;
-    margin: 0 auto;
-    overflow-x: auto;
+    overflow-x: auto; /* Permite desplazamiento horizontal en tablas grandes */
+    margin-top: 40px;
 }
+
 .dates-table {
     width: 100%;
     border-collapse: collapse;
-    text-align: left;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    overflow: hidden;
-}
-.dates-table th, .dates-table td {
-    padding: 15px 20px;
-}
-.dates-table thead {
-    background-color: var(--primary-color);
-    color: var(--light-text-color);
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-}
-.dates-table tbody tr {
+    max-width: 800px;
+    margin: 0 auto;
     background-color: #fff;
-    border-bottom: 1px solid #eee;
-}
-.dates-table tbody tr:last-child {
-    border-bottom: none;
-}
-.dates-table tbody tr:hover {
-    background-color: #f2f2f2;
-}
-.dates-table .filling-fast {
-    color: var(--danger-color);
-    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    border-radius: 8px;
+    overflow: hidden; /* Para que los bordes redondeados se apliquen bien */
 }
 
-/* --- INCLUSIONS SECTION --- */
-.inclusions-section {
-    background-color: var(--background-light);
+.dates-table th, .dates-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
 }
+
+.dates-table th {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.dates-table tr:last-child td {
+    border-bottom: none;
+}
+
+.dates-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.dates-table td.filling-fast {
+    font-weight: bold;
+    color: var(--danger-color);
+}
+
+
+/* --- SECCIÓN INCLUSIONES --- */
+.inclusions-section {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    text-align: center;
+}
+
+.inclusions-section h2 {
+    color: var(--light-text-color);
+}
+
 .inclusions-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 30px;
-    max-width: 1000px;
-    margin: 0 auto;
+    margin-top: 40px;
 }
+
 .inclusion-card {
-    flex: 1;
-    min-width: 300px;
-    max-width: 450px;
+    background-color: rgba(255, 255, 255, 0.95);
+    color: var(--text-color);
     padding: 30px;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    flex: 1;
+    min-width: 280px;
+    max-width: 400px;
+    text-align: left;
 }
+
 .inclusion-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
-    font-size: 1.8rem;
-    margin-top: 0;
-    margin-bottom: 20px;
+    gap: 10px;
 }
-.inclusion-card .included-icon { color: var(--success-color); margin-right: 15px; }
-.inclusion-card .not-included-icon { color: var(--danger-color); margin-right: 15px; }
+
 .inclusion-card ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
-.inclusion-card ul li {
-    padding: 8px 0;
-    border-bottom: 1px solid #e0e0e0;
-}
-.inclusion-card ul li:last-child {
-    border-bottom: none;
+
+.inclusion-card li {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-/* --- CONTACT SECTION --- */
-.contact-section {
-    background-color: #fff;
+.inclusion-card li:last-child {
+    margin-bottom: 0;
 }
+
+.included-icon {
+    color: var(--success-color);
+    font-size: 1.5rem;
+}
+
+.not-included-icon {
+    color: var(--danger-color);
+    font-size: 1.5rem;
+}
+
+
+/* --- SECCIÓN DE CONTACTO --- */
+.contact-section {
+    background-color: var(--background-light);
+    text-align: center;
+}
+
 .contact-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 40px;
-    max-width: 1000px;
-    margin: 0 auto;
-    align-items: flex-start;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 40px;
 }
+
 .contact-form-container {
-    flex: 1.5;
-    min-width: 300px;
-}
-.contact-info {
     flex: 1;
-    min-width: 280px;
-    background-color: var(--primary-color);
-    color: var(--light-text-color);
-    padding: 30px;
-    border-radius: 8px;
+    min-width: 300px;
+    max-width: 500px;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    text-align: left;
 }
-.contact-info h3 { font-size: 1.8rem; }
-.contact-info p { margin-bottom: 15px; }
-.contact-info i { margin-right: 10px; }
-.contact-form input, .contact-form textarea {
+
+.contact-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
     width: 100%;
     padding: 12px;
     margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-family: 'Montserrat', sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
 }
-.contact-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 700;
+
+.contact-form textarea {
+    resize: vertical;
 }
-.contact-form textarea { resize: vertical; min-height: 120px; }
+
+.contact-form .cta-button {
+    width: 100%;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.contact-info {
+    flex: 1;
+    min-width: 280px;
+    max-width: 400px;
+    background-color: #f0f0f0;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-info h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.contact-info p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-info i {
+    color: var(--secondary-color);
+    font-size: 1.4rem;
+}
+
 
 /* --- FOOTER --- */
 .site-footer {
     background-color: var(--text-color);
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--light-text-color);
     text-align: center;
     padding: 30px 20px;
     font-size: 0.9rem;
 }
-.site-footer p { margin: 5px 0; }
 
-/* --- RESPONSIVE DESIGN --- */
-@media (max-width: 992px) {
-    .top-bar { display: flex; }
-    .hamburger-menu { display: flex; }
-    .hero-section { padding-top: 80px; }
+.site-footer p {
+    margin: 5px 0;
 }
 
+
+/* --- Media Queries para Responsividad --- */
 @media (max-width: 768px) {
-    h2 { font-size: 2.2rem; }
-    section { padding: 60px 20px; }
-    .hero-content .logo { max-width: 450px; }
-    .carousel-container { height: 300px; }
-    .why-us-container { flex-direction: column; }
-    .package-grid { grid-template-columns: auto 1fr; }
-    .grid-header { display: none; }
-    .grid-cell { border-bottom: none; padding: 5px 0; }
-    .day-cell::after { content: ':'; margin-right: 8px; }
-    .package-grid .day-cell {
-        grid-column: 1 / -1;
-        font-size: 1.1rem;
-        background-color: #e9e9e9;
+    h1 {
+        font-size: 2.5rem; /* Ajuste global si es necesario, pero el hero-content h1 tiene prioridad */
+    }
+    h2 {
+        font-size: 2rem;
+    }
+    section {
+        padding: 60px 15px;
+    }
+
+    /* Ajustes específicos para el Hero en pantallas medianas */
+    .hero-content h1 {
+        font-size: 2.8rem; /* Tamaño para pantallas medianas */
+    }
+    .slogan {
+        font-size: 1.1rem; /* Tamaño para pantallas medianas */
+    }
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    .contact-buttons {
+        flex-direction: column; /* Apila los botones de contacto */
+        gap: 15px;
+    }
+    .contact-button {
+        width: 80%; /* Ajusta el ancho de los botones apilados */
+        margin: 0 auto;
+    }
+
+    .why-us-container,
+    .testimonials-container,
+    .inclusions-container,
+    .contact-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .why-us-text-block,
+    .why-us-carousel-block,
+    .testimonial-card,
+    .inclusion-card,
+    .contact-form-container,
+    .contact-info {
+        max-width: 90%; /* Ajusta el ancho máximo para evitar desbordamientos */
+        min-width: unset; /* Elimina el min-width para que se ajuste mejor */
+    }
+
+    .package-grid {
+        grid-template-columns: 1fr; /* Apila las columnas en móviles */
+        text-align: center;
+        padding: 20px;
+    }
+    .grid-header:first-of-type { /* Oculta "Día" para apilarlo */
+        display: none;
+    }
+    .grid-cell.day-cell {
+        margin-top: 15px; /* Espacio entre los días apilados */
+    }
+    .grid-cell {
+        border-bottom: none; /* Elimina bordes entre día y descripción */
+    }
+    .package-grid .grid-cell:nth-last-child(-n+1) { /* Ajusta para el nuevo orden */
+        border-bottom: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+    h2 {
+        font-size: 1.8rem;
+    }
+    section {
+        padding: 40px 10px;
+    }
+
+    /* Ajustes específicos para el Hero en pantallas muy pequeñas */
+    .hero-content h1 {
+        font-size: 2.2rem; /* Tamaño para pantallas muy pequeñas */
+    }
+    .slogan {
+        font-size: 1rem; /* Tamaño para pantallas muy pequeñas */
+    }
+    .cta-button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .logo {
+        width: 120px; /* Logo más pequeño en pantallas muy pequeñas */
+    }
+
+    .package-grid {
+        max-width: 100%;
         padding: 10px;
-        margin-top: 10px;
-        border-radius: 4px;
+        gap: 5px 10px;
+        box-shadow: none;
+    }
+
+    .package-price {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+
+    /* Comentado: Estas reglas causaban problemas de zoom, manejar con ajustes de fuente/padding */
+    /*
+    .luxury-package-section {
+      transform: scale(0.8);
+      transform-origin: top center;
+    }
+    */
+    /*
+    .luxury-package-section {
+      transform: scale(0.75);
+      transform-origin: top center;
+    }
+    */
+
+    /* Ajuste para el body en móviles si hay desbordamiento horizontal */
+    /* Considera si esto es realmente necesario o si es síntoma de otros desbordamientos de contenido */
+    /*
+    body {
+        overflow-x: visible;
+    }
+    */
+
+    .package-grid {
+        padding: 10px;
+        gap: 5px 10px;
+    }
+
+    .package-price {
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+    }
+}
+
+/* Ajustes finales de responsividad para el carrusel de WHY US */
+@media (max-width: 768px) {
+    .why-us-carousel-block {
+        height: 300px; /* Altura fija para el carrusel en móviles */
     }
 }
 
 @media (max-width: 480px) {
-    h2 { font-size: 1.8rem; }
-    section { padding: 40px 15px; }
-    .hero-content .logo { max-width: 300px; }
-    .cta-button { padding: 12px 25px; font-size: 1rem; }
-    .inclusion-card { padding: 20px; }
-}
-
-/* --- MOBILE LOGO FIXES --- */
-.logo-mobile { display: none; }
-@media (max-width: 992px) {
-    .logo-mobile {
-        display: flex;
-        align-items: center;
-        height: 40px;
-        width: 40px;
-        margin-right: auto;
+    .why-us-carousel-block {
+        height: 250px; /* Un poco más pequeña en móviles muy pequeños */
     }
-    .logo-mobile-img { height: 100%; width: auto; }
-}
-@media screen and (max-width: 480px) {
-  .package-grid {
-    max-width: 100%;
-    padding: 10px;
-    gap: 5px 10px;
-    box-shadow: none;
-  }
-
-  .package-price {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-  }
 }
 
-@media screen and (max-width: 480px) {
-  .luxury-package-section {
-    /*transform: scale(0.8); */
-    transform-origin: top center;
-  }
+/* WhatsApp Float Button */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25D366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-@media screen and (max-width: 480px) {
-  body {
-    overflow-x: visible;
-  }
-}
-@media screen and (max-width: 480px) {
-  .package-grid {
-    padding: 10px;
-    gap: 5px 10px;
-  }
-
-  .package-price {
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-  }
+.whatsapp-float .whatsapp-svg-icon {
+    width: 35px; /* Ajusta el tamaño del SVG */
+    height: 35px;
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(285deg) brightness(100%) contrast(100%); /* Hace el SVG blanco */
 }
 
-@media screen and (max-width: 480px) {
-  .luxury-package-section {
-    /*transform: scale(0.75);*/
-    transform-origin: top center;
-  }
+.whatsapp-float:hover {
+    transform: scale(1.1); /* Efecto de zoom al pasar el ratón */
+    box-shadow: 3px 3px 5px #999;
 }
 
-@media screen and (max-width: 480px) {
-  .package-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    max-width: 100%;
-    padding: 10px;
-  }
-
-  .day-cell {
-    font-weight: bold;
-    background-color: #f0f0f0;
-    padding: 8px;
-    text-align: right;
-    border-radius: 4px 0 0 4px;
-  }
-
-  .grid-cell {
-    padding: 8px;
-    text-align: left;
-    background-color: #ffffff;
-    border-radius: 0 4px 4px 0;
-  }
-}
+/* Media Query para ajustar el botón en pantallas pequeñas */
 @media (max-width: 768px) {
-  .package-grid {
-    grid-template-columns: auto 1fr;
-  }
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 25px;
+    }
+    .whatsapp-float .whatsapp-svg-icon {
+        width: 30px;
+        height: 30px;
+    }
+}
 
-  .grid-cell {
-    padding: 10px;
-    font-size: 0.9rem;
-  }
+/* Mobile Menu */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: -100%; /* Empieza fuera de pantalla */
+    width: 250px;
+    height: 100%;
+    background-color: var(--text-color); /* Color de fondo oscuro */
+    padding-top: 60px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+    transition: left 0.3s ease-in-out;
+    z-index: 999; /* Por debajo del botón de WhatsApp pero por encima del contenido */
+    display: none; /* Por defecto oculto, se muestra con JS */
+}
 
-  .day-cell {
-    font-weight: bold;
-    font-size: 1rem;
-    color: var(--primary-color);
-  }
+.mobile-menu.open {
+    left: 0; /* Se desliza hacia la vista */
+}
+
+.mobile-menu nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-menu nav li a {
+    display: block;
+    padding: 15px 20px;
+    color: var(--light-text-color);
+    text-decoration: none;
+    font-size: 1.1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    transition: background-color 0.3s ease;
+}
+
+.mobile-menu nav li a:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+.mobile-menu nav li:last-child a {
+    border-bottom: none;
 }
