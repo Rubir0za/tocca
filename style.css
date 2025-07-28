@@ -210,7 +210,7 @@ section {
 .hero-content {
     position: absolute;
     top: 100px; /* Navbar (80px) + 20px de margen */
-    right: 50px; /* Distancia desde el borde derecho */
+    right: 20px; /* Distancia desde el borde derecho: AJUSTADO para más a la derecha */
     z-index: 3;
     max-width: 450px; /* Ancho para pantallas grandes */
     padding: 20px;
@@ -219,14 +219,7 @@ section {
     text-align: right; /* Alinea todo el contenido de texto a la derecha */
 }
 
-/* Ajustes específicos para el contenido dentro de .hero-content para alinear a la derecha */
-.hero-content .logo {
-    width: 300px;
-    margin-bottom: 20px;
-    filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
-    margin-left: auto; /* Empuja el logo a la derecha si es un bloque */
-    margin-right: 0;
-}
+/* Se elimina la regla .hero-content .logo ya que el logo ya no está aquí */
 
 .hero-content h1 {
     font-size: 4rem;
@@ -254,8 +247,7 @@ section {
     font-size: 1.2rem;
     transition: all 0.3s ease;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    display: inline-block; /* Mantener como inline-block para que text-align del padre funcione */
-    /* Eliminar margin-left: auto y margin-right: 0; aquí, ya que no funcionan bien con inline-block */
+    display: inline-block;
 }
 
 .cta-button:hover {
@@ -612,28 +604,21 @@ section {
     /* Ajustes para hero-content en tablets/móviles grandes: Top-Right */
     .hero-section {
         display: block;
-        text-align: right; /* Asegura la alineación a la derecha de cualquier contenido de bloque */
+        text-align: right;
     }
     .hero-content {
         position: absolute;
         top: 85px; /* Navbar (70px) + 15px de margen */
-        right: 20px; /* Distancia desde el borde derecho */
+        right: 15px; /* Distancia desde el borde derecho: AJUSTADO para más a la derecha */
         max-width: 80%;
         padding: 15px;
-        text-align: right; /* Alinea todo el contenido de texto (incluyendo el botón) a la derecha */
+        text-align: right;
     }
-    .hero-content .logo {
-        margin-left: auto;
-        margin-right: 0;
-        width: 250px;
-    }
+    /* Se elimina la regla .hero-content .logo ya que el logo ya no está aquí */
     .hero-content h1,
     .slogan-hero-content {
         text-align: right;
     }
-    /* No se necesita una regla específica para .hero-content .cta-button,
-       ya que text-align: right en el padre .hero-content es suficiente
-       para el elemento inline-block .cta-button */
 }
 
 @media (max-width: 480px) {
@@ -677,17 +662,9 @@ section {
     /* Ajustes para hero-content en móviles pequeños: Top-Right */
     .hero-content {
         top: 75px; /* Navbar (60px) + 15px de margen */
-        right: 15px;
+        right: 10px; /* Distancia desde el borde derecho: AJUSTADO para más a la derecha */
         max-width: 70%;
         padding: 10px;
     }
-    .hero-content .logo {
-        width: 200px;
-    }
-    .hero-content h1 {
-        font-size: 1.8rem;
-    }
-    .slogan-hero-content {
-        font-size: 0.9rem;
-    }
+    /* Se elimina la regla .hero-content .logo ya que el logo ya no está aquí */
 }
