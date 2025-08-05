@@ -16,12 +16,33 @@
         <img src="imagenes/whatsapp-logo.svg" alt="WhatsApp" class="whatsapp-svg-icon">
     </a>
 
-    <header class="hero-section">
+    <header class="main-header">
+        <nav class="navbar">
+            <a href="#hero" class="nav-logo-container">
+                <img src="imagenes/tocca_amalfi.png" alt="Logo Tocca Amalfi" class="nav-logo">
+            </a>
+            <div class="nav-menu">
+                <a href="#why-tocca-amalfi" class="nav-link">¿Por qué Nosotros?</a>
+                <a href="#testimonials" class="nav-link">Opiniones</a>
+                <a href="#luxury-package" class="nav-link">Lo que te espera</a>
+                <a href="#upcoming-dates" class="nav-link">Fechas</a>
+                <a href="#inclusions" class="nav-link">Incluido</a>
+                <a href="#contact-section" class="nav-link">Contacto</a>
+            </div>
+            <button class="hamburger" aria-label="Abrir menú">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </nav>
+    </header>
+
+    <header id="hero" class="hero-section">
         <div class="hero-content">
             <img src="imagenes/tocca_amalfi.png" alt="Logo Tocca Amalfi" class="logo">
             <h1>Descubre la magia de la Costa Amalfitana. Sin prisas, a tu ritmo.</h1>
             <p class="slogan">Tu aventura en la costa comienza aquí.</p>
-            <a href="#available-dates" class="cta-button">Ver Fechas Disponibles</a>
+            <a href="#upcoming-dates" class="cta-button">Ver Fechas Disponibles</a>
         </div>
     </header>
 
@@ -197,37 +218,6 @@
         <p>Tu aventura en la Costa Amalfitana te espera.</p>
     </footer>
 
-    <div class="mobile-menu" id="mobile-menu">
-        <nav>
-            <ul>
-                <li><a href="#why-tocca-amalfi">¿Por Qué Nosotros?</a></li>
-                <li><a href="#testimonials">Opiniones</a></li>
-                <li><a href="#luxury-package">Lo que te espera</a></li>
-                <li><a href="#upcoming-dates">Fechas</a></li>
-                <li><a href="#inclusions">Incluido</a></li>
-                <li><a href="#contact-section">Contacto</a></li>
-            </ul>
-        </nav>
-    </div>
-
     <script src="script.js"></script>
-    <script>
-        // Animación de aparición de secciones al hacer scroll
-        document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('.animate-on-scroll');
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                    }
-                });
-            }, { threshold: 0.1 }); // Ajusta el threshold según cuánto de la sección debe ser visible
-
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-        });
-    </script>
 </body>
 </html>
