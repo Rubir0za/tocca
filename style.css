@@ -831,7 +831,7 @@ section.is-visible {
 }
 
 .nav-logo {
-    height: 45px;
+    height: 75px;
     width: auto;
 }
 
@@ -920,3 +920,4 @@ section.is-visible {
     .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 }
+
