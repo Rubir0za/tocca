@@ -822,7 +822,7 @@ section.is-visible {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 70px;
+    height: 90px;
 }
 
 .nav-logo-container {
@@ -920,4 +920,5 @@ section.is-visible {
     .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 }
+
 
