@@ -75,8 +75,9 @@ section.is-visible {
     padding-top: 5px;
 }
 
+/* --- TAMAÑO DEL LOGO AJUSTADO --- */
 .nav-logo {
-    height: 75px;
+    height: 65px; /* Aumentado desde 50px */
     width: auto;
 }
 
@@ -124,10 +125,10 @@ section.is-visible {
     transition: all 0.3s ease-in-out;
 }
 
-
+/* ... (El resto del CSS es el mismo que la versión anterior, ya que estaba correcto) ... */
 /* --- HERO SECTION CON VIDEO DE FONDO --- */
 .hero-section {
-    padding-top: 80px; /* Para compensar la barra de navegación fija */
+    padding-top: 80px;
     height: 100vh;
     position: relative;
     display: flex;
@@ -450,7 +451,7 @@ section.is-visible {
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 70px; /* altura de la barra de nav */
+        top: 85px; /* altura de la barra de nav */
         flex-direction: column;
         background-color: #fff;
         width: 100%;
