@@ -75,38 +75,33 @@ section.is-visible {
     padding-top: 5px;
 }
 
-/* --- TAMAÑO DEL LOGO AJUSTADO --- */
 .nav-logo {
-    height: 65px; /* Aumentado desde 50px */
+    height: 65px;
     width: auto;
 }
 
 .nav-menu {
     display: flex;
-    gap: 25px;
+    gap: 15px; /* Reducido para que quepan los botones */
 }
 
+/* --- ESTILO DE BOTÓN APLICADO A LOS ENLACES DE NAVEGACIÓN --- */
 .nav-link {
+    background-color: var(--secondary-color);
     color: var(--text-color);
     text-decoration: none;
     font-weight: bold;
-    padding: 5px 0;
-    position: relative;
+    border-radius: 5px;
+    padding: 10px 15px; /* Padding ajustado para la barra de navegación */
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
 }
 
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--primary-color);
-    transition: width 0.3s ease;
-}
-
-.nav-link:hover::after {
-    width: 100%;
+.nav-link:hover {
+    background-color: #c99a30; /* Un poco más oscuro al pasar el ratón */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
 .hamburger {
@@ -125,7 +120,7 @@ section.is-visible {
     transition: all 0.3s ease-in-out;
 }
 
-/* ... (El resto del CSS es el mismo que la versión anterior, ya que estaba correcto) ... */
+/* ... (El resto del CSS es exactamente el mismo que la versión anterior) ... */
 /* --- HERO SECTION CON VIDEO DE FONDO --- */
 .hero-section {
     padding-top: 80px;
@@ -447,17 +442,17 @@ section.is-visible {
 .back-to-home:hover { background-color: #3a7a72; }
 
 /* --- RESPONSIVE (CORREGIDO) --- */
-@media (max-width: 768px) {
+@media (max-width: 880px) { /* Ajustado para que el menú cambie a hamburguesa antes */
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 85px; /* altura de la barra de nav */
+        top: 85px; 
         flex-direction: column;
         background-color: #fff;
         width: 100%;
         text-align: center;
         transition: 0.3s;
-        gap: 0;
+        gap: 1px;
         box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
 
@@ -469,7 +464,13 @@ section.is-visible {
         padding: 20px;
         width: 100%;
         border-bottom: 1px solid #f0f0f0;
+        border-radius: 0;
+        box-shadow: none;
     }
+     .nav-link:hover {
+        transform: none;
+        box-shadow: none;
+     }
 
     .hamburger {
         display: block;
