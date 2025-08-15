@@ -82,16 +82,16 @@ section.is-visible {
 
 .nav-menu {
     display: flex;
-    gap: 20px; /* Espacio ajustado para el nuevo estilo */
+    gap: 20px;
 }
 
 /* --- NUEVO ESTILO ELEGANTE PARA ENLACES DE NAVEGACIÓN --- */
 .nav-link {
     color: var(--text-color);
-    background-color: transparent; /* Fondo transparente */
-    border: 2px solid var(--secondary-color); /* Borde dorado */
+    background-color: transparent;
+    border: 2px solid var(--secondary-color);
     border-radius: 5px;
-    padding: 8px 15px; /* Padding ajustado para el borde */
+    padding: 8px 15px;
     font-weight: bold;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -99,11 +99,10 @@ section.is-visible {
 }
 
 .nav-link:hover {
-    background-color: var(--secondary-color); /* Se rellena de color al pasar el ratón */
+    background-color: var(--secondary-color);
     color: var(--text-color);
-    transform: translateY(-2px); /* Ligero efecto de elevación */
+    transform: translateY(-2px);
 }
-
 
 .hamburger {
     display: none;
@@ -121,7 +120,6 @@ section.is-visible {
     transition: all 0.3s ease-in-out;
 }
 
-/* ... (El resto del CSS es exactamente el mismo que la versión anterior) ... */
 /* --- HERO SECTION CON VIDEO DE FONDO --- */
 .hero-section {
     padding-top: 80px;
@@ -162,7 +160,7 @@ section.is-visible {
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 900px;
     padding: 20px;
     position: relative;
     z-index: 1;
@@ -171,11 +169,16 @@ section.is-visible {
 .logo { width: 160px; }
 @media (min-width: 768px) { .logo { width: 220px; } }
 
+
+/* --- TIPOGRAFÍA DEL HERO ACTUALIZADA --- */
 .hero-content h1 {
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 3px;
     margin: 20px 0 10px;
-    font-weight: 400;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
 }
 
 .slogan {
@@ -198,6 +201,11 @@ section.is-visible {
 .why-us-carousel-section {
     background-color: #fff;
 }
+/* Alternar color de fondo para las secciones */
+.why-us-carousel-section:nth-of-type(even) {
+    background-color: var(--background-light);
+}
+
 
 .why-us-container {
     display: flex;
@@ -239,6 +247,19 @@ section.is-visible {
     grid-row: span 2;
     height: calc(100% - 7.5px);
 }
+
+/* === NUEVO ESTILO PARA LA LISTA DE OFERTAS === */
+.offer-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+.offer-list li {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
 
 /* --- SECCIÓN ITINERARIO --- */
 .luxury-package-section {
@@ -443,7 +464,7 @@ section.is-visible {
 .back-to-home:hover { background-color: #3a7a72; }
 
 /* --- RESPONSIVE --- */
-@media (max-width: 920px) { /* Ajustado para que el menú cambie a hamburguesa antes */
+@media (max-width: 920px) {
     .nav-menu {
         position: fixed;
         left: -100%;
@@ -461,7 +482,6 @@ section.is-visible {
         left: 0;
     }
 
-    /* En móvil, los enlaces vuelven a un estilo más simple */
     .nav-link {
         padding: 20px;
         width: 100%;
@@ -509,5 +529,10 @@ section.is-visible {
 
     .why-us-container {
         flex-direction: column;
+    }
+
+    /* Reverse image/text order on mobile for variety */
+    .why-us-carousel-section:nth-of-type(even) .why-us-container {
+        flex-direction: column-reverse;
     }
 }
