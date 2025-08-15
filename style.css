@@ -76,33 +76,34 @@ section.is-visible {
 }
 
 .nav-logo {
-    height: 65px;
+    height: 65px; 
     width: auto;
 }
 
 .nav-menu {
     display: flex;
-    gap: 15px; /* Reducido para que quepan los botones */
+    gap: 20px; /* Espacio ajustado para el nuevo estilo */
 }
 
-/* --- ESTILO DE BOTÓN APLICADO A LOS ENLACES DE NAVEGACIÓN --- */
+/* --- NUEVO ESTILO ELEGANTE PARA ENLACES DE NAVEGACIÓN --- */
 .nav-link {
-    background-color: var(--secondary-color);
     color: var(--text-color);
-    text-decoration: none;
-    font-weight: bold;
+    background-color: transparent; /* Fondo transparente */
+    border: 2px solid var(--secondary-color); /* Borde dorado */
     border-radius: 5px;
-    padding: 10px 15px; /* Padding ajustado para la barra de navegación */
+    padding: 8px 15px; /* Padding ajustado para el borde */
+    font-weight: bold;
+    text-decoration: none;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     text-align: center;
 }
 
 .nav-link:hover {
-    background-color: #c99a30; /* Un poco más oscuro al pasar el ratón */
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    background-color: var(--secondary-color); /* Se rellena de color al pasar el ratón */
+    color: var(--text-color);
+    transform: translateY(-2px); /* Ligero efecto de elevación */
 }
+
 
 .hamburger {
     display: none;
@@ -193,7 +194,7 @@ section.is-visible {
     transition: all 0.3s ease;
 }
 
-/* --- SECCIÓN WHY US (ESTILOS RESTAURADOS Y CORREGIDOS) --- */
+/* --- SECCIÓN WHY US --- */
 .why-us-carousel-section {
     background-color: #fff;
 }
@@ -302,7 +303,7 @@ section.is-visible {
 }
 .day-description p { margin: 0; font-size: 1rem; color: rgba(255, 255, 255, 0.9); }
 
-/* --- SECCIÓN FECHAS (ESTILOS RESTAURADOS) --- */
+/* --- SECCIÓN FECHAS --- */
 .upcoming-dates-section { background-color: var(--background-light); }
 .dates-container {
     display: flex;
@@ -336,7 +337,7 @@ section.is-visible {
 .status.few-spots { background-color: var(--warning-color); color: var(--text-color); }
 .status.sold-out { background-color: var(--danger-color); }
 
-/* --- SECCIÓN INCLUSIONES (ESTILOS RESTAURADOS) --- */
+/* --- SECCIÓN INCLUSIONES --- */
 .inclusions-section { background: #fff; }
 .inclusions-container {
     display: flex;
@@ -366,7 +367,7 @@ section.is-visible {
 .inclusions-container li { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
 .inclusions-container i { font-size: 1.2rem; }
 
-/* --- TESTIMONIOS (ESTILOS ORIGINALES) --- */
+/* --- TESTIMONIOS --- */
 .testimonials-section {
     background-color: var(--background-light);
 }
@@ -379,7 +380,7 @@ section.is-visible {
     box-shadow: 0 2px 10px rgba(0,0,0,0.07);
 }
 
-/* --- CONTACTO (ESTILOS ORIGINALES) --- */
+/* --- CONTACTO --- */
 .contact-us-section { text-align: center; background-color: var(--primary-color); color: #fff; }
 .contact-us-section h2 { color: #fff; }
 .contact-us-section p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px; }
@@ -441,8 +442,8 @@ section.is-visible {
 }
 .back-to-home:hover { background-color: #3a7a72; }
 
-/* --- RESPONSIVE (CORREGIDO) --- */
-@media (max-width: 880px) { /* Ajustado para que el menú cambie a hamburguesa antes */
+/* --- RESPONSIVE --- */
+@media (max-width: 920px) { /* Ajustado para que el menú cambie a hamburguesa antes */
     .nav-menu {
         position: fixed;
         left: -100%;
@@ -460,16 +461,19 @@ section.is-visible {
         left: 0;
     }
 
+    /* En móvil, los enlaces vuelven a un estilo más simple */
     .nav-link {
         padding: 20px;
         width: 100%;
+        border: none;
         border-bottom: 1px solid #f0f0f0;
         border-radius: 0;
         box-shadow: none;
     }
      .nav-link:hover {
+        background-color: var(--background-light);
+        color: var(--text-color);
         transform: none;
-        box-shadow: none;
      }
 
     .hamburger {
