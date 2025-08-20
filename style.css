@@ -57,14 +57,14 @@ section.is-visible {
     left: 0;
     width: 100%;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.8);
+    background: var(--primary-color);
     backdrop-filter: blur(10px);
     transition: background 0.3s ease;
 }
 
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 10px 20px;
     max-width: 1200px;
@@ -72,11 +72,12 @@ section.is-visible {
 }
 
 .nav-logo-container {
-    padding-top: 5px;
+    padding-top: 0;
+    margin-right: auto;
 }
 
 .nav-logo {
-    height: 65px; 
+    height: 85px; 
     width: auto;
 }
 
@@ -86,7 +87,7 @@ section.is-visible {
 }
 
 .nav-link {
-    color: var(--text-color);
+    color: var(--light-text-color);
     background-color: transparent;
     border: 2px solid var(--secondary-color);
     border-radius: 5px;
@@ -115,7 +116,7 @@ section.is-visible {
     width: 25px;
     height: 3px;
     margin: 5px auto;
-    background-color: var(--text-color);
+    background-color: var(--light-text-color);
     transition: all 0.3s ease-in-out;
 }
 
@@ -281,14 +282,14 @@ section.is-visible {
 
 .itinerary-day-row {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    background-size: cover;
-    background-position: center;
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     overflow: hidden;
     padding: 25px 30px;
-    text-align: left;
-    min-height: 150px;
+    text-align: center;
+    min-height: 100px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .itinerary-day-row:hover {
@@ -297,10 +298,10 @@ section.is-visible {
 }
 
 .day-title {
-    flex: 0 0 100px;
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
     font-family: 'Playfair Display', serif;
+    margin-bottom: 10px;
 }
 .day-title a {
     color: var(--light-text-color);
@@ -310,15 +311,17 @@ section.is-visible {
 .day-title a:hover { color: var(--secondary-color); }
 
 .day-description {
-    padding-left: 30px;
-    border-left: 2px solid var(--secondary-color);
+    padding-left: 0;
+    border-left: none;
+    text-align: center;
+    width: 100%;
 }
 .day-description h3 {
-    margin: 0 0 5px 0;
-    font-size: 1.4rem;
-    color: var(--light-text-color);
+    margin: 0;
+    font-size: 1.6rem;
+    color: var(--secondary-color);
 }
-.day-description p { margin: 0; font-size: 1rem; color: rgba(255, 255, 255, 0.9); }
+.day-description p { display: none; }
 
 /* --- SECCIÓN FECHAS --- */
 .upcoming-dates-section { background-color: var(--background-light); }
@@ -507,19 +510,16 @@ section.is-visible {
     .hamburger.active .bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
     }
-
+    
     .itinerary-day-row {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         text-align: center;
     }
-
-    .day-title { margin-bottom: 15px; }
-
+    
     .day-description {
         padding-left: 0;
         border-left: none;
-        text-align: center;
         width: 100%;
     }
 
@@ -531,21 +531,19 @@ section.is-visible {
         flex-direction: column-reverse;
     }
     
-    /* === AJUSTE PARA UPCOMING DATES EN MÓVIL === */
     .dates-container {
-        flex-wrap: nowrap; /* Evita que los elementos salten a la siguiente línea */
-        overflow-x: auto; /* Habilita el scroll horizontal */
-        justify-content: flex-start; /* Alinea las tarjetas a la izquierda */
-        padding: 20px; /* Añade espacio para que no se pegue a los bordes */
-        -ms-overflow-style: none;  /* Oculta la barra de scroll en IE y Edge */
-        scrollbar-width: none;  /* Oculta la barra de scroll en Firefox */
+        flex-wrap: wrap; 
+        overflow-x: unset; 
+        justify-content: center; 
+        padding: 0; 
+        -ms-overflow-style: unset; 
+        scrollbar-width: unset;
     }
     .dates-container::-webkit-scrollbar {
-        display: none; /* Oculta la barra de scroll en Chrome, Safari y Opera */
+        display: block; 
     }
     .date-card {
-        flex-shrink: 0; /* Evita que las tarjetas se encojan */
-        width: 70%; /* Hace que cada tarjeta ocupe una buena porción de la pantalla */
+        flex-shrink: 1; 
+        width: 45%; 
     }
 }
-
