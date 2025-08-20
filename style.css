@@ -73,7 +73,7 @@ section.is-visible {
 
 .nav-logo-container {
     padding-top: 0;
-    margin-right: auto;
+    margin: 0 auto;
 }
 
 .nav-logo {
@@ -547,3 +547,4 @@ section.is-visible {
         width: 45%; 
     }
 }
+
