@@ -69,11 +69,14 @@ section.is-visible {
     padding: 10px 20px;
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
 }
 
 .nav-logo-container {
     padding-top: 0;
-    margin-right: auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .nav-logo {
@@ -109,6 +112,7 @@ section.is-visible {
     cursor: pointer;
     background: none;
     border: none;
+    z-index: 10;
 }
 
 .bar {
@@ -281,9 +285,6 @@ section.is-visible {
 }
 
 .itinerary-day-row {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     overflow: hidden;
@@ -318,7 +319,7 @@ section.is-visible {
 }
 .day-description h3 {
     margin: 0;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     color: var(--secondary-color);
 }
 .day-description p { display: none; }
@@ -515,6 +516,7 @@ section.is-visible {
         flex-direction: column;
         align-items: center;
         text-align: center;
+        min-height: auto;
     }
     
     .day-description {
@@ -532,18 +534,13 @@ section.is-visible {
     }
     
     .dates-container {
-        flex-wrap: wrap; 
-        overflow-x: unset; 
-        justify-content: center; 
-        padding: 0; 
-        -ms-overflow-style: unset; 
-        scrollbar-width: unset;
-    }
-    .dates-container::-webkit-scrollbar {
-        display: block; 
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
     }
     .date-card {
-        flex-shrink: 1; 
-        width: 45%; 
+        width: 100%;
+        flex-shrink: 0;
+        padding: 15px;
     }
 }
