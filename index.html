@@ -3,192 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The 7 Day Journey - Explore Italy</title>
+    <title>Tocca Amalfi - Amalfi Coast Tour</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/20L7dScJ/O6f+F+V695z2I+V695z2I+" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+
+    <a href="https://wa.me/1234567890?text=Hello!%20I'd%20like%20to%20know%20more%20about%20the%20tours." target="_blank" class="whatsapp-float">
+        <img src="imagenes/whatsapp-logo.svg" alt="WhatsApp" class="whatsapp-svg-icon">
+    </a>
+
     <header class="main-header">
         <nav class="navbar">
-            <div class="nav-logo-container">
-                <img src="https://assets.website-files.com/657593c6e10ddc294a97486e/657599026727271e84605e5d_WhatsApp%20Image%202023-11-20%20at%2023.23.49_8116900f-removebg-preview.png" alt="The 7 Day Journey Logo" class="nav-logo">
+            <a href="#hero" class="nav-logo-container">
+                <img src="imagenes/tocca_amalfi_nav.png" alt="Tocca Amalfi Logo" class="nav-logo">
+            </a>
+            <div class="nav-menu">
+                <a href="#why-tocca-amalfi" class="nav-link">Why Us?</a>
+                <a href="#what-we-offer-grid" class="nav-link">Itinerary</a>
+                <a href="#upcoming-dates" class="nav-link">Dates</a>
+                <a href="#inclusions" class="nav-link">Inclusions</a>
+                <a href="#testimonials" class="nav-link">Testimonials</a>
+                <a href="#contact-section" class="nav-link">Contact</a>
             </div>
-            <ul class="nav-menu">
-                <li><a href="#hero" class="nav-link">Home</a></li>
-                <li><a href="#why-us" class="nav-link">Why us</a></li>
-                <li><a href="#what-we-offer" class="nav-link">The 7 day Journey</a></li>
-                <li><a href="#upcoming-dates" class="nav-link">Upcoming dates</a></li>
-                <li><a href="#contact-us" class="nav-link">Contact us</a></li>
-            </ul>
-            <button class="hamburger" aria-label="Toggle navigation menu">
+            <button class="hamburger" aria-label="Open menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
             </button>
         </nav>
     </header>
-    
+
+    <header id="hero" class="hero-section">
+        <div class="video-background">
+            <video autoplay loop muted playsinline>
+                <source src="video_header.mp4" type="video/mp4">
+                Your browser does not support HTML5 video.
+            </video>
+        </div>
+        <div class="hero-content">
+            <img src="imagenes/tocca_amalfi.png" alt="Tocca Amalfi Logo" class="logo">
+            <h1>Discover the magic of the Amalfi Coast. Unrushed, at your own pace.</h1>
+            <p class="slogan">Your coastal adventure starts here.</p>
+            <a href="#what-we-offer-grid" class="cta-button">Learn More</a>
+        </div>
+    </header>
+
     <main>
-        <section id="hero" class="hero-section">
-            <div class="video-background">
-                <video autoplay muted loop playsinline>
-                    <source src="https://assets.website-files.com/657593c6e10ddc294a97486e/657593c6e10ddc294a974a68_Pexels%20Videos%202868884.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <div class="hero-content">
-                <img src="https://assets.website-files.com/657593c6e10ddc294a97486e/657599026727271e84605e5d_WhatsApp%20Image%202023-11-20%20at%2023.23.49_8116900f-removebg-preview.png" alt="The 7 Day Journey Logo" class="logo">
-                <h1>The 7 Day Journey</h1>
-                <p class="slogan">Luxury tailored to you.</p>
-                <a href="#contact-us" class="cta-button">BOOK YOUR ADVENTURE</a>
+        <section id="why-tocca-amalfi" class="why-us-carousel-section animate-on-scroll">
+            <h2>Why Choose us?</h2>
+            <div class="why-us-container">
+                <div class="why-us-text-block">
+                    <h3>Tocca Amalfi is more than a travel experience — it's a feeling. One you carry in your skin, your memory, your soul.</h3>
+                    <p>Born from my lifelong love for travel, shaped by years living across 7 countries and 5 continents — including two decades in the U.S. working as an executive and director in the travel industry — Tocca Amalfi is the most personal chapter of my journey.</p>
+                    <p>It was here — on the Amalfi Coast — that I found what I never expected: love, family, home, and a sense of belonging. Now a local by heart and by choice, I invite you to experience this coast not as a tourist, but as part of its rhythm.</p>
+                </div>
+                <div class="why-us-image-grid">
+                    <img src="imagenes/foto1.jpg" alt="View of the Amalfi Coast 1">
+                    <img src="imagenes/foto2.jpg" alt="View of the Amalfi Coast 2">
+                </div>
             </div>
         </section>
 
-        <section id="why-us" class="why-us-carousel-section">
-            <div class="why-us-container is-visible">
+        <section id="what-we-offer" class="why-us-carousel-section animate-on-scroll">
+            <h2>What We Offer</h2>
+            <div class="why-us-container">
                 <div class="why-us-text-block">
-                    <h2>Why Us?</h2>
-                    <p>At The 7 Day Journey, we believe that travel should be more than just a trip—it should be a transformative experience. We go beyond the ordinary to create tailor-made adventures that reflect your unique desires and passions.</p>
+                    <h3>At Tocca Amalfi, we don’t believe in cookie-cutter tours. We design moments — deeply local, thoughtfully curated, and full of soul.</h3>
+                    <p>From sipping limoncello in lemon groves to sailing into the sunset with a glass of wine… From winding Vespa rides through cliffside villages to private cooking lessons in family kitchens…</p>
                     <ul class="offer-list">
-                        <li><i class="fas fa-check-circle"></i> Private transportation</li>
-                        <li><i class="fas fa-check-circle"></i> Expert local guides</li>
-                        <li><i class="fas fa-check-circle"></i> Hand-picked accommodations</li>
-                        <li><i class="fas fa-check-circle"></i> Exclusive experiences</li>
+                        <li>🍋 Taste fresh limoncello under ancient lemon trees</li>
+                        <li>🚤 Sail through golden sunsets with prosecco in hand</li>
+                        <li>🛵 Ride a Vespa through hidden cliffside roads</li>
+                        <li>🍝 Learn to cook with locals who open their kitchens — and their hearts</li>
                     </ul>
                 </div>
                 <div class="why-us-image-grid">
-                    <img src="https://assets.website-files.com/657593c6e10ddc294a97486e/65768393e98124239c5b2a0c_The%207%20Day%20Journey%201.png" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 94vw, (max-width: 991px) 46vw, 360px" srcset="https://assets.website-files.com/657593c6e10ddc294a97486e/65768393e98124239c5b2a0c_The%207%20Day%20Journey%201-p-500.png 500w, https://assets.website-files.com/657593c6e10ddc294a97486e/65768393e98124239c5b2a0c_The%207%20Day%20Journey%201-p-800.png 800w, https://assets.website-files.com/657593c6e10ddc294a97486e/65768393e98124239c5b2a0c_The%207%20Day%20Journey%201.png 942w" alt="Why us Image 1">
-                    <img src="https://assets.website-files.com/657593c6e10ddc294a97486e/657683c31b26a6b5790a3c74_The%207%20Day%20Journey%203.png" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 46vw, (max-width: 991px) 21vw, 160px" srcset="https://assets.website-files.com/657593c6e10ddc294a97486e/657683c31b26a6b5790a3c74_The%207%20Day%20Journey%203-p-500.png 500w, https://assets.website-files.com/657593c6e10ddc294a97486e/657683c31b26a6b5790a3c74_The%207%20Day%20Journey%203.png 664w" alt="Why us Image 2">
-                    <img src="https://assets.website-files.com/657593c6e10ddc294a97486e/657683b5c3149e89649514ae_The%207%20Day%20Journey%202.png" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 46vw, (max-width: 991px) 21vw, 160px" srcset="https://assets.website-files.com/657593c6e10ddc294a97486e/657683b5c3149e89649514ae_The%207%20Day%20Journey%202-p-500.png 500w, https://assets.website-files.com/657593c6e10ddc294a97486e/657683b5c3149e89649514ae_The%207%20Day%20Journey%202.png 664w" alt="Why us Image 3">
+                    <img src="imagenes/offer1.jpg" alt="Offering a taste of limoncello">
+                    <img src="imagenes/offer2.jpg" alt="Cooking class with locals">
                 </div>
             </div>
         </section>
 
-        <section id="what-we-offer" class="luxury-package-section">
-            <h2 class="title-animation">The 7 Day Journey</h2>
-            <p class="package-price">FROM €7,500 PER PERSON</p>
+        <section id="what-we-believe" class="why-us-carousel-section animate-on-scroll">
+            <h2>What We Believe</h2>
+            <div class="why-us-container">
+                <div class="why-us-text-block">
+                    <h3>Travel should move you. It should touch your senses, tell you a story, and make you feel alive.</h3>
+                    <p>This isn’t about visiting a destination. It’s about becoming part of it.</p>
+                    <p>This is Tocca Amalfi. Travel, reimagined — for those who want to feel something deeper.</p>
+                    <p><strong>Let’s create something beautiful together.</strong></p>
+                </div>
+                <div class="why-us-image-grid">
+                    <img src="imagenes/believe1.jpg" alt="Traveler feeling alive">
+                    <img src="imagenes/believe2.jpg" alt="Connecting with the destination">
+                </div>
+            </div>
+        </section>
+
+        <section id="what-we-offer-grid" class="luxury-package-section animate-on-scroll">
+            <h2>The 7-Day Journey</h2>
+            <p class="package-price">An unforgettable itinerary along the coast</p>
             <div class="itinerary-grid">
-                <div class="itinerary-day-row is-visible">
-                    <div class="day-description">
-                        <h3>Day 1 - Arrival in Naples & The Adventure Begins</h3>
-                    </div>
+                 <div class="itinerary-day-row" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('imagenes/day1.jpg');">
+                    <div class="day-title"><a href="dia1.html">Day 1</a></div>
+                    <div class="day-description"><h3>Arrival in Naples & The Adventure Begins</h3><p>Personal welcome, transfer to your boutique hotel, and a welcome dinner.</p></div>
                 </div>
-                <div class="itinerary-day-row is-visible">
-                    <div class="day-description">
-                        <h3>Day 2 - Amalfi Coast Immersion</h3>
-                    </div>
+                <div class="itinerary-day-row" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('imagenes/day2.jpg');">
+                    <div class="day-title"><a href="dia2.html">Day 2</a></div>
+                    <div class="day-description"><h3>Pompeii & Volcanic Wines</h3><p>Tour the ruins and enjoy a wine-tasting lunch on the slopes of Vesuvius.</p></div>
                 </div>
-                <div class="itinerary-day-row is-visible">
-                    <div class="day-description">
-                        <h3>Day 3 - Positano & Sunset Cruise</h3>
-                    </div>
+                <div class="itinerary-day-row" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('imagenes/day3.jpg');">
+                    <div class="day-title"><a href="dia3.html">Day 3</a></div>
+                    <div class="day-description"><h3>A Day of Your Own</h3><p>A day to breathe, feel, and wander. Follow whatever calls to you.</p></div>
                 </div>
-                <div class="itinerary-day-row is-visible">
-                    <div class="day-description">
-                        <h3>Day 4 - Capri's Charms</h3>
-                    </div>
+                <div class="itinerary-day-row" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('imagenes/day4.jpg');">
+                    <div class="day-title"><a href="dia4.html">Day 4</a></div>
+                    <div class="day-description"><h3>Capri: Glamour, Grottoes & Golden Skin</h3><p>Private boat trip to the iconic island, exploring its caves and streets.</p></div>
                 </div>
-                <div class="itinerary-day-row is-visible">
-                    <div class="day-description">
-                        <h3>Day 5 - History & Flavors</h3>
-                    </div>
+                <div class="itinerary-day-row" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('imagenes/day5.jpg');">
+                    <div class="day-title"><a href="dia5.html">Day 5</a></div>
+                    <div class="day-description"><h3>Citrus Trails & Golden Sips</h3><p>Walk the "Path of Lemons" and learn the secrets of limoncello.</p></div>
                 </div>
-                <div class="itinerary-day-row is-visible">
-                    <div class="day-description">
-                        <h3>Day 6 - The Vesuvius & Pompeii</h3>
-                    </div>
+                <div class="itinerary-day-row" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('imagenes/day6.jpg');">
+                    <div class="day-title"><a href="dia6.html">Day 6</a></div>
+                    <div class="day-description"><h3>The Grand Finale in Positano</h3><p>Free morning to enjoy, followed by a farewell dinner with spectacular views.</p></div>
                 </div>
-                <div class="itinerary-day-row is-visible">
-                    <div class="day-description">
-                        <h3>Day 7 - Departure</h3>
-                    </div>
+                <div class="itinerary-day-row" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('imagenes/day7.jpg');">
+                    <div class="day-title"><a href="dia7.html">Day 7</a></div>
+                    <div class="day-description"><h3>Departure & Arrivederci</h3><p>Leisurely breakfast and a private transfer to Naples airport.</p></div>
                 </div>
             </div>
         </section>
 
-        <section id="upcoming-dates" class="upcoming-dates-section">
+        <section id="upcoming-dates" class="upcoming-dates-section animate-on-scroll">
             <h2>Upcoming Dates</h2>
-            <div class="dates-container is-visible">
+            <div class="dates-container">
                 <div class="date-card">
-                    <h3>OCTOBER</h3>
-                    <p>6-12</p>
+                    <h3>MAY 2025</h3>
+                    <p>15th - 22nd</p>
                     <span class="status available">Available</span>
                 </div>
                 <div class="date-card">
-                    <h3>OCTOBER</h3>
-                    <p>13-19</p>
-                    <span class="status few-spots">Few spots</span>
-                </div>
-                <div class="date-card">
-                    <h3>OCTOBER</h3>
-                    <p>20-26</p>
-                    <span class="status sold-out">Sold out</span>
-                </div>
-                <div class="date-card">
-                    <h3>OCTOBER</h3>
-                    <p>27-02</p>
-                    <span class="status sold-out">Sold out</span>
-                </div>
-                <div class="date-card">
-                    <h3>NOVEMBER</h3>
-                    <p>3-9</p>
+                    <h3>JUNE 2025</h3>
+                    <p>12th - 19th</p>
                     <span class="status available">Available</span>
                 </div>
                 <div class="date-card">
-                    <h3>NOVEMBER</h3>
-                    <p>10-16</p>
-                    <span class="status sold-out">Sold out</span>
+                    <h3>JULY 2025</h3>
+                    <p>10th - 17th</p>
+                    <span class="status few-spots">Few Spots Left!</span>
+                </div>
+                <div class="date-card">
+                    <h3>SEPTEMBER 2025</h3>
+                    <p>11th - 18th</p>
+                    <span class="status sold-out">Sold Out</span>
                 </div>
             </div>
         </section>
 
-        <section id="inclusions" class="inclusions-section">
-            <h2 class="title-animation">What's Included & What's Not</h2>
-            <div class="inclusions-container is-visible">
+        <section id="inclusions" class="inclusions-section animate-on-scroll">
+            <h2>What's Included?</h2>
+            <div class="inclusions-container">
                 <div class="includes-column">
                     <h3><i class="fas fa-check-circle"></i> What's Included</h3>
                     <ul>
-                        <li><i class="fa-solid fa-plane-up"></i> Private transportation</li>
-                        <li><i class="fa-solid fa-person-walking-luggage"></i> Expert local guides</li>
-                        <li><i class="fa-solid fa-hotel"></i> Hand-picked accommodations</li>
-                        <li><i class="fa-solid fa-champagne-glasses"></i> Exclusive experiences</li>
+                        <li><i class="fas fa-bed"></i> Accommodation in boutique luxury hotels</li>
+                        <li><i class="fas fa-car-side"></i> All private transfers</li>
+                        <li><i class="fas fa-utensils"></i> Daily breakfasts and specified meals</li>
+                        <li><i class="fas fa-ticket-alt"></i> Entrance fees to all itinerary attractions</li>
+                        <li><i class="fas fa-ship"></i> Private boat excursions</li>
+                        <li><i class="fas fa-user-friends"></i> Expert local guides</li>
                     </ul>
                 </div>
                 <div class="not-includes-column">
-                    <h3><i class="fas fa-times-circle"></i> What's Not Included</h3>
+                    <h3><i class="fas fa-times-circle"></i> Not Included</h3>
                     <ul>
-                        <li><i class="fa-solid fa-plane-departure"></i> International flights</li>
-                        <li><i class="fa-solid fa-burger"></i> Some meals & drinks</li>
-                        <li><i class="fa-solid fa-ticket"></i> Some entrance fees</li>
-                        <li><i class="fa-solid fa-hand-holding-dollar"></i> Personal expenses</li>
+                        <li><i class="fas fa-plane-departure"></i> International flights</li>
+                        <li><i class="fas fa-shopping-bag"></i> Personal purchases</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <section id="testimonials" class="testimonials-section">
-            <h2 class="title-animation">Testimonials</h2>
-            <div class="testimonial-card is-visible">
-                <p>“We had the most incredible time! The itinerary was perfect, the guides were knowledgeable, and every detail was taken care of. A truly unforgettable experience.”</p>
+        <section id="testimonials" class="testimonials-section animate-on-scroll">
+             <h2>What Our Travelers Say</h2>
+             <div class="testimonial-card">
+                <p>"An experience that exceeded all expectations. Tocca Amalfi isn't a tour, it's an immersion into Italian culture. Unforgettable!"</p>
+                <h4>- Sophia L.</h4>
+            </div>
+            <div class="testimonial-card">
+                <p>"The attention to detail was impressive. From the hotels to the private excursions, everything was first-class. I already want to go back!"</p>
+                <h4>- Matthew R.</h4>
             </div>
         </section>
 
-        <section id="contact-us" class="contact-us-section">
-            <h2>BOOK YOUR ADVENTURE</h2>
-            <p>Ready to start your journey? Contact us today to tailor your perfect Italian escape.</p>
-            <a href="mailto:info@the7dayjourney.com" class="contact-button">CONTACT US</a>
+        <section id="contact-section" class="contact-us-section animate-on-scroll">
+            <h2>Ready for the Adventure?</h2>
+            <p>Contact us with your questions or to reserve your spot on this unforgettable journey.</p>
+            <a href="mailto:info@toccaamalfi.com" class="contact-button">Email Us</a>
         </section>
+
     </main>
-    
-    <a href="https://wa.me/1234567890" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
-        <svg class="whatsapp-svg-icon" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C6.477 2 2 6.477 2 12c0 1.55.362 3.011 1.053 4.316L2.016 22l5.856-1.547C9.37 20.916 10.66 21 12 21c5.523 0 10-4.477 10-10s-4.477-10-10-10zm0 18c-1.282 0-2.52-.303-3.61-.87L6.5 19.5l-2.035.536.536-2.035L4.87 15.61C4.303 14.52 4 13.282 4 12c0-4.418 3.582-8 8-8s8 3.582 8 8-3.582 8-8 8zm4.385-5.99c-.198-.198-.458-.297-.755-.297-.297 0-.557.099-.755.297l-2.09 2.09c-.198.198-.458.297-.755.297-.297 0-.557-.099-.755-.297l-1.045-1.045c-.198-.198-.297-.458-.297-.755s.099-.557.297-.755l1.045-1.045c.198-.198.297-.458.297-.755s-.099-.557-.297-.755l-2.09-2.09c-.198-.198-.458-.297-.755-.297-.297 0-.557.099-.755.297l-2.09 2.09c-.198.198-.297.458-.297.755s.099.557.297.755l1.045 1.045c.198.198.297.458.297.755s-.099.557-.297.755l-1.045 1.045c-.198.198-.297.458-.297.755s.099.557.297.755l2.09 2.09c.198.198.458.297.755.297s.557-.099.755-.297l2.09-2.09c.198-.198.458-.297.755-.297s.557.099.755.297l1.045 1.045c.198.198.297.458.297.755s-.099.557-.297.755l-2.09 2.09c-.198.198-.458.297-.755.297-.297 0-.557-.099-.755-.297z"/>
-        </svg>
-    </a>
-    
     <script src="script.js"></script>
 </body>
 </html>
+
+
+
