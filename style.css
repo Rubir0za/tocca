@@ -73,7 +73,7 @@ section.is-visible {
 
 .nav-logo-container {
  margin: 0 auto;
-  transform: translateX(10px); 
+  transform: translateX(20px); 
 }
 .nav-logo {
     height: 85px; 
@@ -546,5 +546,6 @@ section.is-visible {
         width: 45%; 
     }
 }
+
 
 
