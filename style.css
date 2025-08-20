@@ -165,7 +165,7 @@ section.is-visible {
     z-index: 1;
 }
 
-.logo { width: 160px; }
+.logo { width: 80px; }
 @media (min-width: 768px) { .logo { width: 220px; } }
 
 .hero-content h1 {
@@ -548,3 +548,4 @@ section.is-visible {
         width: 70%; /* Hace que cada tarjeta ocupe una buena porción de la pantalla */
     }
 }
+
