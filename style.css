@@ -1,6 +1,6 @@
 /* --- ESTILOS GENERALES Y FUENTES --- */
 :root {
-    --primary-color: #4A9A92;
+    --primary-color: #ffffff;
     --secondary-color: #D8A736;
     --text-color: #3E2D23;
     --light-text-color: #ffffff;
@@ -546,6 +546,7 @@ section.is-visible {
         width: 45%; 
     }
 }
+
 
 
 
