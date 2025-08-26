@@ -1,3 +1,121 @@
+/* --- ESTILOS GENERALES Y FUENTES --- */
+:root {
+    --primary-color: #4A9A92;
+    --secondary-color: #D8A736;
+    --text-color: #3E2D23; /* Marrón oscuro para el texto */
+    --light-text-color: #ffffff;
+    --background-light: #f8f9fa;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+}
+
+html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: #fff;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: var(--text-color);
+}
+
+section {
+    padding: 80px 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- BARRA DE NAVEGACIÓN --- */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: var(--secondary-color); /* Fondo amarillo */
+    transition: background 0.3s ease;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-logo-container {
+    padding-top: 5px;
+}
+
+.nav-logo {
+    height: 65px; 
+    width: auto;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-link {
+    color: var(--text-color);
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.nav-link:hover {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--text-color);
+    transition: all 0.3s ease-in-out;
+}
+
 /* --- HERO SECTION --- */
 .hero-section {
     padding-top: 80px;
@@ -7,16 +125,18 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: #F5F0E8; /* Color de fondo similar a la imagen */
+    /* QUITADO: color: var(--light-text-color); */
+    background-color: #EFEAE4; /* Color de fondo similar al de la imagen */
     overflow: hidden;
+    flex-direction: column; /* Para apilar los elementos verticalmente */
 }
 
+/* Ocultar el video background y el overlay si existe para este estilo */
 .video-background {
-    display: none; /* Ocultamos el fondo de video */
+    display: none; 
 }
-
 .hero-section::after {
-    display: none; /* Ocultamos el sombreado oscuro */
+    display: none;
 }
 
 .hero-content {
@@ -24,42 +144,446 @@
     padding: 20px;
     position: relative;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Para centrar el contenido verticalmente */
+    color: var(--text-color); /* Asegura que todo el texto sea oscuro */
 }
 
+/* Estilos para "Tocca" */
 .hero-main-title {
     font-family: 'Style Script', cursive;
-    font-size: clamp(6rem, 20vw, 12rem); /* Aumentamos el tamaño para más impacto */
+    font-size: clamp(5rem, 15vw, 10rem); /* Aumentado el tamaño */
     font-weight: 400;
     margin: 0;
     line-height: 1;
-    color: #4B3832; /* Color marrón oscuro del texto */
-    text-shadow: none; /* Eliminamos la sombra */
+    color: var(--text-color);
+    padding: 0; /* Asegura que no tenga padding extra */
+    background-color: transparent; /* Eliminar cualquier fondo residual */
+    box-shadow: none; /* Eliminar cualquier sombra residual */
 }
 
+/* Estilos para "AMALFI COAST" */
 .hero-subtitle {
-    font-family: 'Montserrat', sans-serif; /* Usamos una fuente más limpia */
-    font-size: clamp(1.2rem, 4vw, 1.8rem);
-    font-weight: 700; /* Hacemos la fuente más audaz */
-    letter-spacing: 8px; /* Aumentamos el espaciado entre letras */
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.5rem, 4vw, 2.5rem); /* Ajustado el tamaño */
+    font-weight: 400;
+    letter-spacing: 8px; /* Aumentado el espaciado */
     text-transform: uppercase;
-    margin: 10px 0 20px;
-    color: #4B3832; /* Color marrón oscuro del texto */
-    text-shadow: none; /* Eliminamos la sombra */
+    margin: 10px 0 20px; /* Ajustado el margen */
+    color: var(--text-color);
+    padding: 0; /* Asegura que no tenga padding extra */
+    background-color: transparent; /* Eliminar cualquier fondo residual */
+    box-shadow: none; /* Eliminar cualquier sombra residual */
 }
 
+/* Estilos para "TOUCH THE SOUL OF THE COAST" (asumo que es .hero-description) */
 .hero-description {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.8rem, 2.5vw, 1rem);
-    font-weight: 400;
+    font-size: clamp(1rem, 2.5vw, 1.5rem); /* Ajustado el tamaño */
+    font-weight: 300;
     text-transform: uppercase;
-    letter-spacing: 4px; /* Añadimos espaciado para coincidir con el estilo */
-    margin: 20px 0 10px;
-    color: #4B3832; /* Color marrón oscuro del texto */
-    text-shadow: none; /* Eliminamos la sombra */
+    letter-spacing: 2px;
+    margin: 0;
+    text-shadow: none; /* Quitado el text-shadow si ya no es necesario */
+    color: var(--text-color);
 }
 
-/* Ocultamos el eslogan y el botón que no aparecen en la imagen */
-.slogan,
+/* Si tienes un CTA button en el hero, podríamos querer quitarlo o rediseñarlo para que coincida con la imagen. */
 .cta-button {
-    display: none;
+    display: none; /* Ocultar el botón CTA si no se desea en este hero */
+}
+
+/* --- SECCIÓN WHY US --- */
+.why-us-carousel-section {
+    background-color: #fff;
+}
+
+.why-us-carousel-section:nth-of-type(even) {
+    background-color: var(--background-light);
+}
+
+
+.why-us-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.why-us-text-block {
+    flex: 1;
+    min-width: 300px;
+}
+
+.why-us-text-block h3 {
+    font-size: 1.8rem;
+    line-height: 1.4;
+    margin-top: 0;
+}
+
+.why-us-image-grid {
+    flex: 1;
+    min-width: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.why-us-image-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.why-us-image-grid img:first-child {
+    grid-row: span 2;
+    height: calc(100% - 7.5px);
+}
+
+.offer-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+.offer-list li {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+
+/* --- SECCIÓN ITINERARIO --- */
+.luxury-package-section {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    text-align: center;
+}
+.luxury-package-section h2 { color: var(--light-text-color); }
+
+.package-price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 50px;
+    color: var(--secondary-color);
+}
+
+.itinerary-grid {
+    display: grid;
+    /* Ajustado a dos columnas con un mínimo y máximo para responsividad */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 20px; /* Aumentado el gap para más espacio */
+    max-width: 1200px; /* Un poco más ancho para las dos columnas */
+    margin: 0 auto;
+}
+
+.itinerary-day-row {
+    display: flex;
+    flex-direction: column; /* Cambiado a columna para que el contenido se apile en cada tarjeta */
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.3); /* Fondo oscuro para los textos blancos */
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 25px 30px;
+    text-align: center; /* Centrar el texto dentro de la tarjeta */
+    min-height: 250px; /* Aumentado la altura mínima */
+    color: var(--light-text-color); /* Asegura que el texto sea blanco */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* Necesario para el overlay */
+}
+
+.itinerary-day-row::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4); /* Overlay oscuro para mejor contraste */
+    z-index: 1;
+}
+
+.itinerary-day-row > * {
+    position: relative;
+    z-index: 2; /* Asegura que el contenido esté sobre el overlay */
+}
+
+.itinerary-day-row:hover {
+    transform: translateY(-5px); /* Efecto más sutil */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+
+.day-title {
+    flex: none; /* Eliminar flex-grow */
+    font-size: 3rem; /* Tamaño más grande */
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 10px;
+}
+.day-title a {
+    color: var(--light-text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.day-title a:hover { color: var(--secondary-color); }
+
+.day-description {
+    padding-left: 0; /* Quitar padding izquierdo */
+    border-left: none; /* Quitar borde izquierdo */
+    width: 100%; /* Ocupar todo el ancho */
+    text-align: center; /* Centrar el texto */
+}
+.day-description h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.6rem; /* Ajustar tamaño */
+    color: var(--light-text-color);
+}
+.day-description p { margin: 0; font-size: 1.1rem; color: rgba(255, 255, 255, 0.9); }
+
+/* --- SECCIÓN FECHAS --- */
+.upcoming-dates-section { background-color: var(--background-light); }
+.dates-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.date-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    text-align: center;
+    width: 220px;
+    transition: transform 0.3s ease;
+}
+.date-card:hover { transform: translateY(-10px); }
+.date-card h3 { margin: 0 0 10px; color: var(--primary-color); }
+.date-card p { font-size: 1.5rem; font-weight: bold; margin: 0; }
+.status {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-weight: bold;
+    color: #fff;
+}
+.status.available { background-color: var(--success-color); }
+.status.few-spots { background-color: var(--warning-color); color: var(--text-color); }
+.status.sold-out { background-color: var(--danger-color); }
+
+/* --- SECCIÓN INCLUSIONES --- */
+.inclusions-section { background: #fff; }
+.inclusions-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+.includes-column, .not-includes-column {
+    background: var(--background-light);
+    padding: 30px;
+    border-radius: 8px;
+    flex: 1;
+    min-width: 300px;
+}
+.inclusions-container h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    margin-top: 0;
+}
+.includes-column h3 { color: var(--success-color); }
+.not-includes-column h3 { color: var(--danger-color); }
+.inclusions-container ul { list-style: none; padding: 0; }
+.inclusions-container li { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.inclusions-container i { font-size: 1.2rem; }
+
+/* --- TESTIMONIOS --- */
+.testimonials-section {
+    background-color: var(--background-light);
+}
+.testimonial-card {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-left: 5px solid var(--primary-color);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+}
+
+/* --- CONTACTO --- */
+.contact-us-section { text-align: center; background-color: var(--primary-color); color: #fff; }
+.contact-us-section h2 { color: #fff; }
+.contact-us-section p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px; }
+.contact-button {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 15px 35px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+.contact-button:hover { background-color: #fff; }
+
+/* --- WHATSAPP FLOAT --- */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.whatsapp-svg-icon {
+    width: 35px;
+    height: 35px;
+}
+
+/* --- ESTILOS PARA PÁGINAS DE DÍA INDIVIDUAL --- */
+.day-detail-section {
+    padding: 60px 20px;
+    max-width: 800px;
+    margin: 120px auto 40px;
+    background-color: #fff;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+.day-detail-section h1 { font-size: 2.8rem; color: var(--primary-color); margin-bottom: 20px; }
+.day-detail-section p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; }
+.back-to-home {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 25px;
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+.back-to-home:hover { background-color: #3a7a72; }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 920px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 85px; 
+        flex-direction: column;
+        background-color: var(--secondary-color);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        gap: 1px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-link {
+        padding: 20px;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        border-radius: 0;
+        box-shadow: none;
+        color: var(--text-color);
+    }
+     .nav-link:hover {
+        background-color: var(--primary-color);
+        color: var(--light-text-color);
+        transform: none;
+     }
+
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .itinerary-day-row {
+        flex-direction: column;
+        align-items: center; /* Centrar el contenido en móvil también */
+        text-align: center;
+        padding: 20px; /* Ajuste de padding en móvil */
+        min-height: 200px;
+    }
+
+    .day-title {
+        margin-bottom: 10px;
+        font-size: 2.5rem; /* Ajustar tamaño para móvil */
+    }
+
+    .day-description {
+        text-align: center;
+        width: 100%;
+    }
+    .day-description h3 {
+        font-size: 1.4rem;
+    }
+    .day-description p {
+        font-size: 1rem;
+    }
+
+    .why-us-container {
+        flex-direction: column;
+    }
+
+    .why-us-carousel-section:nth-of-type(even) .why-us-container {
+        flex-direction: column-reverse;
+    }
+    
+    /* === AJUSTE PARA UPCOMING DATES EN MÓVIL === */
+    .dates-container {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 20px;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .dates-container::-webkit-scrollbar {
+        display: none;
+    }
+    .date-card {
+        flex-shrink: 0;
+        width: 70%;
+    }
 }
