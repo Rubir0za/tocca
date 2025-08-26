@@ -57,8 +57,7 @@ section.is-visible {
     left: 0;
     width: 100%;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
+    background: var(--secondary-color);
     transition: background 0.3s ease;
 }
 
@@ -88,7 +87,7 @@ section.is-visible {
 .nav-link {
     color: var(--text-color);
     background-color: transparent;
-    border: 2px solid var(--secondary-color);
+    border: 2px solid var(--primary-color);
     border-radius: 5px;
     padding: 8px 15px;
     font-weight: bold;
@@ -98,8 +97,8 @@ section.is-visible {
 }
 
 .nav-link:hover {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
     transform: translateY(-2px);
 }
 
@@ -171,8 +170,6 @@ section.is-visible {
     font-weight: 400;
     margin: 0;
     line-height: 1;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
-    color: var(--light-text-color);
 }
 
 .hero-subtitle {
@@ -181,8 +178,7 @@ section.is-visible {
     font-weight: 400;
     letter-spacing: 5px;
     text-transform: uppercase;
-    margin: 10px 0 20px;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    margin: 10px 0 0;
     color: var(--light-text-color);
 }
 
@@ -293,7 +289,6 @@ section.is-visible {
 
 .itinerary-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     gap: 15px;
     max-width: 900px;
     margin: 0 auto;
@@ -301,14 +296,14 @@ section.is-visible {
 
 .itinerary-day-row {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-size: cover;
+    background-position: center;
     border-radius: 10px;
     overflow: hidden;
-    padding: 20px;
-    text-align: center;
-    min-height: 100px;
+    padding: 25px 30px;
+    text-align: left;
+    min-height: 150px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .itinerary-day-row:hover {
@@ -317,7 +312,8 @@ section.is-visible {
 }
 
 .day-title {
-    font-size: 1.8rem;
+    flex: 0 0 100px;
+    font-size: 2.5rem;
     font-weight: bold;
     font-family: 'Playfair Display', serif;
 }
@@ -329,15 +325,15 @@ section.is-visible {
 .day-title a:hover { color: var(--secondary-color); }
 
 .day-description {
-    padding-left: 0;
-    border-left: none;
+    padding-left: 30px;
+    border-left: 2px solid var(--secondary-color);
 }
 .day-description h3 {
     margin: 0 0 5px 0;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     color: var(--light-text-color);
 }
-.day-description p { margin: 0; font-size: 1rem; color: rgba(255, 255, 255, 0.9); display: none; }
+.day-description p { margin: 0; font-size: 1rem; color: rgba(255, 255, 255, 0.9); }
 
 /* --- SECCIÓN FECHAS --- */
 .upcoming-dates-section { background-color: var(--background-light); }
@@ -413,7 +409,7 @@ section.is-visible {
     padding: 20px;
     background: #fff;
     border-left: 5px solid var(--primary-color);
-    box-shadow: 2px 2px 10px rgba(0,0,0,0.07);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
 }
 
 /* --- CONTACTO --- */
@@ -485,7 +481,7 @@ section.is-visible {
         left: -100%;
         top: 85px; 
         flex-direction: column;
-        background-color: #fff;
+        background-color: var(--secondary-color);
         width: 100%;
         text-align: center;
         transition: 0.3s;
@@ -501,13 +497,14 @@ section.is-visible {
         padding: 20px;
         width: 100%;
         border: none;
-        border-bottom: 1px solid #f0f0f0;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
         border-radius: 0;
         box-shadow: none;
+        color: var(--text-color);
     }
      .nav-link:hover {
-        background-color: var(--background-light);
-        color: var(--text-color);
+        background-color: var(--primary-color);
+        color: var(--light-text-color);
         transform: none;
      }
 
@@ -527,41 +524,21 @@ section.is-visible {
         transform: translateY(-8px) rotate(-45deg);
     }
 
-    /* === AJUSTE DE ITINERARIO PARA MÓVIL === */
-    .itinerary-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-    }
-
     .itinerary-day-row {
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         text-align: center;
-        min-height: auto;
-        padding: 10px;
-        background-color: rgba(255, 255, 255, 0.1);
-        background-image: none !important;
     }
 
-    .day-title {
-        flex: unset;
-        font-size: 1.4rem;
-        margin-bottom: 5px;
-    }
+    .day-title { margin-bottom: 15px; }
 
     .day-description {
         padding-left: 0;
         border-left: none;
+        text-align: center;
         width: 100%;
     }
-    .day-description h3 {
-        font-size: 0.8rem;
-        color: var(--text-color);
-    }
-    .day-description p {
-        display: none;
-    }
-    
+
     .why-us-container {
         flex-direction: column;
     }
