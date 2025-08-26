@@ -57,7 +57,7 @@ section.is-visible {
     left: 0;
     width: 100%;
     z-index: 1000;
-    background: var(--secondary-color); /* Fondo amarillo */
+    background: var(--secondary-color);
     transition: background 0.3s ease;
 }
 
@@ -87,7 +87,6 @@ section.is-visible {
 .nav-link {
     color: var(--text-color);
     background-color: transparent;
-    /* QUITADO: border: 2px solid var(--secondary-color); */
     border-radius: 5px;
     padding: 8px 15px;
     font-weight: bold;
@@ -99,7 +98,6 @@ section.is-visible {
 .nav-link:hover {
     background-color: var(--primary-color);
     color: var(--light-text-color);
-    /* QUITADO: transform: translateY(-2px); */
 }
 
 .hamburger {
@@ -188,7 +186,7 @@ section.is-visible {
     letter-spacing: 5px;
     text-transform: uppercase;
     margin: 10px 0 0;
-    color: var(--light-text-color);
+    color: var(--text-color);
 }
 
 .hero-description {
@@ -573,4 +571,3 @@ section.is-visible {
         width: 70%;
     }
 }
-
