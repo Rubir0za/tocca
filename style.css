@@ -188,7 +188,7 @@ section.is-visible {
     letter-spacing: 5px;
     text-transform: uppercase;
     margin: 10px 0 0;
-    color: var(--text-color);
+    color: var(--light-text-color);
 }
 
 .hero-description {
@@ -573,3 +573,4 @@ section.is-visible {
         width: 70%;
     }
 }
+
