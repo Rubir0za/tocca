@@ -478,62 +478,7 @@ section.is-visible {
 }
 .back-to-home:hover { background-color: #3a7a72; }
 
-
-/* --- ESTILO NAVBAR TRANSPARENTE CON LOGO ESTAMPILLA (VISTA ESCRITORIO) --- */
-@media (min-width: 921px) {
-
-    .main-header {
-        background: transparent;
-    }
-
-    .nav-link {
-        color: var(--light-text-color);
-        text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.7);
-    }
-    
-    .nav-link:hover {
-        background-color: var(--secondary-color);
-        color: var(--text-color);
-        transform: translateY(-2px);
-    }
-
-    .navbar {
-        position: relative;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 40px;
-    }
-
-    .nav-menu {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    .nav-logo-container a {
-        display: block;
-        background-color: #FAF3E0;
-        padding: 15px;
-        border: 2px dashed #3E2D23;
-        border-radius: 5px;
-        box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
-        transform: rotate(-4deg);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .nav-logo-container a:hover {
-        transform: rotate(0deg) scale(1.05);
-        box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.3);
-    }
-    
-    .nav-logo {
-        height: 60px;
-    }
-}
-
-
-/* --- RESPONSIVE (VISTA MÓVIL) --- */
+/* --- RESPONSIVE --- */
 @media (max-width: 920px) {
     .nav-menu {
         position: fixed;
