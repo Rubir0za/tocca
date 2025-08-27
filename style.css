@@ -8,6 +8,7 @@
     --success-color: #28a745;
     --warning-color: #ffc107;
     --danger-color: #dc3545;
+    --hero-text-color-beige: #EFEAE4; /* Nuevo color beige para el texto del hero */
 }
 
 html {
@@ -57,8 +58,7 @@ section.is-visible {
     left: 0;
     width: 100%;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
+    background: var(--secondary-color); /* Fondo amarillo */
     transition: background 0.3s ease;
 }
 
@@ -88,7 +88,6 @@ section.is-visible {
 .nav-link {
     color: var(--text-color);
     background-color: transparent;
-    border: 2px solid var(--secondary-color);
     border-radius: 5px;
     padding: 8px 15px;
     font-weight: bold;
@@ -98,9 +97,8 @@ section.is-visible {
 }
 
 .nav-link:hover {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    transform: translateY(-2px);
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
 }
 
 .hamburger {
@@ -130,6 +128,8 @@ section.is-visible {
     text-align: center;
     color: var(--light-text-color);
     overflow: hidden;
+    flex-direction: column;
+    background-color: transparent;
 }
 
 .video-background {
@@ -139,6 +139,7 @@ section.is-visible {
     width: 100%;
     height: 100%;
     z-index: -1;
+    display: block;
 }
 
 .video-background video {
@@ -156,6 +157,7 @@ section.is-visible {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 0;
+    display: block;
 }
 
 .hero-content {
@@ -163,54 +165,60 @@ section.is-visible {
     padding: 20px;
     position: relative;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
+.logo-background {
+    display: none; 
+}
+
+/* Estilos para "Tocca" */
 .hero-main-title {
     font-family: 'Style Script', cursive;
-    font-size: clamp(4rem, 15vw, 8rem);
+    font-size: clamp(5rem, 15vw, 10rem);
     font-weight: 400;
     margin: 0;
     line-height: 1;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
-    color: var(--light-text-color);
+    color: var(--hero-text-color-beige); /* Color beige */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
 }
 
+/* Estilos para "AMALFI COAST" */
 .hero-subtitle {
     font-family: 'Cinzel', serif;
-    font-size: clamp(1rem, 3vw, 1.5rem);
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
     font-weight: 400;
-    letter-spacing: 5px;
+    letter-spacing: 8px;
     text-transform: uppercase;
     margin: 10px 0 20px;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
-    color: var(--light-text-color);
+    color: var(--hero-text-color-beige); /* Color beige */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
 }
 
+/* Estilos para "TOUCH THE SOUL OF THE COAST" (asumo que es .hero-description) */
 .hero-description {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin: 20px 0 10px;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
-    color: var(--light-text-color);
-}
-
-.slogan {
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
-    margin-bottom: 30px;
-    font-weight: 400;
+    margin: 0;
+    color: var(--hero-text-color-beige); /* Color beige */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
 }
 
 .cta-button {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    padding: 15px 30px;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: all 0.3s ease;
+    display: none;
 }
 
 /* --- SECCIÓN WHY US --- */
@@ -293,9 +301,9 @@ section.is-visible {
 
 .itinerary-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    max-width: 900px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 20px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -303,23 +311,47 @@ section.is-visible {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.1);
+    justify-content: center;
+    background-color: rgba(0,0,0,0.3);
+    background-size: cover;
+    background-position: center;
     border-radius: 10px;
     overflow: hidden;
-    padding: 20px;
+    padding: 25px 30px;
     text-align: center;
-    min-height: 100px;
+    min-height: 250px;
+    color: var(--light-text-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
 }
+
+.itinerary-day-row::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    z-index: 1;
+}
+
+.itinerary-day-row > * {
+    position: relative;
+    z-index: 2;
+}
+
 .itinerary-day-row:hover {
-    transform: scale(1.03);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
 }
 
 .day-title {
-    font-size: 1.8rem;
+    flex: none;
+    font-size: 3rem;
     font-weight: bold;
     font-family: 'Playfair Display', serif;
+    margin-bottom: 10px;
 }
 .day-title a {
     color: var(--light-text-color);
@@ -331,13 +363,15 @@ section.is-visible {
 .day-description {
     padding-left: 0;
     border-left: none;
+    width: 100%;
+    text-align: center;
 }
 .day-description h3 {
     margin: 0 0 5px 0;
-    font-size: 1.1rem;
+    font-size: 1.6rem;
     color: var(--light-text-color);
 }
-.day-description p { margin: 0; font-size: 1rem; color: rgba(255, 255, 255, 0.9); display: none; }
+.day-description p { margin: 0; font-size: 1.1rem; color: rgba(255, 255, 255, 0.9); }
 
 /* --- SECCIÓN FECHAS --- */
 .upcoming-dates-section { background-color: var(--background-light); }
@@ -413,7 +447,7 @@ section.is-visible {
     padding: 20px;
     background: #fff;
     border-left: 5px solid var(--primary-color);
-    box-shadow: 2px 2px 10px rgba(0,0,0,0.07);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
 }
 
 /* --- CONTACTO --- */
@@ -478,63 +512,14 @@ section.is-visible {
 }
 .back-to-home:hover { background-color: #3a7a72; }
 
-
-/* --- ESTILO NAVBAR SIMPLE: LOGO A LA IZQUIERDA Y MENÚ CENTRADO --- */
-@media (min-width: 921px) {
-
-    /* 1. Hacemos la barra de navegación transparente */
-    .main-header {
-        background: transparent;
-    }
-
-    /* 2. Damos estilo a los links para que sean legibles */
-    .nav-link {
-        color: var(--light-text-color);
-        text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.7);
-    }
-
-    /* 3. Preparamos el contenedor principal */
-    .navbar {
-        position: relative; /* Necesario para centrar el menú */
-        justify-content: space-between; /* Empuja el logo a la izquierda */
-        align-items: center;
-        padding: 15px 40px; /* Da espacio a los lados */
-    }
-
-    /* 4. Centramos el menú de navegación de forma absoluta */
-    .nav-menu {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-    }
-    
-    /* 5. Eliminamos cualquier estilo extra del contenedor del logo */
-    .nav-logo-container a {
-        display: inline-block; /* Buen comportamiento para un enlace con imagen */
-        transition: transform 0.3s ease;
-    }
-
-    .nav-logo-container a:hover {
-        transform: scale(1.05); /* Un pequeño efecto al pasar el cursor */
-    }
-
-    /* 6. Ajusta el tamaño de tu nueva imagen aquí */
-    .nav-logo {
-        height: 80px; /* <-- CAMBIA ESTE VALOR para ajustar el tamaño de tu logo */
-        width: auto;
-    }
-}
-
-
-/* --- RESPONSIVE (VISTA MÓVIL) --- */
+/* --- RESPONSIVE --- */
 @media (max-width: 920px) {
     .nav-menu {
         position: fixed;
         left: -100%;
         top: 85px; 
         flex-direction: column;
-        background-color: #fff;
+        background-color: var(--secondary-color);
         width: 100%;
         text-align: center;
         transition: 0.3s;
@@ -550,13 +535,14 @@ section.is-visible {
         padding: 20px;
         width: 100%;
         border: none;
-        border-bottom: 1px solid #f0f0f0;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
         border-radius: 0;
         box-shadow: none;
+        color: var(--text-color);
     }
      .nav-link:hover {
-        background-color: var(--background-light);
-        color: var(--text-color);
+        background-color: var(--primary-color);
+        color: var(--light-text-color);
         transform: none;
      }
 
@@ -576,41 +562,30 @@ section.is-visible {
         transform: translateY(-8px) rotate(-45deg);
     }
 
-    /* === AJUSTE DE ITINERARIO PARA MÓVIL === */
-    .itinerary-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-    }
-
     .itinerary-day-row {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        min-height: auto;
-        padding: 10px;
-        background-color: rgba(255, 255, 255, 0.1);
-        background-image: none !important;
+        padding: 20px;
+        min-height: 200px;
     }
 
     .day-title {
-        flex: unset;
-        font-size: 1.4rem;
-        margin-bottom: 5px;
+        margin-bottom: 10px;
+        font-size: 2.5rem;
     }
 
     .day-description {
-        padding-left: 0;
-        border-left: none;
+        text-align: center;
         width: 100%;
     }
     .day-description h3 {
-        font-size: 0.8rem;
-        color: var(--text-color);
+        font-size: 1.4rem;
     }
     .day-description p {
-        display: none;
+        font-size: 1.1rem;
     }
-    
+
     .why-us-container {
         flex-direction: column;
     }
