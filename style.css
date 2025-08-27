@@ -58,7 +58,8 @@ section.is-visible {
     left: 0;
     width: 100%;
     z-index: 1000;
-    background: var(--secondary-color); /* Fondo amarillo */
+    background: transparent; /* <-- ¡Cambio realizado! */
+    backdrop-filter: blur(10px);
     transition: background 0.3s ease;
 }
 
@@ -86,8 +87,10 @@ section.is-visible {
 }
 
 .nav-link {
-    color: var(--text-color);
+    color: var(--light-text-color); 
+    text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.6); 
     background-color: transparent;
+    border: 2px solid var(--secondary-color);
     border-radius: 5px;
     padding: 8px 15px;
     font-weight: bold;
@@ -611,3 +614,4 @@ section.is-visible {
         width: 70%;
     }
 }
+
