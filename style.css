@@ -8,7 +8,7 @@
     --success-color: #28a745;
     --warning-color: #ffc107;
     --danger-color: #dc3545;
-    --hero-text-color-beige: #EFEAE4; /* Nuevo color beige para el texto del hero */
+    --hero-text-color-beige: #EFEAE4; 
 }
 
 html {
@@ -613,5 +613,6 @@ section.is-visible {
         width: 70%;
     }
 }
+
 
 
