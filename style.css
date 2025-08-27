@@ -78,7 +78,6 @@ section.is-visible {
 .nav-logo {
     height: 65px; 
     width: auto;
-    display: block; /* Importante para que el logo se comporte bien dentro del enlace */
 }
 
 .nav-menu {
@@ -480,31 +479,29 @@ section.is-visible {
 .back-to-home:hover { background-color: #3a7a72; }
 
 
-/* --- ESTILO NAVBAR TRANSPARENTE CON LOGO ESTAMPILLA (VISTA ESCRITORIO) --- */
+/* --- ESTILO NAVBAR SIMPLE: LOGO A LA IZQUIERDA Y MENÚ CENTRADO --- */
 @media (min-width: 921px) {
 
+    /* 1. Hacemos la barra de navegación transparente */
     .main-header {
         background: transparent;
     }
 
+    /* 2. Damos estilo a los links para que sean legibles */
     .nav-link {
         color: var(--light-text-color);
         text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.7);
     }
-    
-    .nav-link:hover {
-        background-color: var(--secondary-color);
-        color: var(--text-color);
-        transform: translateY(-2px);
-    }
 
+    /* 3. Preparamos el contenedor principal */
     .navbar {
-        position: relative;
-        justify-content: space-between;
+        position: relative; /* Necesario para centrar el menú */
+        justify-content: space-between; /* Empuja el logo a la izquierda */
         align-items: center;
-        padding: 25px 40px; /* Aumentamos el padding para que la estampilla respire */
+        padding: 15px 40px; /* Da espacio a los lados */
     }
 
+    /* 4. Centramos el menú de navegación de forma absoluta */
     .nav-menu {
         position: absolute;
         left: 50%;
@@ -512,25 +509,20 @@ section.is-visible {
         transform: translate(-50%, -50%);
     }
     
-    /* El contenedor del enlace del logo */
+    /* 5. Eliminamos cualquier estilo extra del contenedor del logo */
     .nav-logo-container a {
-        background-color: #FAF3E0;
-        padding: 15px; /* Espacio entre el limón y el borde perforado */
-        
-        /* La magia del borde de estampilla usando una máscara */
-        -webkit-mask:
-            radial-gradient(circle at 0 0, #0000 8px, #000 9px) 100% 100% / 51% 51% no-repeat,
-            radial-gradient(circle at 100% 0, #0000 8px, #000 9px) 0 100% / 51% 51% no-repeat,
-            radial-gradient(circle at 0 100%, #0000 8px, #000 9px) 100% 0 / 51% 51% no-repeat,
-            radial-gradient(circle at 100% 100%, #0000 8px, #000 9px) 0 0 / 51% 51% no-repeat;
-        
-        box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: inline-block; /* Buen comportamiento para un enlace con imagen */
+        transition: transform 0.3s ease;
     }
 
     .nav-logo-container a:hover {
-        transform: scale(1.05);
-        box-shadow: 4px 4px 12px rgba(0,0,0,0.3);
+        transform: scale(1.05); /* Un pequeño efecto al pasar el cursor */
+    }
+
+    /* 6. Ajusta el tamaño de tu nueva imagen aquí */
+    .nav-logo {
+        height: 80px; /* <-- CAMBIA ESTE VALOR para ajustar el tamaño de tu logo */
+        width: auto;
     }
 }
 
