@@ -613,61 +613,60 @@ section.is-visible {
     }
 }
 
-/* --- ESTILO NAVBAR CON LOGO DE ESTAMPILLA --- */
+/* --- ESTILO FINAL NAVBAR TRANSPARENTE CON LOGO ESTAMPILLA (VISTA ESCRITORIO) --- */
 
-/* 1. Definimos el color de la estampilla como una variable */
-:root {
-    --stamp-background-color: #FAF3E0;
-}
-
-/* 2. Ajustamos la barra de navegación en vista de escritorio */
+/* Aplicamos estos estilos solo en pantallas de más de 920px de ancho */
 @media (min-width: 921px) {
 
-    /* Hacemos que la navbar sea un contenedor relativo para posicionar el menú */
-    .navbar {
-        position: relative;
-        justify-content: space-between; /* Dejamos espacio para el logo y los links */
-        align-items: center; /* Alineamos verticalmente el logo */
-        padding: 10px 40px; /* Añadimos padding para que la estampilla no pegue al borde */
+    /* 1. Hacemos la barra de navegación transparente */
+    .main-header {
+        background: transparent;
+        backdrop-filter: blur(10px); /* Mantenemos el desenfoque */
     }
 
-    /* 3. Centramos el menú de forma absoluta en la página */
+    /* 2. Cambiamos el color de los links y añadimos sombra para legibilidad */
+    .nav-link {
+        color: var(--light-text-color); /* Texto blanco */
+        text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.7); /* Sombra para resaltar */
+    }
+
+    /* 3. Reestructuramos la navbar para posicionar el logo y centrar el menú */
+    .navbar {
+        position: relative; /* Contenedor para el centrado absoluto del menú */
+        justify-content: space-between; /* Espacio para el logo a la izquierda */
+        align-items: center;
+        padding: 10px 40px; /* Espacio en los bordes para la estampilla */
+    }
+
+    /* 4. Centramos el menú de forma absoluta, ignorando el espacio del logo */
     .nav-menu {
         position: absolute;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-        width: auto; /* Nos aseguramos que no ocupe el 100% */
     }
 
-    /* 4. Le damos el estilo de estampilla al contenedor del logo */
+    /* 5. Creamos el estilo de "estampilla" para el contenedor del logo */
     .nav-logo-container a {
         display: block;
-        background-color: var(--stamp-background-color);
-        padding: 20px;
-        
-        /* El borde punteado que simula el troquelado de la estampilla */
-        border: 2px dashed var(--text-color);
-        
-        border-radius: 5px; /* Suaviza las esquinas */
-        box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
-        
-        /* La rotación que le da el toque manual */
+        background-color: #FAF3E0; /* Color crema del fondo */
+        padding: 15px;
+        border: 2px dashed #3E2D23; /* Borde punteado que simula la estampilla */
+        border-radius: 5px;
+        box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
         transform: rotate(-4deg);
-        transition: transform 0.3s ease;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    /* Efecto al pasar el mouse sobre la estampilla */
+    /* Efecto al pasar el cursor sobre la estampilla */
     .nav-logo-container a:hover {
         transform: rotate(0deg) scale(1.05);
+        box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.3);
     }
     
-    /* 5. Ajustamos la imagen del limón dentro de la estampilla */
+    /* 6. Ajustamos el tamaño de la imagen del logo dentro de la estampilla */
     .nav-logo {
-        height: 70px; /* Para ajustar el tamaño de tu limón si es necesario */
+        height: 60px; /* Puedes ajustar este tamaño */
         width: auto;
     }
 }
-
-
-
