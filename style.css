@@ -77,7 +77,7 @@ section.is-visible {
 }
 
 .nav-logo {
-    height: 65px; 
+    height: 220px; 
     width: auto;
 }
 
@@ -623,4 +623,5 @@ section.is-visible {
     left: 0;
     z-index: -1;
 }
+
 
