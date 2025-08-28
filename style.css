@@ -67,7 +67,7 @@ section.is-visible {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 5px 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -623,5 +623,6 @@ section.is-visible {
     left: 0;
     z-index: -1;
 }
+
 
 
