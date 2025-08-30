@@ -58,8 +58,8 @@ section.is-visible {
     left: 0;
     width: 100%;
     z-index: 1000;
-    background: transparent;
-    backdrop-filter: blur(10px);
+    background: #ffffff;
+    backdrop-filter: none;
     transition: background 0.3s ease;
 }
 
@@ -623,6 +623,7 @@ section.is-visible {
     left: 0;
     z-index: -1;
 }
+
 
 
 
