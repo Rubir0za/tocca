@@ -314,7 +314,6 @@ section.is-visible {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0,0,0,0.3);
     background-size: cover;
     background-position: center;
     border-radius: 10px;
@@ -711,3 +710,4 @@ section.is-visible {
     padding: 4px 8px;
     white-space: nowrap; /* Evita que "Few Spots Left" se parta en dos líneas */
 }
+
