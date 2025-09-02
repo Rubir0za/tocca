@@ -121,7 +121,7 @@ section.is-visible {
 
 /* --- HERO SECTION --- */
 .hero-section {
-    padding-top: 80px;
+    padding-top: 0px;
     height: 100vh;
     position: relative;
     display: flex;
@@ -804,5 +804,6 @@ section.is-visible {
   background-position: center;
   background-repeat: no-repeat;
 }
+
 
 
