@@ -674,5 +674,40 @@ section.is-visible {
     }
 }
 
+/* === AJUSTE FINAL PARA UPCOMING DATES (CENTRADO Y HORIZONTAL) === */
+.dates-container {
+    display: flex;          /* Usamos Flexbox que es ideal para esto */
+    justify-content: center; /* Centra las tarjetas horizontalmente */
+    align-items: stretch;   /* Asegura que todas tengan la misma altura */
+    flex-wrap: nowrap;      /* Evita que se bajen a otra línea */
+    gap: 8px;               /* Un pequeño espacio entre ellas */
+    padding: 0 10px;        /* Padding para que no toquen los bordes de la pantalla */
+}
 
+.date-card {
+    flex-basis: 0;     /* Permite que las tarjetas se encojan de forma flexible */
+    flex-grow: 1;      /* Hace que ocupen el espacio disponible de forma equitativa */
+    padding: 10px 5px; /* Espacio interno ajustado */
+    min-height: 90px;  /* Les da una altura mínima para que no se vean aplastadas */
+    /* Centramos el texto dentro de cada tarjeta */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
+.date-card h3 {
+    font-size: 0.8rem;
+    margin: 0 0 4px 0;
+}
+
+.date-card p {
+    font-size: 0.9rem;
+    margin: 0 0 6px 0;
+}
+
+.status {
+    font-size: 0.65rem;
+    padding: 4px 8px;
+    white-space: nowrap; /* Evita que "Few Spots Left" se parta en dos líneas */
+}
