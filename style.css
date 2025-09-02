@@ -656,59 +656,26 @@ section.is-visible {
     }
 
 
-    /* 2. AJUSTE PARA LAS FECHAS (UPCOMING DATES) */
-    .dates-container {
-        flex-direction: column; /* Apila las tarjetas verticalmente */
-        align-items: center;    /* Centra las tarjetas en el contenedor */
-        flex-wrap: nowrap;      /* Se asegura que no haya scroll lateral */
-        overflow-x: hidden;
-        gap: 16px;              /* Espacio entre cada tarjeta */
-        padding: 0 10px;        /* Se ajusta el padding lateral */
-    }
-
-    .date-card {
-        width: 100%;            /* Cada tarjeta ocupa el ancho completo */
-        max-width: 400px;       /* Un ancho máximo para tablets o pantallas grandes */
-        flex-shrink: 1;         /* Permite que el elemento se ajuste si es necesario */
-    }
+    /* === AJUSTE PARA UPCOMING DATES EN MÓVIL (CORREGIDO) === */
+.dates-container {
+    display: flex; /* Asegura que sea un contenedor flex */
+    flex-wrap: nowrap; /* Evita que las tarjetas salten de línea */
+    overflow-x: auto; /* Permite el scroll horizontal */
+    justify-content: flex-start; /* Alinea las tarjetas desde el inicio */
+    gap: 15px; /* Espacio entre las tarjetas */
+    padding: 20px;
+    -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+    scrollbar-width: none; /* Oculta la barra de scroll en Firefox */
+    -ms-overflow-style: none; /* Oculta la barra de scroll en IE/Edge */
 }
 
-/* === AJUSTE FINAL PARA UPCOMING DATES (CENTRADO Y HORIZONTAL) === */
-.dates-container {
-    display: flex;          /* Usamos Flexbox que es ideal para esto */
-    justify-content: center; /* Centra las tarjetas horizontalmente */
-    align-items: stretch;   /* Asegura que todas tengan la misma altura */
-    flex-wrap: nowrap;      /* Evita que se bajen a otra línea */
-    gap: 8px;               /* Un pequeño espacio entre ellas */
-    padding: 0 10px;        /* Padding para que no toquen los bordes de la pantalla */
+.dates-container::-webkit-scrollbar {
+    display: none; /* Oculta la barra de scroll en Chrome/Safari */
 }
 
 .date-card {
-    flex-basis: 0;     /* Permite que las tarjetas se encojan de forma flexible */
-    flex-grow: 1;      /* Hace que ocupen el espacio disponible de forma equitativa */
-    padding: 10px 5px; /* Espacio interno ajustado */
-    min-height: 90px;  /* Les da una altura mínima para que no se vean aplastadas */
-    /* Centramos el texto dentro de cada tarjeta */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.date-card h3 {
-    font-size: 0.8rem;
-    margin: 0 0 4px 0;
-}
-
-.date-card p {
-    font-size: 0.9rem;
-    margin: 0 0 6px 0;
-}
-
-.status {
-    font-size: 0.65rem;
-    padding: 4px 8px;
-    white-space: nowrap; /* Evita que "Few Spots Left" se parta en dos líneas */
+    width: 250px; /* Un ancho fijo para cada tarjeta */
+    flex-shrink: 0; /* Evita que las tarjetas se encojan */
 }
 
 
