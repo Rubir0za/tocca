@@ -314,7 +314,6 @@ section.is-visible {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0,0,0,0.3);
     background-size: cover;
     background-position: center;
     border-radius: 10px;
@@ -334,7 +333,7 @@ section.is-visible {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.4);
+
     z-index: 1;
 }
 
@@ -376,14 +375,17 @@ section.is-visible {
 .day-description p { margin: 0; font-size: 1.1rem; color: rgba(255, 255, 255, 0.9); }
 
 /* --- SECCIÓN FECHAS --- */
-.upcoming-dates-section { background-color: var(--background-light); }
+.upcoming-dates-section { 
+    background-color: var(--background-light); 
+}
 .dates-container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
     gap: 20px;
     max-width: 1000px;
     margin: 0 auto;
+    padding: 20px;
 }
 .date-card {
     background: #fff;
@@ -392,11 +394,21 @@ section.is-visible {
     box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     text-align: center;
     width: 220px;
+    flex-shrink: 0;
     transition: transform 0.3s ease;
 }
-.date-card:hover { transform: translateY(-10px); }
-.date-card h3 { margin: 0 0 10px; color: var(--primary-color); }
-.date-card p { font-size: 1.5rem; font-weight: bold; margin: 0; }
+.date-card:hover { 
+    transform: translateY(-10px); 
+}
+.date-card h3 { 
+    margin: 0 0 10px; 
+    color: var(--primary-color); 
+}
+.date-card p { 
+    font-size: 1.5rem; 
+    font-weight: bold; 
+    margin: 0; 
+}
 .status {
     display: inline-block;
     margin-top: 15px;
@@ -405,10 +417,16 @@ section.is-visible {
     font-weight: bold;
     color: #fff;
 }
-.status.available { background-color: var(--success-color); }
-.status.few-spots { background-color: var(--warning-color); color: var(--text-color); }
-.status.sold-out { background-color: var(--danger-color); }
-
+.status.available { 
+    background-color: var(--success-color); 
+}
+.status.few-spots { 
+    background-color: var(--warning-color); 
+    color: var(--text-color); 
+}
+.status.sold-out { 
+    background-color: var(--danger-color); 
+}
 /* --- SECCIÓN INCLUSIONES --- */
 .inclusions-section { background: #fff; }
 .inclusions-container {
@@ -596,24 +614,43 @@ section.is-visible {
         flex-direction: column-reverse;
     }
     
-    /* === AJUSTE PARA UPCOMING DATES EN MÓVIL === */
-    .dates-container {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        justify-content: flex-start;
-        padding: 20px;
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-    .dates-container::-webkit-scrollbar {
-        display: none;
-    }
-    .date-card {
-        flex-shrink: 0;
-        width: 70%;
-    }
+/* === AJUSTE FINAL PARA UPCOMING DATES (CENTRADO Y HORIZONTAL) === */
+.dates-container {
+    display: flex;          /* Usamos Flexbox que es ideal para esto */
+    justify-content: center; /* Centra las tarjetas horizontalmente */
+    align-items: stretch;   /* Asegura que todas tengan la misma altura */
+    flex-wrap: nowrap;      /* Evita que se bajen a otra línea */
+    gap: 8px;               /* Un pequeño espacio entre ellas */
+    padding: 0 10px;        /* Padding para que no toquen los bordes de la pantalla */
 }
 
+.date-card {
+    flex-basis: 0;     /* Permite que las tarjetas se encojan de forma flexible */
+    flex-grow: 1;      /* Hace que ocupen el espacio disponible de forma equitativa */
+    padding: 10px 5px; /* Espacio interno ajustado */
+    min-height: 90px;  /* Les da una altura mínima para que no se vean aplastadas */
+    /* Centramos el texto dentro de cada tarjeta */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.date-card h3 {
+    font-size: 0.8rem;
+    margin: 0 0 4px 0;
+}
+
+.date-card p {
+    font-size: 0.9rem;
+    margin: 0 0 6px 0;
+}
+
+.status {
+    font-size: 0.65rem;
+    padding: 4px 8px;
+    white-space: nowrap; /* Evita que "Few Spots Left" se parta en dos líneas */
+}
 .video-background img {
     width: 100%;
     height: 100%;
@@ -624,63 +661,121 @@ section.is-visible {
     z-index: -1;
 }
 
-/* --- AJUSTES PERSONALIZADOS PARA VISUALIZACIÓN MÓVIL --- */
 
+
+
+
+
+/* --- SECCIÓN ITINERARIO --- */
+.luxury-package-section {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    text-align: center;
+}
+.luxury-package-section h2 { color: var(--light-text-color); }
+
+.package-price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 50px;
+    color: var(--secondary-color);
+}
+
+.itinerary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.itinerary-day-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 20px;
+    text-align: center;
+    min-height: 100px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.itinerary-day-row:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.day-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+}
+.day-title a {
+    color: var(--light-text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.day-title a:hover { color: var(--secondary-color); }
+
+.day-description {
+    padding-left: 0;
+    border-left: none;
+}
+.day-description h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+    color: var(--light-text-color);
+}
+.day-description p { margin: 0; font-size: 1rem; color: rgba(255, 255, 255, 0.9); display: none; }
+
+/* === AJUSTE DE ITINERARIO PARA MÓVIL === */
 @media (max-width: 920px) {
-
-    /* 1. AJUSTE PARA CUADRÍCULA DE ITINERARIO (9 DÍAS) */
     .itinerary-grid {
-        /* Se crea una cuadrícula de 3 columnas para mostrar los 9 días */
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px; /* Se reduce el espacio entre elementos */
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
     }
 
     .itinerary-day-row {
-        min-height: 140px; /* Altura ajustada para el contenido */
-        padding: 12px 8px; /* Menos espacio interno para que quepa el texto */
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        min-height: auto;
+        padding: 10px;
+        background-image: none !important;
     }
 
     .day-title {
-        font-size: 2rem;   /* Tamaño del título "Day X" reducido */
-        margin-bottom: 8px;
+        flex: unset;
+        font-size: 1.4rem;
+        margin-bottom: 5px;
     }
 
+    .day-description {
+        padding-left: 0;
+        border-left: none;
+        width: 100%;
+    }
     .day-description h3 {
-        font-size: 0.8rem;  /* Tamaño del subtítulo reducido */
-        line-height: 1.2;
+        font-size: 0.8rem;
+        color: var(--text-color);
     }
-
-    /* Para asegurar que todo quepa en una captura, ocultamos el párrafo descriptivo en esta vista */
-    .itinerary-grid .day-description p {
-       display: none;
-    }
-
-
-    /* 2. AJUSTE PARA LAS FECHAS (UPCOMING DATES) */
-    .dates-container {
-        flex-direction: column; /* Apila las tarjetas verticalmente */
-        align-items: center;    /* Centra las tarjetas en el contenedor */
-        flex-wrap: nowrap;      /* Se asegura que no haya scroll lateral */
-        overflow-x: hidden;
-        gap: 16px;              /* Espacio entre cada tarjeta */
-        padding: 0 10px;        /* Se ajusta el padding lateral */
-    }
-
-    .date-card {
-        width: 100%;            /* Cada tarjeta ocupa el ancho completo */
-        max-width: 400px;       /* Un ancho máximo para tablets o pantallas grandes */
-        flex-shrink: 1;         /* Permite que el elemento se ajuste si es necesario */
+    .day-description p {
+        display: none;
     }
 }
 
-/* --- AJUSTE PARA CENTRAR EL ÚLTIMO ELEMENTO DE LA CUADRÍCULA MÓVIL --- */
+.itinerary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    max-width: 900px;
+    margin: 0 auto;
+}
 
 @media (max-width: 920px) {
-    /* Selecciona el último elemento de la cuadrícula de itinerario */
-    .itinerary-day-row:last-child {
-        /* Como la cuadrícula tiene 3 columnas, le decimos que empiece en la segunda */
-        grid-column-start: 2; 
+    .itinerary-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
     }
 }
-
