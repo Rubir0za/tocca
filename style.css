@@ -1,6 +1,6 @@
 /* --- ESTILOS GENERALES Y FUENTES --- */
 :root {
-    --primary-color: #375369; /* Azul de la imagen de inspiración */
+    --primary-color: #375369; 
     --secondary-color: #D8A736;
     --text-color: #3E2D23;
     --light-text-color: #ffffff;
@@ -225,4 +225,5 @@ a {
     /* --- AJUSTE WHAT'S INCLUDED MÓVIL --- */
     .included-container { flex-direction: column; }
 }
+
 
