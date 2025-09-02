@@ -655,27 +655,43 @@ section.is-visible {
        display: none;
     }
 
+@media (max-width: 920px) {
+    /* ... otros ajustes ... */
 
-    /* === AJUSTE PARA UPCOMING DATES EN MÓVIL (CORREGIDO) === */
-.dates-container {
-    display: flex; /* Asegura que sea un contenedor flex */
-    flex-wrap: nowrap; /* Evita que las tarjetas salten de línea */
-    overflow-x: auto; /* Permite el scroll horizontal */
-    justify-content: flex-start; /* Alinea las tarjetas desde el inicio */
-    gap: 15px; /* Espacio entre las tarjetas */
-    padding: 20px;
-    -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
-    scrollbar-width: none; /* Oculta la barra de scroll en Firefox */
-    -ms-overflow-style: none; /* Oculta la barra de scroll en IE/Edge */
+    /* 2. AJUSTE PARA LAS FECHAS (UPCOMING DATES) */
+    .dates-container {
+        display: flex; /* Activar flexbox */
+        flex-wrap: nowrap; /* IMPORTANTE: No permite que las tarjetas salten a la siguiente línea */
+        overflow-x: auto; /* Permite el scroll horizontal si hay muchas, pero intentaremos evitarlo */
+        justify-content: flex-start; /* Alinea las tarjetas al inicio */
+        align-items: flex-start; /* Alinea las tarjetas en la parte superior */
+        gap: 8px; /* Espacio reducido entre las tarjetas */
+        padding: 0 10px; /* Padding lateral */
+        scroll-snap-type: x mandatory; /* Para un desplazamiento más suave, aunque no será carrusel */
+        -webkit-overflow-scrolling: touch; /* Suaviza el scroll en iOS */
+    }
+
+    .date-card {
+        flex: 0 0 auto; /* No crecer, no encoger, ancho basado en el contenido o lo definido abajo */
+        width: 150px; /* Un ancho fijo para cada tarjeta en móvil, ajusta según necesites */
+        min-width: 120px; /* Asegura que no se hagan demasiado pequeñas */
+        scroll-snap-align: start; /* Para el snap de scroll */
+        padding: 10px; /* Ajusta el padding interno */
+        background-color: #4CAF50; /* Un verde de ejemplo para las fechas, cámbialo al que desees */
+        color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        text-align: center;
+        font-size: 0.8rem;
+    }
+
+    .date-card .date {
+        font-weight: bold;
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+
+    .date-card .status {
+        font-size: 0.7rem;
+    }
 }
-
-.dates-container::-webkit-scrollbar {
-    display: none; /* Oculta la barra de scroll en Chrome/Safari */
-}
-
-.date-card {
-    width: 250px; /* Un ancho fijo para cada tarjeta */
-    flex-shrink: 0; /* Evita que las tarjetas se encojan */
-}
-
-
