@@ -624,8 +624,55 @@ section.is-visible {
     z-index: -1;
 }
 
+/* --- AJUSTES PERSONALIZADOS PARA VISUALIZACIÓN MÓVIL --- */
+
+@media (max-width: 920px) {
+
+    /* 1. AJUSTE PARA CUADRÍCULA DE ITINERARIO (9 DÍAS) */
+    .itinerary-grid {
+        /* Se crea una cuadrícula de 3 columnas para mostrar los 9 días */
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px; /* Se reduce el espacio entre elementos */
+    }
+
+    .itinerary-day-row {
+        min-height: 140px; /* Altura ajustada para el contenido */
+        padding: 12px 8px; /* Menos espacio interno para que quepa el texto */
+        justify-content: center;
+    }
+
+    .day-title {
+        font-size: 2rem;   /* Tamaño del título "Day X" reducido */
+        margin-bottom: 8px;
+    }
+
+    .day-description h3 {
+        font-size: 0.8rem;  /* Tamaño del subtítulo reducido */
+        line-height: 1.2;
+    }
+
+    /* Para asegurar que todo quepa en una captura, ocultamos el párrafo descriptivo en esta vista */
+    .itinerary-grid .day-description p {
+       display: none;
+    }
 
 
+    /* 2. AJUSTE PARA LAS FECHAS (UPCOMING DATES) */
+    .dates-container {
+        flex-direction: column; /* Apila las tarjetas verticalmente */
+        align-items: center;    /* Centra las tarjetas en el contenedor */
+        flex-wrap: nowrap;      /* Se asegura que no haya scroll lateral */
+        overflow-x: hidden;
+        gap: 16px;              /* Espacio entre cada tarjeta */
+        padding: 0 10px;        /* Se ajusta el padding lateral */
+    }
+
+    .date-card {
+        width: 100%;            /* Cada tarjeta ocupa el ancho completo */
+        max-width: 400px;       /* Un ancho máximo para tablets o pantallas grandes */
+        flex-shrink: 1;         /* Permite que el elemento se ajuste si es necesario */
+    }
+}
 
 
 
