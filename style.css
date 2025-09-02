@@ -374,39 +374,43 @@ section.is-visible {
 }
 .day-description p { margin: 0; font-size: 1.1rem; color: rgba(255, 255, 255, 0.9); }
 
-/* === AJUSTE FINAL PARA UPCOMING DATES (ESTÁTICO Y HORIZONTAL) === */
+/* === AJUSTE FINAL Y DEFINITIVO PARA UPCOMING DATES EN MÓVIL === */
 .dates-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Crea 4 columnas iguales que ocupan todo el ancho */
-    gap: 8px;                              /* Un pequeño espacio entre tarjetas */
-    padding: 0 10px;                       /* Evita que las tarjetas toquen los bordes de la pantalla */
-    overflow: hidden;                      /* Prohíbe definitivamente el scroll horizontal */
+    grid-template-columns: repeat(4, 1fr); /* Crea 4 columnas iguales */
+    gap: 8px;                              /* Espacio reducido entre tarjetas */
+    padding: 0 10px;                       /* Evita que toquen los bordes */
 }
 
 .date-card {
-    background: #fff;       /* <-- AQUÍ CORREGIMOS EL COLOR a blanco */
-    padding: 10px 5px;      /* Espacio interno reducido para que quepa todo */
-    width: 100%;            /* La tarjeta ocupa todo el espacio de su columna */
-    flex-shrink: 1;         /* Propiedades reseteadas para evitar conflictos */
+    background: #ffffff !important; /* Forzamos el fondo blanco para anular cualquier otro estilo */
+    width: 100%;                     /* La tarjeta se adapta a su columna */
+    padding: 10px 5px;               /* Espacio interno ajustado */
+    display: flex;                   /* Centramos el contenido */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-/* Reducimos la tipografía para asegurar que todo sea legible y quepa */
+/* Ajustamos la tipografía para que quepa todo y sea legible */
 .date-card h3 {
-    font-size: 0.8rem;      /* Tamaño para "MAY 2025" */
-    margin-bottom: 5px;
-    color: var(--primary-color); /* Devolvemos el color original del texto */
+    font-size: 0.8rem;
+    color: var(--primary-color); /* Devolvemos el color original al texto */
+    margin: 0 0 4px 0;
 }
 
 .date-card p {
-    font-size: 1rem;        /* Tamaño para "15th - 22nd" */
+    font-size: 0.9rem;
     font-weight: bold;
-    margin: 0 0 8px 0;
+    color: var(--text-color); /* Devolvemos el color original a los días */
+    margin: 0 0 6px 0;
 }
 
 .status {
-    font-size: 0.65rem;     /* Tamaño para la etiqueta de estado */
+    font-size: 0.65rem;
     padding: 4px 6px;
-    white-space: nowrap;    /* Evita que "Few Spots Left" se parta en dos líneas */
+    white-space: nowrap;    /* Evita que el texto del estado se parta en dos */
 }
 /* --- TESTIMONIOS --- */
 .testimonials-section {
@@ -665,5 +669,6 @@ section.is-visible {
         font-size: 0.7rem;
     }
 }
+
 
 
