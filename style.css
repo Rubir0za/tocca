@@ -374,53 +374,40 @@ section.is-visible {
 }
 .day-description p { margin: 0; font-size: 1.1rem; color: rgba(255, 255, 255, 0.9); }
 
-/* === AJUSTE PARA UPCOMING DATES EN MÓVIL === */
+/* === AJUSTE FINAL PARA UPCOMING DATES (ESTÁTICO Y HORIZONTAL) === */
 .dates-container {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    justify-content: flex-start;
-    padding: 20px;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Crea 4 columnas iguales que ocupan todo el ancho */
+    gap: 8px;                              /* Un pequeño espacio entre tarjetas */
+    padding: 0 10px;                       /* Evita que las tarjetas toquen los bordes de la pantalla */
+    overflow: hidden;                      /* Prohíbe definitivamente el scroll horizontal */
 }
-.dates-container::-webkit-scrollbar {
-    display: none;
-}
+
 .date-card {
-    flex-shrink: 0;
-    width: 70%;
+    background: #fff;       /* <-- AQUÍ CORREGIMOS EL COLOR a blanco */
+    padding: 10px 5px;      /* Espacio interno reducido para que quepa todo */
+    width: 100%;            /* La tarjeta ocupa todo el espacio de su columna */
+    flex-shrink: 1;         /* Propiedades reseteadas para evitar conflictos */
 }
 
-/* --- SECCIÓN INCLUSIONES --- */
-.inclusions-section { background: #fff; }
-.inclusions-container {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    max-width: 900px;
-    margin: 0 auto;
-    flex-wrap: wrap;
+/* Reducimos la tipografía para asegurar que todo sea legible y quepa */
+.date-card h3 {
+    font-size: 0.8rem;      /* Tamaño para "MAY 2025" */
+    margin-bottom: 5px;
+    color: var(--primary-color); /* Devolvemos el color original del texto */
 }
-.includes-column, .not-includes-column {
-    background: var(--background-light);
-    padding: 30px;
-    border-radius: 8px;
-    flex: 1;
-    min-width: 300px;
-}
-.inclusions-container h3 {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 1.5rem;
-    margin-top: 0;
-}
-.includes-column h3 { color: var(--success-color); }
-.not-includes-column h3 { color: var(--danger-color); }
-.inclusions-container ul { list-style: none; padding: 0; }
-.inclusions-container li { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-.inclusions-container i { font-size: 1.2rem; }
 
+.date-card p {
+    font-size: 1rem;        /* Tamaño para "15th - 22nd" */
+    font-weight: bold;
+    margin: 0 0 8px 0;
+}
+
+.status {
+    font-size: 0.65rem;     /* Tamaño para la etiqueta de estado */
+    padding: 4px 6px;
+    white-space: nowrap;    /* Evita que "Few Spots Left" se parta en dos líneas */
+}
 /* --- TESTIMONIOS --- */
 .testimonials-section {
     background-color: var(--background-light);
@@ -678,4 +665,5 @@ section.is-visible {
         font-size: 0.7rem;
     }
 }
+
 
