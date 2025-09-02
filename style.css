@@ -1,6 +1,6 @@
 /* --- ESTILOS GENERALES Y FUENTES --- */
 :root {
-    --primary-color: #375369; 
+    --primary-color: #4A9A92;
     --secondary-color: #D8A736;
     --text-color: #3E2D23;
     --light-text-color: #ffffff;
@@ -40,35 +40,465 @@ h2 {
 }
 
 section {
-    padding: 60px 20px;
-    overflow: hidden; 
+    padding: 80px 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-.container {
+section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- BARRA DE NAVEGACIÓN --- */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #ffffff;
+    backdrop-filter: none;
+    transition: background 0.3s ease;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 15px;
 }
 
-a {
-    color: var(--primary-color);
+.nav-logo-container {
+    padding-top: 5px;
+}
+
+.nav-logo {
+    height: 76px; 
+    width: auto;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-link {
+    color: var(--light-text-color); 
+    text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.6); 
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-weight: bold;
     text-decoration: none;
+    transition: all 0.3s ease;
+    text-align: center;
 }
 
-/* --- WHATSAPP FLOAT BUTTON --- */
+.nav-link:hover {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--text-color);
+    transition: all 0.3s ease-in-out;
+}
+
+/* --- HERO SECTION --- */
+.hero-section {
+    padding-top: 80px;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--light-text-color);
+    overflow: hidden;
+    flex-direction: column;
+    background-color: transparent;
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    display: block;
+}
+
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+    display: block;
+}
+
+.hero-content {
+    max-width: 900px;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.logo-background {
+    display: none; 
+}
+
+/* Estilos para "Tocca" */
+.hero-main-title {
+    font-family: 'Style Script', cursive;
+    font-size: clamp(5rem, 15vw, 10rem);
+    font-weight: 400;
+    margin: 0;
+    line-height: 1;
+    color: var(--hero-text-color-beige); /* Color beige */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+/* Estilos para "AMALFI COAST" */
+.hero-subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 400;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    margin: 10px 0 20px;
+    color: var(--hero-text-color-beige); /* Color beige */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+/* Estilos para "TOUCH THE SOUL OF THE COAST" (asumo que es .hero-description) */
+.hero-description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    color: var(--hero-text-color-beige); /* Color beige */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+.cta-button {
+    display: none;
+}
+
+/* --- SECCIÓN WHY US --- */
+.why-us-carousel-section {
+    background-color: #fff;
+}
+
+.why-us-carousel-section:nth-of-type(even) {
+    background-color: var(--background-light);
+}
+
+
+.why-us-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.why-us-text-block {
+    flex: 1;
+    min-width: 300px;
+}
+
+.why-us-text-block h3 {
+    font-size: 1.8rem;
+    line-height: 1.4;
+    margin-top: 0;
+}
+
+.why-us-image-grid {
+    flex: 1;
+    min-width: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.why-us-image-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.why-us-image-grid img:first-child {
+    grid-row: span 2;
+    height: calc(100% - 7.5px);
+}
+
+.offer-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+.offer-list li {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+
+/* --- SECCIÓN ITINERARIO --- */
+.luxury-package-section {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    text-align: center;
+}
+.luxury-package-section h2 { color: var(--light-text-color); }
+
+.package-price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 50px;
+    color: var(--secondary-color);
+}
+
+.itinerary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.itinerary-day-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 25px 30px;
+    text-align: center;
+    min-height: 250px;
+    color: var(--light-text-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.itinerary-day-row::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    z-index: 1;
+}
+
+.itinerary-day-row > * {
+    position: relative;
+    z-index: 2;
+}
+
+.itinerary-day-row:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+
+.day-title {
+    flex: none;
+    font-size: 3rem;
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 10px;
+}
+.day-title a {
+    color: var(--light-text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.day-title a:hover { color: var(--secondary-color); }
+
+.day-description {
+    padding-left: 0;
+    border-left: none;
+    width: 100%;
+    text-align: center;
+}
+.day-description h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.6rem;
+    color: var(--light-text-color);
+}
+.day-description p { margin: 0; font-size: 1.1rem; color: rgba(255, 255, 255, 0.9); }
+
+/* --- SECCIÓN FECHAS --- */
+.upcoming-dates-section { 
+    background-color: var(--background-light); 
+}
+.dates-container {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.date-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    text-align: center;
+    width: 220px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+.date-card:hover { 
+    transform: translateY(-10px); 
+}
+.date-card h3 { 
+    margin: 0 0 10px; 
+    color: var(--primary-color); 
+}
+.date-card p { 
+    font-size: 1.5rem; 
+    font-weight: bold; 
+    margin: 0; 
+}
+.status {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-weight: bold;
+    color: #fff;
+}
+.status.available { 
+    background-color: var(--success-color); 
+}
+.status.few-spots { 
+    background-color: var(--warning-color); 
+    color: var(--text-color); 
+}
+.status.sold-out { 
+    background-color: var(--danger-color); 
+}
+/* --- SECCIÓN INCLUSIONES --- */
+.inclusions-section { background: #fff; }
+.inclusions-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+.includes-column, .not-includes-column {
+    background: var(--background-light);
+    padding: 30px;
+    border-radius: 8px;
+    flex: 1;
+    min-width: 300px;
+}
+.inclusions-container h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    margin-top: 0;
+}
+.includes-column h3 { color: var(--success-color); }
+.not-includes-column h3 { color: var(--danger-color); }
+.inclusions-container ul { list-style: none; padding: 0; }
+.inclusions-container li { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.inclusions-container i { font-size: 1.2rem; }
+
+/* --- TESTIMONIOS --- */
+.testimonials-section {
+    background-color: var(--background-light);
+}
+.testimonial-card {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-left: 5px solid var(--primary-color);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+}
+
+/* --- CONTACTO --- */
+.contact-us-section { text-align: center; background-color: var(--primary-color); color: #fff; }
+.contact-us-section h2 { color: #fff; }
+.contact-us-section p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px; }
+.contact-button {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 15px 35px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+.contact-button:hover { background-color: #fff; }
+
+/* --- WHATSAPP FLOAT --- */
 .whatsapp-float {
     position: fixed;
     width: 60px;
     height: 60px;
     bottom: 40px;
     right: 40px;
-    background-color: #25D366;
-    color: #FFF;
+    background-color: #25d366;
+    color: #fff;
     border-radius: 50px;
     text-align: center;
     font-size: 30px;
-    box-shadow: 2px 2px 6px rgba(0,0,0,0.25);
-    z-index: 1000;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,154 +506,276 @@ a {
 .whatsapp-svg-icon {
     width: 35px;
     height: 35px;
-    fill: #fff;
 }
 
-/* --- HEADER Y NAVEGACIÓN --- */
-.main-header {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('imagenes/hero-image-amalfi.jpeg') no-repeat center center/cover;
-    height: 100vh;
-    color: var(--hero-text-color-beige);
+/* --- ESTILOS PARA PÁGINAS DE DÍA INDIVIDUAL --- */
+.day-detail-section {
+    padding: 60px 20px;
+    max-width: 800px;
+    margin: 120px auto 40px;
+    background-color: #fff;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+.day-detail-section h1 { font-size: 2.8rem; color: var(--primary-color); margin-bottom: 20px; }
+.day-detail-section p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; }
+.back-to-home {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 25px;
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+.back-to-home:hover { background-color: #3a7a72; }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 920px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 85px; 
+        flex-direction: column;
+        background-color: var(--secondary-color);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        gap: 1px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-link {
+        padding: 20px;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        border-radius: 0;
+        box-shadow: none;
+        color: var(--text-color);
+    }
+     .nav-link:hover {
+        background-color: var(--primary-color);
+        color: var(--light-text-color);
+        transform: none;
+     }
+
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .itinerary-day-row {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        min-height: 200px;
+    }
+
+    .day-title {
+        margin-bottom: 10px;
+        font-size: 2.5rem;
+    }
+
+    .day-description {
+        text-align: center;
+        width: 100%;
+    }
+    .day-description h3 {
+        font-size: 1.4rem;
+    }
+    .day-description p {
+        font-size: 1.1rem;
+    }
+
+    .why-us-container {
+        flex-direction: column;
+    }
+
+    .why-us-carousel-section:nth-of-type(even) .why-us-container {
+        flex-direction: column-reverse;
+    }
+    
+/* === AJUSTE FINAL PARA UPCOMING DATES (CENTRADO Y HORIZONTAL) === */
+.dates-container {
+    display: flex;          /* Usamos Flexbox que es ideal para esto */
+    justify-content: center; /* Centra las tarjetas horizontalmente */
+    align-items: stretch;   /* Asegura que todas tengan la misma altura */
+    flex-wrap: nowrap;      /* Evita que se bajen a otra línea */
+    gap: 8px;               /* Un pequeño espacio entre ellas */
+    padding: 0 10px;        /* Padding para que no toquen los bordes de la pantalla */
+}
+
+.date-card {
+    flex-basis: 0;     /* Permite que las tarjetas se encojan de forma flexible */
+    flex-grow: 1;      /* Hace que ocupen el espacio disponible de forma equitativa */
+    padding: 10px 5px; /* Espacio interno ajustado */
+    min-height: 90px;  /* Les da una altura mínima para que no se vean aplastadas */
+    /* Centramos el texto dentro de cada tarjeta */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    position: relative;
 }
 
-.main-nav {
+.date-card h3 {
+    font-size: 0.8rem;
+    margin: 0 0 4px 0;
+}
+
+.date-card p {
+    font-size: 0.9rem;
+    margin: 0 0 6px 0;
+}
+
+.status {
+    font-size: 0.65rem;
+    padding: 4px 8px;
+    white-space: nowrap; /* Evita que "Few Spots Left" se parta en dos líneas */
+}
+.video-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 50px;
-    z-index: 100;
+    z-index: -1;
 }
-.nav-logo a {
-    font-family: 'Style Script', cursive;
-    font-size: 2.5rem;
-    color: var(--hero-text-color-beige);
-    font-weight: 400;
-}
-.nav-menu { list-style: none; display: flex; margin: 0; padding: 0; }
-.nav-menu li { margin-left: 30px; }
-.nav-link { color: var(--hero-text-color-beige); font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 1rem; }
 
-.hero-content h1 { font-family: 'Cinzel', serif; font-size: 4rem; margin: 0 0 10px; font-weight: 700; }
-.hero-content p { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 300; margin-bottom: 30px; }
-.cta-button { background-color: var(--secondary-color); color: #fff; padding: 15px 35px; border-radius: 50px; font-weight: 700; }
 
-.hamburger { display: none; cursor: pointer; }
-.bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--hero-text-color-beige); }
+
+
+
 
 /* --- SECCIÓN ITINERARIO --- */
-.itinerary-section { background-color: var(--background-light); }
-.itinerary-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-.itinerary-day-row { background-color: var(--primary-color); color: white; padding: 25px; border-radius: 10px; display: flex; align-items: center; min-height: 150px; background-size: cover; background-position: center; position: relative; }
-.itinerary-day-row::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); z-index: 1; border-radius: 10px; }
-.day-title, .day-description { position: relative; z-index: 2; }
-.day-title { flex: 0 0 120px; font-size: 3rem; font-family: 'Playfair Display', serif; }
-.day-title a { color: white; text-decoration: none; }
-.day-description { border-left: 2px solid var(--secondary-color); padding-left: 20px; }
-.day-description h3 { font-size: 1.2rem; font-family: 'Montserrat'; font-weight: 700; margin: 0 0 5px; }
-.day-description p { margin: 0; display: block; } /* Mostramos la descripción en PC */
+.luxury-package-section {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    text-align: center;
+}
+.luxury-package-section h2 { color: var(--light-text-color); }
 
-/* --- SECCIÓN UPCOMING DATES --- */
-.upcoming-dates-section { text-align: center; }
-.dates-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
-.date-card { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; width: 280px; border: 1px solid #eee; }
-.date-card h3 { font-size: 1.5rem; font-weight: 700; margin: 0 0 10px; color: var(--primary-color); }
-.date-card p { font-size: 1.2rem; margin: 0 0 15px; }
-.status { display: inline-block; padding: 8px 20px; border-radius: 50px; color: white; font-weight: 700; }
-.status.available { background-color: var(--success-color); }
-.status.few-spots { background-color: var(--warning-color); color: #333; }
-.status.sold-out { background-color: var(--danger-color); }
-
-/* --- SECCIÓN WHAT'S INCLUDED --- */
-.included-section { background-color: var(--background-light); }
-.included-container { display: flex; justify-content: space-around; gap: 40px; flex-wrap: wrap; }
-.included-column { flex: 1; min-width: 280px; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
-.included-column h3 { font-size: 1.5rem; color: var(--text-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-bottom: 20px; }
-.included-column ul { list-style: none; padding: 0; }
-.included-column li { margin-bottom: 10px; font-size: 1rem; }
-.included-column .fa-check-circle { color: var(--success-color); }
-.included-column .fa-times-circle { color: var(--danger-color); }
-.included-column i { margin-right: 10px; }
-
-/* --- OTRAS SECCIONES (TESTIMONIOS, CONTACTO) --- */
-.testimonials-section { background-color: #fff; }
-.testimonial-card { max-width: 700px; margin: 0 auto 20px auto; padding: 30px; background-color: var(--background-light); border-left: 5px solid var(--secondary-color); }
-.contact-us-section { background-color: var(--primary-color); color: white; text-align: center; }
-.contact-us-section h2 { color: white; }
-.contact-button { background-color: var(--secondary-color); color: white; padding: 15px 35px; border-radius: 50px; display: inline-block; margin-top: 20px; }
-
-
-/**************************************************/
-/************ VISTA MÓVIL - MEDIA QUERY ***********/
-/**************************************************/
-@media (max-width: 920px) {
-
-    /* --- NAVEGACIÓN MÓVIL --- */
-    .nav-menu { position: fixed; left: -100%; top: 0; flex-direction: column; background-color: #2c3e50; width: 100%; height: 100vh; text-align: center; transition: 0.3s; padding-top: 80px; }
-    .nav-menu.active { left: 0; }
-    .nav-menu li { margin: 20px 0; }
-    .hamburger { display: block; z-index: 101; }
-    .hamburger.active .bar:nth-child(2) { opacity: 0; }
-    .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-    .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-    .hero-content h1 { font-size: 2.8rem; }
-    .hero-content p { font-size: 1.2rem; }
-    h2 { font-size: 2rem; }
-
-    /* --- AJUSTE ITINERARIO MÓVIL --- */
-    .itinerary-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-    .itinerary-day-row { background-color: var(--primary-color); background-image: none; min-height: 125px; padding: 10px; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-    .itinerary-day-row::before { background: transparent; }
-    .day-title { flex: none; font-size: 1.4rem; margin-bottom: 5px; color: #f0f0f0; }
-    .day-description { border-left: none; padding-left: 0; }
-    .day-description h3 { font-size: 0.8rem; line-height: 1.2; color: #e0e0e0; font-weight: normal; margin: 0; }
-    .day-description p { display: none; }
-    .itinerary-day-row:last-child { grid-column-start: 2; }
-
-    /* === AJUSTE FINAL PARA UPCOMING DATES EN MÓVIL === */
-    .dates-container {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr); /* 4 columnas estáticas */
-        gap: 8px;
-        padding: 0 10px;
-    }
-    .date-card {
-        background: #ffffff; /* Fondo blanco */
-        width: 100%;
-        padding: 10px 5px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        border: 1px solid #ddd; /* Borde sutil para delimitar */
-    }
-    .date-card h3 {
-        font-size: 0.8rem;
-        margin: 0 0 4px 0;
-    }
-    .date-card p {
-        font-size: 0.9rem;
-        font-weight: bold;
-        margin: 0 0 6px 0;
-    }
-    .status {
-        font-size: 0.65rem;
-        padding: 4px 6px;
-        white-space: nowrap; /* Evita que el texto del estado se parta */
-    }
-
-    /* --- AJUSTE WHAT'S INCLUDED MÓVIL --- */
-    .included-container { flex-direction: column; }
+.package-price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 50px;
+    color: var(--secondary-color);
 }
 
+.itinerary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    max-width: 900px;
+    margin: 0 auto;
+}
 
+.itinerary-day-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 20px;
+    text-align: center;
+    min-height: 100px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.itinerary-day-row:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.day-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+}
+.day-title a {
+    color: var(--light-text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.day-title a:hover { color: var(--secondary-color); }
+
+.day-description {
+    padding-left: 0;
+    border-left: none;
+}
+.day-description h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+    color: var(--light-text-color);
+}
+.day-description p { margin: 0; font-size: 1rem; color: rgba(255, 255, 255, 0.9); display: none; }
+
+/* === AJUSTE DE ITINERARIO PARA MÓVIL === */
+@media (max-width: 920px) {
+    .itinerary-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .itinerary-day-row {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        min-height: auto;
+        padding: 10px;
+        background-image: none !important;
+    }
+
+    .day-title {
+        flex: unset;
+        font-size: 1.4rem;
+        margin-bottom: 5px;
+    }
+
+    .day-description {
+        padding-left: 0;
+        border-left: none;
+        width: 100%;
+    }
+    .day-description h3 {
+        font-size: 0.8rem;
+        color: var(--text-color);
+    }
+    .day-description p {
+        display: none;
+    }
+}
+
+.itinerary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+@media (max-width: 920px) {
+    .itinerary-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+}
