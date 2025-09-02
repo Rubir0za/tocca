@@ -374,39 +374,22 @@ section.is-visible {
 }
 .day-description p { margin: 0; font-size: 1.1rem; color: rgba(255, 255, 255, 0.9); }
 
-/* --- SECCIÓN FECHAS --- */
-.upcoming-dates-section { background-color: var(--background-light); }
+/* === AJUSTE PARA UPCOMING DATES EN MÓVIL === */
 .dates-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    max-width: 1000px;
-    margin: 0 auto;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 20px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.dates-container::-webkit-scrollbar {
+    display: none;
 }
 .date-card {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    text-align: center;
-    width: 220px;
-    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    width: 70%;
 }
-.date-card:hover { transform: translateY(-10px); }
-.date-card h3 { margin: 0 0 10px; color: var(--primary-color); }
-.date-card p { font-size: 1.5rem; font-weight: bold; margin: 0; }
-.status {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 5px 15px;
-    border-radius: 15px;
-    font-weight: bold;
-    color: #fff;
-}
-.status.available { background-color: var(--success-color); }
-.status.few-spots { background-color: var(--warning-color); color: var(--text-color); }
-.status.sold-out { background-color: var(--danger-color); }
 
 /* --- SECCIÓN INCLUSIONES --- */
 .inclusions-section { background: #fff; }
@@ -695,3 +678,4 @@ section.is-visible {
         font-size: 0.7rem;
     }
 }
+
