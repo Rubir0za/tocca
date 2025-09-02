@@ -1,6 +1,6 @@
 /* --- ESTILOS GENERALES Y FUENTES --- */
 :root {
-    --primary-color: #4A9A92;
+    --primary-color: #375369; /* Azul de la imagen de inspiración */
     --secondary-color: #D8A736;
     --text-color: #3E2D23;
     --light-text-color: #ffffff;
@@ -9,7 +9,6 @@
     --warning-color: #ffc107;
     --danger-color: #dc3545;
     --hero-text-color-beige: #EFEAE4; 
-    --inspiration-blue: #375369; /* Color azul de la imagen de inspiración */
 }
 
 html {
@@ -42,6 +41,7 @@ h2 {
 
 section {
     padding: 60px 20px;
+    overflow: hidden; 
 }
 
 .container {
@@ -79,7 +79,7 @@ a {
     fill: #fff;
 }
 
-/* --- HEADER Y NAVEGACIÓN (VISTA PC) --- */
+/* --- HEADER Y NAVEGACIÓN --- */
 .main-header {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('imagenes/hero-image-amalfi.jpeg') no-repeat center center/cover;
     height: 100vh;
@@ -120,67 +120,46 @@ a {
 .hamburger { display: none; cursor: pointer; }
 .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--hero-text-color-beige); }
 
-/* --- SECCIÓN ITINERARIO (VISTA PC) --- */
+/* --- SECCIÓN ITINERARIO --- */
 .itinerary-section { background-color: var(--background-light); }
 .itinerary-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-.itinerary-day-row {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 25px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    min-height: 150px;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    overflow: hidden;
-}
-.itinerary-day-row::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.4);
-    z-index: 1;
-    border-radius: 10px;
-}
+.itinerary-day-row { background-color: var(--primary-color); color: white; padding: 25px; border-radius: 10px; display: flex; align-items: center; min-height: 150px; background-size: cover; background-position: center; position: relative; }
+.itinerary-day-row::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); z-index: 1; border-radius: 10px; }
 .day-title, .day-description { position: relative; z-index: 2; }
 .day-title { flex: 0 0 120px; font-size: 3rem; font-family: 'Playfair Display', serif; }
 .day-title a { color: white; text-decoration: none; }
 .day-description { border-left: 2px solid var(--secondary-color); padding-left: 20px; }
 .day-description h3 { font-size: 1.2rem; font-family: 'Montserrat'; font-weight: 700; margin: 0 0 5px; }
-.day-description p { margin: 0; display: block; }
+.day-description p { margin: 0; display: block; } /* Mostramos la descripción en PC */
 
-/* --- SECCIÓN UPCOMING DATES (VISTA PC) --- */
+/* --- SECCIÓN UPCOMING DATES --- */
 .upcoming-dates-section { text-align: center; }
 .dates-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
 .date-card { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; width: 280px; border: 1px solid #eee; }
-.date-card h3 { font-size: 1.5rem; font-weight: 700; margin: 0 0 10px; color: var(--text-color); }
+.date-card h3 { font-size: 1.5rem; font-weight: 700; margin: 0 0 10px; color: var(--primary-color); }
 .date-card p { font-size: 1.2rem; margin: 0 0 15px; }
 .status { display: inline-block; padding: 8px 20px; border-radius: 50px; color: white; font-weight: 700; }
 .status.available { background-color: var(--success-color); }
 .status.few-spots { background-color: var(--warning-color); color: #333; }
 .status.sold-out { background-color: var(--danger-color); }
 
-/* --- SECCIÓN WHAT'S INCLUDED (VISTA PC) --- */
+/* --- SECCIÓN WHAT'S INCLUDED --- */
 .included-section { background-color: var(--background-light); }
 .included-container { display: flex; justify-content: space-around; gap: 40px; flex-wrap: wrap; }
 .included-column { flex: 1; min-width: 280px; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
 .included-column h3 { font-size: 1.5rem; color: var(--text-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-bottom: 20px; }
 .included-column ul { list-style: none; padding: 0; }
 .included-column li { margin-bottom: 10px; font-size: 1rem; }
-.included-column i { margin-right: 10px; }
 .included-column .fa-check-circle { color: var(--success-color); }
 .included-column .fa-times-circle { color: var(--danger-color); }
+.included-column i { margin-right: 10px; }
 
-/* --- OTRAS SECCIONES (TESTIMONIOS, CONTACTO, etc.) --- */
+/* --- OTRAS SECCIONES (TESTIMONIOS, CONTACTO) --- */
 .testimonials-section { background-color: #fff; }
 .testimonial-card { max-width: 700px; margin: 0 auto 20px auto; padding: 30px; background-color: var(--background-light); border-left: 5px solid var(--secondary-color); }
 .contact-us-section { background-color: var(--primary-color); color: white; text-align: center; }
 .contact-us-section h2 { color: white; }
 .contact-button { background-color: var(--secondary-color); color: white; padding: 15px 35px; border-radius: 50px; display: inline-block; margin-top: 20px; }
-.animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-.animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
 
 
 /**************************************************/
@@ -188,12 +167,7 @@ a {
 /**************************************************/
 @media (max-width: 920px) {
 
-    h2 { font-size: 2rem; }
-    .hero-content h1 { font-size: 2.8rem; }
-    .hero-content p { font-size: 1.2rem; }
-
     /* --- NAVEGACIÓN MÓVIL --- */
-    .main-nav { padding: 20px; }
     .nav-menu { position: fixed; left: -100%; top: 0; flex-direction: column; background-color: #2c3e50; width: 100%; height: 100vh; text-align: center; transition: 0.3s; padding-top: 80px; }
     .nav-menu.active { left: 0; }
     .nav-menu li { margin: 20px 0; }
@@ -201,30 +175,24 @@ a {
     .hamburger.active .bar:nth-child(2) { opacity: 0; }
     .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .hero-content h1 { font-size: 2.8rem; }
+    .hero-content p { font-size: 1.2rem; }
+    h2 { font-size: 2rem; }
 
-    /* --- AJUSTE ITINERARIO MÓVIL (Como la imagen de inspiración) --- */
+    /* --- AJUSTE ITINERARIO MÓVIL --- */
     .itinerary-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-    .itinerary-day-row {
-        background-color: var(--inspiration-blue); /* Color azul solicitado */
-        background-image: none;
-        min-height: 125px;
-        padding: 10px;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-    }
-    .itinerary-day-row::before { background: transparent; } /* Quitar capa oscura */
-    .day-title { flex: unset; font-size: 1.4rem; margin-bottom: 5px; color: #f0f0f0; }
+    .itinerary-day-row { background-color: var(--primary-color); background-image: none; min-height: 125px; padding: 10px; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+    .itinerary-day-row::before { background: transparent; }
+    .day-title { flex: none; font-size: 1.4rem; margin-bottom: 5px; color: #f0f0f0; }
     .day-description { border-left: none; padding-left: 0; }
     .day-description h3 { font-size: 0.8rem; line-height: 1.2; color: #e0e0e0; font-weight: normal; margin: 0; }
-    .day-description p { display: none; } /* Ocultar párrafo en móvil */
-    .itinerary-day-row:last-child { grid-column-start: 2; } /* Centrar el último día */
+    .day-description p { display: none; }
+    .itinerary-day-row:last-child { grid-column-start: 2; }
 
-    /* --- AJUSTE UPCOMING DATES MÓVIL (4 tarjetas estáticas) --- */
+    /* === AJUSTE FINAL PARA UPCOMING DATES EN MÓVIL === */
     .dates-container {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4, 1fr); /* 4 columnas estáticas */
         gap: 8px;
         padding: 0 10px;
     }
@@ -237,12 +205,24 @@ a {
         justify-content: center;
         align-items: center;
         text-align: center;
-        border: 1px solid #ddd;
+        border: 1px solid #ddd; /* Borde sutil para delimitar */
     }
-    .date-card h3 { font-size: 0.8rem; margin: 0 0 4px 0; }
-    .date-card p { font-size: 0.9rem; font-weight: bold; margin: 0 0 6px 0; }
-    .status { font-size: 0.65rem; padding: 4px 6px; white-space: nowrap; }
+    .date-card h3 {
+        font-size: 0.8rem;
+        margin: 0 0 4px 0;
+    }
+    .date-card p {
+        font-size: 0.9rem;
+        font-weight: bold;
+        margin: 0 0 6px 0;
+    }
+    .status {
+        font-size: 0.65rem;
+        padding: 4px 6px;
+        white-space: nowrap; /* Evita que el texto del estado se parta */
+    }
 
     /* --- AJUSTE WHAT'S INCLUDED MÓVIL --- */
     .included-container { flex-direction: column; }
 }
+
