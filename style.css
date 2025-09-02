@@ -636,7 +636,7 @@ section.is-visible {
 
     .itinerary-day-row {
         min-height: 140px; /* Altura ajustada para el contenido */
-        padding: 12px 8px; /* Menos espacio interno para que quepa el texto */
+        padding: 5px 5px; /* Menos espacio interno para que quepa el texto */
         justify-content: center;
     }
 
@@ -710,4 +710,5 @@ section.is-visible {
     padding: 4px 8px;
     white-space: nowrap; /* Evita que "Few Spots Left" se parta en dos líneas */
 }
+
 
