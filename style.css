@@ -1,3 +1,8 @@
+/* Errores en:
+    Linea 160
+    
+*/
+
 /* --- ESTILOS GENERALES Y FUENTES --- */
 :root {
     --primary-color: #4A9A92;
@@ -8,14 +13,17 @@
     --success-color: #28a745;
     --warning-color: #ffc107;
     --danger-color: #dc3545;
-    --hero-text-color-beige: #EFEAE4; 
+    --hero-text-color-beige: #EFEAE4;
 }
 
 html {
     box-sizing: border-box;
     scroll-behavior: smooth;
 }
-*, *::before, *::after {
+
+*,
+*::before,
+*::after {
     box-sizing: inherit;
 }
 
@@ -28,7 +36,9 @@ body {
     overflow-x: hidden;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-family: 'Playfair Display', serif;
 }
 
@@ -77,7 +87,7 @@ section.is-visible {
 }
 
 .nav-logo {
-    height: 76px; 
+    height: 76px;
     width: auto;
 }
 
@@ -87,8 +97,8 @@ section.is-visible {
 }
 
 .nav-link {
-    color: var(--light-text-color); 
-    text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.6); 
+    color: var(--light-text-color);
+    text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.6);
     background-color: transparent;
     border-radius: 5px;
     padding: 8px 15px;
@@ -157,15 +167,20 @@ section.is-visible {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
     z-index: 0;
     display: block;
+}
+
+.hero-img {
+    position: relative;
+    z-index: 0;
+    filter: brightness(0.5);
 }
 
 .hero-content {
     max-width: 900px;
     padding: 20px;
-    position: relative;
+    position: absolute;
     z-index: 1;
     display: flex;
     flex-direction: column;
@@ -175,7 +190,7 @@ section.is-visible {
 }
 
 .logo-background {
-    display: none; 
+    display: none;
 }
 
 /* Estilos para "Tocca" */
@@ -185,8 +200,9 @@ section.is-visible {
     font-weight: 400;
     margin: 0;
     line-height: 1;
-    color: var(--hero-text-color-beige); /* Color beige */
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    color: var(--hero-text-color-beige);
+    /* Color beige */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     padding: 0;
     background-color: transparent;
     box-shadow: none;
@@ -200,8 +216,9 @@ section.is-visible {
     letter-spacing: 8px;
     text-transform: uppercase;
     margin: 10px 0 20px;
-    color: var(--hero-text-color-beige); /* Color beige */
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    color: var(--hero-text-color-beige);
+    /* Color beige */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     padding: 0;
     background-color: transparent;
     box-shadow: none;
@@ -215,8 +232,9 @@ section.is-visible {
     text-transform: uppercase;
     letter-spacing: 2px;
     margin: 0;
-    color: var(--hero-text-color-beige); /* Color beige */
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    color: var(--hero-text-color-beige);
+    /* Color beige */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .cta-button {
@@ -266,7 +284,7 @@ section.is-visible {
     height: 100%;
     object-fit: cover;
     border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .why-us-image-grid img:first-child {
@@ -279,6 +297,7 @@ section.is-visible {
     padding: 0;
     margin-top: 20px;
 }
+
 .offer-list li {
     font-size: 1.1rem;
     margin-bottom: 15px;
@@ -292,7 +311,10 @@ section.is-visible {
     color: var(--light-text-color);
     text-align: center;
 }
-.luxury-package-section h2 { color: var(--light-text-color); }
+
+.luxury-package-section h2 {
+    color: var(--light-text-color);
+}
 
 .package-price {
     font-size: 1.8rem;
@@ -303,7 +325,7 @@ section.is-visible {
 
 .itinerary-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
@@ -337,14 +359,14 @@ section.is-visible {
     z-index: 1;
 }
 
-.itinerary-day-row > * {
+.itinerary-day-row>* {
     position: relative;
     z-index: 2;
 }
 
 .itinerary-day-row:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
 }
 
 .day-title {
@@ -354,12 +376,16 @@ section.is-visible {
     font-family: 'Playfair Display', serif;
     margin-bottom: 10px;
 }
+
 .day-title a {
     color: var(--light-text-color);
     text-decoration: none;
     transition: color 0.3s ease;
 }
-.day-title a:hover { color: var(--secondary-color); }
+
+.day-title a:hover {
+    color: var(--secondary-color);
+}
 
 .day-description {
     padding-left: 0;
@@ -367,17 +393,24 @@ section.is-visible {
     width: 100%;
     text-align: center;
 }
+
 .day-description h3 {
     margin: 0 0 5px 0;
     font-size: 1.6rem;
     color: var(--light-text-color);
 }
-.day-description p { margin: 0; font-size: 1.1rem; color: rgba(255, 255, 255, 0.9); }
+
+.day-description p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+}
 
 /* --- SECCIÓN FECHAS --- */
-.upcoming-dates-section { 
-    background-color: var(--background-light); 
+.upcoming-dates-section {
+    background-color: var(--background-light);
 }
+
 .dates-container {
     display: flex;
     flex-wrap: nowrap;
@@ -387,28 +420,33 @@ section.is-visible {
     margin: 0 auto;
     padding: 20px;
 }
+
 .date-card {
     background: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     text-align: center;
     width: 220px;
     flex-shrink: 0;
     transition: transform 0.3s ease;
 }
-.date-card:hover { 
-    transform: translateY(-10px); 
+
+.date-card:hover {
+    transform: translateY(-10px);
 }
-.date-card h3 { 
-    margin: 0 0 10px; 
-    color: var(--primary-color); 
+
+.date-card h3 {
+    margin: 0 0 10px;
+    color: var(--primary-color);
 }
-.date-card p { 
-    font-size: 1.5rem; 
-    font-weight: bold; 
-    margin: 0; 
+
+.date-card p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
 }
+
 .status {
     display: inline-block;
     margin-top: 15px;
@@ -417,18 +455,25 @@ section.is-visible {
     font-weight: bold;
     color: #fff;
 }
-.status.available { 
-    background-color: var(--success-color); 
+
+.status.available {
+    background-color: var(--success-color);
 }
-.status.few-spots { 
-    background-color: var(--warning-color); 
-    color: var(--text-color); 
+
+.status.few-spots {
+    background-color: var(--warning-color);
+    color: var(--text-color);
 }
-.status.sold-out { 
-    background-color: var(--danger-color); 
+
+.status.sold-out {
+    background-color: var(--danger-color);
 }
+
 /* --- SECCIÓN INCLUSIONES --- */
-.inclusions-section { background: #fff; }
+.inclusions-section {
+    background: #fff;
+}
+
 .inclusions-container {
     display: flex;
     justify-content: center;
@@ -437,13 +482,16 @@ section.is-visible {
     margin: 0 auto;
     flex-wrap: wrap;
 }
-.includes-column, .not-includes-column {
+
+.includes-column,
+.not-includes-column {
     background: var(--background-light);
     padding: 30px;
     border-radius: 8px;
     flex: 1;
     min-width: 300px;
 }
+
 .inclusions-container h3 {
     display: flex;
     align-items: center;
@@ -451,29 +499,62 @@ section.is-visible {
     font-size: 1.5rem;
     margin-top: 0;
 }
-.includes-column h3 { color: var(--success-color); }
-.not-includes-column h3 { color: var(--danger-color); }
-.inclusions-container ul { list-style: none; padding: 0; }
-.inclusions-container li { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-.inclusions-container i { font-size: 1.2rem; }
+
+.includes-column h3 {
+    color: var(--success-color);
+}
+
+.not-includes-column h3 {
+    color: var(--danger-color);
+}
+
+.inclusions-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.inclusions-container li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.inclusions-container i {
+    font-size: 1.2rem;
+}
 
 /* --- TESTIMONIOS --- */
 .testimonials-section {
     background-color: var(--background-light);
 }
+
 .testimonial-card {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
     background: #fff;
     border-left: 5px solid var(--primary-color);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
 }
 
 /* --- CONTACTO --- */
-.contact-us-section { text-align: center; background-color: var(--primary-color); color: #fff; }
-.contact-us-section h2 { color: #fff; }
-.contact-us-section p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px; }
+.contact-us-section {
+    text-align: center;
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.contact-us-section h2 {
+    color: #fff;
+}
+
+.contact-us-section p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
 .contact-button {
     background-color: var(--secondary-color);
     color: var(--text-color);
@@ -483,7 +564,10 @@ section.is-visible {
     border-radius: 5px;
     transition: all 0.3s;
 }
-.contact-button:hover { background-color: #fff; }
+
+.contact-button:hover {
+    background-color: #fff;
+}
 
 /* --- WHATSAPP FLOAT --- */
 .whatsapp-float {
@@ -503,6 +587,7 @@ section.is-visible {
     justify-content: center;
     align-items: center;
 }
+
 .whatsapp-svg-icon {
     width: 35px;
     height: 35px;
@@ -514,11 +599,22 @@ section.is-visible {
     max-width: 800px;
     margin: 120px auto 40px;
     background-color: #fff;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
-.day-detail-section h1 { font-size: 2.8rem; color: var(--primary-color); margin-bottom: 20px; }
-.day-detail-section p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; }
+
+.day-detail-section h1 {
+    font-size: 2.8rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.day-detail-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
 .back-to-home {
     display: inline-block;
     margin-top: 30px;
@@ -530,21 +626,24 @@ section.is-visible {
     border-radius: 5px;
     transition: background-color 0.3s;
 }
-.back-to-home:hover { background-color: #3a7a72; }
+
+.back-to-home:hover {
+    background-color: #3a7a72;
+}
 
 /* --- RESPONSIVE --- */
 @media (max-width: 920px) {
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 85px; 
+        top: 85px;
         flex-direction: column;
         background-color: var(--secondary-color);
         width: 100%;
         text-align: center;
         transition: 0.3s;
         gap: 1px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
 
     .nav-menu.active {
@@ -555,16 +654,17 @@ section.is-visible {
         padding: 20px;
         width: 100%;
         border: none;
-        border-bottom: 1px solid rgba(0,0,0,0.1);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         border-radius: 0;
         box-shadow: none;
         color: var(--text-color);
     }
-     .nav-link:hover {
+
+    .nav-link:hover {
         background-color: var(--primary-color);
         color: var(--light-text-color);
         transform: none;
-     }
+    }
 
     .hamburger {
         display: block;
@@ -599,9 +699,11 @@ section.is-visible {
         text-align: center;
         width: 100%;
     }
+
     .day-description h3 {
         font-size: 1.4rem;
     }
+
     .day-description p {
         font-size: 1.1rem;
     }
@@ -613,169 +715,199 @@ section.is-visible {
     .why-us-carousel-section:nth-of-type(even) .why-us-container {
         flex-direction: column-reverse;
     }
-    
-/* === AJUSTE FINAL PARA UPCOMING DATES (CENTRADO Y HORIZONTAL) === */
-.dates-container {
-    display: flex;          /* Usamos Flexbox que es ideal para esto */
-    justify-content: center; /* Centra las tarjetas horizontalmente */
-    align-items: stretch;   /* Asegura que todas tengan la misma altura */
-    flex-wrap: nowrap;      /* Evita que se bajen a otra línea */
-    gap: 8px;               /* Un pequeño espacio entre ellas */
-    padding: 0 10px;        /* Padding para que no toquen los bordes de la pantalla */
-}
 
-.date-card {
-    flex-basis: 0;     /* Permite que las tarjetas se encojan de forma flexible */
-    flex-grow: 1;      /* Hace que ocupen el espacio disponible de forma equitativa */
-    padding: 10px 5px; /* Espacio interno ajustado */
-    min-height: 90px;  /* Les da una altura mínima para que no se vean aplastadas */
-    /* Centramos el texto dentro de cada tarjeta */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.date-card h3 {
-    font-size: 0.8rem;
-    margin: 0 0 4px 0;
-}
-
-.date-card p {
-    font-size: 0.9rem;
-    margin: 0 0 6px 0;
-}
-
-.status {
-    font-size: 0.65rem;
-    padding: 4px 8px;
-    white-space: nowrap; /* Evita que "Few Spots Left" se parta en dos líneas */
-}
-.video-background img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-}
-
-
-
-
-
-
-/* --- SECCIÓN ITINERARIO --- */
-.luxury-package-section {
-    background-color: var(--primary-color);
-    color: var(--light-text-color);
-    text-align: center;
-}
-.luxury-package-section h2 { color: var(--light-text-color); }
-
-.package-price {
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-bottom: 50px;
-    color: var(--secondary-color);
-}
-
-.itinerary-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.itinerary-day-row {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
-    padding: 20px;
-    text-align: center;
-    min-height: 100px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.itinerary-day-row:hover {
-    transform: scale(1.03);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-}
-
-.day-title {
-    font-size: 1.8rem;
-    font-weight: bold;
-    font-family: 'Playfair Display', serif;
-}
-.day-title a {
-    color: var(--light-text-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-.day-title a:hover { color: var(--secondary-color); }
-
-.day-description {
-    padding-left: 0;
-    border-left: none;
-}
-.day-description h3 {
-    margin: 0 0 5px 0;
-    font-size: 1.1rem;
-    color: var(--light-text-color);
-}
-.day-description p { margin: 0; font-size: 1rem; color: rgba(255, 255, 255, 0.9); display: none; }
-
-/* === AJUSTE DE ITINERARIO PARA MÓVIL === */
-@media (max-width: 920px) {
-    .itinerary-grid {
-        grid-template-columns: 1fr 1fr;
+    /* === AJUSTE FINAL PARA UPCOMING DATES (CENTRADO Y HORIZONTAL) === */
+    .dates-container {
+        display: flex;
+        /* Usamos Flexbox que es ideal para esto */
+        justify-content: center;
+        /* Centra las tarjetas horizontalmente */
+        align-items: stretch;
+        /* Asegura que todas tengan la misma altura */
+        flex-wrap: nowrap;
+        /* Evita que se bajen a otra línea */
         gap: 8px;
+        /* Un pequeño espacio entre ellas */
+        padding: 0 10px;
+        /* Padding para que no toquen los bordes de la pantalla */
+    }
+
+    .date-card {
+        flex-basis: 0;
+        /* Permite que las tarjetas se encojan de forma flexible */
+        flex-grow: 1;
+        /* Hace que ocupen el espacio disponible de forma equitativa */
+        padding: 10px 5px;
+        /* Espacio interno ajustado */
+        min-height: 90px;
+        /* Les da una altura mínima para que no se vean aplastadas */
+        /* Centramos el texto dentro de cada tarjeta */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .date-card h3 {
+        font-size: 0.8rem;
+        margin: 0 0 4px 0;
+    }
+
+    .date-card p {
+        font-size: 0.9rem;
+        margin: 0 0 6px 0;
+    }
+
+    .status {
+        font-size: 0.65rem;
+        padding: 4px 8px;
+        white-space: nowrap;
+        /* Evita que "Few Spots Left" se parta en dos líneas */
+    }
+
+    .video-background img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+
+
+
+
+
+
+    /* --- SECCIÓN ITINERARIO --- */
+    .luxury-package-section {
+        background-color: var(--primary-color);
+        color: var(--light-text-color);
+        text-align: center;
+    }
+
+    .luxury-package-section h2 {
+        color: var(--light-text-color);
+    }
+
+    .package-price {
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 50px;
+        color: var(--secondary-color);
+    }
+
+    .itinerary-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        max-width: 900px;
+        margin: 0 auto;
     }
 
     .itinerary-day-row {
+        display: flex;
         flex-direction: column;
         align-items: center;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        padding: 20px;
         text-align: center;
-        min-height: auto;
-        padding: 10px;
-        background-image: none !important;
+        min-height: 100px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .itinerary-day-row:hover {
+        transform: scale(1.03);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     }
 
     .day-title {
-        flex: unset;
-        font-size: 1.4rem;
-        margin-bottom: 5px;
+        font-size: 1.8rem;
+        font-weight: bold;
+        font-family: 'Playfair Display', serif;
+    }
+
+    .day-title a {
+        color: var(--light-text-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .day-title a:hover {
+        color: var(--secondary-color);
     }
 
     .day-description {
         padding-left: 0;
         border-left: none;
-        width: 100%;
     }
+
     .day-description h3 {
-        font-size: 0.8rem;
-        color: var(--text-color);
+        margin: 0 0 5px 0;
+        font-size: 1.1rem;
+        color: var(--light-text-color);
     }
+
     .day-description p {
+        margin: 0;
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.9);
         display: none;
     }
-}
 
-.itinerary-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    max-width: 900px;
-    margin: 0 auto;
-}
+    /* === AJUSTE DE ITINERARIO PARA MÓVIL === */
+    @media (max-width: 920px) {
+        .itinerary-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
 
-@media (max-width: 920px) {
+        .itinerary-day-row {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            min-height: auto;
+            padding: 10px;
+            background-image: none !important;
+        }
+
+        .day-title {
+            flex: unset;
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .day-description {
+            padding-left: 0;
+            border-left: none;
+            width: 100%;
+        }
+
+        .day-description h3 {
+            font-size: 0.8rem;
+            color: var(--text-color);
+        }
+
+        .day-description p {
+            display: none;
+        }
+    }
+
     .itinerary-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    @media (max-width: 920px) {
+        .itinerary-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
     }
 }
